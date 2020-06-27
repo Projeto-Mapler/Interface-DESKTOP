@@ -55,9 +55,7 @@ public class ControllerInicial implements Initializable {
     
     private void barra_controle() {
     	btn_home.setOnAction(e->{
-    		vb_topo.getChildren().clear();
-        	vb_topo.getChildren().add(ap_barraPrimaria);
-        	vb_topo.getChildren().add(ap_barraSecundaria);
+    		modoInicial();
     	});
     	
     	btn_close.setOnAction(e->{ //fechar aplicacao
@@ -97,6 +95,12 @@ public class ControllerInicial implements Initializable {
     }
     
     //metodos de mudanca de interface
+    private void modoInicial() {
+    	vb_topo.getChildren().clear();
+    	vb_topo.getChildren().add(ap_barraPrimaria);
+    	vb_topo.getChildren().add(ap_barraSecundaria);
+    }
+    
     private void modoCodigo() {
     	vb_topo.getChildren().clear();
     	vb_topo.getChildren().add(ap_barraPrimaria);
