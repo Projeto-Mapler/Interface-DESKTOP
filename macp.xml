@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="Create Runnable Jar for Project interface-macp">
+    <!--this file was created by Eclipse Runnable JAR Export Wizard-->
+    <!--ANT 1.7 is required                                        -->
+    <!--define folder properties-->
+    <property name="dir.buildfile" value="."/>
+    <property name="dir.workspace" value="${dir.buildfile}/.."/>
+    <property name="dir.jarfile" value="${dir.workspace}/macp"/>
+    <target name="create_run_jar">
+        <jar destfile="${dir.jarfile}/MACP.jar" filesetmanifest="mergewithoutmain">
+            <manifest>
+                <attribute name="Main-Class" value="macp.Launcher"/>
+                <attribute name="Class-Path" value="."/>
+            </manifest>
+            <fileset dir="${dir.buildfile}/bin"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/libs/flowless-0.6.1.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/libs/jfoenix-8.0.7.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/libs/fontawesomefx-8.2.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/libs/reactfx-2.0-M5.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/libs/richtextfx-0.10.3.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/libs/undofx-2.1.0.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/libs/undofx-fat-2.1.0.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/libs/wellbehavedfx-0.3.3.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.buildfile}/libs/charm-glisten-4.4.1.jar"/>
+        </jar>
+    </target>
+</project>
