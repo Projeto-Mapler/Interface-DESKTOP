@@ -2,7 +2,6 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/interpretadorMACP"/>
 	<classpathentry kind="lib" path="src/resources/bibliotecas/charm-glisten-4.4.1.jar"/>
 	<classpathentry kind="lib" path="src/resources/bibliotecas/flowless-0.6.1.jar"/>
 	<classpathentry kind="lib" path="src/resources/bibliotecas/fontawesomefx-8.2.jar"/>
