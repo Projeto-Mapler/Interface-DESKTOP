@@ -53,7 +53,6 @@ public class ControllerInicial implements Initializable {
     }
    
     //metodos de controle
-    
     private void barra_controle() {
     	btn_home.setOnAction(e->{
     		modoInicial();
