@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import org.fxmisc.richtext.StyleClassedTextArea?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <AnchorPane prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #353535;">
+                     <children>
+                        <HBox alignment="CENTER" layoutX="-71.0" layoutY="-30.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="200.0" style="-fx-spacing: 15;" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <ImageView fitHeight="40.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/logo-branco.png" />
+                                       </image>
+                                       <HBox.margin>
+                                          <Insets left="10.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                    <AnchorPane maxHeight="20.0" prefHeight="20.0" prefWidth="200.0" style="-fx-border-color: transparent transparent transparent #585858;" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <JFXButton contentDisplay="CENTER" text=" " prefHeight="18.0" prefWidth="40.0" textFill="#1a1a1a">
+                                       <graphic>
+                                          <FontAwesomeIcon fx:id="btn_save" glyphName="SAVE" />
+                                       </graphic>
+                                    </JFXButton>
+                                    <JFXButton fx:id="btn_play" contentDisplay="CENTER" text=" " prefHeight="18.0" prefWidth="40.0" textFill="#1a1a1a">
+                                       <graphic>
+                                          <FontAwesomeIcon glyphName="PLAY" />
+                                       </graphic>
+                                    </JFXButton>
+                                    <JFXButton text=" " prefHeight="18.0" prefWidth="40.0" textFill="#1a1a1a">
+                                       <graphic>
+                                          <FontAwesomeIcon fx:id="btn_trade" glyphName="" />
+                                       </graphic>
+                                    </JFXButton>
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                           </children>
+                        </HBox>
+                     </children></AnchorPane>
+                  <SplitPane dividerPositions="0.7" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" VBox.vgrow="ALWAYS">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <children>
+                              <SplitPane dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <items>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #353535;">
+                                       <children>
+                                          <StyleClassedTextArea fx:id="area_portugol" layoutX="66.0" layoutY="73.0" style="-fx-background-color: #1a1a1a;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                                       </children>
+                                    </AnchorPane>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #353535;">
+                                       <children>
+                                          <StyleClassedTextArea fx:id="area_codigo" layoutX="88.0" layoutY="65.0" style="-fx-background-color: #1a1a1a;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                                       </children>
+                                    </AnchorPane>
+                                </items>
+                              </SplitPane>
+                           </children>
+                        </AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <children>
+                              <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <tabs>
+                                  <Tab text="Console">
+                                    <content>
+                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                             <children>
+                                                <StyleClassedTextArea fx:id="area_console" layoutX="243.0" layoutY="-19.0" style="-fx-background-color: #1a1a1a;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                             </children>
+                                          </AnchorPane>
+                                    </content>
+                                  </Tab>
+                                </tabs>
+                              </TabPane>
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="30.0">
+               <children>
+                  <AnchorPane prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #353535;" />
+                  <AnchorPane prefHeight="200.0" prefWidth="40.0" style="-fx-background-color: #353535; -fx-border-color: #1a1a1a transparent transparent transparent;" VBox.vgrow="ALWAYS">
+                     <children>
+                        <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <JFXButton fx:id="btn_bars" contentDisplay="CENTER" maxWidth="40.0" minWidth="40.0" prefWidth="40.0" text=" " textFill="#1a1a1a">
+                                 <graphic>
+                                    <FontAwesomeIcon glyphName="BARS" />
+                                 </graphic>
+                              </JFXButton>
+                              <JFXButton fx:id="btn_c" contentDisplay="CENTER" prefHeight="18.0" prefWidth="40.0" text=" " textFill="#1a1a1a">
+                                 <graphic>
+                                    <FontAwesomeIcon glyphName="JAVA" />
+                                 </graphic>
+                              </JFXButton>
+                              <JFXButton fx:id="btn_java" contentDisplay="CENTER" prefHeight="18.0" prefWidth="40.0" text=" " textFill="#1a1a1a">
+                                 <graphic>
+                                    <FontAwesomeIcon />
+                                 </graphic>
+                              </JFXButton>
+                              <JFXButton fx:id="btn_python" contentDisplay="CENTER" prefHeight="18.0" prefWidth="40.0" text=" " textFill="#1a1a1a">
+                                 <graphic>
+                                    <FontAwesomeIcon />
+                                 </graphic>
+                              </JFXButton>
+                              <JFXButton fx:id="btn_pascal" contentDisplay="CENTER" prefHeight="18.0" prefWidth="40.0" text=" " textFill="#1a1a1a">
+                                 <graphic>
+                                    <FontAwesomeIcon />
+                                 </graphic>
+                              </JFXButton>
+                              <JFXButton fx:id="btn_more" contentDisplay="CENTER" prefHeight="18.0" prefWidth="40.0" text=" " textFill="#1a1a1a">
+                                 <graphic>
+                                    <FontAwesomeIcon glyphName="PLUS" />
+                                 </graphic>
+                              </JFXButton>
+                           </children>
+                        </VBox>
+                     </children></AnchorPane>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

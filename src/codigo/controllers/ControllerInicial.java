@@ -1,5 +1,6 @@
 package codigo.controllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -8,14 +9,19 @@ import com.jfoenix.controls.JFXButton;
 import codigo.Inicial;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.MenuBar;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import resources.css.CssMaster;
 
 public class ControllerInicial implements Initializable {
+	    
+	    @FXML
+	    BorderPane bd_inicial;
 	
 	/*----------------PARTE DE CIMA DO FXML--------------*/
 	    @FXML
@@ -43,9 +49,15 @@ public class ControllerInicial implements Initializable {
 	  /*-----------------------------------------------*/
 		
 	/*---------------------------------------------------*/
+		
+    /*----------------Center----------------------------*/
+		@FXML
+		AnchorPane ap_centerIncial;
+    /*--------------------------------------------------*/
 	
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+    	modoInicial();//iniciar na tela principal
     	
     	barra_controle();
     	menuBar();
@@ -99,11 +111,37 @@ public class ControllerInicial implements Initializable {
     	vb_topo.getChildren().clear();
     	vb_topo.getChildren().add(ap_barraPrimaria);
     	vb_topo.getChildren().add(ap_barraSecundaria);
+    	
+    	try {
+    		AnchorPane ap_codigo = FXMLLoader.load(getClass().getResource("/resources/view/tela_principal.fxml"));
+    		setCenter(ap_codigo);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    	
     }
     
     private void modoCodigo() {
     	vb_topo.getChildren().clear();
     	vb_topo.getChildren().add(ap_barraPrimaria);
+    	
+    	try {
+    		AnchorPane ap_codigo = FXMLLoader.load(getClass().getResource("/resources/view/tela_codigo.fxml"));
+    		setCenter(ap_codigo);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    }
+    
+    private void setCenter(AnchorPane ap) {
+    	ap_centerIncial.getChildren().clear();
+		ap_centerIncial.getChildren().add(ap);
+		ap_centerIncial.setBottomAnchor(ap, 0.0);
+		ap_centerIncial.setLeftAnchor(ap, 0.0);
+		ap_centerIncial.setTopAnchor(ap, 0.0);
+		ap_centerIncial.setRightAnchor(ap, 0.0);	
     }
     
 }
