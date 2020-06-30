@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import resources.css.CssMaster;
 
 public class Inicial extends Application {
        
@@ -21,15 +22,16 @@ public class Inicial extends Application {
     	Inicial.janela = stage;
     	stage.initStyle(StageStyle.UNDECORATED); //removendo botoes padrao
     	Parent root = FXMLLoader.load(getClass().getResource("/resources/view/inicial.fxml")); 
-    	root.setOnMousePressed(pressEvent -> { //evento de arrastar a janela
+    	Scene scene = new Scene(root,900,600);  //resolucao inicial   
+        stage.setScene(scene);
+        stage.getScene().setOnMousePressed(pressEvent -> { //evento de arrastar a janela
     	    root.setOnMouseDragged(dragEvent -> {
     	        stage.setX(dragEvent.getScreenX() - pressEvent.getSceneX());
     	        stage.setY(dragEvent.getScreenY() - pressEvent.getSceneY());
     	    });
     	});
-    	Scene scene = new Scene(root,900,600);  //resolucao inicial   
-        stage.setScene(scene);
         stage.setTitle("MAPLER STUDIO");
+        //CssMaster.addResizeListener(stage); --esta movendo no lugar de dar resize
         //stage.getIcons().add(new Image(getClass().getResourceAsStream("madein.png")));
         stage.show();
         

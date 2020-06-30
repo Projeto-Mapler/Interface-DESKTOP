@@ -11,9 +11,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import org.fxmisc.richtext.StyleClassedTextArea?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="codigo.controllers.ControllerCodigo" >
    <children>
       <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -38,17 +39,17 @@
                               </HBox>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <JFXButton contentDisplay="CENTER" text=" " prefHeight="18.0" prefWidth="40.0" textFill="#1a1a1a">
+                                    <JFXButton contentDisplay="CENTER" prefHeight="18.0" prefWidth="40.0" text=" " textFill="#1a1a1a">
                                        <graphic>
                                           <FontAwesomeIcon fx:id="btn_save" glyphName="SAVE" />
                                        </graphic>
                                     </JFXButton>
-                                    <JFXButton fx:id="btn_play" contentDisplay="CENTER" text=" " prefHeight="18.0" prefWidth="40.0" textFill="#1a1a1a">
+                                    <JFXButton fx:id="btn_play" contentDisplay="CENTER" prefHeight="18.0" prefWidth="40.0" text=" " textFill="#1a1a1a">
                                        <graphic>
                                           <FontAwesomeIcon glyphName="PLAY" />
                                        </graphic>
                                     </JFXButton>
-                                    <JFXButton text=" " prefHeight="18.0" prefWidth="40.0" textFill="#1a1a1a">
+                                    <JFXButton prefHeight="18.0" prefWidth="40.0" text=" " textFill="#1a1a1a">
                                        <graphic>
                                           <FontAwesomeIcon fx:id="btn_trade" glyphName="" />
                                        </graphic>
@@ -59,11 +60,11 @@
                            </children>
                         </HBox>
                      </children></AnchorPane>
-                  <SplitPane dividerPositions="0.7" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" VBox.vgrow="ALWAYS">
+                  <SplitPane fx:id="sp_areaGeral" dividerPositions="0.7" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" VBox.vgrow="ALWAYS">
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                            <children>
-                              <SplitPane dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <SplitPane fx:id="sp_areaCodigo" dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                 <items>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #353535;">
                                        <children>
@@ -79,11 +80,11 @@
                               </SplitPane>
                            </children>
                         </AnchorPane>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #373737;">
                            <children>
-                              <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <TabPane fx:id="tb_console" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="0.0">
                                 <tabs>
-                                  <Tab text="Console">
+                                  <Tab text="Console    ">
                                     <content>
                                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                              <children>
@@ -94,6 +95,11 @@
                                   </Tab>
                                 </tabs>
                               </TabPane>
+                              <JFXButton text="X" textAlignment="RIGHT" AnchorPane.leftAnchor="97.0" AnchorPane.topAnchor="12.0" textFill="#1a1a1a">
+                                 <font>
+                                    <Font name="Arial Black" size="9.0" />
+                                 </font>
+                              </JFXButton>
                            </children>
                         </AnchorPane>
                     </items>
