@@ -95,7 +95,7 @@
                                   </Tab>
                                 </tabs>
                               </TabPane>
-                              <JFXButton text="X" textAlignment="RIGHT" AnchorPane.leftAnchor="97.0" AnchorPane.topAnchor="12.0" textFill="#1a1a1a">
+                              <JFXButton text="X" textAlignment="RIGHT" AnchorPane.leftAnchor="94.0" AnchorPane.topAnchor="9.0" textFill="#1a1a1a">
                                  <font>
                                     <Font name="Arial Black" size="9.0" />
                                  </font>

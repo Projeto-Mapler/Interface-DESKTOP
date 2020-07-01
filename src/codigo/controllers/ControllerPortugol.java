@@ -18,7 +18,7 @@ public class ControllerPortugol {
 			area.appendText("variaveis\n\ninicio\n\nfim.");
 		}
 		
-		area.setStyleClass(0, area.getText().length(), "white");
+		area.setStyleClass(0, area.getText().length(), "variaveis");
     	Iterator it = getReservadas().iterator();
     	int in;
     	String texto = area.getText();
@@ -35,7 +35,7 @@ public class ControllerPortugol {
     				if(in != 0)
     					continue;
     			}
-    			area.setStyleClass(in, in+str.length(), "blue");
+    			area.setStyleClass(in, in+str.length(), "reservadas");
     		}
 
     	}
@@ -46,7 +46,7 @@ public class ControllerPortugol {
     		Iterator e = getIndices(str, texto).iterator();
     		while(e.hasNext()) {
     			in = Integer.parseInt(e.next().toString());
-    			area.setStyleClass(in, in+str.length(), "orange");
+    			area.setStyleClass(in, in+str.length(), "tipos");
     		}
     	}
     	
@@ -56,14 +56,14 @@ public class ControllerPortugol {
     		Iterator e = getIndices(str, texto).iterator();
     		while(e.hasNext()) {
     			in = Integer.parseInt(e.next().toString());
-    			area.setStyleClass(in, in+str.length(), "red");
+    			area.setStyleClass(in, in+str.length(), "constantes");
     		}
     	}
     	
     	in =  texto.toLowerCase().indexOf("'");
     	int out = texto.toLowerCase().indexOf("'",in+1);
     	while(in != -1 && out != -1) {
-    		area.setStyleClass(in, out+1, "red");
+    		area.setStyleClass(in, out+1, "texto");
     		in =  texto.toLowerCase().indexOf("'",out+1);
     		out = texto.toLowerCase().indexOf("'",in+1);
     	}
@@ -71,7 +71,7 @@ public class ControllerPortugol {
     	in =  texto.toLowerCase().indexOf("\"");
     	out = texto.toLowerCase().indexOf("\"",in+1);
     	while(in != -1 && out != -1) {
-    		area.setStyleClass(in, out+1, "red");
+    		area.setStyleClass(in, out+1, "texto");
     		in =  texto.toLowerCase().indexOf("\"",out+1);
     		out = texto.toLowerCase().indexOf("\"",in+1);
     	}
@@ -86,10 +86,10 @@ public class ControllerPortugol {
     	
     	in =  texto.toLowerCase().indexOf(";"); //cor do ;
     	while(in != -1) {
-    		area.setStyleClass(in, in+1, "orange");
+    		area.setStyleClass(in, in+1, "tipos");
     		in =  texto.toLowerCase().indexOf(";",in+1);
     	}
-    	area.setStyleClass(area.getText().length(), area.getText().length(), "white");
+    	area.setStyleClass(area.getText().length(), area.getText().length(), "tipos");
     	return area;
     }
 	

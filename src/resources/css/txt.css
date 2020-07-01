@@ -7,32 +7,24 @@
     -fx-background-color: #1d1d1d;
 }
 
-.red { 
+.texto { 
     -fx-fill: #ed3232; 
 }
 
-.white{
-	-fx-fill: white; 
-}
-
-.blue{
+.reservadas{
     -fx-fill: #44aaf2;
 }
 
-.green{
-    -fx-fill: green;
+.variaveis{
+	-fx-fill: white; 
 }
 
-.orange{
+.constantes{
+    -fx-fill: #0BD69D;
+}
+
+.tipos{
     -fx-fill: orange;
-}
-
-.purple{
-    -fx-fill: purple;
-}
-
-.black{
-    -fx-fill: black;
 }
 
 .marcador{
@@ -40,5 +32,5 @@
 }
 
 .comentario{
-	-fx-fill: #e3788a;
+	-fx-fill: #aeb5b1;
 }
