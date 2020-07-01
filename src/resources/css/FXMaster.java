@@ -17,6 +17,12 @@ public class FXMaster {
 	 * Classe responsavel pelo design do FXML como CSS e Animações
 	 * */
 	
+	/*
+	 * 
+	 * Estilos
+	 * 
+	 * */
+	
 	public static String menuBar() {
 		return FXMaster.class.getResource("menubar.css").toExternalForm();
 	}
@@ -29,6 +35,14 @@ public class FXMaster {
 		return FXMaster.class.getResource("splitpane.css").toExternalForm();
 	}
 	
+	public static String portugol() {
+		return FXMaster.class.getResource("txt.css").toExternalForm();
+	}
+	
+	/*
+	 * ANIMAÇOES
+	 * 
+	 * */
 	private static double xOffset = 0;
     private static double yOffset = 0;
 

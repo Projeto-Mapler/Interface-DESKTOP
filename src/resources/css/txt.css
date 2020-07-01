@@ -1,0 +1,44 @@
+.lineno{
+   -fx-background-color: #1a1a1a;
+   -fx-font-size: 24;
+}
+
+.background {
+    -fx-background-color: #1d1d1d;
+}
+
+.red { 
+    -fx-fill: #ed3232; 
+}
+
+.white{
+	-fx-fill: white; 
+}
+
+.blue{
+    -fx-fill: #44aaf2;
+}
+
+.green{
+    -fx-fill: green;
+}
+
+.orange{
+    -fx-fill: orange;
+}
+
+.purple{
+    -fx-fill: purple;
+}
+
+.black{
+    -fx-fill: black;
+}
+
+.marcador{
+    -fx-fill: lime;
+}
+
+.comentario{
+	-fx-fill: #e3788a;
+}
