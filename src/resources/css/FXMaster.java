@@ -11,18 +11,22 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 
-public class CssMaster {
+public class FXMaster {
 		
+	/*
+	 * Classe responsavel pelo design do FXML como CSS e Animações
+	 * */
+	
 	public static String menuBar() {
-		return CssMaster.class.getResource("menubar.css").toExternalForm();
+		return FXMaster.class.getResource("menubar.css").toExternalForm();
 	}
 	
 	public static String tabPane() {
-		return CssMaster.class.getResource("tabpane.css").toExternalForm();
+		return FXMaster.class.getResource("tabpane.css").toExternalForm();
 	}
 	
 	public static String splitPane() {
-		return CssMaster.class.getResource("splitpane.css").toExternalForm();
+		return FXMaster.class.getResource("splitpane.css").toExternalForm();
 	}
 	
 	private static double xOffset = 0;

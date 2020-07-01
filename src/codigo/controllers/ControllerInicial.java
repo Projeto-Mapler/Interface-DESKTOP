@@ -16,7 +16,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
-import resources.css.CssMaster;
+import resources.css.FXMaster;
 
 public class ControllerInicial implements Initializable {
 	    
@@ -97,7 +97,7 @@ public class ControllerInicial implements Initializable {
     }
 
     private void menuBar() {
-    	m_bar.getStylesheets().add(CssMaster.menuBar());
+    	m_bar.getStylesheets().add(FXMaster.menuBar());
     }
     
     private void barra_segundo() {

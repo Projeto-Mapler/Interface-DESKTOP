@@ -8,7 +8,9 @@ import javafx.scene.Scene;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import resources.css.CssMaster;
+import resources.css.FXMaster;
+import javafx.event.EventHandler;
+import javafx.scene.input.MouseEvent;
 
 public class Inicial extends Application {
        
@@ -24,14 +26,8 @@ public class Inicial extends Application {
     	Parent root = FXMLLoader.load(getClass().getResource("/resources/view/inicial.fxml")); 
     	Scene scene = new Scene(root,900,600);  //resolucao inicial   
         stage.setScene(scene);
-        stage.getScene().setOnMousePressed(pressEvent -> { //evento de arrastar a janela
-    	    root.setOnMouseDragged(dragEvent -> {
-    	        stage.setX(dragEvent.getScreenX() - pressEvent.getSceneX());
-    	        stage.setY(dragEvent.getScreenY() - pressEvent.getSceneY());
-    	    });
-    	});
         stage.setTitle("MAPLER STUDIO");
-        //CssMaster.addResizeListener(stage); --esta movendo no lugar de dar resize
+        FXMaster.addResizeListener(stage); //resize + move
         //stage.getIcons().add(new Image(getClass().getResourceAsStream("madein.png")));
         stage.show();
         

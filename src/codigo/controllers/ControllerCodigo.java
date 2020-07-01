@@ -7,7 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TabPane;
-import resources.css.CssMaster;
+import resources.css.FXMaster;
 
 public class ControllerCodigo implements Initializable {
 	
@@ -26,12 +26,12 @@ public class ControllerCodigo implements Initializable {
 	}
 	
 	private void tabPane() {
-    	tb_console.getStylesheets().add(CssMaster.tabPane());
+    	tb_console.getStylesheets().add(FXMaster.tabPane());
     }
 	
 	private void splitPane() {
-		sp_areaCodigo.getStylesheets().add(CssMaster.splitPane());
-		sp_areaGeral.getStylesheets().add(CssMaster.splitPane());
+		sp_areaCodigo.getStylesheets().add(FXMaster.splitPane());
+		sp_areaGeral.getStylesheets().add(FXMaster.splitPane());
 	}
 
 }
