@@ -12,6 +12,13 @@ public class ControllerPortugol {
 	 * 
 	 */
 
+
+	
+	/*
+	 * 
+	 * Metodos de estilo
+	 * 
+	 * */
 	public static StyleClassedTextArea setCores(StyleClassedTextArea area) {
 		
 		if(area.getText().equals("")){

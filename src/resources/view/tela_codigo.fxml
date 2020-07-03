@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.SplitPane?>
@@ -13,8 +14,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import org.fxmisc.richtext.StyleClassedTextArea?>
+<?import resources.bibliotecas.Console?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="codigo.controllers.ControllerCodigo" >
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="codigo.controllers.ControllerCodigo">
    <children>
       <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -88,14 +90,20 @@
                                     <content>
                                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                              <children>
-                                                <StyleClassedTextArea fx:id="area_console" layoutX="243.0" layoutY="-19.0" style="-fx-background-color: #1a1a1a;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                <Console fx:id="area_console" layoutX="243.0" layoutY="-19.0" style="-fx-background-color: #1a1a1a;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                <!--<JFXTextField minHeight="20.0" prefHeight="20.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                                                <JFXButton alignment="TOP_RIGHT" minHeight="20.0" prefHeight="20.0" style="-fx-background-color: #58db5e;" text="Enviar" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                                   <font>
+                                                      <Font name="Arial Bold" size="10.0" />
+                                                   </font>
+                                                </JFXButton>-->
                                              </children>
                                           </AnchorPane>
                                     </content>
                                   </Tab>
                                 </tabs>
                               </TabPane>
-                              <JFXButton text="X" textAlignment="RIGHT" AnchorPane.leftAnchor="94.0" AnchorPane.topAnchor="9.0" textFill="#1a1a1a">
+                              <JFXButton text="X" textAlignment="RIGHT" textFill="#1a1a1a" AnchorPane.leftAnchor="94.0" AnchorPane.topAnchor="9.0">
                                  <font>
                                     <Font name="Arial Black" size="9.0" />
                                  </font>

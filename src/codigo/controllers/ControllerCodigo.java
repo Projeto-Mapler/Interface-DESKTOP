@@ -12,6 +12,7 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TabPane;
 import javafx.scene.paint.Paint;
+import resources.bibliotecas.Console;
 import resources.css.FXMaster;
 
 public class ControllerCodigo implements Initializable {
@@ -23,8 +24,13 @@ public class ControllerCodigo implements Initializable {
 	SplitPane sp_areaGeral, sp_areaCodigo;
 	
 	@FXML
-	StyleClassedTextArea area_portugol, area_codigo, area_console;
+	StyleClassedTextArea area_portugol, area_codigo;
 	
+	@FXML
+	Console area_console;
+	
+	private static  StyleClassedTextArea traducao;
+	private static Console console;
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -32,17 +38,34 @@ public class ControllerCodigo implements Initializable {
 		tabPane();
 		splitPane();
 		areasStyle();
+		controlesCodigo();
+		traducao = area_codigo;
+		setTraducao("#include <stdio.h>\n\nint main(){\r\n" + "    printf(\"Ola Mundo!\");\r\n" + "    return 0;\r\n" + "}", "C");
+		console = area_console;
 		
-		area_portugol.setOnKeyPressed(e -> {
-			area_portugol = ControllerPortugol.setCores(area_portugol);
-	    	//Propriedades.setPropriedade("autosave", codigo.getText()/*.replace("\n", "</line>").toString().replace(" ", "</space>")*/);
-		});
-    
-		area_portugol.setOnKeyReleased(e -> {
-			area_portugol = ControllerPortugol.setCores(area_portugol);
-	    	//Propriedades.setPropriedade("autosave", codigo.getText()/*.replace("\n", "</line>").toString().replace(" ", "</space>")*/);
-	    });
+		imprimirConsole("Ola mundo!\n");
 	}
+	
+	/*
+	 * Metodos padroes
+	 */
+	
+	public static void setTraducao(String str, String lgn) {
+        traducao.deleteText(0,traducao.getText().length());
+        traducao.appendText(str);
+        ControllerLinguagens.setLinguagem(lgn, traducao);
+	}
+	
+	public static void imprimirConsole(String text) {
+		console.setStyleClass(console.getText().length(), console.getText().length(), "texto");
+		console.appendText(text);
+		console.setStyleClass(console.getText().length(), console.getText().length(), "variaveis");
+	}
+	
+	
+	/*
+	 * Metodos de Eventos e Estilos
+	*/
 	
 	private void tabPane() {
     	tb_console.getStylesheets().add(FXMaster.tabPane());
@@ -54,14 +77,46 @@ public class ControllerCodigo implements Initializable {
 	}
 	
 	private void areasStyle() {
+		area_codigo.setStyle("-fx-font-size: 24; -fx-font-weight: bold;-fx-background-color: #1a1a1a;-fx-border-color: #1a1a1a");
+		area_codigo.getStylesheets().add(FXMaster.codigo());
+		area_codigo.setParagraphGraphicFactory(LineNumberFactory.get(area_codigo));
+		area_codigo.setWrapText(true);
+		area_codigo.setLineHighlighterOn(true);
+		area_codigo.setLineHighlighterFill(Paint.valueOf("#353535"));
+		area_codigo.setEditable(false);
+		//area_codigo = ControllerLinguagens.setLinguagem("C", area_codigo);
+		//go to line -> area.displaceCaret(numeroLinha.length);
+		
+		area_console.setStyle("-fx-font-size: 20; -fx-font-weight: bold;-fx-background-color: #1a1a1a;-fx-border-color: #1a1a1a");
+		area_console.getStylesheets().add(FXMaster.codigo());
+		area_console.setWrapText(false);
+		area_console.setLineHighlighterOn(false);
+		
 		area_portugol.setStyle("-fx-font-size: 24; -fx-font-weight: bold;-fx-background-color: #1a1a1a;-fx-border-color: #1a1a1a");
-		area_portugol.getStylesheets().add(FXMaster.portugol());
+		area_portugol.getStylesheets().add(FXMaster.codigo());
 		area_portugol.setParagraphGraphicFactory(LineNumberFactory.get(area_portugol));
 		area_portugol.setWrapText(true);
 		area_portugol.setLineHighlighterOn(true);
 		area_portugol.setLineHighlighterFill(Paint.valueOf("#353535"));
+		
 		ControllerPortugol.setCores(area_portugol);
-		//go to line -> area.displaceCaret(numeroLinha.length);
+		
 	}
+	
+	private void controlesCodigo() {
+		area_portugol.setOnKeyPressed(e -> {
+			area_portugol = ControllerPortugol.setCores(area_portugol);
+	    	//Propriedades.setPropriedade("autosave", codigo.getText()/*.replace("\n", "</line>").toString().replace(" ", "</space>")*/);
+		});
+    
+		area_portugol.setOnKeyReleased(e -> {
+			area_portugol = ControllerPortugol.setCores(area_portugol);
+	    	//Propriedades.setPropriedade("autosave", codigo.getText()/*.replace("\n", "</line>").toString().replace(" ", "</space>")*/);
+	    });
+	}
+	
+	
+	
+	
 
 }

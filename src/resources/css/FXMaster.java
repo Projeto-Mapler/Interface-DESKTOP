@@ -35,7 +35,7 @@ public class FXMaster {
 		return FXMaster.class.getResource("splitpane.css").toExternalForm();
 	}
 	
-	public static String portugol() {
+	public static String codigo() {
 		return FXMaster.class.getResource("txt.css").toExternalForm();
 	}
 	
