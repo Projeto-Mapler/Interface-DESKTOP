@@ -19,129 +19,129 @@ import javafx.scene.paint.Paint;
 import resources.css.FXMaster;
 
 public class ControllerInicial implements Initializable {
-	    
-	    @FXML
-	    BorderPane bd_inicial;
-	
-	/*----------------PARTE DE CIMA DO FXML--------------*/
-	    @FXML
-	    VBox vb_topo;
-	    
-	    @FXML
-		AnchorPane ap_barraPrimaria, ap_barraSecundaria;
-	    
-	  /*----------BARRA FIXA DO FXML-------------------*/
-		@FXML
-		JFXButton btn_home;
-	    
-		@FXML
-		MenuBar m_bar;
-		
-	    @FXML
-		JFXButton btn_minus, btn_max, btn_close;
-	
-	  /*-----------------------------------------------*/
-		
-	  /*----------SEGUNDA BARRA DO FXML----------------*/
-		@FXML
-		JFXButton btn_novo;
-		
-	  /*-----------------------------------------------*/
-		
-	/*---------------------------------------------------*/
-		
+
+    @FXML
+    BorderPane bd_inicial;
+
+    /*----------------PARTE DE CIMA DO FXML--------------*/
+    @FXML
+    VBox vb_topo;
+
+    @FXML
+    AnchorPane ap_barraPrimaria, ap_barraSecundaria;
+
+    /*----------BARRA FIXA DO FXML-------------------*/
+    @FXML
+    JFXButton btn_home;
+
+    @FXML
+    MenuBar m_bar;
+
+    @FXML
+    JFXButton btn_minus, btn_max, btn_close;
+
+    /*-----------------------------------------------*/
+
+    /*----------SEGUNDA BARRA DO FXML----------------*/
+    @FXML
+    JFXButton btn_novo;
+
+    /*-----------------------------------------------*/
+
+    /*---------------------------------------------------*/
+
     /*----------------Center----------------------------*/
-		@FXML
-		AnchorPane ap_centerIncial;
+    @FXML
+    AnchorPane ap_centerIncial;
     /*--------------------------------------------------*/
-	
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-    	modoInicial();//iniciar na tela principal
-    	
-    	barra_controle();
-    	menuBar();
-    	barra_segundo();
+	modoInicial();// iniciar na tela principal
+
+	barra_controle();
+	menuBar();
+	barra_segundo();
     }
-   
-    //metodos de controle
+
+    // metodos de controle
     private void barra_controle() {
-    	btn_home.setOnAction(e->{
-    		modoInicial();
-    	});
-    	
-    	btn_close.setOnAction(e->{ //fechar aplicacao
-    		System.exit(0);
-    	});
-    	
-    	btn_max.setOnAction(e -> { //maximizar aplicacao
-    	  int i = Inicial.maximizar();
-    	  
-    	  if(i==1) { //maximized
-    		  FontAwesomeIcon icon = new FontAwesomeIcon();
-    		  icon.setFill(Paint.valueOf("#ccc4c4"));
-    		  icon.setIcon(de.jensd.fx.glyphs.fontawesome.FontAwesomeIcons.COMPRESS);
-    		  btn_max.setGraphic(icon);
-    	  }else { //!maximized
-    		  FontAwesomeIcon icon = new FontAwesomeIcon();
-    		  icon.setFill(Paint.valueOf("#ccc4c4"));
-    		  icon.setIcon(de.jensd.fx.glyphs.fontawesome.FontAwesomeIcons.SQUARE_ALT);
-    		  btn_max.setGraphic(icon);
-    	  }
-    	});
-    	
-    	btn_minus.setOnAction(e -> { //minimizar aplicacao
-    		Inicial.minimizar();
-    	});
-    	
+	btn_home.setOnAction(e -> {
+	    modoInicial();
+	});
+
+	btn_close.setOnAction(e -> { // fechar aplicacao
+	    System.exit(0);
+	});
+
+	btn_max.setOnAction(e -> { // maximizar aplicacao
+	    int i = Inicial.maximizar();
+
+	    if (i == 1) { // maximized
+		FontAwesomeIcon icon = new FontAwesomeIcon();
+		icon.setFill(Paint.valueOf("#ccc4c4"));
+		icon.setIcon(de.jensd.fx.glyphs.fontawesome.FontAwesomeIcons.COMPRESS);
+		btn_max.setGraphic(icon);
+	    } else { // !maximized
+		FontAwesomeIcon icon = new FontAwesomeIcon();
+		icon.setFill(Paint.valueOf("#ccc4c4"));
+		icon.setIcon(de.jensd.fx.glyphs.fontawesome.FontAwesomeIcons.SQUARE_ALT);
+		btn_max.setGraphic(icon);
+	    }
+	});
+
+	btn_minus.setOnAction(e -> { // minimizar aplicacao
+	    Inicial.minimizar();
+	});
+
     }
 
     private void menuBar() {
-    	m_bar.getStylesheets().add(FXMaster.menuBar());
+	m_bar.getStylesheets().add(FXMaster.menuBar());
     }
-    
+
     private void barra_segundo() {
-    	btn_novo.setOnAction(e -> {
-    		modoCodigo();
-    	});
+	btn_novo.setOnAction(e -> {
+	    modoCodigo();
+	});
     }
-    
-    //metodos de mudanca de interface
+
+    // metodos de mudanca de interface
     private void modoInicial() {
-    	vb_topo.getChildren().clear();
-    	vb_topo.getChildren().add(ap_barraPrimaria);
-    	vb_topo.getChildren().add(ap_barraSecundaria);
-    	
-    	try {
-    		AnchorPane ap_codigo = FXMLLoader.load(getClass().getResource("/resources/view/tela_principal.fxml"));
-    		setCenter(ap_codigo);
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-    	
+	vb_topo.getChildren().clear();
+	vb_topo.getChildren().add(ap_barraPrimaria);
+	vb_topo.getChildren().add(ap_barraSecundaria);
+
+	try {
+	    AnchorPane ap_codigo = FXMLLoader.load(getClass().getResource("/resources/view/tela_principal.fxml"));
+	    setCenter(ap_codigo);
+
+	} catch (IOException e) {
+	    e.printStackTrace();
+	}
+
     }
-    
+
     private void modoCodigo() {
-    	vb_topo.getChildren().clear();
-    	vb_topo.getChildren().add(ap_barraPrimaria);
-    	
-    	try {
-    		AnchorPane ap_codigo = FXMLLoader.load(getClass().getResource("/resources/view/tela_codigo.fxml"));
-    		setCenter(ap_codigo);
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	vb_topo.getChildren().clear();
+	vb_topo.getChildren().add(ap_barraPrimaria);
+
+	try {
+	    AnchorPane ap_codigo = FXMLLoader.load(getClass().getResource("/resources/view/tela_codigo.fxml"));
+	    setCenter(ap_codigo);
+
+	} catch (IOException e) {
+	    e.printStackTrace();
+	}
     }
-    
+
     private void setCenter(AnchorPane ap) {
-    	ap_centerIncial.getChildren().clear();
-		ap_centerIncial.getChildren().add(ap);
-		ap_centerIncial.setBottomAnchor(ap, 0.0);
-		ap_centerIncial.setLeftAnchor(ap, 0.0);
-		ap_centerIncial.setTopAnchor(ap, 0.0);
-		ap_centerIncial.setRightAnchor(ap, 0.0);	
+	ap_centerIncial.getChildren().clear();
+	ap_centerIncial.getChildren().add(ap);
+	ap_centerIncial.setBottomAnchor(ap, 0.0);
+	ap_centerIncial.setLeftAnchor(ap, 0.0);
+	ap_centerIncial.setTopAnchor(ap, 0.0);
+	ap_centerIncial.setRightAnchor(ap, 0.0);
     }
-    
+
 }

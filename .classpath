@@ -11,5 +11,6 @@
 	<classpathentry kind="lib" path="src/resources/bibliotecas/undofx-2.1.0.jar"/>
 	<classpathentry kind="lib" path="src/resources/bibliotecas/undofx-fat-2.1.0.jar"/>
 	<classpathentry kind="lib" path="src/resources/bibliotecas/wellbehavedfx-0.3.3.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/interpretadorMACP"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -1,0 +1,17 @@
+.split-pane:horizontal > .split-pane-divider {
+   -fx-background-color: #373737;
+}
+.split-pane:vertical > .split-pane-divider {
+   -fx-background-color: #373737;
+}
+.split-pane-divider {
+  -fx-padding: 5;
+  -fx-border-color: #373737;
+}
+
+.split-pane {
+    -fx-background-insets: 0, 0;
+    -fx-padding: 0;
+ }
+ 
+ 
