@@ -1,5 +1,6 @@
 package codigo.controllers;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -12,10 +13,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
+import resources.bibliotecas.Arquivo;
 import resources.css.FXMaster;
 
 public class ControllerInicial implements Initializable {
@@ -36,6 +39,9 @@ public class ControllerInicial implements Initializable {
 
     @FXML
     MenuBar m_bar;
+    
+    @FXML
+    MenuItem mi_novo, mi_abrir, mi_salvar, mi_salvarc;
 
     @FXML
     JFXButton btn_minus, btn_max, btn_close;
@@ -57,38 +63,59 @@ public class ControllerInicial implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-	modoInicial();// iniciar na tela principal
+    	modoInicial();// iniciar na tela principal
 
-	barra_controle();
-	menuBar();
-	barra_segundo();
+    	barra_controle();
+    	menuBar();
+    	botoesMenu();
+    	barra_segundo();
+    	
     }
 
     // metodos de controle
+    private void botoesMenu() {
+    	mi_abrir.setOnAction(e->{
+    		abrirArquivo();
+    	});
+    	
+    	mi_novo.setOnAction(e->{
+    		modoInicial();
+    		modoCodigo();
+    	});
+    	
+    	mi_salvar.setOnAction(e->{
+    		
+    	});
+    	
+    	mi_salvarc.setOnAction(e->{
+    		
+    	});
+    }
+    
     private void barra_controle() {
-	btn_home.setOnAction(e -> {
-	    modoInicial();
-	});
+    	btn_home.setOnAction(e -> {
+    		modoInicial();
+    	});
 
-	btn_close.setOnAction(e -> { // fechar aplicacao
-	    System.exit(0);
-	});
+    	btn_close.setOnAction(e -> { // fechar aplicacao
+    		System.exit(0);
+    	});
 
-	btn_max.setOnAction(e -> { // maximizar aplicacao
-	    int i = Inicial.maximizar();
+    	btn_max.setOnAction(e -> { // maximizar aplicacao
+    		int i = Inicial.maximizar();
 
-	    if (i == 1) { // maximized
-		FontAwesomeIcon icon = new FontAwesomeIcon();
-		icon.setFill(Paint.valueOf("#ccc4c4"));
-		icon.setIcon(de.jensd.fx.glyphs.fontawesome.FontAwesomeIcons.COMPRESS);
-		btn_max.setGraphic(icon);
-	    } else { // !maximized
-		FontAwesomeIcon icon = new FontAwesomeIcon();
-		icon.setFill(Paint.valueOf("#ccc4c4"));
-		icon.setIcon(de.jensd.fx.glyphs.fontawesome.FontAwesomeIcons.SQUARE_ALT);
-		btn_max.setGraphic(icon);
-	    }
-	});
+    		if (i == 1) { // maximized
+    			FontAwesomeIcon icon = new FontAwesomeIcon();
+    			icon.setFill(Paint.valueOf("#ccc4c4"));
+    			icon.setIcon(de.jensd.fx.glyphs.fontawesome.FontAwesomeIcons.COMPRESS);
+    			btn_max.setGraphic(icon);
+    		} else { // !maximized
+    			FontAwesomeIcon icon = new FontAwesomeIcon();
+    			icon.setFill(Paint.valueOf("#ccc4c4"));
+    			icon.setIcon(de.jensd.fx.glyphs.fontawesome.FontAwesomeIcons.SQUARE_ALT);
+    			btn_max.setGraphic(icon);
+    		}
+    	});
 
 	btn_minus.setOnAction(e -> { // minimizar aplicacao
 	    Inicial.minimizar();
@@ -105,7 +132,17 @@ public class ControllerInicial implements Initializable {
 	    modoCodigo();
 	});
     }
-
+    
+    //metodos de arquivos
+    private void abrirArquivo() {
+    	File f = Arquivo.openJanelaArquivo();
+    	if(f != null) {
+    		modoInicial();
+    		modoCodigo();
+    		Arquivo.abrir = true;
+    	}
+    }
+    
     // metodos de mudanca de interface
     private void modoInicial() {
 	vb_topo.getChildren().clear();

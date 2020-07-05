@@ -1,7 +1,9 @@
 package codigo.controllers;
 
+import java.io.FileReader;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.Scanner;
 
 import org.fxmisc.richtext.LineNumberFactory;
 import org.fxmisc.richtext.StyleClassedTextArea;
@@ -13,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TabPane;
 import javafx.scene.paint.Paint;
+import resources.bibliotecas.Arquivo;
 import resources.bibliotecas.Console;
 import resources.css.FXMaster;
 
@@ -40,22 +43,38 @@ public class ControllerCodigo implements Initializable {
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
 	// TODO Auto-generated method stub
-	tabPane();
-	splitPane();
-	areasStyle();
-	controlesCodigo();
-	traducao = area_codigo;
-	setTraducao(
+    	if(Arquivo.abrir) {
+    		Arquivo.abrir = false;
+    		try {
+				Scanner scanner = new Scanner(new FileReader(Arquivo.arquivo.getPath().toString()));
+				scanner.useDelimiter("\n");
+				String str = "";
+    			while (scanner.hasNext())
+    				str = str + scanner.next() + "\n";
+				area_portugol.deleteText(0, area_portugol.getText().length());
+				area_portugol.appendText(str);
+			} catch (Exception es) {
+				es.printStackTrace();
+			}
+    		
+    	}
+    		
+    	tabPane();
+    	splitPane();
+    	areasStyle();
+    	controlesCodigo();
+    	traducao = area_codigo;
+    	setTraducao(
 		    "#include <stdio.h>\n\nint main(){\r\n" + "    printf(\"Ola Mundo!\");\r\n" + "    return 0;\r\n"
 			    + "}",
 		    "C");
-	console = area_console;
+    	console = area_console;
 	
 	
-	console.setPrincipal(ge, debugador);
-	//console.executar("C:\\Users\\Kerlyson\\Documents\\GitHub\\interpretadorPtEstruturadoJava\\exemplos\\io.txt");
+    	console.setPrincipal(ge, debugador);
+    	//console.executar("C:\\Users\\Kerlyson\\Documents\\GitHub\\interpretadorPtEstruturadoJava\\exemplos\\io.txt");
 
-//	imprimirConsole("Ola mundo!\n");
+    	//	imprimirConsole("Ola mundo!\n");
     }
 
     /*
@@ -63,9 +82,9 @@ public class ControllerCodigo implements Initializable {
      */
 
     public static void setTraducao(String str, String lgn) {
-	traducao.deleteText(0, traducao.getText().length());
-	traducao.appendText(str);
-	ControllerLinguagens.setLinguagem(lgn, traducao);
+    	traducao.deleteText(0, traducao.getText().length());
+    	traducao.appendText(str);
+    	ControllerLinguagens.setLinguagem(lgn, traducao);
     }
 
     

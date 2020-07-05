@@ -12,6 +12,7 @@ import javafx.stage.FileChooser.ExtensionFilter;
 public class Arquivo {
 	
 	public static File arquivo;
+	public static boolean abrir = false;
 	
 	public static File openJanelaArquivo() {
 		FileChooser fileChooser = new FileChooser();

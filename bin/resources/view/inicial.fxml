@@ -48,7 +48,10 @@
                                 <menus>
                                   <Menu mnemonicParsing="false" style="-fx-text-fill: white;" text="Arquivo">
                                     <items>
-                                      <MenuItem mnemonicParsing="false" text="Close" />
+                                      <MenuItem fx:id="mi_novo" mnemonicParsing="false" text="Novo" />
+                                      <MenuItem fx:id="mi_abrir" mnemonicParsing="false" text="Abrir" />
+                                      <MenuItem fx:id="mi_salvar" mnemonicParsing="false" text="Salvar" />
+                                      <MenuItem fx:id="mi_salvarc" mnemonicParsing="false" text="Salvar como..." />
                                     </items>
                                   </Menu>
                                   <Menu mnemonicParsing="false" style="-fx-text-fill: white;" text="Editar">
