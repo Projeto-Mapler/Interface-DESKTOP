@@ -53,7 +53,7 @@ public class ControllerCodigo implements Initializable {
 	
 	
 	console.setPrincipal(ge, debugador);
-	console.executar("C:\\Users\\Kerlyson\\Documents\\GitHub\\interpretadorPtEstruturadoJava\\exemplos\\io.txt");
+	//console.executar("C:\\Users\\Kerlyson\\Documents\\GitHub\\interpretadorPtEstruturadoJava\\exemplos\\io.txt");
 
 //	imprimirConsole("Ola mundo!\n");
     }

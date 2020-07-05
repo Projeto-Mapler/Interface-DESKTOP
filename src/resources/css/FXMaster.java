@@ -39,6 +39,10 @@ public class FXMaster {
 		return FXMaster.class.getResource("txt.css").toExternalForm();
 	}
 	
+	public static String alerta() {
+		return FXMaster.class.getResource("alertas.css").toExternalForm();
+	}
+	
 	/*
 	 * ANIMAÇOES
 	 * 
