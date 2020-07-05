@@ -50,7 +50,7 @@ public class ControllerInicial implements Initializable {
 
     /*----------SEGUNDA BARRA DO FXML----------------*/
     @FXML
-    JFXButton btn_novo;
+    JFXButton btn_novo, btn_abrir;
 
     /*-----------------------------------------------*/
 
@@ -128,9 +128,12 @@ public class ControllerInicial implements Initializable {
     }
 
     private void barra_segundo() {
-	btn_novo.setOnAction(e -> {
-	    modoCodigo();
-	});
+    	btn_novo.setOnAction(e -> {
+    		modoCodigo();
+    	});
+    	btn_abrir.setOnAction(e->{
+    		abrirArquivo();
+    	});
     }
     
     //metodos de arquivos
