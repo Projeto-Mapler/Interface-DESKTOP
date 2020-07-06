@@ -33,7 +33,7 @@ public class ControllerCodigo implements Initializable {
     @FXML
     Console area_console;
 
-    private static StyleClassedTextArea traducao;
+    private static StyleClassedTextArea traducao, portugol;
     private static Console console;
     
     // INTERPRETADOR
@@ -69,6 +69,7 @@ public class ControllerCodigo implements Initializable {
 			    + "}",
 		    "C");
     	console = area_console;
+    	portugol = area_portugol;
 	
 	
     	console.setPrincipal(ge, debugador);
@@ -86,8 +87,10 @@ public class ControllerCodigo implements Initializable {
     	traducao.appendText(str);
     	ControllerLinguagens.setLinguagem(lgn, traducao);
     }
-
     
+    public static String getPortugol() {
+    	return portugol.getText();
+    }
 
     /*
      * Metodos de Eventos e Estilos
@@ -138,12 +141,14 @@ public class ControllerCodigo implements Initializable {
     private void controlesCodigo() {
 	area_portugol.setOnKeyPressed(e -> {
 	    area_portugol = ControllerPortugol.setCores(area_portugol);
+	    Arquivo.salvar = true;
 	    // Propriedades.setPropriedade("autosave", codigo.getText()/*.replace("\n",
 	    // "</line>").toString().replace(" ", "</space>")*/);
 	});
 
 	area_portugol.setOnKeyReleased(e -> {
 	    area_portugol = ControllerPortugol.setCores(area_portugol);
+	    Arquivo.salvar = true;
 	    // Propriedades.setPropriedade("autosave", codigo.getText()/*.replace("\n",
 	    // "</line>").toString().replace(" ", "</space>")*/);
 	});

@@ -18,6 +18,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
+import resources.bibliotecas.Alertas;
 import resources.bibliotecas.Arquivo;
 import resources.css.FXMaster;
 
@@ -98,7 +99,23 @@ public class ControllerInicial implements Initializable {
     	});
 
     	btn_close.setOnAction(e -> { // fechar aplicacao
-    		System.exit(0);
+    		if(Arquivo.salvar) {
+    			int alerta = Alertas.showConfirm("Deseja salvar o projeto?");
+    			if(alerta == 0) {
+    				System.exit(0);
+    			}else if(alerta == -1) {
+    				if(Arquivo.arquivo == null) {
+        				if(Arquivo.SalvarComo(Arquivo.arquivo, ControllerCodigo.getPortugol()))
+        					System.exit(0);
+        			}else {
+        				if(Arquivo.salvarArquivo(Arquivo.arquivo, true, ControllerCodigo.getPortugol()))
+        					System.exit(0);
+        			}
+    			}
+    			
+    		}else {
+    			System.exit(0);
+    		}
     	});
 
     	btn_max.setOnAction(e -> { // maximizar aplicacao
@@ -141,47 +158,51 @@ public class ControllerInicial implements Initializable {
     	File f = Arquivo.openJanelaArquivo();
     	if(f != null) {
     		modoInicial();
-    		modoCodigo();
     		Arquivo.abrir = true;
+    		modoCodigo();
     	}
     }
     
     // metodos de mudanca de interface
     private void modoInicial() {
-	vb_topo.getChildren().clear();
-	vb_topo.getChildren().add(ap_barraPrimaria);
-	vb_topo.getChildren().add(ap_barraSecundaria);
+    	vb_topo.getChildren().clear();
+		vb_topo.getChildren().add(ap_barraPrimaria);
+		vb_topo.getChildren().add(ap_barraSecundaria);
+		mi_salvar.setVisible(false);
+		mi_salvarc.setVisible(false);
 
-	try {
-	    AnchorPane ap_codigo = FXMLLoader.load(getClass().getResource("/resources/view/tela_principal.fxml"));
-	    setCenter(ap_codigo);
+		try {
+			AnchorPane ap_codigo = FXMLLoader.load(getClass().getResource("/resources/view/tela_principal.fxml"));
+			setCenter(ap_codigo);
 
-	} catch (IOException e) {
-	    e.printStackTrace();
-	}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
     }
 
     private void modoCodigo() {
-	vb_topo.getChildren().clear();
-	vb_topo.getChildren().add(ap_barraPrimaria);
+    	vb_topo.getChildren().clear();
+    	vb_topo.getChildren().add(ap_barraPrimaria);
+    	mi_salvar.setVisible(true);
+		mi_salvarc.setVisible(true);
+		
+    	try {
+    		AnchorPane ap_codigo = FXMLLoader.load(getClass().getResource("/resources/view/tela_codigo.fxml"));
+    		setCenter(ap_codigo);
 
-	try {
-	    AnchorPane ap_codigo = FXMLLoader.load(getClass().getResource("/resources/view/tela_codigo.fxml"));
-	    setCenter(ap_codigo);
-
-	} catch (IOException e) {
-	    e.printStackTrace();
-	}
+    	} catch (IOException e) {
+    		e.printStackTrace();
+    	}
     }
 
     private void setCenter(AnchorPane ap) {
-	ap_centerIncial.getChildren().clear();
-	ap_centerIncial.getChildren().add(ap);
-	ap_centerIncial.setBottomAnchor(ap, 0.0);
-	ap_centerIncial.setLeftAnchor(ap, 0.0);
-	ap_centerIncial.setTopAnchor(ap, 0.0);
-	ap_centerIncial.setRightAnchor(ap, 0.0);
+    	ap_centerIncial.getChildren().clear();
+    	ap_centerIncial.getChildren().add(ap);
+    	ap_centerIncial.setBottomAnchor(ap, 0.0);
+    	ap_centerIncial.setLeftAnchor(ap, 0.0);
+    	ap_centerIncial.setTopAnchor(ap, 0.0);
+    	ap_centerIncial.setRightAnchor(ap, 0.0);
     }
 
 }
