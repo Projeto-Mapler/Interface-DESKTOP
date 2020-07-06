@@ -15,6 +15,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import main.Principal;
 import modelos.LeitorEntradaConsole;
+import modelos.ParserError;
+import modelos.RuntimeError;
 
 public class Console extends StyleClassedTextArea implements EventoListener {
 
@@ -84,36 +86,59 @@ public class Console extends StyleClassedTextArea implements EventoListener {
 		imprimirConsole(">");
 	    });
 	    return;
+	case ERRO_PARSE:
+	    ParserError parserErro = (ParserError) payload;
+
+	    Platform.runLater(() -> {
+		imprimirErro(parserErro.linha, parserErro.getLexeme(), parserErro.mensagem);
+	    });
+
+	    return;
+	case ERRO_RUNTIME:
+	    RuntimeError runtimeErro = (RuntimeError) payload;
+
+	    Platform.runLater(() -> {
+		imprimirErro(runtimeErro.getLinha(), runtimeErro.getLexeme(), runtimeErro.getMessage());
+	    });
+	    return;
 
 	default:
 	    return;
 	}
 
     }
-
+    
+    /**
+     * Configura a classe principal do Interpretador.
+     * Realiza inscrição nos eventos do Interpretador.
+     * @param ge - Gerenciador de Eventos
+     * @param debugador - Debugador do arquivo
+     */
     public void setPrincipal(GerenciadorEventos ge, Debugador debugador) {
 	this.ge = ge;
 	this.ge.inscrever(TiposEvento.ESCREVER_EVENTO, this);
 	this.ge.inscrever(TiposEvento.LER_EVENTO, this);
+	this.ge.inscrever(TiposEvento.ERRO_PARSE, this);
+	this.ge.inscrever(TiposEvento.ERRO_RUNTIME, this);
 	this.principal = new Principal(ge, debugador);
 
     }
-
+    /**
+     * Deve ser chamado quando o console for destruido.
+     * Remove inscrições do Gerenciador de Eventos.
+     */
     public void fechar() {
 	this.ge.desinscrever(TiposEvento.ESCREVER_EVENTO, this);
 	this.ge.desinscrever(TiposEvento.LER_EVENTO, this);
+	this.ge.desinscrever(TiposEvento.ERRO_PARSE, this);
+	this.ge.desinscrever(TiposEvento.ERRO_RUNTIME, this);
     }
 
-    private void imprimirConsole(String text) {
-	setStyleClass(getText().length(), getText().length(), "texto");
-	appendText(text);
-	setStyleClass(getText().length(), getText().length(), "variaveis");
-    }
-
-    private void imprimirConsoleQuebraLinha(String text) {
-	imprimirConsole(text + "\n");
-    }
-
+    
+    /**
+     * Dispara o processo de interpretação
+     * @param pathFile - caminho do arquivo para ser interpretado
+     */
     public void executar(String pathFile) {
 	this.clear();
 	setEditable(false);
@@ -125,7 +150,11 @@ public class Console extends StyleClassedTextArea implements EventoListener {
 	    e.printStackTrace();
 	}
     }
-
+    
+    
+    /**
+     * Pega o valor informado pelo usuario e repassa para o interpretador.
+     */
     private void lerDado() {
 	String texto = getText();
 	String[] linhas = texto.split("\n");
@@ -134,5 +163,22 @@ public class Console extends StyleClassedTextArea implements EventoListener {
 	leitor.setValor(valor);
 	this.modoLeitura = false;
 	this.setEditable(false);
+    }
+
+    
+    private void imprimirErro(int linha, String onde, String msg) {
+	if (onde == null) {
+	    imprimirConsoleQuebraLinha("> Erro: linha " + linha + ". " + msg);
+	} else {
+	    imprimirConsoleQuebraLinha("> Erro: linha " + linha + ", em '" + onde + "'. " + msg);
+	}
+    }
+    private void imprimirConsole(String text) {
+	setStyleClass(getText().length(), getText().length(), "texto");
+	appendText(text);
+	setStyleClass(getText().length(), getText().length(), "variaveis");
+    }
+    private void imprimirConsoleQuebraLinha(String text) {
+	imprimirConsole(text + "\n");
     }
 }
