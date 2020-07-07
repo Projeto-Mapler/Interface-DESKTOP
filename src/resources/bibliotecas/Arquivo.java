@@ -55,7 +55,7 @@ public class Arquivo {
 		FileChooser fileChooser = new FileChooser();
     	fileChooser.setTitle("Save file");
     	fileChooser.setInitialFileName("codigo");
-    	fileChooser.getExtensionFilters().addAll( new ExtensionFilter("Portugol Files", "*"),new ExtensionFilter("Portugol Files", ".txt"));
+    	fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Portugol Files", ".txt"));
     	arquivo = fileChooser.showSaveDialog(null);
     	
     	if (arquivo != null) {
