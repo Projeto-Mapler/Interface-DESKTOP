@@ -107,7 +107,8 @@ public class ControllerInicial implements Initializable {
     				System.exit(0);
     			}else if(alerta == 1) {
     				if(Arquivo.arquivo == null) {
-        				if(Arquivo.SalvarComo(Arquivo.arquivo, ControllerCodigo.getPortugol()))
+        				boolean salvar = Arquivo.SalvarComo(Arquivo.arquivo, ControllerCodigo.getPortugol());
+        				if(salvar)	
         					System.exit(0);
         			}else {
         				if(Arquivo.salvarArquivo(Arquivo.arquivo, true, ControllerCodigo.getPortugol()))
