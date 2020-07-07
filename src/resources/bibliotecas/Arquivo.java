@@ -35,6 +35,7 @@ public class Arquivo {
 			   FileWriter writer = new FileWriter(arquivo);
 			   writer.write(txt);
 			   writer.close();
+			   Arquivo.arquivo = arquivo;
 			   if(aviso)
 				  Alertas.showAviso("O arquivo foi salvo!");
 			   return true;
@@ -54,10 +55,11 @@ public class Arquivo {
 		FileChooser fileChooser = new FileChooser();
     	fileChooser.setTitle("Save file");
     	fileChooser.setInitialFileName("codigo");
-    	fileChooser.getExtensionFilters().addAll( new ExtensionFilter("Portugol Files", ".txt"),new ExtensionFilter("Portugol Files", "*"));
+    	fileChooser.getExtensionFilters().addAll( new ExtensionFilter("Portugol Files", "*"),new ExtensionFilter("Portugol Files", ".txt"));
     	arquivo = fileChooser.showSaveDialog(null);
     	
     	if (arquivo != null) {
+    		Arquivo.arquivo = arquivo;
     	   return salvarArquivo(arquivo,false,txt);
     	}
     	else {

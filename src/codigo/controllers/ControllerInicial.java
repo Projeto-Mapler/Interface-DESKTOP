@@ -82,20 +82,22 @@ public class ControllerInicial implements Initializable {
     	mi_novo.setOnAction(e->{
     		modoInicial();
     		modoCodigo();
+    		Arquivo.arquivo = null;
     	});
     	
     	mi_salvar.setOnAction(e->{
-    		
+    		Arquivo.salvarArquivo(Arquivo.arquivo, true, ControllerCodigo.getPortugol());
     	});
     	
     	mi_salvarc.setOnAction(e->{
-    		
+    		Arquivo.SalvarComo(Arquivo.arquivo, ControllerCodigo.getPortugol());
     	});
     }
     
     private void barra_controle() {
     	btn_home.setOnAction(e -> {
     		modoInicial();
+    		Arquivo.arquivo = null;
     	});
 
     	btn_close.setOnAction(e -> { // fechar aplicacao
@@ -103,7 +105,7 @@ public class ControllerInicial implements Initializable {
     			int alerta = Alertas.showConfirm("Deseja salvar o projeto?");
     			if(alerta == 0) {
     				System.exit(0);
-    			}else if(alerta == -1) {
+    			}else if(alerta == 1) {
     				if(Arquivo.arquivo == null) {
         				if(Arquivo.SalvarComo(Arquivo.arquivo, ControllerCodigo.getPortugol()))
         					System.exit(0);
