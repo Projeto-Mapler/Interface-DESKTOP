@@ -12,6 +12,7 @@ import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
@@ -42,7 +43,14 @@ public class ControllerInicial implements Initializable {
     MenuBar m_bar;
     
     @FXML
+    Menu mn_exibir;
+    
+    @FXML //arquivo
     MenuItem mi_novo, mi_abrir, mi_salvar, mi_salvarc;
+    
+    @FXML
+    MenuItem mi_traducao, mi_console;
+    public static MenuItem mni_console;
 
     @FXML
     JFXButton btn_minus, btn_max, btn_close;
@@ -71,10 +79,15 @@ public class ControllerInicial implements Initializable {
     	botoesMenu();
     	barra_segundo();
     	
+    	mni_console = mi_console;
+    	
     }
 
     // metodos de controle
     private void botoesMenu() {
+    	
+    	//Arquivo
+    	
     	mi_abrir.setOnAction(e->{
     		abrirArquivo();
     	});
@@ -91,6 +104,44 @@ public class ControllerInicial implements Initializable {
     	
     	mi_salvarc.setOnAction(e->{
     		Arquivo.SalvarComo(Arquivo.arquivo, ControllerCodigo.getPortugol());
+    	});
+    	
+    	//Exibir
+    	
+    	mi_console.setOnAction(e->{
+    		if(mi_console.getText().equals("Console")) { //ativar console
+    			mi_console.setText("Ocultar console");
+    			if(ControllerCodigo.inter == 0) {//apenas portugol
+    				ControllerCodigo.Interface(2);
+    			}else if(ControllerCodigo.inter == 1) {//portugol + traducao
+    				ControllerCodigo.Interface(3);
+    			}
+    		}else { //desativar console
+    			mi_console.setText("Console");
+    			if(ControllerCodigo.inter == 2) {//portugol + console
+    				ControllerCodigo.Interface(0);
+    			}else if(ControllerCodigo.inter == 3) {//portugol + traducao + console
+    				ControllerCodigo.Interface(1);
+    			}
+    		}
+    	});
+    	
+    	mi_traducao.setOnAction(e->{
+    		if(mi_traducao.getText().equals("Traducao")) { //ativar traducao
+    			mi_traducao.setText("Ocultar traducao");
+    			if(ControllerCodigo.inter == 0) {//apenas portugol
+    				ControllerCodigo.Interface(1);
+    			}else if(ControllerCodigo.inter == 2) {//portugol + console
+    				ControllerCodigo.Interface(3);
+    			}
+    		}else { //desativar traducao
+    			mi_traducao.setText("Traducao");
+    			if(ControllerCodigo.inter == 1) {//portugol + traducao
+    				ControllerCodigo.Interface(0);
+    			}else if(ControllerCodigo.inter == 3) {//portugol + traducao + console
+    				ControllerCodigo.Interface(2);
+    			}
+    		}
     	});
     }
     

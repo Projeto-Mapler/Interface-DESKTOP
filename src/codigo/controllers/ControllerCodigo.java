@@ -8,12 +8,15 @@ import java.util.Scanner;
 import org.fxmisc.richtext.LineNumberFactory;
 import org.fxmisc.richtext.StyleClassedTextArea;
 
+import com.jfoenix.controls.JFXButton;
+
 import debug.Debugador;
 import debug.GerenciadorEventos;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TabPane;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
 import resources.bibliotecas.Arquivo;
 import resources.bibliotecas.Console;
@@ -23,22 +26,33 @@ public class ControllerCodigo implements Initializable {
 
     @FXML
     TabPane tb_console;
-
+    
+    @FXML
+    AnchorPane ap_console;
+    
     @FXML
     SplitPane sp_areaGeral, sp_areaCodigo;
 
     @FXML
     StyleClassedTextArea area_portugol, area_codigo;
-
+    
     @FXML
     Console area_console;
+    
+    @FXML
+    JFXButton btn_close_console;
 
     private static StyleClassedTextArea traducao, portugol;
     private static Console console;
+    private static SplitPane horizontal, vertical;
+    private static AnchorPane pane_console;
+    private static JFXButton fechar_console;
     
     // INTERPRETADOR
     private GerenciadorEventos ge = new GerenciadorEventos();
     private Debugador debugador = new Debugador(ge, false);
+    
+    public static int inter = 0;
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
@@ -63,6 +77,8 @@ public class ControllerCodigo implements Initializable {
     	splitPane();
     	areasStyle();
     	controlesCodigo();
+    	controlesInterface();
+    	
     	traducao = area_codigo;
     	setTraducao(
 		    "#include <stdio.h>\n\nint main(){\r\n" + "    printf(\"Ola Mundo!\");\r\n" + "    return 0;\r\n"
@@ -76,6 +92,12 @@ public class ControllerCodigo implements Initializable {
     	//console.executar("C:\\Users\\Kerlyson\\Documents\\GitHub\\interpretadorPtEstruturadoJava\\exemplos\\io.txt");
 
     	//	imprimirConsole("Ola mundo!\n");
+    	
+    	horizontal = sp_areaCodigo;
+    	vertical = sp_areaGeral;
+    	pane_console = ap_console;
+    	fechar_console = btn_close_console;
+    	Interface(inter);
     }
 
     /*
@@ -95,7 +117,32 @@ public class ControllerCodigo implements Initializable {
     /*
      * Metodos de Eventos e Estilos
      */
-
+    public static void Interface(int modo) {
+    	ControllerCodigo.inter = modo;
+    	if(modo == 0){//apenas portugol
+    		vertical.getItems().clear();
+    		vertical.getItems().add(portugol);
+    	}else if(modo == 1) {//portugol + traducao
+    		vertical.getItems().clear();
+    		vertical.getItems().add(horizontal);
+    		horizontal.getItems().clear();
+    		horizontal.getItems().add(portugol);
+    		horizontal.getItems().add(traducao);
+    	}else if(modo == 2) {//portugol + console
+    		vertical.getItems().clear();
+    		vertical.getItems().add(portugol);
+    		vertical.getItems().add(pane_console);
+    	}else if(modo == 3) {//portugol + traducao + console
+    		vertical.getItems().clear();
+    		vertical.getItems().add(horizontal);
+    		horizontal.getItems().clear();
+    		horizontal.getItems().add(portugol);
+    		horizontal.getItems().add(traducao);
+    		vertical.getItems().add(pane_console);
+    	}
+    	
+    }
+    
     private void tabPane() {
 	tb_console.getStylesheets().add(FXMaster.tabPane());
     }
@@ -137,7 +184,17 @@ public class ControllerCodigo implements Initializable {
 	ControllerPortugol.setCores(area_portugol);
 
     }
-
+    private void controlesInterface() {
+    	btn_close_console.setOnAction(e->{
+        	if(ControllerCodigo.inter == 2){//portugol + console
+        		Interface(0);//apenas portugol
+        	}else if(ControllerCodigo.inter == 3){//portugol + traducao + console
+        		Interface(1);//portugol + traducao
+        	}
+        	ControllerInicial.mni_console.setText("Console");
+    	});
+    }
+    
     private void controlesCodigo() {
 	area_portugol.setOnKeyPressed(e -> {
 	    area_portugol = ControllerPortugol.setCores(area_portugol);
