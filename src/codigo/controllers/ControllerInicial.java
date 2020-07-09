@@ -224,7 +224,8 @@ public class ControllerInicial implements Initializable {
 		vb_topo.getChildren().add(ap_barraSecundaria);
 		mi_salvar.setVisible(false);
 		mi_salvarc.setVisible(false);
-
+		mn_exibir.setVisible(false);
+		
 		try {
 			AnchorPane ap_codigo = FXMLLoader.load(getClass().getResource("/resources/view/tela_principal.fxml"));
 			setCenter(ap_codigo);
@@ -232,7 +233,8 @@ public class ControllerInicial implements Initializable {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
+		
+		
     }
 
     private void modoCodigo() {
@@ -240,6 +242,7 @@ public class ControllerInicial implements Initializable {
     	vb_topo.getChildren().add(ap_barraPrimaria);
     	mi_salvar.setVisible(true);
 		mi_salvarc.setVisible(true);
+		mn_exibir.setVisible(true);
 		
     	try {
     		AnchorPane ap_codigo = FXMLLoader.load(getClass().getResource("/resources/view/tela_codigo.fxml"));
