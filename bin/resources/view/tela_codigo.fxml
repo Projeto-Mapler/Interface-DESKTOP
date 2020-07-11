@@ -128,7 +128,7 @@
                               </JFXButton>
                               <JFXButton fx:id="btn_c" contentDisplay="CENTER" prefHeight="18.0" prefWidth="40.0" text=" " textFill="#1a1a1a">
                                  <graphic>
-                                    <FontAwesomeIcon glyphName="JAVA" />
+                                    <FontAwesomeIcon />
                                  </graphic>
                               </JFXButton>
                               <JFXButton fx:id="btn_java" contentDisplay="CENTER" prefHeight="18.0" prefWidth="40.0" text=" " textFill="#1a1a1a">

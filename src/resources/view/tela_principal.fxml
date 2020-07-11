@@ -14,8 +14,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import org.fxmisc.richtext.StyleClassedTextArea?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="codigo.controllers.ControllerPrincipal">
   <children>	
 	<VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="0.0">
                <children>
@@ -43,14 +44,50 @@
                      <children>
                         <VBox minHeight="200.0" minWidth="100.0" prefHeight="252.0" prefWidth="680.0" style="-fx-border-color: transparent transparent #353535 transparent; -fx-border-width: 5;" HBox.hgrow="ALWAYS">
                            <children>
-                              <HBox minHeight="165.0" minWidth="200.0" prefHeight="165.0" prefWidth="620.0" style="-fx-background-radius: 14; -fx-background-color: red;">
-                                 <VBox.margin>
-                                    <Insets left="5.0" right="30.0" top="30.0" />
-                                 </VBox.margin>
-                                 <padding>
-                                    <Insets bottom="10.0" />
-                                 </padding>
-                              </HBox>
+                              <AnchorPane prefHeight="205.0" prefWidth="620.0">
+   								<children>
+      								<HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         								<children>
+            								<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="165.0" prefWidth="620.0" style="-fx-background-color: #353535; -fx-background-radius: 10;" HBox.hgrow="ALWAYS">
+               									<HBox.margin>
+                  									<Insets bottom="20.0" top="20.0" />
+               									</HBox.margin>
+               									<children>
+                  									<ImageView fitHeight="250.0" fitWidth="350.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="-45.0">
+                     									<image>
+                        									<Image url="@../images/Imagem_banner_inicio.png" />
+                     									</image>
+                  									</ImageView>
+                  									<VBox prefHeight="200.0" prefWidth="263.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="350.0" AnchorPane.topAnchor="0.0">
+                     									<children>
+                        									<Label text="Vamos codificar juntos?" textFill="WHITE">
+                           										<font>
+                              										<Font name="System Bold" size="16.0" />
+                           										</font>
+                           										<VBox.margin>
+                              										<Insets bottom="15.0" left="40.0" />
+                           										</VBox.margin>
+                           									</Label>
+                        									<Label text="Sabemos que iniciar no mundo da programacao" textFill="WHITE" />
+                        									<Label text="pode ser desafiador. Para te ajudar nessa" textFill="WHITE" />
+                        									<Label text="trajetoria, preparamos um material muito" textFill="WHITE" />
+                        									<Label text="especial para voce." textFill="WHITE" />
+                        							<JFXButton style="-fx-background-color: #35f092; -fx-background-radius: 10; -fx-border-color: white; -fx-border-radius: 14;" text="Saber mais" textFill="WHITE">
+                           								<VBox.margin>
+                              								<Insets left="157.0" />
+                           								</VBox.margin>
+                           								<font>
+                              								<Font size="9.0" />
+                           								</font>
+                        							</JFXButton>
+                     							</children>
+                  							  </VBox>
+               								</children>
+            							</AnchorPane>
+         							</children>
+      							  </HBox>
+   								</children>
+							  </AnchorPane>
                               <Label text="Recentes" textFill="WHITE">
                                  <font>
                                     <Font name="Candy Beans" size="17.0" />
