@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <JFXButton layoutX="248.0" layoutY="166.0">
+         <graphic>
+            <FontAwesomeIcon glyphName="PLAY" size="2em">
+               <fill>
+                  <LinearGradient endX="0.40476190476190477" endY="0.7142857142857143" startX="0.3047619047619048" startY="0.48571428571428577">
+                     <stops>
+                        <Stop color="#57ee96" />
+                        <Stop color="#0dab3a" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill>
+            </FontAwesomeIcon>
+         </graphic>
+      </JFXButton>
+   </children>
+</AnchorPane>

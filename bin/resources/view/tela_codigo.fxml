@@ -15,6 +15,8 @@
 <?import javafx.scene.text.Font?>
 <?import org.fxmisc.richtext.StyleClassedTextArea?>
 <?import resources.bibliotecas.Console?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="codigo.controllers.ControllerCodigo">
    <children>
@@ -41,19 +43,28 @@
                               </HBox>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <JFXButton contentDisplay="CENTER" prefHeight="18.0" prefWidth="40.0" text=" " textFill="#1a1a1a">
+                                    <JFXButton fx:id="btn_save" contentDisplay="CENTER" prefHeight="18.0" prefWidth="40.0" text=" " textFill="#1a1a1a">
                                        <graphic>
-                                          <FontAwesomeIcon fx:id="btn_save" glyphName="SAVE" />
+                                          <FontAwesomeIcon fill="#a5a5a5" glyphName="SAVE" size="2em" />
                                        </graphic>
                                     </JFXButton>
                                     <JFXButton fx:id="btn_play" contentDisplay="CENTER" prefHeight="18.0" prefWidth="40.0" text=" " textFill="#1a1a1a">
                                        <graphic>
-                                          <FontAwesomeIcon glyphName="PLAY" />
+                                         <FontAwesomeIcon glyphName="PLAY" size="2em">
+               								<fill>
+                  								<LinearGradient endX="0.40476190476190477" endY="0.7142857142857143" startX="0.3047619047619048" startY="0.48571428571428577">
+                     								<stops>
+                        								<Stop color="#57ee96" />
+                        								<Stop color="#0dab3a" offset="1.0" />
+                     								</stops>
+                  								</LinearGradient>
+               								</fill>
+            							 </FontAwesomeIcon>
                                        </graphic>
                                     </JFXButton>
-                                    <JFXButton prefHeight="18.0" prefWidth="40.0" text=" " textFill="#1a1a1a">
+                                    <JFXButton fx:id="btn_debug" prefHeight="18.0" prefWidth="40.0" text=" " textFill="#1a1a1a">
                                        <graphic>
-                                          <FontAwesomeIcon fx:id="btn_trade" glyphName="" />
+                                          <FontAwesomeIcon fill="#a5a5a5" glyphName="FLASH" size="2em" />
                                        </graphic>
                                     </JFXButton>
                                  </children>

@@ -40,7 +40,7 @@ public class ControllerCodigo implements Initializable {
     Console area_console;
     
     @FXML
-    JFXButton btn_close_console, btn_play;
+    JFXButton btn_close_console, btn_play, btn_save, btn_debug;
 
     private static StyleClassedTextArea traducao, portugol;
     private static Console console;
@@ -72,6 +72,8 @@ public class ControllerCodigo implements Initializable {
 			}
     		
     	}
+    	
+    	//de.jensd.fx.glyphs.fontawesome.FontAwesomeIcons.k
     		
     	tabPane();
     	splitPane();
@@ -210,8 +212,16 @@ public class ControllerCodigo implements Initializable {
 	    // "</line>").toString().replace(" ", "</space>")*/);
 	});
 	
+	btn_debug.setOnAction(e->{
+		
+	});
+	
 	btn_play.setOnAction(e->{
 		
+	});
+	
+	btn_save.setOnAction(e->{
+		Arquivo.salvarArquivo(Arquivo.arquivo, true, ControllerCodigo.getPortugol());
 	});
 	
     }
