@@ -40,7 +40,7 @@ public class ControllerCodigo implements Initializable {
     Console area_console;
     
     @FXML
-    JFXButton btn_close_console;
+    JFXButton btn_close_console, btn_play;
 
     private static StyleClassedTextArea traducao, portugol;
     private static Console console;
@@ -209,6 +209,11 @@ public class ControllerCodigo implements Initializable {
 	    // Propriedades.setPropriedade("autosave", codigo.getText()/*.replace("\n",
 	    // "</line>").toString().replace(" ", "</space>")*/);
 	});
+	
+	btn_play.setOnAction(e->{
+		
+	});
+	
     }
 
 }
