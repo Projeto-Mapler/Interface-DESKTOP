@@ -5,6 +5,7 @@ import java.nio.charset.Charset;
 
 import org.fxmisc.richtext.StyleClassedTextArea;
 
+import conversores.ConversorStrategy;
 import debug.Debugador;
 import debug.EventoListener;
 import debug.GerenciadorEventos;
@@ -149,6 +150,17 @@ public class Console extends StyleClassedTextArea implements EventoListener {
 	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	}
+    }
+    
+    public String getTraducao(String pathFile, ConversorStrategy tipoConversao) {
+	String retorno = null;
+	try {
+	    retorno =  this.principal.getConversao(pathFile, tipoConversao);
+	} catch (IOException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	}
+	return retorno;
     }
     
     
