@@ -224,7 +224,12 @@ public class ControllerCodigo implements Initializable {
 	});
 	
 	btn_play.setOnAction(e->{
-		
+		if(Arquivo.arquivo == null) {
+		    Arquivo.salvarArquivo(Arquivo.arquivo, true, ControllerCodigo.getPortugol());
+		}
+		Interface(2);
+		String caminho = Arquivo.arquivo.getAbsolutePath();
+		console.executar(caminho);
 	});
 	
 	btn_save.setOnAction(e->{
