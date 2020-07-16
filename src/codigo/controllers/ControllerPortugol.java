@@ -307,16 +307,12 @@ public class ControllerPortugol {
 	
 	private static HashSet<String> getConstantes(){
 		HashSet<String> portugolC = new HashSet<String>();
-		portugolC.add("1");
-		portugolC.add("2");
-		portugolC.add("3");
-		portugolC.add("4");
-		portugolC.add("5");
-		portugolC.add("6");
-		portugolC.add("7");
-		portugolC.add("8");
-		portugolC.add("9");
-		portugolC.add("0");
+		for(int i = 0;i<100000;i++) {
+			portugolC.add(" "+i+";");
+			portugolC.add(" "+i+" ");
+			portugolC.add(" "+i+"\n");
+			portugolC.add(" "+i+"\t");
+		}
 		return portugolC;
 	}
 	
