@@ -10,12 +10,15 @@ import org.fxmisc.richtext.StyleClassedTextArea;
 
 import com.jfoenix.controls.JFXButton;
 
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import debug.Debugador;
 import debug.GerenciadorEventos;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TabPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
 import resources.bibliotecas.Arquivo;
@@ -41,6 +44,9 @@ public class ControllerCodigo implements Initializable {
     
     @FXML
     JFXButton btn_close_console, btn_play, btn_save, btn_debug;
+    
+    @FXML
+    JFXButton btn_bars, btn_c, btn_java, btn_python, btn_pascal;
 
     private static StyleClassedTextArea traducao, portugol;
     private static Console console;
@@ -80,6 +86,7 @@ public class ControllerCodigo implements Initializable {
     	areasStyle();
     	controlesCodigo();
     	controlesInterface();
+    	controlesLinguagens();
     	
     	traducao = area_codigo;
     	setTraducao(
@@ -224,6 +231,38 @@ public class ControllerCodigo implements Initializable {
 		Arquivo.salvarArquivo(Arquivo.arquivo, true, ControllerCodigo.getPortugol());
 	});
 	
+	
+	
+    }
+    
+    private void controlesLinguagens() {
+    	setIcon(btn_c, "icon_C.png");
+    	btn_c.setOnAction(e->{
+    		
+    	});
+    	
+    	setIcon(btn_java, "icon_JAVA.png");
+    	btn_java.setOnAction(e->{
+    		
+    	}); 
+    	
+    	setIcon(btn_python, "icon_PYTHON.png");
+    	btn_python.setOnAction(e->{
+    		
+    	}); 
+    	
+    	setIcon(btn_pascal, "icon_SWIFT.png");
+    	btn_pascal.setOnAction(e->{
+    		
+    	});
+    }
+    
+    private void setIcon(JFXButton btn, String img) {
+    	Image imagem = new Image(ControllerCodigo.class.getClassLoader().getResource("resources/images/"+img).toExternalForm());
+    	ImageView iv = new ImageView(imagem);
+    	iv.setFitHeight(32);
+    	iv.setFitWidth(32);
+		btn.setGraphic(iv);
     }
 
 }
