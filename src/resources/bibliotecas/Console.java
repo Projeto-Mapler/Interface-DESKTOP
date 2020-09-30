@@ -5,31 +5,31 @@ import java.nio.charset.Charset;
 
 import org.fxmisc.richtext.StyleClassedTextArea;
 
-import conversores.ConversorStrategy;
+/*import conversores.ConversorStrategy;
 import debug.Debugador;
 import debug.EventoListener;
 import debug.GerenciadorEventos;
-import debug.TiposEvento;
+import debug.TiposEvento;*/
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import main.Principal;
+/*import main.Principal;
 import modelos.LeitorEntradaConsole;
 import modelos.ParserError;
-import modelos.RuntimeError;
+import modelos.RuntimeError;*/
 
-public class Console extends StyleClassedTextArea implements EventoListener {
+public class Console extends StyleClassedTextArea /*implements EventoListener*/ {
 
     // SUPORTE PARA UTF-8 no area console
     public static final Charset ISO_8859_1 = Charset.forName("ISO-8859-1");
     public static final Charset UTF_8 = Charset.forName("UTF-8");
 
-    private Principal principal;
-    private GerenciadorEventos ge;
+    //private Principal principal;
+    //private GerenciadorEventos ge;
 
     private Boolean modoLeitura = false;
-    LeitorEntradaConsole leitor;
+    //LeitorEntradaConsole leitor;
 
     public Console() {
 	setOnKeyPressed(new EventHandler<KeyEvent>() {
@@ -62,7 +62,7 @@ public class Console extends StyleClassedTextArea implements EventoListener {
 	}
     }
 
-    @Override
+    /*@Override
     public void update(TiposEvento tipoEvento, Object payload) {
 
 	switch (tipoEvento) {
@@ -107,7 +107,7 @@ public class Console extends StyleClassedTextArea implements EventoListener {
 	    return;
 	}
 
-    }
+    }*/
     
     /**
      * Configura a classe principal do Interpretador.
@@ -115,7 +115,7 @@ public class Console extends StyleClassedTextArea implements EventoListener {
      * @param ge - Gerenciador de Eventos
      * @param debugador - Debugador do arquivo
      */
-    public void setPrincipal(GerenciadorEventos ge, Debugador debugador) {
+    /*public void setPrincipal(GerenciadorEventos ge, Debugador debugador) {
 	this.ge = ge;
 	this.ge.inscrever(TiposEvento.ESCREVER_EVENTO, this);
 	this.ge.inscrever(TiposEvento.LER_EVENTO, this);
@@ -123,17 +123,17 @@ public class Console extends StyleClassedTextArea implements EventoListener {
 	this.ge.inscrever(TiposEvento.ERRO_RUNTIME, this);
 	this.principal = new Principal(ge, debugador);
 
-    }
+    }*/
     /**
      * Deve ser chamado quando o console for destruido.
      * Remove inscrições do Gerenciador de Eventos.
      */
-    public void fechar() {
+    /*public void fechar() {
 	this.ge.desinscrever(TiposEvento.ESCREVER_EVENTO, this);
 	this.ge.desinscrever(TiposEvento.LER_EVENTO, this);
 	this.ge.desinscrever(TiposEvento.ERRO_PARSE, this);
 	this.ge.desinscrever(TiposEvento.ERRO_RUNTIME, this);
-    }
+    }*/
 
     
     /**
@@ -144,15 +144,15 @@ public class Console extends StyleClassedTextArea implements EventoListener {
 	this.clear();
 	setEditable(false);
 
-	try {
-	    this.principal.runFile(pathFile);
+	/*try {
+	   // this.principal.runFile(pathFile);
 	} catch (IOException e) {
 	    // TODO Auto-generated catch block
 	    e.printStackTrace();
-	}
+	}*/
     }
     
-    public String getTraducao(String pathFile, ConversorStrategy tipoConversao) {
+    /*public String getTraducao(String pathFile, ConversorStrategy tipoConversao) {
 	String retorno = null;
 	try {
 	    retorno =  this.principal.getConversao(pathFile, tipoConversao);
@@ -161,7 +161,7 @@ public class Console extends StyleClassedTextArea implements EventoListener {
 	    e.printStackTrace();
 	}
 	return retorno;
-    }
+    }*/
     
     
     /**
@@ -172,7 +172,7 @@ public class Console extends StyleClassedTextArea implements EventoListener {
 	String[] linhas = texto.split("\n");
 	String ultimaLinha = linhas[linhas.length - 1];
 	String valor = ultimaLinha.substring(1); // remove o '>'
-	leitor.setValor(valor);
+	//leitor.setValor(valor);
 	this.modoLeitura = false;
 	this.setEditable(false);
     }

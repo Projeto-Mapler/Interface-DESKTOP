@@ -10,10 +10,10 @@ import org.fxmisc.richtext.StyleClassedTextArea;
 
 import com.jfoenix.controls.JFXButton;
 
-import conversores.ConversorStrategy;
+//import conversores.ConversorStrategy;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
-import debug.Debugador;
-import debug.GerenciadorEventos;
+//import debug.Debugador;
+//import debug.GerenciadorEventos;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.SplitPane;
@@ -56,8 +56,8 @@ public class ControllerCodigo implements Initializable {
     private static JFXButton fechar_console;
 
     // INTERPRETADOR
-    private GerenciadorEventos ge = new GerenciadorEventos();
-    private Debugador debugador = new Debugador(ge, false);
+  //  private GerenciadorEventos ge = new GerenciadorEventos();
+   // private Debugador debugador = new Debugador(ge, false);
 
     public static int inter = 0;
 
@@ -98,7 +98,7 @@ public class ControllerCodigo implements Initializable {
 	console = area_console;
 	portugol = area_portugol;
 
-	console.setPrincipal(ge, debugador);
+	//console.setPrincipal(ge, debugador);
 	// console.executar("C:\\Users\\Kerlyson\\Documents\\GitHub\\interpretadorPtEstruturadoJava\\exemplos\\io.txt");
 
 	// imprimirConsole("Ola mundo!\n");
@@ -238,22 +238,22 @@ public class ControllerCodigo implements Initializable {
     private void controlesLinguagens() {
 	setIcon(btn_c, "icon_C.png");
 	btn_c.setOnAction(e -> {
-	    exibirTraducao(ConversorStrategy.C);
+	   // exibirTraducao(ConversorStrategy.C);
 	});
 
 	setIcon(btn_java, "icon_JAVA.png");
 	btn_java.setOnAction(e -> {
-	    exibirTraducao(ConversorStrategy.JAVA);
+	  //  exibirTraducao(ConversorStrategy.JAVA);
 	});
 
 	setIcon(btn_python, "icon_PYTHON.png");
 	btn_python.setOnAction(e -> {
-	    exibirTraducao(ConversorStrategy.PYTHON);
+	  //  exibirTraducao(ConversorStrategy.PYTHON);
 	});
 
 	setIcon(btn_pascal, "icon_SWIFT.png");
 	btn_pascal.setOnAction(e -> {
-	    exibirTraducao(ConversorStrategy.PASCAL);
+	   // exibirTraducao(ConversorStrategy.PASCAL);
 	});
     }
 
@@ -264,11 +264,11 @@ public class ControllerCodigo implements Initializable {
 	return Arquivo.arquivo.getAbsolutePath();
     }
 
-    private void exibirTraducao(ConversorStrategy tipoConversao) {
+  /*  private void exibirTraducao(ConversorStrategy tipoConversao) {
 	Interface(3);
 	String caminho = this.getCaminhoArquivo();
 	setTraducao(console.getTraducao(caminho, tipoConversao), tipoConversao.name());
-    }
+    }*/
 
     private void setIcon(JFXButton btn, String img) {
 	Image imagem = new Image(
