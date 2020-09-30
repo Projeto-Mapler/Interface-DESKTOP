@@ -64,7 +64,8 @@ public class ControllerCodigo implements Initializable {
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
 	// TODO Auto-generated method stub
-	if (Arquivo.abrir) {
+	
+    if (Arquivo.abrir) {
 	    Arquivo.abrir = false;
 	    try {
 		Scanner scanner = new Scanner(new FileReader(Arquivo.arquivo.getPath().toString()));
@@ -75,7 +76,7 @@ public class ControllerCodigo implements Initializable {
 		area_portugol.deleteText(0, area_portugol.getText().length());
 		area_portugol.appendText(str);
 	    } catch (Exception es) {
-		es.printStackTrace();
+	    	es.printStackTrace();
 	    }
 
 	}
@@ -162,9 +163,7 @@ public class ControllerCodigo implements Initializable {
     }
 
     private void areasStyle() {
-	area_codigo
-		   .setStyle(
-			     "-fx-font-size: 24; -fx-font-weight: bold;-fx-background-color: #1a1a1a;-fx-border-color: #1a1a1a");
+	area_codigo.setStyle("-fx-font-size: 24; -fx-font-weight: bold;-fx-background-color: #1a1a1a;-fx-border-color: #1a1a1a");
 	area_codigo.getStylesheets().add(FXMaster.codigo());
 	area_codigo.setParagraphGraphicFactory(LineNumberFactory.get(area_codigo));
 	area_codigo.setWrapText(true);

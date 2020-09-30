@@ -12,6 +12,7 @@ public class ControllerLinguagens {
 
 	
 	public static StyleClassedTextArea setLinguagem(String lgn, StyleClassedTextArea area) {
+		
 		if(lgn.equals("C")) {
 			setC();
 		}else if(lgn.equals("Java")) {
