@@ -20,7 +20,7 @@ public class Inicial extends Application {
 	Inicial.janela = stage;
 	stage.initStyle(StageStyle.UNDECORATED); // removendo botoes padrao
 	Parent root = FXMLLoader.load(getClass().getResource("/resources/view/inicial.fxml"));
-	Scene scene = new Scene(root, 900, 600); // resolucao inicial
+	Scene scene = new Scene(root, 1152, 768); // resolucao inicial
 	stage.setScene(scene);
 	stage.setTitle("MAPLER STUDIO");
 	FXMaster.addResizeListener(stage); // resize + move

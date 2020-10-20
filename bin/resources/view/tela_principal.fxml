@@ -4,21 +4,16 @@
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import org.fxmisc.richtext.StyleClassedTextArea?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="codigo.controllers.ControllerPrincipal">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="517.0" prefWidth="719.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="codigo.controllers.ControllerPrincipal">
   <children>	
-	<VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="0.0">
+	<VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="0.0">
                <children>
                   <HBox alignment="CENTER_LEFT" maxHeight="90.0" minHeight="90.0" prefHeight="90.0" style="-fx-border-color: transparent transparent #353535 transparent; -fx-border-width: 5;" VBox.vgrow="ALWAYS">
                      <children>
@@ -30,7 +25,7 @@
                               <Insets left="5.0" />
                            </HBox.margin>
                         </Label>
-                        <JFXButton contentDisplay="CENTER" text=" ">
+                        <JFXButton fx:id="btn_info" contentDisplay="CENTER" text=" ">
                            <graphic>
                               <FontAwesomeIcon glyphName="INFO_CIRCLE" />
                            </graphic>
@@ -42,23 +37,15 @@
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <VBox minHeight="200.0" minWidth="100.0" prefHeight="252.0" prefWidth="680.0" style="-fx-border-color: transparent transparent #353535 transparent; -fx-border-width: 5;" HBox.hgrow="ALWAYS">
+                        <VBox style="-fx-border-color: transparent transparent #353535 transparent; -fx-border-width: 5;" HBox.hgrow="ALWAYS">
                            <children>
-                              <AnchorPane prefHeight="205.0" prefWidth="620.0">
+                              <AnchorPane>
    								<children>
-      								<HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         								<children>
-            								<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="165.0" prefWidth="620.0" style="-fx-background-color: #353535; -fx-background-radius: 10;" HBox.hgrow="ALWAYS">
-               									<HBox.margin>
-                  									<Insets bottom="20.0" top="20.0" />
-               									</HBox.margin>
-               									<children>
-                  									<ImageView fitHeight="250.0" fitWidth="350.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="-45.0">
-                     									<image>
-                        									<Image url="@../images/Imagem_banner_inicio.png" />
-                     									</image>
-                  									</ImageView>
-                  									<VBox prefHeight="200.0" prefWidth="263.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="350.0" AnchorPane.topAnchor="0.0">
+      								<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #353535; -fx-background-radius: 10;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                                 <children>
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                  									<VBox prefHeight="183.0" prefWidth="270.0">
                      									<children>
                         									<Label text="Vamos codificar juntos?" textFill="WHITE">
                            										<font>
@@ -72,7 +59,7 @@
                         									<Label text="pode ser desafiador. Para te ajudar nessa" textFill="WHITE" />
                         									<Label text="trajetoria, preparamos um material muito" textFill="WHITE" />
                         									<Label text="especial para voce." textFill="WHITE" />
-                        							<JFXButton style="-fx-background-color: #35f092; -fx-background-radius: 10; -fx-border-color: white; -fx-border-radius: 14;" text="Saber mais" textFill="WHITE">
+                        							<JFXButton fx:id="btn_saber" style="-fx-background-color: #35f092; -fx-background-radius: 10; -fx-border-color: white; -fx-border-radius: 14;" text="Saber mais" textFill="WHITE">
                            								<VBox.margin>
                               								<Insets left="157.0" />
                            								</VBox.margin>
@@ -81,24 +68,24 @@
                            								</font>
                         							</JFXButton>
                      							</children>
+                                             <HBox.margin>
+                                                <Insets right="-50.0" top="40.0" />
+                                             </HBox.margin>
                   							  </VBox>
-               								</children>
-            							</AnchorPane>
-         							</children>
-      							  </HBox>
+                                          <AnchorPane fx:id="pane_img">
+                                             <children>
+                                                <ImageView fitHeight="187.5" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0">
+                                                   <image>
+                                                      <Image url="@../images/banner_inicio.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </AnchorPane>
+                                       </children>
+                                    </HBox>
+                                 </children></AnchorPane>
    								</children>
 							  </AnchorPane>
-                              <Label text="Recentes" textFill="WHITE">
-                                 <font>
-                                    <Font name="Candy Beans" size="17.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets left="5.0" top="20.0" />
-                                 </VBox.margin>
-                                 <padding>
-                                    <Insets bottom="10.0" />
-                                 </padding>
-                              </Label>
                            </children>
                         </VBox>
                      </children>
@@ -107,7 +94,15 @@
                      <children>
                         <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                            <children>
-                              <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-spacing: 160; -fx-border-color: transparent transparent #353535 transparent; -fx-border-width: 5;">
+                              <Label text="Recentes" textFill="WHITE">
+                                 <font>
+                                    <Font name="Candy Beans" size="17.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets left="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <HBox alignment="BOTTOM_CENTER" prefHeight="30.0" prefWidth="200.0" style="-fx-spacing: 160; -fx-border-color: transparent transparent #353535 transparent; -fx-border-width: 5;">
                                  <children>
                                     <Label text="NOME" textFill="WHITE">
                                        <HBox.margin>
@@ -141,7 +136,7 @@
                                        <children>
                                           <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                                              <children>
-                                                <JFXButton contentDisplay="RIGHT" text=" ">
+                                                <JFXButton fx:id="btn_file1" contentDisplay="RIGHT" text=" ">
                                                    <graphic>
                                                       <FontAwesomeIcon fill="WHITE" glyphName="SHARE" />
                                                    </graphic>
@@ -162,7 +157,7 @@
                                           </HBox>
                                           <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                              <children>
-                                                <JFXButton contentDisplay="RIGHT" text=" ">
+                                                <JFXButton fx:id="btn_file2" contentDisplay="RIGHT" text=" ">
                                                    <graphic>
                                                       <FontAwesomeIcon fill="WHITE" glyphName="SHARE" />
                                                    </graphic>
