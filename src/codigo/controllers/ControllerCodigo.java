@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
+import org.fxmisc.richtext.CodeArea;
 import org.fxmisc.richtext.LineNumberFactory;
 import org.fxmisc.richtext.StyleClassedTextArea;
 
@@ -12,6 +13,7 @@ import com.jfoenix.controls.JFXButton;
 
 //import conversores.ConversorStrategy;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
+import javafx.event.EventHandler;
 //import debug.Debugador;
 //import debug.GerenciadorEventos;
 import javafx.fxml.FXML;
@@ -20,6 +22,8 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
 import resources.bibliotecas.Arquivo;
@@ -38,7 +42,10 @@ public class ControllerCodigo implements Initializable {
     SplitPane sp_areaGeral, sp_areaCodigo;
 
     @FXML
-    StyleClassedTextArea area_portugol, area_codigo;
+    StyleClassedTextArea area_codigo;
+    
+    @FXML
+    CodeArea area_portugol;
 
     @FXML
     Console area_console;
@@ -91,10 +98,7 @@ public class ControllerCodigo implements Initializable {
 	controlesLinguagens();
 
 	traducao = area_codigo;
-	setTraducao(
-		    "#include <stdio.h>\n\nint main(){\r\n" + "    printf(\"Ola Mundo!\");\r\n" + "    return 0;\r\n"
-			    + "}",
-		    "C");
+	setTraducao("#include <stdio.h>\n\nint main(){\r\n" + "    printf(\"Ola Mundo!\");\r\n" + "    return 0;\r\n"+ "}","C");
 	console = area_console;
 	portugol = area_portugol;
 
@@ -173,27 +177,24 @@ public class ControllerCodigo implements Initializable {
 	// area_codigo = ControllerLinguagens.setLinguagem("C", area_codigo);
 	// go to line -> area.displaceCaret(numeroLinha.length);
 
-	area_console
-		    .setStyle(
-			      "-fx-font-size: 20; -fx-font-weight: bold;-fx-background-color: #1a1a1a;-fx-border-color: #1a1a1a");
+	area_console.setStyle("-fx-font-size: 20; -fx-font-weight: bold;-fx-background-color: #1a1a1a;-fx-border-color: #1a1a1a");
 	area_console.getStylesheets().add(FXMaster.codigo());
 	area_console.setWrapText(false);
 	area_console.setLineHighlighterOn(false);
 
-	area_portugol
-		     .setStyle(
-			       "-fx-font-size: 24; -fx-font-weight: bold;-fx-background-color: #1a1a1a;-fx-border-color: #1a1a1a");
+	area_portugol.setStyle("-fx-font-size: 24; -fx-font-weight: bold;-fx-background-color: #1a1a1a;-fx-border-color: #1a1a1a");
 	area_portugol.getStylesheets().add(FXMaster.codigo());
 	area_portugol.setParagraphGraphicFactory(LineNumberFactory.get(area_portugol));
 	area_portugol.setWrapText(true);
 	area_portugol.setLineHighlighterOn(true);
 	area_portugol.setLineHighlighterFill(Paint.valueOf("#353535"));
 
-	ControllerPortugol.setCores(area_portugol);
+	area_portugol.setStyleClass(0,0,"variaveis");
 
     }
 
     private void controlesInterface() {
+    	
 	btn_close_console.setOnAction(e -> {
 	    if (ControllerCodigo.inter == 2) {// portugol + console
 		Interface(0);// apenas portugol
@@ -202,23 +203,49 @@ public class ControllerCodigo implements Initializable {
 	    }
 	    ControllerInicial.mni_console.setText("Console");
 	});
+	
     }
 
     private void controlesCodigo() {
-	area_portugol.setOnKeyPressed(e -> {
-	    area_portugol = ControllerPortugol.setCores(area_portugol);
-	    Arquivo.salvar = true;
-	    // Propriedades.setPropriedade("autosave", codigo.getText()/*.replace("\n",
-	    // "</line>").toString().replace(" ", "</space>")*/);
-	});
-
-	area_portugol.setOnKeyReleased(e -> {
-	    area_portugol = ControllerPortugol.setCores(area_portugol);
-	    Arquivo.salvar = true;
-	    // Propriedades.setPropriedade("autosave", codigo.getText()/*.replace("\n",
-	    // "</line>").toString().replace(" ", "</space>")*/);
-	});
-
+	
+    	area_portugol.setOnKeyPressed(new EventHandler<KeyEvent>(){
+			@Override
+	        public void handle(KeyEvent ke){
+				
+	            if( ke.getText().equals(";") ||
+	            	ke.getText().equals(".") ||
+	            	ke.getText().equals("'") ||
+	            	ke.getCode().equals(KeyCode.ENTER) || 
+	            	ke.getCode().equals(KeyCode.BACK_SPACE) || 
+	            	ke.getCode().equals(KeyCode.DELETE) || 
+	            	ke.getCode().equals(KeyCode.SPACE) || 
+	            	ke.getCode().equals(KeyCode.TAB))
+	            {
+	                int comecoDaLinha = area_portugol.getText().lastIndexOf("\n", area_portugol.getCaretPosition()-1);
+	                int finalDaLinha = area_portugol.getText().indexOf("\n",area_portugol.getCaretPosition()); //se == -1 é a ultima
+	                int comecoDaLinhaAnt = 0;
+	                
+	                if(finalDaLinha == -1 && comecoDaLinha != -1)
+	                	area_portugol = Portugol.colorirArea(area_portugol,comecoDaLinha+1);
+	                else if(finalDaLinha == -1 && comecoDaLinha == -1)
+	                	area_portugol = Portugol.colorirArea(area_portugol,0);
+	                else if(finalDaLinha != -1 && comecoDaLinha == -1)
+	                	area_portugol = Portugol.colorirArea(area_portugol,0, finalDaLinha);
+	                else
+	                	area_portugol = Portugol.colorirArea(area_portugol,comecoDaLinha, finalDaLinha);
+	                
+	                if(comecoDaLinha > 1) {
+	                	comecoDaLinhaAnt = area_portugol.getText().lastIndexOf("\n", comecoDaLinha-1);
+	                	if(comecoDaLinhaAnt == -1)
+	                		area_portugol = Portugol.colorirArea(area_portugol,0,comecoDaLinha);
+	                	else
+	                		area_portugol = Portugol.colorirArea(area_portugol,comecoDaLinhaAnt,comecoDaLinha);
+	                }
+	            }
+	        }
+		});	
+    	
+    	
 	btn_debug.setOnAction(e -> {
 
 	});

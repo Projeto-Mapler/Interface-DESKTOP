@@ -23,6 +23,28 @@ public class FXMaster {
 	 * 
 	 * */
 	
+	public static String[] getReservadas() {
+		String[] reservadas = {"variaveis", "inicio", "fim", "ler", "escrever", "se", "entao", "senao", "e", "verdadeiro", "falso", "caso", "ou", "nao", "faca", "inicio", "enquanto", "para", "de", "repita", "ate", "passo"};
+		return reservadas;
+	}
+	
+	public static String[] getTipos() {
+		String[] tipos = {"real", "cadeia", "inteiro", "logico;", "vetor", "caractere", "{", "}", "(", ")", ">", "<", "+", "=", "-", "*","/"};
+		return tipos;
+	}
+	
+	public static boolean isNumeric(String strNum) {
+	    if (strNum == null) {
+	        return false;
+	    }
+	    try {
+	        double d = Double.parseDouble(strNum);
+	    } catch (NumberFormatException nfe) {
+	        return false;
+	    }
+	    return true;
+	}
+	
 	public static String menuBar() {
 		return FXMaster.class.getResource("menubar.css").toExternalForm();
 	}
