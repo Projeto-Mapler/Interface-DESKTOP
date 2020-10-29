@@ -25,7 +25,7 @@
          <children>
             <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                <children>
-                  <AnchorPane prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #353535;">
+                  <AnchorPane prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #2e3338">
                      <children>
                         <HBox alignment="CENTER" layoutX="-71.0" layoutY="-30.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
@@ -39,7 +39,7 @@
                                           <Insets left="10.0" />
                                        </HBox.margin>
                                     </ImageView>
-                                    <AnchorPane maxHeight="20.0" prefHeight="20.0" prefWidth="200.0" style="-fx-border-color: transparent transparent transparent #585858;" />
+                                    <AnchorPane maxHeight="20.0" prefHeight="20.0" prefWidth="200.0" style="-fx-border-color: transparent transparent transparent #2e3338;" />
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
@@ -80,12 +80,12 @@
                            <children>
                               <SplitPane fx:id="sp_areaCodigo" dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                 <items>
-                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #353535;">
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #2e3338">
                                        <children>
                                           <CodeArea fx:id="area_portugol" layoutX="66.0" layoutY="73.0" style="-fx-background-color: #1a1a1a;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
                                        </children>
                                     </AnchorPane>
-                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #353535;">
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #2e3338">
                                        <children>
                                           <StyleClassedTextArea fx:id="area_codigo" layoutX="88.0" layoutY="65.0" style="-fx-background-color: #1a1a1a;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
                                        </children>
@@ -128,8 +128,8 @@
             </VBox>
             <VBox prefHeight="200.0" prefWidth="30.0">
                <children>
-                  <AnchorPane prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #353535;" />
-                  <AnchorPane prefHeight="200.0" prefWidth="40.0" style="-fx-background-color: #353535; -fx-border-color: #1a1a1a transparent transparent transparent;" VBox.vgrow="ALWAYS">
+                  <AnchorPane prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #2e3338" />
+                  <AnchorPane prefHeight="200.0" prefWidth="40.0" style="-fx-background-color: #2e3338 -fx-border-color: #1a1a1a transparent transparent transparent;" VBox.vgrow="ALWAYS">
                      <children>
                         <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
