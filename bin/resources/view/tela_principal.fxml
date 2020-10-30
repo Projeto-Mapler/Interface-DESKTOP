@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="517.0" prefWidth="719.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="codigo.controllers.ControllerPrincipal">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="200.0" minWidth="200.0" prefHeight="517.0" prefWidth="719.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="codigo.controllers.ControllerPrincipal">
   <children>	
 	<VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="0.0">
                <children>
@@ -94,9 +94,9 @@
                      <children>
                         <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                            <children>
-                              <HBox alignment="BOTTOM_CENTER" prefHeight="30.0" prefWidth="200.0" style="-fx-spacing: 160; -fx-border-color: transparent transparent #22262a transparent; -fx-border-width: 5;">
+                              <HBox alignment="BOTTOM_CENTER" prefHeight="30.0" prefWidth="200.0" style="-fx-spacing: 5; -fx-border-color: transparent transparent #22262a transparent; -fx-border-width: 5;">
                                  <children>
-                                 	<Label text="Recentes" textFill="WHITE">
+                                 	<Label minWidth="50.0" prefHeight="26.0" prefWidth="90.0" text="Recentes" textFill="WHITE">
                                  		<font>
                                     		<Font name="Candy Beans" size="17.0" />
                                  		</font>
@@ -104,7 +104,7 @@
                                     		<Insets left="5.0" top="5.0" />
                                  		</VBox.margin>
                               		</Label>
-                                    <Label text="NOME" textFill="WHITE">
+                                    <Label minWidth="50.0" prefHeight="17.0" prefWidth="90.0" text="NOME" textFill="WHITE">
                                        <HBox.margin>
                                           <Insets bottom="5.0" left="40.0" />
                                        </HBox.margin>
@@ -112,7 +112,7 @@
                                           <Font name="Candy Beans" size="12.0" />
                                        </font>
                                     </Label>
-                                    <Label text="TAMANHO" textFill="WHITE">
+                                    <Label minWidth="50.0" prefWidth="90.0" text="TAMANHO" textFill="WHITE">
                                        <HBox.margin>
                                           <Insets bottom="5.0" />
                                        </HBox.margin>
@@ -120,7 +120,7 @@
                                           <Font name="Candy Beans" size="12.0" />
                                        </font>
                                     </Label>
-                                    <Label text="CRIADO EM" textFill="WHITE">
+                                    <Label prefWidth="90.0" text="CRIADO EM" textFill="WHITE">
                                        <HBox.margin>
                                           <Insets bottom="5.0" />
                                        </HBox.margin>

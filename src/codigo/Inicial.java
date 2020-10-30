@@ -26,8 +26,8 @@ public class Inicial extends Application {
 	Scene scene = new Scene(root, 1152, 768); // resolucao inicial
 	stage.setScene(scene);
 	stage.setTitle("MAPLER STUDIO");
-	stage.setMinHeight(768);
-	stage.setMinWidth(1152);
+	stage.setMinHeight(500);
+	stage.setMinWidth(600);
 	Screen screen = Screen.getPrimary();
 	bounds = screen.getVisualBounds();
 	FXMaster.addResizeListener(stage);
