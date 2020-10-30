@@ -21,15 +21,17 @@ public class Inicial extends Application {
     public void start(Stage stage) throws Exception {
 
 	Inicial.janela = stage;
+	Screen screen = Screen.getPrimary();
+	bounds = screen.getVisualBounds();
+	
 	stage.initStyle(StageStyle.UNDECORATED); // removendo botoes padrao
 	Parent root = FXMLLoader.load(getClass().getResource("/resources/view/inicial.fxml"));
-	Scene scene = new Scene(root, 1152, 768); // resolucao inicial
+	Scene scene = new Scene(root, bounds.getMaxX()/2, bounds.getMaxY()/2); // resolucao inicial
 	stage.setScene(scene);
 	stage.setTitle("MAPLER STUDIO");
 	stage.setMinHeight(500);
 	stage.setMinWidth(600);
-	Screen screen = Screen.getPrimary();
-	bounds = screen.getVisualBounds();
+	
 	FXMaster.addResizeListener(stage);
 	stage.show();
 
