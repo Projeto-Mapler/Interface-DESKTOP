@@ -1,6 +1,10 @@
 package codigo;
 
+
+import org.reactfx.inhibeans.value.ObservableValue;
+
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
@@ -31,6 +35,15 @@ public class Inicial extends Application {
 	stage.setTitle("MAPLER STUDIO");
 	stage.setMinHeight(500);
 	stage.setMinWidth(600);
+	stage.setMaxWidth(bounds.getMaxX());
+	stage.setMaxWidth(bounds.getMaxY());
+	
+	stage.focusedProperty().addListener(new ChangeListener<Boolean>()
+	{
+		@Override
+		public void changed(javafx.beans.value.ObservableValue<? extends Boolean> arg0, Boolean arg1, Boolean arg2) {
+			//ajustar cobrir barra
+	}});
 	
 	FXMaster.addResizeListener(stage);
 	stage.show();
@@ -53,7 +66,8 @@ public class Inicial extends Application {
     }
 
     public static void minimizar() {
-	Inicial.janela.setIconified(true);
+    	Inicial.janela.setIconified(true);
+    	
     }
 
     public static void main(String[] args) {
