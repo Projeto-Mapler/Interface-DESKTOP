@@ -23,9 +23,9 @@ public class Inicial extends Application {
 	Scene scene = new Scene(root, 1152, 768); // resolucao inicial
 	stage.setScene(scene);
 	stage.setTitle("MAPLER STUDIO");
-	FXMaster.addResizeListener(stage); // resize + move
-	// stage.getIcons().add(new
-	// Image(getClass().getResourceAsStream("madein.png")));
+	stage.setMinHeight(768);
+	stage.setMinWidth(1152);
+	FXMaster.addResizeListener(stage);
 	stage.show();
 
     }

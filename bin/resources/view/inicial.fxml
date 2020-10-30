@@ -22,7 +22,7 @@
          <children>
             <VBox fx:id="vb_topo" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <AnchorPane fx:id="ap_barraPrimaria" prefWidth="200.0" style="-fx-background-color: #1a1a1a;">
+                  <AnchorPane fx:id="ap_barraPrimaria" prefWidth="200.0" style="-fx-background-color: #151515;">
                      <children>
                         <HBox prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
@@ -70,7 +70,7 @@
                                     <Insets left="3.0" />
                                  </padding>
                               </JFXButton>
-                              <HBox alignment="CENTER_RIGHT" maxHeight="5.0" maxWidth="5.0" prefHeight="5.0" prefWidth="5.0" style="-fx-border-color: #2e3338; -fx-border-radius: 0  0 7 7;">
+                              <HBox alignment="CENTER_RIGHT" maxHeight="5.0" maxWidth="5.0" prefHeight="5.0" prefWidth="5.0" style="-fx-border-color: #22262a; -fx-border-radius: 0  0 7 7;">
                                  <children>
                                     <JFXButton fx:id="btn_minus" contentDisplay="RIGHT" graphicTextGap="0.0" text=" " textFill="#343a40">
                                        <graphic>
@@ -96,13 +96,13 @@
                         </HBox>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="ap_barraSecundaria" minHeight="60.0" prefHeight="75.0" prefWidth="200.0" style="-fx-background-color: #2e3338;">
+                  <AnchorPane fx:id="ap_barraSecundaria" minHeight="60.0" prefHeight="75.0" prefWidth="200.0" style="-fx-background-color: #22262a;">
                      <children>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="130.0" style="-fx-background-color: #2e3338;">
+                              <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="130.0" style="-fx-background-color: #22262a;">
    								 <children>
-      							    <Circle fill="DODGERBLUE" layoutX="96.0" layoutY="40.0" radius="16.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: #484848;" AnchorPane.leftAnchor="88.0" AnchorPane.topAnchor="18.0" />
+      							    <Circle fill="DODGERBLUE" layoutX="96.0" layoutY="40.0" radius="16.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: #343a40;" AnchorPane.leftAnchor="88.0" AnchorPane.topAnchor="18.0" />
       								<Label text="mapler." textFill="WHITE" AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="13.0">
          							   <font>
                                          <Font name="System Bold" size="30.0" />

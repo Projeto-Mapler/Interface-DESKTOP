@@ -23,7 +23,7 @@ public class Portugol{
 
 	
 	
-	public static CodeArea colorirArea(CodeArea area, int in, int out) {
+	public static StyleClassedTextArea colorirArea(StyleClassedTextArea area, int in, int out) {
 		String texto = "";
 		 try {
 			 texto = area.getText().replace("\t"," ").replace(";"," ").substring(in,out);
@@ -89,7 +89,7 @@ public class Portugol{
 		return area;
 	}
 	
-	public static CodeArea colorirArea(CodeArea area, int in) {
+	public static StyleClassedTextArea colorirArea(StyleClassedTextArea area, int in) {
 		colorirArea(area, in, area.getText().length());
 		
 		return area;

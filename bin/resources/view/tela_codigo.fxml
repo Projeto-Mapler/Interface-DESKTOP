@@ -25,21 +25,14 @@
          <children>
             <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                <children>
-                  <AnchorPane prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #2e3338">
+                  <AnchorPane prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #343a40">
                      <children>
                         <HBox alignment="CENTER" layoutX="-71.0" layoutY="-30.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="200.0" style="-fx-spacing: 15;" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <ImageView fitHeight="40.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../images/logo-branco.png" />
-                                       </image>
-                                       <HBox.margin>
-                                          <Insets left="10.0" />
-                                       </HBox.margin>
-                                    </ImageView>
-                                    <AnchorPane maxHeight="20.0" prefHeight="20.0" prefWidth="200.0" style="-fx-border-color: transparent transparent transparent #2e3338;" />
+                                    
+                                    <AnchorPane maxHeight="20.0" prefHeight="20.0" prefWidth="200.0" style="-fx-border-color: transparent transparent transparent #343a40;" />
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
@@ -63,7 +56,7 @@
             							 </FontAwesomeIcon>
                                        </graphic>
                                     </JFXButton>
-                                    <JFXButton fx:id="btn_debug" prefHeight="18.0" prefWidth="40.0" text=" " textFill="#1a1a1a">
+                                    <JFXButton fx:id="btn_debug" prefHeight="18.0" prefWidth="40.0" text=" " textFill="#111111">
                                        <graphic>
                                           <FontAwesomeIcon fill="#a5a5a5" glyphName="FLASH" size="2em" />
                                        </graphic>
@@ -80,21 +73,21 @@
                            <children>
                               <SplitPane fx:id="sp_areaCodigo" dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                 <items>
-                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #2e3338">
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #343a40;">
                                        <children>
-                                          <CodeArea fx:id="area_portugol" layoutX="66.0" layoutY="73.0" style="-fx-background-color: #1a1a1a;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                                          <StyleClassedTextArea fx:id="area_portugol" layoutX="66.0" layoutY="73.0" style="-fx-background-color: #5c6770;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
                                        </children>
                                     </AnchorPane>
-                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #2e3338">
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #343a40;">
                                        <children>
-                                          <StyleClassedTextArea fx:id="area_codigo" layoutX="88.0" layoutY="65.0" style="-fx-background-color: #1a1a1a;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                                          <StyleClassedTextArea fx:id="area_codigo" layoutX="88.0" layoutY="65.0" style="-fx-background-color: #5c6770;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
                                        </children>
                                     </AnchorPane>
                                 </items>
                               </SplitPane>
                            </children>
                         </AnchorPane>
-                      <AnchorPane fx:id="ap_console" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #373737;">
+                      <AnchorPane fx:id="ap_console" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #343a40;">
                            <children>
                               <TabPane fx:id="tb_console" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="0.0">
                                 <tabs>
@@ -102,14 +95,8 @@
                                     <content>
                                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                              <children>
-                                                <Console fx:id="area_console" layoutX="243.0" layoutY="-19.0" style="-fx-background-color: #1a1a1a;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                                <!--<JFXTextField minHeight="20.0" prefHeight="20.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-                                                <JFXButton alignment="TOP_RIGHT" minHeight="20.0" prefHeight="20.0" style="-fx-background-color: #58db5e;" text="Enviar" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                                                   <font>
-                                                      <Font name="Arial Bold" size="10.0" />
-                                                   </font>
-                                                </JFXButton>-->
-                                             </children>
+                                                <Console fx:id="area_console" layoutX="243.0" layoutY="-19.0" style="-fx-background-color: #343a40;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                              </children>
                                           </AnchorPane>
                                     </content>
                                   </Tab>
@@ -128,12 +115,12 @@
             </VBox>
             <VBox prefHeight="200.0" prefWidth="30.0">
                <children>
-                  <AnchorPane prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #2e3338" />
-                  <AnchorPane prefHeight="200.0" prefWidth="40.0" style="-fx-background-color: #2e3338 -fx-border-color: #1a1a1a transparent transparent transparent;" VBox.vgrow="ALWAYS">
+                  <AnchorPane prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #343a40" />
+                  <AnchorPane prefHeight="200.0" prefWidth="40.0" style="-fx-background-color: #343a40; -fx-border-color: transparent transparent transparent transparent;" VBox.vgrow="ALWAYS">
                      <children>
                         <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <JFXButton fx:id="btn_bars" contentDisplay="CENTER" maxWidth="40.0" minWidth="40.0" prefWidth="40.0" text=" " textFill="#1a1a1a">
+                              <JFXButton fx:id="btn_bars" contentDisplay="CENTER"  maxWidth="60.0" minWidth="40.0" prefWidth="40.0" prefHeight="32.0" text=" " textFill="#1a1a1a">
                                  <graphic>
                                     <FontAwesomeIcon glyphName="BARS" />
                                  </graphic>
@@ -156,11 +143,6 @@
                               <JFXButton fx:id="btn_pascal" contentDisplay="CENTER" prefHeight="18.0" prefWidth="40.0" text=" " textFill="#1a1a1a">
                                  <graphic>
                                     <FontAwesomeIcon />
-                                 </graphic>
-                              </JFXButton>
-                              <JFXButton fx:id="btn_more" contentDisplay="CENTER" prefHeight="18.0" prefWidth="40.0" text=" " textFill="#1a1a1a">
-                                 <graphic>
-                                    <FontAwesomeIcon glyphName="PLUS" />
                                  </graphic>
                               </JFXButton>
                            </children>

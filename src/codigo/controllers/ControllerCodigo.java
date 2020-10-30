@@ -45,7 +45,7 @@ public class ControllerCodigo implements Initializable {
     StyleClassedTextArea area_codigo;
     
     @FXML
-    CodeArea area_portugol;
+    StyleClassedTextArea area_portugol;
 
     @FXML
     Console area_console;
@@ -167,26 +167,26 @@ public class ControllerCodigo implements Initializable {
     }
 
     private void areasStyle() {
-	area_codigo.setStyle("-fx-font-size: 24; -fx-font-weight: bold;-fx-background-color: #1a1a1a;-fx-border-color: #1a1a1a");
+	area_codigo.setStyle("-fx-font-size: 24; -fx-font-weight: bold; -fx-background-color: #5c6770; -fx-border-color: #5c6770;");
 	area_codigo.getStylesheets().add(FXMaster.codigo());
 	area_codigo.setParagraphGraphicFactory(LineNumberFactory.get(area_codigo));
 	area_codigo.setWrapText(true);
-	area_codigo.setLineHighlighterOn(true);
+	area_codigo.setLineHighlighterOn(false);
 	area_codigo.setLineHighlighterFill(Paint.valueOf("#353535"));
 	area_codigo.setEditable(false);
 	// area_codigo = ControllerLinguagens.setLinguagem("C", area_codigo);
 	// go to line -> area.displaceCaret(numeroLinha.length);
 
-	area_console.setStyle("-fx-font-size: 20; -fx-font-weight: bold;-fx-background-color: #1a1a1a;-fx-border-color: #1a1a1a");
+	area_console.setStyle("-fx-font-size: 20; -fx-font-weight: bold; -fx-background-color: #5c6770; -fx-border-color: #5c6770;");
 	area_console.getStylesheets().add(FXMaster.codigo());
 	area_console.setWrapText(false);
 	area_console.setLineHighlighterOn(false);
 
-	area_portugol.setStyle("-fx-font-size: 24; -fx-font-weight: bold;-fx-background-color: #1a1a1a;-fx-border-color: #1a1a1a");
+	area_portugol.setStyle("-fx-font-size: 24; -fx-font-weight: bold; -fx-background-color: #5c6770; -fx-border-color: #5c6770;");
 	area_portugol.getStylesheets().add(FXMaster.codigo());
 	area_portugol.setParagraphGraphicFactory(LineNumberFactory.get(area_portugol));
 	area_portugol.setWrapText(true);
-	area_portugol.setLineHighlighterOn(true);
+	area_portugol.setLineHighlighterOn(false);
 	area_portugol.setLineHighlighterFill(Paint.valueOf("#353535"));
 
 	area_portugol.setStyleClass(0,0,"variaveis");
@@ -268,7 +268,7 @@ public class ControllerCodigo implements Initializable {
 	   // exibirTraducao(ConversorStrategy.C);
 	});
 
-	setIcon(btn_java, "icon_JAVA.png");
+	setIcon(btn_java, "icon_JAVA2.png");
 	btn_java.setOnAction(e -> {
 	  //  exibirTraducao(ConversorStrategy.JAVA);
 	});

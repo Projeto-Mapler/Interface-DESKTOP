@@ -15,7 +15,7 @@
   <children>	
 	<VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <HBox alignment="CENTER_LEFT" maxHeight="90.0" minHeight="90.0" prefHeight="90.0" style="-fx-border-color: transparent transparent #2e3338; transparent; -fx-border-width: 5;" VBox.vgrow="ALWAYS">
+                  <HBox alignment="CENTER_LEFT" maxHeight="90.0" minHeight="90.0" prefHeight="90.0" style="-fx-border-color: transparent transparent #22262a transparent; -fx-border-width: 5;" VBox.vgrow="ALWAYS">
                      <children>
                         <Label text="Experimente um jeito novo de programar" textFill="WHITE">
                            <font>
@@ -37,11 +37,11 @@
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <VBox style="-fx-border-color: transparent transparent #2e3338; transparent; -fx-border-width: 5;" HBox.hgrow="ALWAYS">
+                        <VBox style="-fx-border-color: transparent transparent transparent transparent; -fx-border-width: 5;" HBox.hgrow="ALWAYS">
                            <children>
                               <AnchorPane>
    								<children>
-      								<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #2e3338;; -fx-background-radius: 10;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+      								<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #22262a; -fx-background-radius: 10;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                                  <children>
                                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <children>
@@ -94,16 +94,16 @@
                      <children>
                         <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                            <children>
-                              <Label text="Recentes" textFill="WHITE">
-                                 <font>
-                                    <Font name="Candy Beans" size="17.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets left="5.0" top="5.0" />
-                                 </VBox.margin>
-                              </Label>
-                              <HBox alignment="BOTTOM_CENTER" prefHeight="30.0" prefWidth="200.0" style="-fx-spacing: 160; -fx-border-color: transparent transparent #2e3338; transparent; -fx-border-width: 5;">
+                              <HBox alignment="BOTTOM_CENTER" prefHeight="30.0" prefWidth="200.0" style="-fx-spacing: 160; -fx-border-color: transparent transparent #22262a transparent; -fx-border-width: 5;">
                                  <children>
+                                 	<Label text="Recentes" textFill="WHITE">
+                                 		<font>
+                                    		<Font name="Candy Beans" size="17.0" />
+                                 		</font>
+                                 		<VBox.margin>
+                                    		<Insets left="5.0" top="5.0" />
+                                 		</VBox.margin>
+                              		</Label>
                                     <Label text="NOME" textFill="WHITE">
                                        <HBox.margin>
                                           <Insets bottom="5.0" left="40.0" />

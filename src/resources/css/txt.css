@@ -1,10 +1,16 @@
+
 .lineno{
-   -fx-background-color: #1a1a1a;
+   -fx-background-color: #5c6770;
    -fx-font-size: 24;
+   -fx-fill: black; 
+}
+
+.lineno .text{
+   -fx-fill: white; 
 }
 
 .background {
-    -fx-background-color: #1d1d1d;
+    -fx-background-color: #5c6770;
 }
 
 .texto { 
@@ -16,7 +22,7 @@
 }
 
 .variaveis{
-	-fx-fill: white; 
+	-fx-fill: black; 
 }
 
 .constantes{
