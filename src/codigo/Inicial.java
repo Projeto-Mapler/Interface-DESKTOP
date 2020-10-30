@@ -2,8 +2,10 @@ package codigo;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import resources.css.FXMaster;
@@ -13,6 +15,7 @@ public class Inicial extends Application {
     private static double xOffset = 0;
     private static double yOffset = 0;
     private static Stage janela; // janela principal
+    private static Rectangle2D bounds;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -25,6 +28,8 @@ public class Inicial extends Application {
 	stage.setTitle("MAPLER STUDIO");
 	stage.setMinHeight(768);
 	stage.setMinWidth(1152);
+	Screen screen = Screen.getPrimary();
+	bounds = screen.getVisualBounds();
 	FXMaster.addResizeListener(stage);
 	stage.show();
 
@@ -37,6 +42,10 @@ public class Inicial extends Application {
 	} else {
 	    janela.setMaximized(true);
 	    janela.setY(janela.getY() - 1);
+	    janela.setX(bounds.getMinX());
+	    janela.setY(bounds.getMinY());
+	    janela.setWidth(bounds.getWidth());
+	    janela.setHeight(bounds.getHeight());
 	    return 1;
 	}
     }

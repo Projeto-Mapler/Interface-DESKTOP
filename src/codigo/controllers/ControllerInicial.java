@@ -79,8 +79,9 @@ public class ControllerInicial implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+    	
     	modoInicial();// iniciar na tela principal
-
+    	
     	barra_controle();
     	menuBar();
     	botoesMenu();
