@@ -35,7 +35,7 @@ public class ControllerInicial implements Initializable {
     @FXML
     AnchorPane ap_barraPrimaria, ap_barraSecundaria;
 
-    /*----------BARRA FIXA DO FXML-------------------*/
+    /*----------BARRA FIXA DO FXML-----------------787--*/
     @FXML
     JFXButton btn_home;
 
