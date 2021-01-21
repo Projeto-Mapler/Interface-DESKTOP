@@ -108,50 +108,14 @@ public class ControllerInicial implements Initializable {
     	});
     	
     	mi_salvar.setOnAction(e->{
-    		Arquivo.salvarArquivo(Arquivo.arquivo, true, ControllerCodigo.getPortugol());
+    		//Arquivo.salvarArquivo(Arquivo.arquivo, true, ControllerCodigo.getPortugol());
     	});
     	
     	mi_salvarc.setOnAction(e->{
-    		Arquivo.SalvarComo(Arquivo.arquivo, ControllerCodigo.getPortugol());
+    		//Arquivo.SalvarComo(Arquivo.arquivo, ControllerCodigo.getPortugol());
     	});
     	
-    	//Exibir
     	
-    	mi_console.setOnAction(e->{
-    		if(mi_console.getText().equals("Console")) { //ativar console
-    			mi_console.setText("Ocultar console");
-    			if(ControllerCodigo.inter == 0) {//apenas portugol
-    				ControllerCodigo.Interface(2);
-    			}else if(ControllerCodigo.inter == 1) {//portugol + traducao
-    				ControllerCodigo.Interface(3);
-    			}
-    		}else { //desativar console
-    			mi_console.setText("Console");
-    			if(ControllerCodigo.inter == 2) {//portugol + console
-    				ControllerCodigo.Interface(0);
-    			}else if(ControllerCodigo.inter == 3) {//portugol + traducao + console
-    				ControllerCodigo.Interface(1);
-    			}
-    		}
-    	});
-    	
-    	mi_traducao.setOnAction(e->{
-    		if(mi_traducao.getText().equals("Traducao")) { //ativar traducao
-    			mi_traducao.setText("Ocultar traducao");
-    			if(ControllerCodigo.inter == 0) {//apenas portugol
-    				ControllerCodigo.Interface(1);
-    			}else if(ControllerCodigo.inter == 2) {//portugol + console
-    				ControllerCodigo.Interface(3);
-    			}
-    		}else { //desativar traducao
-    			mi_traducao.setText("Traducao");
-    			if(ControllerCodigo.inter == 1) {//portugol + traducao
-    				ControllerCodigo.Interface(0);
-    			}else if(ControllerCodigo.inter == 3) {//portugol + traducao + console
-    				ControllerCodigo.Interface(2);
-    			}
-    		}
-    	});
     }
     
     private void barra_controle() {
@@ -169,7 +133,7 @@ public class ControllerInicial implements Initializable {
     	});
 
     	btn_close.setOnAction(e -> { // fechar aplicacao
-    		if(Arquivo.salvar) {
+    		/*if(Arquivo.salvar) {
     			int alerta = Alertas.showConfirm("Deseja salvar o projeto?");
     			if(alerta == 0) {
     				System.exit(0);
@@ -186,7 +150,8 @@ public class ControllerInicial implements Initializable {
     			
     		}else {
     			System.exit(0);
-    		}
+    		}*/
+    		System.exit(0);
     	});
     	
     	btn_close.setOnMouseEntered(e ->{
@@ -361,6 +326,7 @@ public class ControllerInicial implements Initializable {
     		setCenter(ap_codigo);
 
     	} catch (IOException e) {
+    		System.out.println("Falhou no modo codigo");
     		e.printStackTrace();
     	}
     }

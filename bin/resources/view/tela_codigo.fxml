@@ -1,156 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXTextField?>
-<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 <?import org.fxmisc.richtext.StyleClassedTextArea?>
-<?import resources.bibliotecas.Console?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
-<?import org.fxmisc.richtext.CodeArea?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="codigo.controllers.ControllerCodigo">
    <children>
-      <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
-               <children>
-                  <AnchorPane prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #343a40">
+      <TabPane fx:id="tabp_pai" layoutX="61.0" layoutY="32.0" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <tabs>
+          <Tab text="Novo.txt">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <HBox alignment="CENTER" layoutX="-71.0" layoutY="-30.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <children>
-                              <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="200.0" style="-fx-spacing: 15;" HBox.hgrow="ALWAYS">
-                                 <children>
-                                    
-                                    <AnchorPane maxHeight="20.0" prefHeight="20.0" prefWidth="200.0" style="-fx-border-color: transparent transparent transparent #343a40;" />
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
-                                 <children>
-                                    <JFXButton fx:id="btn_save" contentDisplay="CENTER" prefHeight="18.0" prefWidth="40.0" text=" " textFill="#1a1a1a">
-                                       <graphic>
-                                          <FontAwesomeIcon fill="#a5a5a5" glyphName="SAVE" size="2em" />
-                                       </graphic>
-                                    </JFXButton>
-                                    <JFXButton fx:id="btn_play" contentDisplay="CENTER" prefHeight="18.0" prefWidth="40.0" text=" " textFill="#1a1a1a">
-                                       <graphic>
-                                         <FontAwesomeIcon glyphName="PLAY" size="2em">
-               								<fill>
-                  								<LinearGradient endX="0.40476190476190477" endY="0.7142857142857143" startX="0.3047619047619048" startY="0.48571428571428577">
-                     								<stops>
-                        								<Stop color="#57ee96" />
-                        								<Stop color="#0dab3a" offset="1.0" />
-                     								</stops>
-                  								</LinearGradient>
-               								</fill>
-            							 </FontAwesomeIcon>
-                                       </graphic>
-                                    </JFXButton>
-                                    <JFXButton fx:id="btn_debug" prefHeight="18.0" prefWidth="40.0" text=" " textFill="#111111">
-                                       <graphic>
-                                          <FontAwesomeIcon fill="#a5a5a5" glyphName="FLASH" size="2em" />
-                                       </graphic>
-                                    </JFXButton>
-                                 </children>
-                              </HBox>
-                              <HBox prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-                           </children>
-                        </HBox>
-                     </children></AnchorPane>
-                  <SplitPane fx:id="sp_areaGeral" dividerPositions="0.7" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" VBox.vgrow="ALWAYS">
-                    <items>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
-                           <children>
-                              <SplitPane fx:id="sp_areaCodigo" dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                <items>
-                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #343a40;">
+                        <TabPane fx:id="tabp_filho" prefHeight="200.0" prefWidth="200.0" side="BOTTOM" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <tabs>
+                            <Tab fx:id="tab_cod" text="Codigo">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                        <children>
-                                          <StyleClassedTextArea fx:id="area_portugol" layoutX="66.0" layoutY="73.0" style="-fx-background-color: #5c6770;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
-                                       </children>
-                                    </AnchorPane>
-                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #343a40;">
+                                          <StyleClassedTextArea fx:id="area_cod" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                       </children></AnchorPane>
+                              </content>
+                            </Tab>
+                            <Tab fx:id="tab_terminal" text="Executar">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                        <children>
-                                          <StyleClassedTextArea fx:id="area_codigo" layoutX="88.0" layoutY="65.0" style="-fx-background-color: #5c6770;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
-                                       </children>
-                                    </AnchorPane>
-                                </items>
-                              </SplitPane>
-                           </children>
-                        </AnchorPane>
-                      <AnchorPane fx:id="ap_console" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #343a40;">
-                           <children>
-                              <TabPane fx:id="tb_console" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="0.0">
-                                <tabs>
-                                  <Tab text="Console    ">
-                                    <content>
-                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                             <children>
-                                                <Console fx:id="area_console" layoutX="243.0" layoutY="-19.0" style="-fx-background-color: #343a40;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                              </children>
-                                          </AnchorPane>
-                                    </content>
-                                  </Tab>
-                                </tabs>
-                              </TabPane>
-                              <JFXButton fx:id="btn_close_console" text="X" textAlignment="RIGHT" textFill="#1a1a1a" AnchorPane.leftAnchor="94.0" AnchorPane.topAnchor="9.0">
-                                 <font>
-                                    <Font name="Arial Black" size="9.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                        </AnchorPane>
-                    </items>
-                  </SplitPane>
-               </children>
-            </VBox>
-            <VBox prefHeight="200.0" prefWidth="30.0">
-               <children>
-                  <AnchorPane prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #343a40" />
-                  <AnchorPane prefHeight="200.0" prefWidth="40.0" style="-fx-background-color: #343a40; -fx-border-color: transparent transparent transparent transparent;" VBox.vgrow="ALWAYS">
-                     <children>
-                        <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <children>
-                              <JFXButton fx:id="btn_bars" contentDisplay="CENTER"  maxWidth="60.0" minWidth="40.0" prefWidth="40.0" prefHeight="32.0" text=" " textFill="#1a1a1a">
-                                 <graphic>
-                                    <FontAwesomeIcon glyphName="BARS" />
-                                 </graphic>
-                              </JFXButton>
-                              <JFXButton fx:id="btn_c" contentDisplay="CENTER" prefHeight="18.0" prefWidth="40.0" text=" " textFill="#1a1a1a">
-                                 <graphic>
-                                    <FontAwesomeIcon />
-                                 </graphic>
-                              </JFXButton>
-                              <JFXButton fx:id="btn_java" contentDisplay="CENTER" prefHeight="18.0" prefWidth="40.0" text=" " textFill="#1a1a1a">
-                                 <graphic>
-                                    <FontAwesomeIcon />
-                                 </graphic>
-                              </JFXButton>
-                              <JFXButton fx:id="btn_python" contentDisplay="CENTER" prefHeight="18.0" prefWidth="40.0" text=" " textFill="#1a1a1a">
-                                 <graphic>
-                                    <FontAwesomeIcon />
-                                 </graphic>
-                              </JFXButton>
-                              <JFXButton fx:id="btn_pascal" contentDisplay="CENTER" prefHeight="18.0" prefWidth="40.0" text=" " textFill="#1a1a1a">
-                                 <graphic>
-                                    <FontAwesomeIcon />
-                                 </graphic>
-                              </JFXButton>
-                           </children>
-                        </VBox>
+                                          <StyleClassedTextArea fx:id="area_terminal" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                       </children></AnchorPane>
+                              </content>
+                            </Tab>
+                              <Tab fx:id="tab_traducao" text="Traduzir">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <StyleClassedTextArea fx:id="area_traducao" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                       </children></AnchorPane>
+                                 </content>
+                              </Tab>
+                          </tabs>
+                        </TabPane>
                      </children></AnchorPane>
-               </children>
-            </VBox>
-         </children>
-      </HBox>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
    </children>
 </AnchorPane>

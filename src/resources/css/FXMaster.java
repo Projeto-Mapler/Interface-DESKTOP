@@ -49,8 +49,12 @@ public class FXMaster {
 		return FXMaster.class.getResource("menubar.css").toExternalForm();
 	}
 	
-	public static String tabPane() {
-		return FXMaster.class.getResource("tabpane.css").toExternalForm();
+	public static String tabPanePai() {
+		return FXMaster.class.getResource("tabP.css").toExternalForm();
+	}
+	
+	public static String tabPaneFilho() {
+		return FXMaster.class.getResource("tabF.css").toExternalForm();
 	}
 	
 	public static String splitPane() {

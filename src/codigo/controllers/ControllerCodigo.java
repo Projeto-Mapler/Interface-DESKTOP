@@ -9,16 +9,11 @@ import org.fxmisc.richtext.CodeArea;
 import org.fxmisc.richtext.LineNumberFactory;
 import org.fxmisc.richtext.StyleClassedTextArea;
 
-import com.jfoenix.controls.JFXButton;
-
-//import conversores.ConversorStrategy;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import javafx.event.EventHandler;
-//import debug.Debugador;
-//import debug.GerenciadorEventos;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.SplitPane;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -33,40 +28,14 @@ import resources.css.FXMaster;
 public class ControllerCodigo implements Initializable {
 
     @FXML
-    TabPane tb_console;
-
-    @FXML
-    AnchorPane ap_console;
-
-    @FXML
-    SplitPane sp_areaGeral, sp_areaCodigo;
-
-    @FXML
-    StyleClassedTextArea area_codigo;
+    TabPane tabp_pai, tabp_filho;
     
     @FXML
-    StyleClassedTextArea area_portugol;
-
+    Tab tab_cod, tab_traducao, tab_terminal;
+    
     @FXML
-    Console area_console;
-
-    @FXML
-    JFXButton btn_close_console, btn_play, btn_save, btn_debug;
-
-    @FXML
-    JFXButton btn_bars, btn_c, btn_java, btn_python, btn_pascal;
-
-    private static StyleClassedTextArea traducao, portugol;
-    private static Console console;
-    private static SplitPane horizontal, vertical;
-    private static AnchorPane pane_console;
-    private static JFXButton fechar_console;
-
-    // INTERPRETADOR
-  //  private GerenciadorEventos ge = new GerenciadorEventos();
-   // private Debugador debugador = new Debugador(ge, false);
-
-    public static int inter = 0;
+    StyleClassedTextArea area_cod, area_terminal, area_traducao;
+    
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
@@ -80,8 +49,8 @@ public class ControllerCodigo implements Initializable {
 		String str = "";
 		while (scanner.hasNext())
 		    str = str + scanner.next() + "\n";
-		area_portugol.deleteText(0, area_portugol.getText().length());
-		area_portugol.appendText(str);
+		area_cod.deleteText(0, area_cod.getText().length());
+		area_cod.appendText(str);
 	    } catch (Exception es) {
 	    	es.printStackTrace();
 	    }
@@ -91,124 +60,67 @@ public class ControllerCodigo implements Initializable {
 	// de.jensd.fx.glyphs.fontawesome.FontAwesomeIcons.k
 
 	tabPane();
-	splitPane();
 	areasStyle();
 	controlesCodigo();
-	controlesInterface();
-	controlesLinguagens();
-
-	traducao = area_codigo;
-	setTraducao("#include <stdio.h>\n\nint main(){\r\n" + "    printf(\"Ola Mundo!\");\r\n" + "    return 0;\r\n"+ "}","C");
-	console = area_console;
-	portugol = area_portugol;
-
-	//console.setPrincipal(ge, debugador);
-	// console.executar("C:\\Users\\Kerlyson\\Documents\\GitHub\\interpretadorPtEstruturadoJava\\exemplos\\io.txt");
-
-	// imprimirConsole("Ola mundo!\n");
-
-	horizontal = sp_areaCodigo;
-	vertical = sp_areaGeral;
-	pane_console = ap_console;
-	fechar_console = btn_close_console;
-	Interface(inter);
+	
     }
 
     /*
      * Metodos padroes
      */
 
-    public static void setTraducao(String str, String lgn) {
-	traducao.deleteText(0, traducao.getText().length());
-	traducao.appendText(str);
-	ControllerLinguagens.setLinguagem(lgn, traducao);
+    public void setTraducao(String str, String lgn) {
+    	area_traducao.deleteText(0, area_traducao.getText().length());
+    	area_traducao.appendText(str);
+    	ControllerLinguagens.setLinguagem(lgn, area_traducao);
     }
 
-    public static String getPortugol() {
-	return portugol.getText();
+    public String getPortugol() {
+    	return area_cod.getText();
     }
 
     /*
      * Metodos de Eventos e Estilos
      */
-    public static void Interface(int modo) {
-	ControllerCodigo.inter = modo;
-	if (modo == 0) {// apenas portugol
-	    vertical.getItems().clear();
-	    vertical.getItems().add(portugol);
-	} else if (modo == 1) {// portugol + traducao
-	    vertical.getItems().clear();
-	    vertical.getItems().add(horizontal);
-	    horizontal.getItems().clear();
-	    horizontal.getItems().add(portugol);
-	    horizontal.getItems().add(traducao);
-	} else if (modo == 2) {// portugol + console
-	    vertical.getItems().clear();
-	    vertical.getItems().add(portugol);
-	    vertical.getItems().add(pane_console);
-	} else if (modo == 3) {// portugol + traducao + console
-	    vertical.getItems().clear();
-	    vertical.getItems().add(horizontal);
-	    horizontal.getItems().clear();
-	    horizontal.getItems().add(portugol);
-	    horizontal.getItems().add(traducao);
-	    vertical.getItems().add(pane_console);
-	}
-
-    }
+    
 
     private void tabPane() {
-	tb_console.getStylesheets().add(FXMaster.tabPane());
+    	tabp_pai.getStylesheets().add(FXMaster.tabPanePai());
+    	tabp_filho.getStylesheets().add(FXMaster.tabPaneFilho());
     }
 
-    private void splitPane() {
-	sp_areaCodigo.getStylesheets().add(FXMaster.splitPane());
-	sp_areaGeral.getStylesheets().add(FXMaster.splitPane());
-    }
 
     private void areasStyle() {
-	area_codigo.setStyle("-fx-font-size: 24; -fx-font-weight: bold; -fx-background-color: #5c6770; -fx-border-color: #5c6770;");
-	area_codigo.getStylesheets().add(FXMaster.codigo());
-	area_codigo.setParagraphGraphicFactory(LineNumberFactory.get(area_codigo));
-	area_codigo.setWrapText(true);
-	area_codigo.setLineHighlighterOn(false);
-	area_codigo.setLineHighlighterFill(Paint.valueOf("#353535"));
-	area_codigo.setEditable(false);
-	// area_codigo = ControllerLinguagens.setLinguagem("C", area_codigo);
-	// go to line -> area.displaceCaret(numeroLinha.length);
+    	area_traducao.setStyle("-fx-font-size: 24; -fx-font-weight: bold; -fx-background-color: #5c6770; -fx-border-color: #5c6770;");
+    	area_traducao.getStylesheets().add(FXMaster.codigo());
+    	area_traducao.setParagraphGraphicFactory(LineNumberFactory.get(area_traducao));
+    	area_traducao.setWrapText(true);
+    	area_traducao.setLineHighlighterOn(false);
+    	area_traducao.setLineHighlighterFill(Paint.valueOf("#353535"));
+    	area_traducao.setEditable(false);
+    	// area_codigo = ControllerLinguagens.setLinguagem("C", area_traducao);
+    	// go to line -> area.displaceCaret(numeroLinha.length);
 
-	area_console.setStyle("-fx-font-size: 20; -fx-font-weight: bold; -fx-background-color: #5c6770; -fx-border-color: #5c6770;");
-	area_console.getStylesheets().add(FXMaster.codigo());
-	area_console.setWrapText(false);
-	area_console.setLineHighlighterOn(false);
+    	area_terminal.setStyle("-fx-font-size: 20; -fx-font-weight: bold; -fx-background-color: #5c6770; -fx-border-color: #5c6770;");
+    	area_terminal.getStylesheets().add(FXMaster.codigo());
+    	area_terminal.setWrapText(false);
+    	area_terminal.setLineHighlighterOn(false);
 
-	area_portugol.setStyle("-fx-font-size: 24; -fx-font-weight: bold; -fx-background-color: #5c6770; -fx-border-color: #5c6770;");
-	area_portugol.getStylesheets().add(FXMaster.codigo());
-	area_portugol.setParagraphGraphicFactory(LineNumberFactory.get(area_portugol));
-	area_portugol.setWrapText(true);
-	area_portugol.setLineHighlighterOn(false);
-	area_portugol.setLineHighlighterFill(Paint.valueOf("#353535"));
-
-	area_portugol.setStyleClass(0,0,"variaveis");
+    	area_cod.setStyle("-fx-font-size: 24; -fx-font-weight: bold; -fx-background-color: #5c6770; -fx-border-color: #5c6770;");
+    	area_cod.getStylesheets().add(FXMaster.codigo());
+    	area_cod.setParagraphGraphicFactory(LineNumberFactory.get(area_cod));
+    	area_cod.setWrapText(true);
+    	area_cod.setLineHighlighterOn(false);
+    	area_cod.setLineHighlighterFill(Paint.valueOf("#353535"));
+    	area_cod.setStyleClass(0,0,"variaveis");
 
     }
 
-    private void controlesInterface() {
-    	
-	btn_close_console.setOnAction(e -> {
-	    if (ControllerCodigo.inter == 2) {// portugol + console
-		Interface(0);// apenas portugol
-	    } else if (ControllerCodigo.inter == 3) {// portugol + traducao + console
-		Interface(1);// portugol + traducao
-	    }
-	    ControllerInicial.mni_console.setText("Console");
-	});
-	
-    }
+    
 
     private void controlesCodigo() {
 	
-    	area_portugol.setOnKeyPressed(new EventHandler<KeyEvent>(){
+    	area_cod.setOnKeyPressed(new EventHandler<KeyEvent>(){
 			@Override
 	        public void handle(KeyEvent ke){
 				
@@ -221,32 +133,32 @@ public class ControllerCodigo implements Initializable {
 	            	ke.getCode().equals(KeyCode.SPACE) || 
 	            	ke.getCode().equals(KeyCode.TAB))
 	            {
-	                int comecoDaLinha = area_portugol.getText().lastIndexOf("\n", area_portugol.getCaretPosition()-1);
-	                int finalDaLinha = area_portugol.getText().indexOf("\n",area_portugol.getCaretPosition()); //se == -1 é a ultima
+	                int comecoDaLinha = area_cod.getText().lastIndexOf("\n", area_cod.getCaretPosition()-1);
+	                int finalDaLinha = area_cod.getText().indexOf("\n",area_cod.getCaretPosition()); //se == -1 é a ultima
 	                int comecoDaLinhaAnt = 0;
 	                
 	                if(finalDaLinha == -1 && comecoDaLinha != -1)
-	                	area_portugol = Portugol.colorirArea(area_portugol,comecoDaLinha+1);
+	                	area_cod = Portugol.colorirArea(area_cod,comecoDaLinha+1);
 	                else if(finalDaLinha == -1 && comecoDaLinha == -1)
-	                	area_portugol = Portugol.colorirArea(area_portugol,0);
+	                	area_cod = Portugol.colorirArea(area_cod,0);
 	                else if(finalDaLinha != -1 && comecoDaLinha == -1)
-	                	area_portugol = Portugol.colorirArea(area_portugol,0, finalDaLinha);
+	                	area_cod = Portugol.colorirArea(area_cod,0, finalDaLinha);
 	                else
-	                	area_portugol = Portugol.colorirArea(area_portugol,comecoDaLinha, finalDaLinha);
+	                	area_cod = Portugol.colorirArea(area_cod,comecoDaLinha, finalDaLinha);
 	                
 	                if(comecoDaLinha > 1) {
-	                	comecoDaLinhaAnt = area_portugol.getText().lastIndexOf("\n", comecoDaLinha-1);
+	                	comecoDaLinhaAnt = area_cod.getText().lastIndexOf("\n", comecoDaLinha-1);
 	                	if(comecoDaLinhaAnt == -1)
-	                		area_portugol = Portugol.colorirArea(area_portugol,0,comecoDaLinha);
+	                		area_cod = Portugol.colorirArea(area_cod,0,comecoDaLinha);
 	                	else
-	                		area_portugol = Portugol.colorirArea(area_portugol,comecoDaLinhaAnt,comecoDaLinha);
+	                		area_cod = Portugol.colorirArea(area_cod,comecoDaLinhaAnt,comecoDaLinha);
 	                }
 	            }
 	        }
 		});	
     	
     	
-	btn_debug.setOnAction(e -> {
+	/*btn_debug.setOnAction(e -> {
 
 	});
 
@@ -258,55 +170,18 @@ public class ControllerCodigo implements Initializable {
 
 	btn_save.setOnAction(e -> {
 	    Arquivo.salvarArquivo(Arquivo.arquivo, true, ControllerCodigo.getPortugol());
-	});
+	});*/
 
     }
 
-    private void controlesLinguagens() {
-	setIcon(btn_c, "icon_C.png");
-	btn_c.setOnAction(e -> {
-	   // exibirTraducao(ConversorStrategy.C);
-	});
-
-	setIcon(btn_java, "icon_JAVA2.png");
-	btn_java.setOnAction(e -> {
-	  //  exibirTraducao(ConversorStrategy.JAVA);
-	});
-
-	setIcon(btn_python, "icon_PYTHON.png");
-	btn_python.setOnAction(e -> {
-	  //  exibirTraducao(ConversorStrategy.PYTHON);
-	});
-
-	setIcon(btn_pascal, "icon_SWIFT.png");
-	btn_pascal.setOnAction(e -> {
-	   // exibirTraducao(ConversorStrategy.PASCAL);
-	});
-    }
+    
 
     private String getCaminhoArquivo() {
-	if (Arquivo.arquivo == null) {
-	    Arquivo.salvarArquivo(Arquivo.arquivo, true, ControllerCodigo.getPortugol());
-	}
-	return Arquivo.arquivo.getAbsolutePath();
+    	if (Arquivo.arquivo == null) {
+    		Arquivo.salvarArquivo(Arquivo.arquivo, true, getPortugol());
+    	}
+		return Arquivo.arquivo.getAbsolutePath();
     }
 
-  /*  private void exibirTraducao(ConversorStrategy tipoConversao) {
-	Interface(3);
-	String caminho = this.getCaminhoArquivo();
-	setTraducao(console.getTraducao(caminho, tipoConversao), tipoConversao.name());
-    }*/
-
-    private void setIcon(JFXButton btn, String img) {
-	Image imagem = new Image(
-				 ControllerCodigo.class
-						       .getClassLoader()
-						       .getResource("resources/images/" + img)
-						       .toExternalForm());
-	ImageView iv = new ImageView(imagem);
-	iv.setFitHeight(32);
-	iv.setFitWidth(32);
-	btn.setGraphic(iv);
-    }
 
 }
