@@ -17,9 +17,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import mapler.Inicial;
-import mapler.service.ArquivoService;
 import mapler.service.EstiloService;
 import mapler.util.CarregadorRecursos;
+import mapler.util.GerenciadorArquivo;
 
 public class InicialController implements Initializable {
 
@@ -78,7 +78,7 @@ public class InicialController implements Initializable {
   @Override
   public void initialize(URL url, ResourceBundle rb) {
 
-    modoInicial();// iniciar na tela principal
+    iniciarModoInicial();// iniciar na tela principal
 
     barra_controle();
     menuBar();
@@ -100,9 +100,7 @@ public class InicialController implements Initializable {
     });
 
     mi_novo.setOnAction(e -> {
-      modoInicial();
-      modoCodigo();
-      ArquivoService.arquivo = null;
+      iniciarModoCodigo(null);
     });
 
     mi_salvar.setOnAction(e -> {
@@ -118,8 +116,7 @@ public class InicialController implements Initializable {
 
   private void barra_controle() {
     btn_home.setOnAction(e -> {
-      modoInicial();
-      ArquivoService.arquivo = null;
+      iniciarModoInicial();
     });
 
     btn_home.setOnMouseEntered(e -> {
@@ -197,7 +194,7 @@ public class InicialController implements Initializable {
 
   private void barra_segundo() {
     btn_novo.setOnAction(e -> {
-      modoCodigo();
+      iniciarModoCodigo(null);
     });
 
     btn_novo.setOnMouseEntered(e -> {
@@ -279,16 +276,15 @@ public class InicialController implements Initializable {
 
   // metodos de arquivos
   private void abrirArquivo() {
-    File f = ArquivoService.openJanelaArquivo();
+    File f = GerenciadorArquivo.abrirArquivo();
     if (f != null) {
-      modoInicial();
-      ArquivoService.abrir = true;
-      modoCodigo();
+      iniciarModoInicial();
+      iniciarModoCodigo(f);
     }
   }
 
   // metodos de mudanca de interface
-  private void modoInicial() {
+  private void iniciarModoInicial() {
     vb_topo.getChildren().clear();
     vb_topo.getChildren().add(ap_barraPrimaria);
     vb_topo.getChildren().add(ap_barraSecundaria);
@@ -304,11 +300,9 @@ public class InicialController implements Initializable {
     } catch (IOException e) {
       e.printStackTrace();
     }
-
-
   }
 
-  private void modoCodigo() {
+  private void iniciarModoCodigo(File file) {
     vb_topo.getChildren().clear();
     vb_topo.getChildren().add(ap_barraPrimaria);
     mi_salvar.setVisible(true);
@@ -316,12 +310,20 @@ public class InicialController implements Initializable {
     mn_exibir.setDisable(!true);
 
     try {
-      AnchorPane ap_codigo =
-          FXMLLoader.load(CarregadorRecursos.getResource("view/tela_codigo.fxml"));
+      CodigoController controllerCodigo = new CodigoController(file);
+     // this.arquivosFachada.removerMapeamento(this.idArquivoAtual);// TODO: remover esse trecho qnd
+                                                                  // implementar
+      // multiplas abas - adionar a aba e um id p ela no gerenciador de abas
+      //this.arquivosFachada.mapearArquivoController(this.idArquivoAtual, controllerCodigo);
+      FXMLLoader loader = new FXMLLoader();
+      loader.setController(controllerCodigo);// seta o controller  ja montado com o arquivo
+      loader.setLocation(CarregadorRecursos.getResource("view/tela_codigo.fxml"));
+
+      AnchorPane ap_codigo = loader.load();
+
       setCenter(ap_codigo);
 
-    } catch (IOException e) {
-      System.out.println("Falhou no modo codigo");
+    } catch (Exception e) {
       e.printStackTrace();
     }
   }

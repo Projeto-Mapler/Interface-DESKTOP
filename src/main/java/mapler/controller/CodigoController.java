@@ -1,5 +1,6 @@
 package mapler.controller;
 
+import java.io.File;
 import java.io.FileReader;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -14,10 +15,10 @@ import javafx.scene.control.TabPane;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Paint;
-import mapler.service.ArquivoService;
 import mapler.service.EstiloLinguagensService;
 import mapler.service.EstiloPortugolService;
 import mapler.service.EstiloService;
+import mapler.util.GerenciadorArquivo;
 
 public class CodigoController implements Initializable {
 
@@ -30,15 +31,21 @@ public class CodigoController implements Initializable {
   @FXML
   StyleClassedTextArea area_cod, area_terminal, area_traducao;
 
+  private File arquivo; // referencia do arquivo que esta sendo manipulado
+  private boolean arquivoComAlteracoesNaoSalvas = false;// TODO: implementar detecção de mudancas
+                                                        // feitas e não salvas
+
+  public CodigoController(File arquivo) {
+    this.arquivo = arquivo;
+  }
 
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
     // TODO Auto-generated method stub
 
-    if (ArquivoService.abrir) {
-      ArquivoService.abrir = false;
+    if (arquivo != null) { // abri um arquivo
       try {
-        Scanner scanner = new Scanner(new FileReader(ArquivoService.arquivo.getPath().toString()));
+        Scanner scanner = new Scanner(new FileReader(arquivo));
         scanner.useDelimiter("\n");
         String str = "";
         while (scanner.hasNext())
@@ -69,7 +76,10 @@ public class CodigoController implements Initializable {
     EstiloLinguagensService.setLinguagem(lgn, area_traducao);
   }
 
-  public String getPortugol() {
+  /**
+   * @return texto no editor portugol
+   */
+  public String getTextoPortugol() {
     return area_cod.getText();
   }
 
@@ -146,7 +156,8 @@ public class CodigoController implements Initializable {
             if (comecoDaLinhaAnt == -1)
               area_cod = EstiloPortugolService.colorirArea(area_cod, 0, comecoDaLinha);
             else
-              area_cod = EstiloPortugolService.colorirArea(area_cod, comecoDaLinhaAnt, comecoDaLinha);
+              area_cod =
+                  EstiloPortugolService.colorirArea(area_cod, comecoDaLinhaAnt, comecoDaLinha);
           }
         }
       }
@@ -167,14 +178,31 @@ public class CodigoController implements Initializable {
 
   }
 
-
-
-  private String getCaminhoArquivo() {
-    if (ArquivoService.arquivo == null) {
-      ArquivoService.salvarArquivo(ArquivoService.arquivo, true, getPortugol());
+  public boolean salvarArquivo(boolean isSalvarComo) {
+    String txt = this.getTextoPortugol();
+    if (txt.isEmpty()) {
+      txt = new String("");
     }
-    return ArquivoService.arquivo.getAbsolutePath();
+    if (isSalvarComo) {
+      return GerenciadorArquivo.salvarArquivoComo(arquivo, txt);
+    } else {
+      return GerenciadorArquivo.salvarArquivo(arquivo, true, txt);
+    }
   }
 
+  private String getCaminhoArquivo() {
+    if (arquivo == null) {
+      this.salvarArquivo(false);
+    }
+    return arquivo.getAbsolutePath();
+  }
+
+  public boolean isArquivoComAlteracoesNaoSalvas() {
+    return arquivoComAlteracoesNaoSalvas;
+  }
+
+  public void setArquivoComAlteracoesNaoSalvas(boolean arquivoComAlteracoesNaoSalvas) {
+    this.arquivoComAlteracoesNaoSalvas = arquivoComAlteracoesNaoSalvas;
+  }
 
 }
