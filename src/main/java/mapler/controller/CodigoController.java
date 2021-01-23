@@ -73,7 +73,8 @@ public class CodigoController implements Initializable {
   public void setTraducao(String str, String lgn) {
     area_traducao.deleteText(0, area_traducao.getText().length());
     area_traducao.appendText(str);
-    EstiloLinguagensService.setLinguagem(lgn, area_traducao);
+    EstiloLinguagensService  linguagensService = EstiloLinguagensService.getInstancia();
+    linguagensService.setLinguagem(lgn, area_traducao);
   }
 
   /**

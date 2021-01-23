@@ -3,13 +3,28 @@ package mapler.service;
 import java.util.HashSet;
 import java.util.Iterator;
 import org.fxmisc.richtext.StyleClassedTextArea;
+import mapler.model.Linguagem;
+import mapler.model.LinguagemC;
+import mapler.model.LinguagemJava;
 
 public class EstiloLinguagensService {
 
-  private static String linguagem = "";
-  private static HashSet<String> reservadas, tipos, constantes;
+  private static EstiloLinguagensService instancia; // singleton
+  private Linguagem linguagemAtual;
+  private Linguagem linguagens[] = {new LinguagemC(), // 0 - C
+      new LinguagemJava() // 1 - JAVA
+  };
 
-  public static StyleClassedTextArea setLinguagem(String lgn, StyleClassedTextArea area) {
+  private EstiloLinguagensService() {}
+
+  public static EstiloLinguagensService getInstancia() {
+    if (instancia == null)
+      instancia = new EstiloLinguagensService();
+    return instancia;
+  }
+
+
+  public StyleClassedTextArea setLinguagem(String lgn, StyleClassedTextArea area) {
 
     if (lgn.equals("C")) {
       setC();
@@ -21,7 +36,7 @@ public class EstiloLinguagensService {
 
     area.setStyleClass(0, area.getText().length(), "variaveis");
 
-    Iterator it = reservadas.iterator();
+    Iterator it = linguagemAtual.getReservadas().iterator();
     int in;
     String texto = area.getText();
     while (it.hasNext()) {
@@ -33,7 +48,7 @@ public class EstiloLinguagensService {
       }
     }
 
-    it = tipos.iterator();
+    it = linguagemAtual.getTipos().iterator();
     while (it.hasNext()) {
       String str = it.next().toString();
       Iterator e = getIndices(str, texto).iterator();
@@ -43,7 +58,7 @@ public class EstiloLinguagensService {
       }
     }
 
-    it = constantes.iterator();
+    it = linguagemAtual.getConstantes().iterator();
     while (it.hasNext()) {
       String str = it.next().toString();
       Iterator e = getIndices(str, texto).iterator();
@@ -83,172 +98,23 @@ public class EstiloLinguagensService {
     return i;
   }
 
-  private static void setC() {
-    if (linguagem.equals("C"))
+  private void setC() {
+    if (linguagemAtual instanceof LinguagemC)
       return;
-
-    linguagem = "C";
-
-    reservadas = new HashSet<String>();
-    reservadas.add("asm");
-    reservadas.add("auto");
-    reservadas.add("break");
-    reservadas.add("case");
-    reservadas.add("const");
-    reservadas.add("continue");
-    reservadas.add("default");
-    reservadas.add("do");
-    reservadas.add("else");
-    reservadas.add("enum");
-    reservadas.add("extern");
-    reservadas.add("for");
-    reservadas.add("goto");
-    reservadas.add("if");
-    reservadas.add("main");
-    reservadas.add("printf");
-    reservadas.add("scanf");
-    reservadas.add("register");
-    reservadas.add("return");
-    reservadas.add("signed");
-    reservadas.add("sizeof");
-    reservadas.add("static");
-    reservadas.add("struct");
-    reservadas.add("switch");
-    reservadas.add("typedef");
-    reservadas.add("union");
-    reservadas.add("unsigned");
-    reservadas.add("volatile");
-    reservadas.add("while");
-    reservadas.add("#include");
-
-    tipos = new HashSet<String>();
-    tipos.add("char ");
-    tipos.add("double ");
-    tipos.add("float ");
-    tipos.add("int ");
-    tipos.add("long ");
-    tipos.add("short ");
-    tipos.add("void ");
-    tipos.add("{");
-    tipos.add("}");
-    tipos.add("(");
-    tipos.add(")");
-    tipos.add(">");
-    tipos.add("<");
-    tipos.add("+");
-    tipos.add("=");
-    tipos.add("-");
-    tipos.add("*");
-    tipos.add("/");
-    tipos.add(";");
-
-    constantes = new HashSet<String>();
-    constantes.add("1");
-    constantes.add("2");
-    constantes.add("3");
-    constantes.add("4");
-    constantes.add("5");
-    constantes.add("6");
-    constantes.add("7");
-    constantes.add("8");
-    constantes.add("9");
-    constantes.add("0");
-
+    linguagemAtual = linguagens[0]; // 0 - C
   }
 
-  private static void setJava() {
-
-    if (linguagem.equals("Java"))
+  private void setJava() {
+    if (linguagemAtual instanceof LinguagemJava)
       return;
+    linguagemAtual = linguagens[1]; // 1 - Java
+  }
 
-    linguagem = "Java";
-
-    reservadas = new HashSet<String>();
-    reservadas.add("private");
-    reservadas.add("protected");
-    reservadas.add("public");
-    reservadas.add("main");
-    reservadas.add("abstract");
-    reservadas.add("class");
-    reservadas.add("extends");
-    reservadas.add("final");
-    reservadas.add("implements");
-    reservadas.add("interface");
-    reservadas.add("native");
-    reservadas.add("new");
-    reservadas.add("static");
-    reservadas.add("strictfp");
-    reservadas.add("synchronized");
-    reservadas.add("transient");
-    reservadas.add("volatile");
-    reservadas.add("break");
-    reservadas.add("case");
-    reservadas.add("continue");
-    reservadas.add("default");
-    reservadas.add("do");
-    reservadas.add("else");
-    reservadas.add("for");
-    reservadas.add("if");
-    reservadas.add("instanceof");
-    reservadas.add("return");
-    reservadas.add("switch");
-    reservadas.add("while");
-    reservadas.add("assert");
-    reservadas.add("catch");
-    reservadas.add("finally");
-    reservadas.add("throw");
-    reservadas.add("throws");
-    reservadas.add("try");
-    reservadas.add("import");
-    reservadas.add("package");
-    reservadas.add("super");
-    reservadas.add("this");
-    reservadas.add("const");
-    reservadas.add("goto");
-
-    tipos = new HashSet<String>();
-    tipos.add("boolean ");
-    tipos.add("byte ");
-    tipos.add("char ");
-    tipos.add("double ");
-    tipos.add("float ");
-    tipos.add("int ");
-    tipos.add("long ");
-    tipos.add("short ");
-    tipos.add("String ");
-    tipos.add("void ");
-    tipos.add("{");
-    tipos.add("}");
-    tipos.add("(");
-    tipos.add(")");
-    tipos.add(">");
-    tipos.add("<");
-    tipos.add("+");
-    tipos.add("=");
-    tipos.add("-");
-    tipos.add("*");
-    tipos.add("/");
-    tipos.add(";");
-
-    constantes = new HashSet<String>();
-    constantes.add("1");
-    constantes.add("2");
-    constantes.add("3");
-    constantes.add("4");
-    constantes.add("5");
-    constantes.add("6");
-    constantes.add("7");
-    constantes.add("8");
-    constantes.add("9");
-    constantes.add("0");
+  private void setPython() {
 
   }
 
-  private static void setPython() {
-
-  }
-
-  private static void setPascal() {
+  private void setPascal() {
 
   }
 
