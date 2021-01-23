@@ -7,13 +7,10 @@ import mapler.Inicial;
 
 public final class InicialService {
 
-  private static double xOffset = 0;
-  private static double yOffset = 0;
-
   private static InicialService instancia; // singleton | instanca unica
 
-  private static Stage janela; // janela principal
-  private static Rectangle2D bounds;
+  private Stage janela; // janela principal
+  private Rectangle2D bounds;
 
 
   private InicialService(Stage janela) {
