@@ -1,4 +1,4 @@
-package mapler.controllers;
+package mapler.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -6,7 +6,7 @@ import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
-public class ControllerPrincipal implements Initializable {
+public class PrincipalController implements Initializable {
 
   @FXML
   JFXButton btn_file1, btn_file2, btn_info, btn_saber;

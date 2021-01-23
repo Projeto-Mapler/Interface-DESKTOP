@@ -1,11 +1,10 @@
-package mapler.controllers;
+package mapler.service;
 
 
 import java.util.Arrays;
 import org.fxmisc.richtext.StyleClassedTextArea;
-import mapler.FXMaster;
 
-public class Portugol {
+public class EstiloPortugolService {
 
 
 
@@ -33,24 +32,24 @@ public class Portugol {
       return area;
     }
     for (int loop = 0; loop < linha.length; loop++) {
-      if (Arrays.asList(FXMaster.getReservadas()).contains(linha[loop])
-          || Arrays.asList(FXMaster.getReservadas()).contains("\n" + linha[loop])) { // verifica se
+      if (Arrays.asList(EstiloService.getReservadas()).contains(linha[loop])
+          || Arrays.asList(EstiloService.getReservadas()).contains("\n" + linha[loop])) { // verifica se
                                                                                      // eh reservada
         int i = texto.indexOf(linha[loop]);
         while (i >= 0) {
           area.setStyleClass(in + i, in + i + linha[loop].length(), "reservadas");
           i = texto.indexOf(linha[loop], i + 1);
         }
-      } else if (Arrays.asList(FXMaster.getTipos()).contains(linha[loop])
-          || Arrays.asList(FXMaster.getTipos()).contains("\n" + linha[loop])) { // verifica se eh
+      } else if (Arrays.asList(EstiloService.getTipos()).contains(linha[loop])
+          || Arrays.asList(EstiloService.getTipos()).contains("\n" + linha[loop])) { // verifica se eh
                                                                                 // tipo
         int i = texto.indexOf(linha[loop]);
         while (i >= 0) {
           area.setStyleClass(in + i, in + i + linha[loop].length(), "tipos");
           i = texto.indexOf(linha[loop], i + 1);
         }
-      } else if (FXMaster.isNumeric(linha[loop])
-          || FXMaster.isNumeric(linha[loop].replace("\n", ""))) { // verificar se eh number
+      } else if (EstiloService.isNumeric(linha[loop])
+          || EstiloService.isNumeric(linha[loop].replace("\n", ""))) { // verificar se eh number
         int i = texto.indexOf(linha[loop]);
         while (i >= 0) {
           area.setStyleClass(in + i, in + i + linha[loop].length(), "constantes");

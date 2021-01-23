@@ -1,4 +1,4 @@
-package mapler;
+package mapler.service;
 
 import java.nio.charset.Charset;
 import org.fxmisc.richtext.StyleClassedTextArea;
@@ -10,7 +10,7 @@ import javafx.scene.input.KeyEvent;
  * modelos.RuntimeError;
  */
 
-public class Console extends StyleClassedTextArea /* implements EventoListener */ {
+public class ConsoleService extends StyleClassedTextArea /* implements EventoListener */ {
 
   // SUPORTE PARA UTF-8 no area console
   public static final Charset ISO_8859_1 = Charset.forName("ISO-8859-1");
@@ -22,7 +22,7 @@ public class Console extends StyleClassedTextArea /* implements EventoListener *
   private Boolean modoLeitura = false;
   // LeitorEntradaConsole leitor;
 
-  public Console() {
+  public ConsoleService() {
     setOnKeyPressed(new EventHandler<KeyEvent>() {
 
       @Override

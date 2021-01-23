@@ -1,4 +1,4 @@
-package mapler.controllers;
+package mapler.controller;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,11 +16,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
-import mapler.Arquivo;
-import mapler.FXMaster;
 import mapler.Inicial;
+import mapler.service.ArquivoService;
+import mapler.service.EstiloService;
 
-public class ControllerInicial implements Initializable {
+public class InicialController implements Initializable {
 
   @FXML
   BorderPane bd_inicial;
@@ -101,7 +101,7 @@ public class ControllerInicial implements Initializable {
     mi_novo.setOnAction(e -> {
       modoInicial();
       modoCodigo();
-      Arquivo.arquivo = null;
+      ArquivoService.arquivo = null;
     });
 
     mi_salvar.setOnAction(e -> {
@@ -118,7 +118,7 @@ public class ControllerInicial implements Initializable {
   private void barra_controle() {
     btn_home.setOnAction(e -> {
       modoInicial();
-      Arquivo.arquivo = null;
+      ArquivoService.arquivo = null;
     });
 
     btn_home.setOnMouseEntered(e -> {
@@ -191,7 +191,7 @@ public class ControllerInicial implements Initializable {
   }
 
   private void menuBar() {
-    m_bar.getStylesheets().add(FXMaster.menuBar());
+    m_bar.getStylesheets().add(EstiloService.menuBar());
   }
 
   private void barra_segundo() {
@@ -278,10 +278,10 @@ public class ControllerInicial implements Initializable {
 
   // metodos de arquivos
   private void abrirArquivo() {
-    File f = Arquivo.openJanelaArquivo();
+    File f = ArquivoService.openJanelaArquivo();
     if (f != null) {
       modoInicial();
-      Arquivo.abrir = true;
+      ArquivoService.abrir = true;
       modoCodigo();
     }
   }

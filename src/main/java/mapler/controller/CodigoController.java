@@ -1,4 +1,4 @@
-package mapler.controllers;
+package mapler.controller;
 
 import java.io.FileReader;
 import java.net.URL;
@@ -14,10 +14,12 @@ import javafx.scene.control.TabPane;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Paint;
-import mapler.Arquivo;
-import mapler.FXMaster;
+import mapler.service.ArquivoService;
+import mapler.service.EstiloLinguagensService;
+import mapler.service.EstiloPortugolService;
+import mapler.service.EstiloService;
 
-public class ControllerCodigo implements Initializable {
+public class CodigoController implements Initializable {
 
   @FXML
   TabPane tabp_pai, tabp_filho;
@@ -33,10 +35,10 @@ public class ControllerCodigo implements Initializable {
   public void initialize(URL arg0, ResourceBundle arg1) {
     // TODO Auto-generated method stub
 
-    if (Arquivo.abrir) {
-      Arquivo.abrir = false;
+    if (ArquivoService.abrir) {
+      ArquivoService.abrir = false;
       try {
-        Scanner scanner = new Scanner(new FileReader(Arquivo.arquivo.getPath().toString()));
+        Scanner scanner = new Scanner(new FileReader(ArquivoService.arquivo.getPath().toString()));
         scanner.useDelimiter("\n");
         String str = "";
         while (scanner.hasNext())
@@ -64,7 +66,7 @@ public class ControllerCodigo implements Initializable {
   public void setTraducao(String str, String lgn) {
     area_traducao.deleteText(0, area_traducao.getText().length());
     area_traducao.appendText(str);
-    ControllerLinguagens.setLinguagem(lgn, area_traducao);
+    EstiloLinguagensService.setLinguagem(lgn, area_traducao);
   }
 
   public String getPortugol() {
@@ -77,15 +79,15 @@ public class ControllerCodigo implements Initializable {
 
 
   private void tabPane() {
-    tabp_pai.getStylesheets().add(FXMaster.tabPanePai());
-    tabp_filho.getStylesheets().add(FXMaster.tabPaneFilho());
+    tabp_pai.getStylesheets().add(EstiloService.tabPanePai());
+    tabp_filho.getStylesheets().add(EstiloService.tabPaneFilho());
   }
 
 
   private void areasStyle() {
     area_traducao.setStyle(
         "-fx-font-size: 24; -fx-font-weight: bold; -fx-background-color: #5c6770; -fx-border-color: #5c6770;");
-    area_traducao.getStylesheets().add(FXMaster.codigo());
+    area_traducao.getStylesheets().add(EstiloService.codigo());
     area_traducao.setParagraphGraphicFactory(LineNumberFactory.get(area_traducao));
     area_traducao.setWrapText(true);
     area_traducao.setLineHighlighterOn(false);
@@ -96,13 +98,13 @@ public class ControllerCodigo implements Initializable {
 
     area_terminal.setStyle(
         "-fx-font-size: 20; -fx-font-weight: bold; -fx-background-color: #5c6770; -fx-border-color: #5c6770;");
-    area_terminal.getStylesheets().add(FXMaster.codigo());
+    area_terminal.getStylesheets().add(EstiloService.codigo());
     area_terminal.setWrapText(false);
     area_terminal.setLineHighlighterOn(false);
 
     area_cod.setStyle(
         "-fx-font-size: 24; -fx-font-weight: bold; -fx-background-color: #5c6770; -fx-border-color: #5c6770;");
-    area_cod.getStylesheets().add(FXMaster.codigo());
+    area_cod.getStylesheets().add(EstiloService.codigo());
     area_cod.setParagraphGraphicFactory(LineNumberFactory.get(area_cod));
     area_cod.setWrapText(true);
     area_cod.setLineHighlighterOn(false);
@@ -131,20 +133,20 @@ public class ControllerCodigo implements Initializable {
           int comecoDaLinhaAnt = 0;
 
           if (finalDaLinha == -1 && comecoDaLinha != -1)
-            area_cod = Portugol.colorirArea(area_cod, comecoDaLinha + 1);
+            area_cod = EstiloPortugolService.colorirArea(area_cod, comecoDaLinha + 1);
           else if (finalDaLinha == -1 && comecoDaLinha == -1)
-            area_cod = Portugol.colorirArea(area_cod, 0);
+            area_cod = EstiloPortugolService.colorirArea(area_cod, 0);
           else if (finalDaLinha != -1 && comecoDaLinha == -1)
-            area_cod = Portugol.colorirArea(area_cod, 0, finalDaLinha);
+            area_cod = EstiloPortugolService.colorirArea(area_cod, 0, finalDaLinha);
           else
-            area_cod = Portugol.colorirArea(area_cod, comecoDaLinha, finalDaLinha);
+            area_cod = EstiloPortugolService.colorirArea(area_cod, comecoDaLinha, finalDaLinha);
 
           if (comecoDaLinha > 1) {
             comecoDaLinhaAnt = area_cod.getText().lastIndexOf("\n", comecoDaLinha - 1);
             if (comecoDaLinhaAnt == -1)
-              area_cod = Portugol.colorirArea(area_cod, 0, comecoDaLinha);
+              area_cod = EstiloPortugolService.colorirArea(area_cod, 0, comecoDaLinha);
             else
-              area_cod = Portugol.colorirArea(area_cod, comecoDaLinhaAnt, comecoDaLinha);
+              area_cod = EstiloPortugolService.colorirArea(area_cod, comecoDaLinhaAnt, comecoDaLinha);
           }
         }
       }
@@ -168,10 +170,10 @@ public class ControllerCodigo implements Initializable {
 
 
   private String getCaminhoArquivo() {
-    if (Arquivo.arquivo == null) {
-      Arquivo.salvarArquivo(Arquivo.arquivo, true, getPortugol());
+    if (ArquivoService.arquivo == null) {
+      ArquivoService.salvarArquivo(ArquivoService.arquivo, true, getPortugol());
     }
-    return Arquivo.arquivo.getAbsolutePath();
+    return ArquivoService.arquivo.getAbsolutePath();
   }
 
 

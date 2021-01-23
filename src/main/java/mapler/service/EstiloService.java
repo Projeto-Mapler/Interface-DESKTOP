@@ -1,4 +1,4 @@
-package mapler;
+package mapler.service;
 
 
 import javafx.collections.ObservableList;
@@ -11,7 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-public class FXMaster {
+public class EstiloService {
 
   /*
    * Classe responsavel pelo design do FXML como CSS e Anima��es
@@ -49,27 +49,27 @@ public class FXMaster {
   }
 
   public static String menuBar() {
-    return FXMaster.class.getClassLoader().getResource("css/menubar.css").toExternalForm();
+    return EstiloService.class.getClassLoader().getResource("css/menubar.css").toExternalForm();
   }
 
   public static String tabPanePai() {
-    return FXMaster.class.getClassLoader().getResource("css/tabP.css").toExternalForm();
+    return EstiloService.class.getClassLoader().getResource("css/tabP.css").toExternalForm();
   }
 
   public static String tabPaneFilho() {
-    return FXMaster.class.getClassLoader().getResource("css/tabF.css").toExternalForm();
+    return EstiloService.class.getClassLoader().getResource("css/tabF.css").toExternalForm();
   }
 
   public static String splitPane() {
-    return FXMaster.class.getClassLoader().getResource("css/splitpane.css").toExternalForm();
+    return EstiloService.class.getClassLoader().getResource("css/splitpane.css").toExternalForm();
   }
 
   public static String codigo() {
-    return FXMaster.class.getClassLoader().getResource("css/txt.css").toExternalForm();
+    return EstiloService.class.getClassLoader().getResource("css/txt.css").toExternalForm();
   }
 
   public static String alerta() {
-    return FXMaster.class.getClassLoader().getResource("css/alertas.css").toExternalForm();
+    return EstiloService.class.getClassLoader().getResource("css/alertas.css").toExternalForm();
   }
 
   /* RESIZEEE */

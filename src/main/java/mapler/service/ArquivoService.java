@@ -1,4 +1,4 @@
-package mapler;
+package mapler.service;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -8,7 +8,7 @@ import javafx.stage.FileChooser.ExtensionFilter;
 
 
 
-public class Arquivo {
+public class ArquivoService {
 
   public static File arquivo;
   public static boolean abrir = false;
@@ -33,9 +33,9 @@ public class Arquivo {
         FileWriter writer = new FileWriter(arquivo);
         writer.write(txt);
         writer.close();
-        Arquivo.arquivo = arquivo;
+        ArquivoService.arquivo = arquivo;
         if (aviso)
-          Alertas.showAviso("O arquivo foi salvo!");
+          AlertaService.showAviso("O arquivo foi salvo!");
         return true;
       } catch (IOException e) {
         arquivo = null;
@@ -57,7 +57,7 @@ public class Arquivo {
     arquivo = fileChooser.showSaveDialog(null);
 
     if (arquivo != null) {
-      Arquivo.arquivo = arquivo;
+      ArquivoService.arquivo = arquivo;
       return salvarArquivo(arquivo, false, txt);
     } else {
       return false;

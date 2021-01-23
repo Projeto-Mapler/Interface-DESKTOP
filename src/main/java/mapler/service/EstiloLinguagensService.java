@@ -1,10 +1,10 @@
-package mapler.controllers;
+package mapler.service;
 
 import java.util.HashSet;
 import java.util.Iterator;
 import org.fxmisc.richtext.StyleClassedTextArea;
 
-public class ControllerLinguagens {
+public class EstiloLinguagensService {
 
   private static String linguagem = "";
   private static HashSet<String> reservadas, tipos, constantes;

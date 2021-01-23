@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="200.0" minWidth="200.0" prefHeight="517.0" prefWidth="719.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mapler.controllers.ControllerPrincipal">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="200.0" minWidth="200.0" prefHeight="517.0" prefWidth="719.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mapler.controller.ControllerPrincipal">
   <children>	
 	<VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="0.0">
                <children>
