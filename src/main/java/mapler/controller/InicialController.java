@@ -18,6 +18,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import mapler.Inicial;
 import mapler.service.EstiloService;
+import mapler.service.InicialService;
 import mapler.util.CarregadorRecursos;
 import mapler.util.GerenciadorArquivo;
 
@@ -26,14 +27,12 @@ public class InicialController implements Initializable {
   @FXML
   BorderPane bd_inicial;
 
-  /*----------------PARTE DE CIMA DO FXML--------------*/
   @FXML
   VBox vb_topo;
 
   @FXML
   AnchorPane ap_barraPrimaria, ap_barraSecundaria;
 
-  /*----------BARRA FIXA DO FXML-------------------*/
   @FXML
   JFXButton btn_home;
 
@@ -48,32 +47,26 @@ public class InicialController implements Initializable {
 
   @FXML
   MenuItem mi_traducao, mi_console;
-  public static MenuItem mni_console;
 
   @FXML
   JFXButton btn_minus, btn_max, btn_close;
 
-  /*-----------------------------------------------*/
-
-  /*----------SEGUNDA BARRA DO FXML----------------*/
   @FXML
   JFXButton btn_novo, btn_abrir;
 
-  /*-----------------------------------------------*/
-
-  /*---------------------------------------------------*/
-
-  /*----------------Center----------------------------*/
   @FXML
   AnchorPane ap_centerIncial;
 
-  /*--------------------------------------------------*/
-
-  /*-----------------LEFT-----------------------------*/
   @FXML
   JFXButton btn_left_inicio, btn_left_tutoriais, btn_left_exemplos, btn_left_sobre, btn_left_news;
 
-  /*--------------------------------------------------*/
+  public static MenuItem mni_console;
+  private InicialService inicial;
+
+
+  public InicialController() throws Exception {
+    this.inicial = InicialService.getInstancia();
+  }
 
   @Override
   public void initialize(URL url, ResourceBundle rb) {
@@ -151,7 +144,7 @@ public class InicialController implements Initializable {
     });
 
     btn_max.setOnAction(e -> { // maximizar aplicacao
-      int i = Inicial.maximizar();
+      int i = this.inicial.maximizar();
 
       if (i == 1) { // maximized
         FontAwesomeIcon icon = new FontAwesomeIcon();
@@ -175,7 +168,7 @@ public class InicialController implements Initializable {
     });
 
     btn_minus.setOnAction(e -> { // minimizar aplicacao
-      Inicial.minimizar();
+      this.inicial.minimizar();
     });
 
     btn_minus.setOnMouseEntered(e -> {
@@ -311,12 +304,13 @@ public class InicialController implements Initializable {
 
     try {
       CodigoController controllerCodigo = new CodigoController(file);
-     // this.arquivosFachada.removerMapeamento(this.idArquivoAtual);// TODO: remover esse trecho qnd
-                                                                  // implementar
+      // this.arquivosFachada.removerMapeamento(this.idArquivoAtual);// TODO: remover esse trecho
+      // qnd
+      // implementar
       // multiplas abas - adionar a aba e um id p ela no gerenciador de abas
-      //this.arquivosFachada.mapearArquivoController(this.idArquivoAtual, controllerCodigo);
+      // this.arquivosFachada.mapearArquivoController(this.idArquivoAtual, controllerCodigo);
       FXMLLoader loader = new FXMLLoader();
-      loader.setController(controllerCodigo);// seta o controller  ja montado com o arquivo
+      loader.setController(controllerCodigo);// seta o controller ja montado com o arquivo
       loader.setLocation(CarregadorRecursos.getResource("view/tela_codigo.fxml"));
 
       AnchorPane ap_codigo = loader.load();
