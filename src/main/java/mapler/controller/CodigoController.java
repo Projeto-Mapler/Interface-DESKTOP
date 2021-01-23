@@ -15,6 +15,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Paint;
+import mapler.model.Linguagens;
 import mapler.service.EstiloLinguagensService;
 import mapler.service.EstiloPortugolService;
 import mapler.service.EstiloService;
@@ -70,7 +71,7 @@ public class CodigoController implements Initializable {
    * Metodos padroes
    */
 
-  public void setTraducao(String str, String lgn) {
+  public void setTraducao(String str, Linguagens lgn) {
     area_traducao.deleteText(0, area_traducao.getText().length());
     area_traducao.appendText(str);
     EstiloLinguagensService  linguagensService = EstiloLinguagensService.getInstancia();

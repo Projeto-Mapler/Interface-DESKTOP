@@ -1,21 +1,26 @@
 package mapler.service;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Map;
 import org.fxmisc.richtext.StyleClassedTextArea;
 import mapler.model.Linguagem;
 import mapler.model.LinguagemC;
 import mapler.model.LinguagemJava;
+import mapler.model.Linguagens;
 
 public class EstiloLinguagensService {
 
   private static EstiloLinguagensService instancia; // singleton
-  private Linguagem linguagemAtual;
-  private Linguagem linguagens[] = {new LinguagemC(), // 0 - C
-      new LinguagemJava() // 1 - JAVA
-  };
+  private Map<Linguagens, Linguagem> linguagens;
 
-  private EstiloLinguagensService() {}
+
+  private EstiloLinguagensService() {
+    linguagens = new HashMap<Linguagens, Linguagem>();
+    linguagens.put(Linguagens.C, new LinguagemC());
+    linguagens.put(Linguagens.JAVA, new LinguagemJava());
+  }
 
   public static EstiloLinguagensService getInstancia() {
     if (instancia == null)
@@ -24,19 +29,20 @@ public class EstiloLinguagensService {
   }
 
 
-  public StyleClassedTextArea setLinguagem(String lgn, StyleClassedTextArea area) {
-
-    if (lgn.equals("C")) {
-      setC();
-    } else if (lgn.equals("Java")) {
-      setJava();
-    } else {
-      return area;
+  public StyleClassedTextArea setLinguagem(Linguagens lgn, StyleClassedTextArea area) {
+    Linguagem linguagem = null;
+    switch (lgn) {
+      case C:
+      case JAVA:
+        linguagem = linguagens.get(lgn);
+        break;
+      default:
+        return area;
     }
 
     area.setStyleClass(0, area.getText().length(), "variaveis");
 
-    Iterator it = linguagemAtual.getReservadas().iterator();
+    Iterator it = linguagem.getReservadas().iterator();
     int in;
     String texto = area.getText();
     while (it.hasNext()) {
@@ -48,7 +54,7 @@ public class EstiloLinguagensService {
       }
     }
 
-    it = linguagemAtual.getTipos().iterator();
+    it = linguagem.getTipos().iterator();
     while (it.hasNext()) {
       String str = it.next().toString();
       Iterator e = getIndices(str, texto).iterator();
@@ -58,7 +64,7 @@ public class EstiloLinguagensService {
       }
     }
 
-    it = linguagemAtual.getConstantes().iterator();
+    it = linguagem.getConstantes().iterator();
     while (it.hasNext()) {
       String str = it.next().toString();
       Iterator e = getIndices(str, texto).iterator();
@@ -97,26 +103,4 @@ public class EstiloLinguagensService {
     }
     return i;
   }
-
-  private void setC() {
-    if (linguagemAtual instanceof LinguagemC)
-      return;
-    linguagemAtual = linguagens[0]; // 0 - C
-  }
-
-  private void setJava() {
-    if (linguagemAtual instanceof LinguagemJava)
-      return;
-    linguagemAtual = linguagens[1]; // 1 - Java
-  }
-
-  private void setPython() {
-
-  }
-
-  private void setPascal() {
-
-  }
-
-
 }
