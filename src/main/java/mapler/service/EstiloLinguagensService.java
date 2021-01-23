@@ -9,7 +9,6 @@ public class EstiloLinguagensService {
   private static String linguagem = "";
   private static HashSet<String> reservadas, tipos, constantes;
 
-
   public static StyleClassedTextArea setLinguagem(String lgn, StyleClassedTextArea area) {
 
     if (lgn.equals("C")) {

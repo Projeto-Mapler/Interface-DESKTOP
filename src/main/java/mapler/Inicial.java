@@ -11,13 +11,13 @@ import mapler.model.ResizeListener;
 import mapler.service.InicialService;
 import mapler.util.CarregadorRecursos;
 
+/**
+ * Classe principal para executar a aplicação
+ */
 public class Inicial extends Application {
-
-
-
   @Override
   public void start(Stage stage) throws Exception {
-    InicialService inicial = InicialService.iniciarClasse(stage);
+    InicialService.iniciarClasse(stage);
 
     stage.initStyle(StageStyle.UNDECORATED); // removendo botoes padrao
     Parent root = FXMLLoader.load(CarregadorRecursos.getResource("view/tela_inicial.fxml"));
@@ -39,7 +39,6 @@ public class Inicial extends Application {
     new ResizeListener().aplicarAoStage(stage);// adiciona resize listener ao stage
     stage.show();
   }
-
 
   public static void main(String[] args) {
     launch(args);

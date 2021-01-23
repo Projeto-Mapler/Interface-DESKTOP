@@ -1,6 +1,5 @@
 package mapler.service;
 
-import java.nio.charset.Charset;
 import org.fxmisc.richtext.StyleClassedTextArea;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
@@ -10,11 +9,10 @@ import javafx.scene.input.KeyEvent;
  * modelos.RuntimeError;
  */
 
+/**
+ * Intermediaria entre a IDE e o Interpretador
+ */
 public class ConsoleService extends StyleClassedTextArea /* implements EventoListener */ {
-
-  // SUPORTE PARA UTF-8 no area console
-  public static final Charset ISO_8859_1 = Charset.forName("ISO-8859-1");
-  public static final Charset UTF_8 = Charset.forName("UTF-8");
 
   // private Principal principal;
   // private GerenciadorEventos ge;

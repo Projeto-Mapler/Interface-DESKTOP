@@ -2,14 +2,18 @@ package mapler.util;
 
 import java.nio.charset.Charset;
 
+/**
+ * Coleção de auxiliares para manipular Strings na aplicação
+ */
 public class StringUtil {
   // SUPORTE PARA UTF-8 no area console
   private static final Charset ISO_8859_1 = Charset.forName("ISO-8859-1");
   private static final Charset UTF_8 = Charset.forName("UTF-8");
 
-  private StringUtil() {
-    // TODO Auto-generated constructor stub
-  }
+  /**
+   * Classe estatica
+   */
+  private StringUtil() {}
 
   /**
    * Retorna a string no formato UTF-8

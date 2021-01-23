@@ -1,13 +1,10 @@
 package mapler.service;
 
-
 import java.util.Arrays;
 import org.fxmisc.richtext.StyleClassedTextArea;
 
 public class EstiloPortugolService {
-
-
-
+  
   public static StyleClassedTextArea colorirArea(StyleClassedTextArea area, int in, int out) {
     String texto = "";
     try {

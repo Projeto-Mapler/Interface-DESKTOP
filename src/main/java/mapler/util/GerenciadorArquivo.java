@@ -7,6 +7,9 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import mapler.service.AlertaService;
 
+/**
+ * Gerencia a manipulação de arquivos (abrir, salvar, salvar como)
+ */
 public class GerenciadorArquivo {
 
   /**

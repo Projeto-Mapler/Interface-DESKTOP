@@ -3,15 +3,16 @@ package mapler.service;
 import javafx.geometry.Rectangle2D;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-import mapler.Inicial;
 
+/**
+ * Service para facilitar a comunicação do stage principal 
+ * com outros controllers e encapsular a logica de resize do stage
+ */
 public final class InicialService {
 
   private static InicialService instancia; // singleton | instanca unica
-
   private Stage janela; // janela principal
   private Rectangle2D bounds;
-
 
   private InicialService(Stage janela) {
     this.janela = janela;

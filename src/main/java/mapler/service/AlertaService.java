@@ -6,7 +6,15 @@ import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DialogPane;
 
-public class AlertaService {
+/**
+ * Exibe alertas da IDE
+ */
+public final class AlertaService {
+  
+  /**
+   * Classe estática
+   */
+  private AlertaService() {}
 
   public static void showAviso(String aviso) {
     Alert dialogoInfo = new Alert(Alert.AlertType.INFORMATION, "", ButtonType.CLOSE);
@@ -24,11 +32,11 @@ public class AlertaService {
     DialogPane dialogPane = dialogoInfo.getDialogPane();
     dialogPane.getStylesheets().add(EstiloService.alerta());
     dialogPane.getStyleClass().add("myDialog");
-    dialogoInfo.setTitle("CONFIRMA��O");
+    dialogoInfo.setTitle("CONFIRMAÇÃO");
     dialogoInfo.setHeaderText(aviso);
     dialogoInfo.setContentText("");
     ButtonType btnSim = new ButtonType("Sim");
-    ButtonType btnNao = new ButtonType("N�o");
+    ButtonType btnNao = new ButtonType("Não");
     ButtonType btnCancelar = new ButtonType("Cancelar", ButtonBar.ButtonData.CANCEL_CLOSE);
     dialogoInfo.getButtonTypes().setAll(btnSim, btnNao, btnCancelar);
     Optional<ButtonType> result = dialogoInfo.showAndWait();

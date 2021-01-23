@@ -16,7 +16,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
-import mapler.Inicial;
 import mapler.service.EstiloService;
 import mapler.service.InicialService;
 import mapler.util.CarregadorRecursos;

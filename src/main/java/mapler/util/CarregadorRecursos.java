@@ -2,6 +2,9 @@ package mapler.util;
 
 import java.net.URL;
 
+/**
+ * Carrega arquivos da pasta de recursos
+ */
 public class CarregadorRecursos {
   private static ClassLoader classLoader;
 
