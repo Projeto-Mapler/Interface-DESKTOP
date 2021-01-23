@@ -1,15 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="src/resources/bibliotecas/charm-glisten-4.4.1.jar"/>
-	<classpathentry kind="lib" path="src/resources/bibliotecas/flowless-0.6.1.jar"/>
-	<classpathentry kind="lib" path="src/resources/bibliotecas/fontawesomefx-8.2.jar"/>
-	<classpathentry kind="lib" path="src/resources/bibliotecas/jfoenix-8.0.7.jar"/>
-	<classpathentry kind="lib" path="src/resources/bibliotecas/reactfx-2.0-M5.jar"/>
-	<classpathentry kind="lib" path="src/resources/bibliotecas/richtextfx-0.10.3.jar"/>
-	<classpathentry kind="lib" path="src/resources/bibliotecas/undofx-2.1.0.jar"/>
-	<classpathentry kind="lib" path="src/resources/bibliotecas/undofx-fat-2.1.0.jar"/>
-	<classpathentry kind="lib" path="src/resources/bibliotecas/wellbehavedfx-0.3.3.jar"/>
-	<classpathentry kind="output" path="bin"/>
+	<classpathentry kind="src" output="target/classes" path="src/main/java">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry excluding="**" kind="src" output="target/classes" path="src/main/resources">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="test" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="output" path="target/classes"/>
 </classpath>
