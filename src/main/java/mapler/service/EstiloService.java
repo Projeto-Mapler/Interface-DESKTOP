@@ -1,6 +1,5 @@
 package mapler.service;
 
-
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
@@ -10,18 +9,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import mapler.util.CarregadorRecursos;
 
+/**
+ * Classe responsavel pelo design do FXML como CSS e Animações e Estilos
+ *
+ */
 public class EstiloService {
-
-  /*
-   * Classe responsavel pelo design do FXML como CSS e Anima��es
-   */
-
-  /*
-   * 
-   * Estilos
-   * 
-   */
 
   public static String[] getReservadas() {
     String[] reservadas = {"variaveis", "inicio", "fim", "ler", "escrever", "se", "entao", "senao",
@@ -49,27 +43,27 @@ public class EstiloService {
   }
 
   public static String menuBar() {
-    return EstiloService.class.getClassLoader().getResource("css/menubar.css").toExternalForm();
+    return CarregadorRecursos.getResourceExternalForm("css/menubar.css");
   }
 
   public static String tabPanePai() {
-    return EstiloService.class.getClassLoader().getResource("css/tabP.css").toExternalForm();
+    return CarregadorRecursos.getResourceExternalForm("css/tabP.css");
   }
 
   public static String tabPaneFilho() {
-    return EstiloService.class.getClassLoader().getResource("css/tabF.css").toExternalForm();
+    return CarregadorRecursos.getResourceExternalForm("css/tabF.css");
   }
 
   public static String splitPane() {
-    return EstiloService.class.getClassLoader().getResource("css/splitpane.css").toExternalForm();
+    return CarregadorRecursos.getResourceExternalForm("css/splitpane.css");
   }
 
   public static String codigo() {
-    return EstiloService.class.getClassLoader().getResource("css/txt.css").toExternalForm();
+    return CarregadorRecursos.getResourceExternalForm("css/txt.css");
   }
 
   public static String alerta() {
-    return EstiloService.class.getClassLoader().getResource("css/alertas.css").toExternalForm();
+    return CarregadorRecursos.getResourceExternalForm("css/alertas.css");
   }
 
   /* RESIZEEE */

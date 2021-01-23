@@ -19,6 +19,7 @@ import javafx.scene.paint.Paint;
 import mapler.Inicial;
 import mapler.service.ArquivoService;
 import mapler.service.EstiloService;
+import mapler.util.CarregadorRecursos;
 
 public class InicialController implements Initializable {
 
@@ -297,7 +298,7 @@ public class InicialController implements Initializable {
 
     try {
       AnchorPane ap_codigo =
-          FXMLLoader.load(getClass().getClassLoader().getResource("view/tela_principal.fxml"));
+          FXMLLoader.load(CarregadorRecursos.getResource("view/tela_principal.fxml"));
       setCenter(ap_codigo);
 
     } catch (IOException e) {
@@ -316,7 +317,7 @@ public class InicialController implements Initializable {
 
     try {
       AnchorPane ap_codigo =
-          FXMLLoader.load(getClass().getClassLoader().getResource("view/tela_codigo.fxml"));
+          FXMLLoader.load(CarregadorRecursos.getResource("view/tela_codigo.fxml"));
       setCenter(ap_codigo);
 
     } catch (IOException e) {
