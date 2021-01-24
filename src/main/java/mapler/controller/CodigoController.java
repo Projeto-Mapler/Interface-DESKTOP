@@ -17,7 +17,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Paint;
 import mapler.model.Linguagens;
 import mapler.service.EstiloLinguagensService;
-import mapler.service.EstiloPortugolService;
 import mapler.service.EstiloService;
 import mapler.util.GerenciadorArquivo;
 
@@ -33,8 +32,8 @@ public class CodigoController implements Initializable {
   StyleClassedTextArea area_cod, area_terminal, area_traducao;
 
   private File arquivo; // referencia do arquivo que esta sendo manipulado
-  private boolean arquivoComAlteracoesNaoSalvas = false;// TODO: implementar detecção de mudancas
-                                                        // feitas e não salvas
+  private boolean arquivoComAlteracoesNaoSalvas = false;// TODO: implementar detecção de mudancas feitas e não salvas
+  private EstiloLinguagensService linguagensService = EstiloLinguagensService.getInstancia();
 
   public CodigoController(File arquivo) {
     this.arquivo = arquivo;
@@ -42,8 +41,6 @@ public class CodigoController implements Initializable {
 
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
-    // TODO Auto-generated method stub
-
     if (arquivo != null) { // abri um arquivo
       try {
         Scanner scanner = new Scanner(new FileReader(arquivo));
@@ -59,23 +56,15 @@ public class CodigoController implements Initializable {
 
     }
 
-    // de.jensd.fx.glyphs.fontawesome.FontAwesomeIcons.k
-
     tabPane();
     areasStyle();
     controlesCodigo();
-
   }
-
-  /*
-   * Metodos padroes
-   */
 
   public void setTraducao(String str, Linguagens lgn) {
     area_traducao.deleteText(0, area_traducao.getText().length());
     area_traducao.appendText(str);
-    EstiloLinguagensService  linguagensService = EstiloLinguagensService.getInstancia();
-    linguagensService.setLinguagem(lgn, area_traducao);
+    linguagensService.setEstiloTraducao(lgn, area_traducao);
   }
 
   /**
@@ -85,11 +74,6 @@ public class CodigoController implements Initializable {
     return area_cod.getText();
   }
 
-  /*
-   * Metodos de Eventos e Estilos
-   */
-
-
   private void tabPane() {
     tabp_pai.getStylesheets().add(EstiloService.tabPanePai());
     tabp_filho.getStylesheets().add(EstiloService.tabPaneFilho());
@@ -97,8 +81,7 @@ public class CodigoController implements Initializable {
 
 
   private void areasStyle() {
-    area_traducao.setStyle(
-        "-fx-font-size: 24; -fx-font-weight: bold; -fx-background-color: #5c6770; -fx-border-color: #5c6770;");
+    area_traducao.setStyle("-fx-font-size: 24; -fx-font-weight: bold; -fx-background-color: #5c6770; -fx-border-color: #5c6770;");
     area_traducao.getStylesheets().add(EstiloService.codigo());
     area_traducao.setParagraphGraphicFactory(LineNumberFactory.get(area_traducao));
     area_traducao.setWrapText(true);
@@ -108,14 +91,12 @@ public class CodigoController implements Initializable {
     // area_codigo = ControllerLinguagens.setLinguagem("C", area_traducao);
     // go to line -> area.displaceCaret(numeroLinha.length);
 
-    area_terminal.setStyle(
-        "-fx-font-size: 20; -fx-font-weight: bold; -fx-background-color: #5c6770; -fx-border-color: #5c6770;");
+    area_terminal.setStyle("-fx-font-size: 20; -fx-font-weight: bold; -fx-background-color: #5c6770; -fx-border-color: #5c6770;");
     area_terminal.getStylesheets().add(EstiloService.codigo());
     area_terminal.setWrapText(false);
     area_terminal.setLineHighlighterOn(false);
 
-    area_cod.setStyle(
-        "-fx-font-size: 24; -fx-font-weight: bold; -fx-background-color: #5c6770; -fx-border-color: #5c6770;");
+    area_cod.setStyle("-fx-font-size: 24; -fx-font-weight: bold; -fx-background-color: #5c6770; -fx-border-color: #5c6770;");
     area_cod.getStylesheets().add(EstiloService.codigo());
     area_cod.setParagraphGraphicFactory(LineNumberFactory.get(area_cod));
     area_cod.setWrapText(true);
@@ -133,33 +114,36 @@ public class CodigoController implements Initializable {
       @Override
       public void handle(KeyEvent ke) {
 
-        if (ke.getText().equals(";") || ke.getText().equals(".") || ke.getText().equals("'")
-            || ke.getCode().equals(KeyCode.ENTER) || ke.getCode().equals(KeyCode.BACK_SPACE)
-            || ke.getCode().equals(KeyCode.DELETE) || ke.getCode().equals(KeyCode.SPACE)
-            || ke.getCode().equals(KeyCode.TAB)) {
+        if (ke.getText().equals(";") || 
+            ke.getText().equals(".") || 
+            ke.getText().equals("'") || 
+            ke.getCode().equals(KeyCode.ENTER) || 
+            ke.getCode().equals(KeyCode.BACK_SPACE) || 
+            ke.getCode().equals(KeyCode.DELETE) || 
+            ke.getCode().equals(KeyCode.SPACE) || 
+            ke.getCode().equals(KeyCode.TAB)
+         ) {
+          
           int comecoDaLinha = area_cod.getText().lastIndexOf("\n", area_cod.getCaretPosition() - 1);
-          int finalDaLinha = area_cod.getText().indexOf("\n", area_cod.getCaretPosition()); // se ==
-                                                                                            // -1 �
-                                                                                            // a
-                                                                                            // ultima
+          int finalDaLinha = area_cod.getText().indexOf("\n", area_cod.getCaretPosition()); // se == -1 � a ultima
           int comecoDaLinhaAnt = 0;
+          int fimTexto = area_cod.getText().length();
 
           if (finalDaLinha == -1 && comecoDaLinha != -1)
-            area_cod = EstiloPortugolService.colorirArea(area_cod, comecoDaLinha + 1);
+            linguagensService.setEstiloPortugol(area_cod, comecoDaLinha + 1, fimTexto);
           else if (finalDaLinha == -1 && comecoDaLinha == -1)
-            area_cod = EstiloPortugolService.colorirArea(area_cod, 0);
+            linguagensService.setEstiloPortugol(area_cod, 0, fimTexto);
           else if (finalDaLinha != -1 && comecoDaLinha == -1)
-            area_cod = EstiloPortugolService.colorirArea(area_cod, 0, finalDaLinha);
+            linguagensService.setEstiloPortugol(area_cod, 0, finalDaLinha);
           else
-            area_cod = EstiloPortugolService.colorirArea(area_cod, comecoDaLinha, finalDaLinha);
+            linguagensService.setEstiloPortugol(area_cod, comecoDaLinha, finalDaLinha);
 
           if (comecoDaLinha > 1) {
             comecoDaLinhaAnt = area_cod.getText().lastIndexOf("\n", comecoDaLinha - 1);
             if (comecoDaLinhaAnt == -1)
-              area_cod = EstiloPortugolService.colorirArea(area_cod, 0, comecoDaLinha);
+              linguagensService.setEstiloPortugol(area_cod, 0, comecoDaLinha);
             else
-              area_cod =
-                  EstiloPortugolService.colorirArea(area_cod, comecoDaLinhaAnt, comecoDaLinha);
+              linguagensService.setEstiloPortugol(area_cod, comecoDaLinhaAnt, comecoDaLinha);
           }
         }
       }

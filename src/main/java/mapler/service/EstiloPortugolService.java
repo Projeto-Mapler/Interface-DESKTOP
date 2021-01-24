@@ -4,7 +4,7 @@ import java.util.Arrays;
 import org.fxmisc.richtext.StyleClassedTextArea;
 
 public class EstiloPortugolService {
-  
+
   public static StyleClassedTextArea colorirArea(StyleClassedTextArea area, int in, int out) {
     String texto = "";
     try {
@@ -14,8 +14,7 @@ public class EstiloPortugolService {
       texto = area.getText().replace("\t", " ").replace(";", " ").substring(in, out);
 
     } catch (Exception e) {
-      System.out.println(
-          "subs falhou para " + in + " e " + out + " em " + area.getText().replace("\t", " "));
+      System.out.println("subs falhou para " + in + " e " + out + " em " + area.getText().replace("\t", " "));
       return area;
     }
 
@@ -24,29 +23,23 @@ public class EstiloPortugolService {
     try {
       area.setStyleClass(in, out, "variaveis");
     } catch (Exception e) {
-      System.out.println(
-          "pintar falhou para " + in + " e " + out + " em " + area.getText().replace("\t", " "));
+      System.out.println("pintar falhou para " + in + " e " + out + " em " + area.getText().replace("\t", " "));
       return area;
     }
     for (int loop = 0; loop < linha.length; loop++) {
-      if (Arrays.asList(EstiloService.getReservadas()).contains(linha[loop])
-          || Arrays.asList(EstiloService.getReservadas()).contains("\n" + linha[loop])) { // verifica se
-                                                                                     // eh reservada
+      if (Arrays.asList(EstiloService.getReservadas()).contains(linha[loop]) || Arrays.asList(EstiloService.getReservadas()).contains("\n" + linha[loop])) { // verifica se eh reservada
         int i = texto.indexOf(linha[loop]);
         while (i >= 0) {
           area.setStyleClass(in + i, in + i + linha[loop].length(), "reservadas");
           i = texto.indexOf(linha[loop], i + 1);
         }
-      } else if (Arrays.asList(EstiloService.getTipos()).contains(linha[loop])
-          || Arrays.asList(EstiloService.getTipos()).contains("\n" + linha[loop])) { // verifica se eh
-                                                                                // tipo
+      } else if (Arrays.asList(EstiloService.getTipos()).contains(linha[loop]) || Arrays.asList(EstiloService.getTipos()).contains("\n" + linha[loop])) { // verifica se eh tipo
         int i = texto.indexOf(linha[loop]);
         while (i >= 0) {
           area.setStyleClass(in + i, in + i + linha[loop].length(), "tipos");
           i = texto.indexOf(linha[loop], i + 1);
         }
-      } else if (EstiloService.isNumeric(linha[loop])
-          || EstiloService.isNumeric(linha[loop].replace("\n", ""))) { // verificar se eh number
+      } else if (EstiloService.isNumeric(linha[loop]) || EstiloService.isNumeric(linha[loop].replace("\n", ""))) { // verificar se eh number
         int i = texto.indexOf(linha[loop]);
         while (i >= 0) {
           area.setStyleClass(in + i, in + i + linha[loop].length(), "constantes");
