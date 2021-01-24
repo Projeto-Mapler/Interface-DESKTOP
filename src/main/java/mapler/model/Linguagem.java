@@ -22,15 +22,15 @@ public abstract class Linguagem {
   protected abstract void iniciaTipos();
 
   public HashSet<String> getTipos() {
-    return this.getTipos();
+    return this.tipos;
   }
 
   public HashSet<String> getReservadas() {
-    return this.getReservadas();
+    return this.reservadas;
   }
 
   public HashSet<String> getConstantes() {
-    return this.getConstantes();
+    return this.constantes;
   }
 
 
