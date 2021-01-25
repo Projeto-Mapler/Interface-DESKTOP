@@ -5,6 +5,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DialogPane;
+import mapler.util.CarregadorRecursos;
 
 /**
  * Exibe alertas da IDE
@@ -19,7 +20,7 @@ public final class AlertaService {
   public static void showAviso(String aviso) {
     Alert dialogoInfo = new Alert(Alert.AlertType.INFORMATION, "", ButtonType.CLOSE);
     DialogPane dialogPane = dialogoInfo.getDialogPane();
-    dialogPane.getStylesheets().add(EstiloService.alerta());
+    dialogPane.getStylesheets().add(CarregadorRecursos.getResourceExternalForm("css/alertas.css"));
     dialogPane.getStyleClass().add("myDialog");
     dialogoInfo.setTitle("AVISO");
     dialogoInfo.setHeaderText(aviso);
@@ -30,7 +31,7 @@ public final class AlertaService {
   public static int showConfirm(String aviso) {
     Alert dialogoInfo = new Alert(Alert.AlertType.CONFIRMATION, "", ButtonType.CLOSE);
     DialogPane dialogPane = dialogoInfo.getDialogPane();
-    dialogPane.getStylesheets().add(EstiloService.alerta());
+    dialogPane.getStylesheets().add(CarregadorRecursos.getResourceExternalForm("css/alertas.css"));
     dialogPane.getStyleClass().add("myDialog");
     dialogoInfo.setTitle("CONFIRMAÇÃO");
     dialogoInfo.setHeaderText(aviso);

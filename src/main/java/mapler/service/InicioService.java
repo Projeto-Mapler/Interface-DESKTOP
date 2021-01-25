@@ -1,26 +1,20 @@
 package mapler.service;
 
-import java.io.IOException;
-
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-import mapler.util.CarregadorRecursos;
 
 /**
  * Service para facilitar a comunicação do stage principal 
- * com outros controllers e encapsular a logica de resize do stage
+ * com outros controllers e encapsular a logica de resize do stage (maximizar, minimizar...)
  */
-public final class InicialService {
+public final class InicioService {
 
-  private static InicialService instancia; // singleton | instanca unica
+  private static InicioService instancia; // singleton | instanca unica
   private Stage janela; // janela principal
   private Rectangle2D bounds;
 
-  private InicialService(Stage janela) {
+  private InicioService(Stage janela) {
     this.janela = janela;
     // pegando o tamanho da tela
     Screen screen = Screen.getPrimary();
@@ -36,8 +30,8 @@ public final class InicialService {
    * @param janela - principal stage da aplicação
    * @return - instancia criada da classe
    */
-  public static InicialService iniciarClasse(Stage janela) {
-    instancia = new InicialService(janela);
+  public static InicioService iniciarClasse(Stage janela) {
+    instancia = new InicioService(janela);
     return instancia;
   }
 
@@ -46,7 +40,7 @@ public final class InicialService {
    * @return - a instancia unica da classe
    * @throws Exception
    */
-  public static InicialService getInstancia() throws Exception {
+  public static InicioService getInstancia() throws Exception {
     if (instancia == null)
       throw new Exception("Instancia da classe InicialService não foi criada!");
     return instancia;

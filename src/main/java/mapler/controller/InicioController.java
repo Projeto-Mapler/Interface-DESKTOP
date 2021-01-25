@@ -1,13 +1,10 @@
 package mapler.controller;
 
-import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import com.jfoenix.controls.JFXButton;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
@@ -17,12 +14,14 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import mapler.service.BaseService;
-import mapler.service.EstiloService;
-import mapler.service.InicialService;
+import mapler.service.InicioService;
 import mapler.util.CarregadorRecursos;
-import mapler.util.GerenciadorArquivo;
 
-public class InicialController implements Initializable {
+/**
+ * Controller para tela_inicio.fxml
+ *
+ */
+public class InicioController implements Initializable {
 
   @FXML
   BorderPane bd_inicial;
@@ -61,11 +60,11 @@ public class InicialController implements Initializable {
   JFXButton btn_left_inicio, btn_left_tutoriais, btn_left_exemplos, btn_left_sobre, btn_left_news, btn_file1, btn_file2;
 
   public static MenuItem mni_console;
-  private InicialService inicial;
+  private InicioService inicial;
 
 
-  public InicialController() throws Exception {
-    this.inicial = InicialService.getInstancia();
+  public InicioController() throws Exception {
+    this.inicial = InicioService.getInstancia();
   }
 
   @Override
@@ -113,7 +112,7 @@ public class InicialController implements Initializable {
 	  mi_novo.setOnAction(e -> {
 	      //iniciarModoCodigo(null);
 		  try {
-				BaseService.getInstancia().carregaTela("view/tela_codigos.fxml");
+				BaseService.getInstancia().carregaTela("view/tela_codigo.fxml");
 		  } catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -177,7 +176,7 @@ public class InicialController implements Initializable {
 	      btn_minus.setStyle("");
 	  });
 	  
-	  m_bar.getStylesheets().add(EstiloService.menuBar());
+	  m_bar.getStylesheets().add(CarregadorRecursos.getResourceExternalForm("css/menubar.css"));
 	  
 	  btn_novo.setOnAction(e -> {
 	     // iniciarModoCodigo(null);

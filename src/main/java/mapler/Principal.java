@@ -8,16 +8,16 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import mapler.model.ResizeListener;
-import mapler.service.InicialService;
+import mapler.service.InicioService;
 import mapler.util.CarregadorRecursos;
 
 /**
  * Classe principal para executar a aplicação
  */
-public class Inicial extends Application {
+public class Principal extends Application {
   @Override
   public void start(Stage stage) throws Exception {
-	InicialService inicial = InicialService.iniciarClasse(stage);
+	InicioService inicial = InicioService.iniciarClasse(stage);
     stage.initStyle(StageStyle.UNDECORATED); // removendo botoes padrao
     Parent root = FXMLLoader.load(CarregadorRecursos.getResource("view/tela_base.fxml"));
     Scene scene = new Scene(root, 960, 720); // resolucao inicial

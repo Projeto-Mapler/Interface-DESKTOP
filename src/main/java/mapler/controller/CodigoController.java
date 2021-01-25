@@ -1,15 +1,10 @@
 package mapler.controller;
 
-import java.io.File;
-import java.io.FileReader;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.Scanner;
 import org.fxmisc.richtext.LineNumberFactory;
 import org.fxmisc.richtext.StyleClassedTextArea;
-
 import com.jfoenix.controls.JFXButton;
-
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -25,13 +20,15 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
-import mapler.model.Linguagens;
 import mapler.service.BaseService;
 import mapler.service.EstiloLinguagensService;
-import mapler.service.EstiloService;
-import mapler.service.InicialService;
-import mapler.util.GerenciadorArquivo;
+import mapler.service.InicioService;
+import mapler.util.CarregadorRecursos;
 
+/**
+ * Controller para tela_codigo.fxml
+ *
+ */
 public class CodigoController implements Initializable {
 
   @FXML
@@ -85,11 +82,11 @@ public class CodigoController implements Initializable {
     this.arquivo = arquivo;
   }*/
   
-  private InicialService inicial;
+  private InicioService inicial;
 
 
   public CodigoController() throws Exception {
-    this.inicial = InicialService.getInstancia();
+    this.inicial = InicioService.getInstancia();
   }
   
 
@@ -247,12 +244,12 @@ public class CodigoController implements Initializable {
 	      btn_left_news.setTextFill(Paint.valueOf("white"));
 	    });
 	  
-	  m_bar.getStylesheets().add(EstiloService.menuBar());
-	  tabp_pai.getStylesheets().add(EstiloService.tabPanePai());
-	  tabp_filho.getStylesheets().add(EstiloService.tabPaneFilho());
+	  m_bar.getStylesheets().add(CarregadorRecursos.getResourceExternalForm("css/menubar.css"));
+	  tabp_pai.getStylesheets().add(CarregadorRecursos.getResourceExternalForm("css/tabP.css"));
+	  tabp_filho.getStylesheets().add(CarregadorRecursos.getResourceExternalForm("css/tabF.css"));
 	  
 	  area_traducao.setStyle("-fx-font-size: 24; -fx-font-weight: bold; -fx-background-color: #5c6770; -fx-border-color: #5c6770;");
-	  area_traducao.getStylesheets().add(EstiloService.codigo());
+	  area_traducao.getStylesheets().add(CarregadorRecursos.getResourceExternalForm("css/txt.css"));
 	  area_traducao.setParagraphGraphicFactory(LineNumberFactory.get(area_traducao));
 	  area_traducao.setWrapText(true);
 	  area_traducao.setLineHighlighterOn(false);
@@ -260,12 +257,12 @@ public class CodigoController implements Initializable {
 	  area_traducao.setEditable(false);
 	  
 	  area_terminal.setStyle("-fx-font-size: 20; -fx-font-weight: bold; -fx-background-color: #5c6770; -fx-border-color: #5c6770;");
-	  area_terminal.getStylesheets().add(EstiloService.codigo());
+	  area_terminal.getStylesheets().add(CarregadorRecursos.getResourceExternalForm("css/txt.css"));
 	  area_terminal.setWrapText(false);
 	  area_terminal.setLineHighlighterOn(false);
 	  
 	  area_cod.setStyle("-fx-font-size: 24; -fx-font-weight: bold; -fx-background-color: #5c6770; -fx-border-color: #5c6770;");
-	  area_cod.getStylesheets().add(EstiloService.codigo());
+	  area_cod.getStylesheets().add(CarregadorRecursos.getResourceExternalForm("css/txt.css"));
 	  area_cod.setParagraphGraphicFactory(LineNumberFactory.get(area_cod));
 	  area_cod.setWrapText(true);
 	  area_cod.setLineHighlighterOn(false);
