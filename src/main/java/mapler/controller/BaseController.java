@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
+import mapler.model.resource.Templates;
 import mapler.service.BaseService;
 
 /**
@@ -19,7 +20,7 @@ public class BaseController implements Initializable {
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
 	  BaseService baseService = BaseService.iniciarClasse(area_principal);
-	  baseService.carregaTela("view/tela_inicio.fxml");
+	  baseService.carregaTela(Templates.INICIO.getUrl());
   }
 
 }

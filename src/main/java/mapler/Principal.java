@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import mapler.model.ResizeListener;
+import mapler.model.resource.Templates;
 import mapler.service.InicioService;
 import mapler.util.CarregadorRecursos;
 
@@ -19,7 +20,7 @@ public class Principal extends Application {
   public void start(Stage stage) throws Exception {
 	InicioService inicial = InicioService.iniciarClasse(stage);
     stage.initStyle(StageStyle.UNDECORATED); // removendo botoes padrao
-    Parent root = FXMLLoader.load(CarregadorRecursos.getResource("view/tela_base.fxml"));
+    Parent root = FXMLLoader.load(CarregadorRecursos.getResource(Templates.BASE.getUrl()));
     Scene scene = new Scene(root, 960, 720); // resolucao inicial
     stage.setScene(scene);
     stage.setTitle("MAPLER STUDIO");

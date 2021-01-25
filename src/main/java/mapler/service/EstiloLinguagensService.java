@@ -5,12 +5,17 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import org.fxmisc.richtext.StyleClassedTextArea;
-import mapler.model.Linguagem;
-import mapler.model.LinguagemC;
-import mapler.model.LinguagemJava;
-import mapler.model.LinguagemPortugol;
-import mapler.model.Linguagens;
+import mapler.model.linguagem.Linguagem;
+import mapler.model.linguagem.LinguagemC;
+import mapler.model.linguagem.LinguagemJava;
+import mapler.model.linguagem.LinguagemPortugol;
+import mapler.model.linguagem.Linguagens;
 
+/**
+ * Service para aplicar estilo css (colorir) os textos de código portugol
+ * e traduzido para outras llinguagens.
+ *
+ */
 public class EstiloLinguagensService {
 
   private static EstiloLinguagensService instancia; // singleton
@@ -30,6 +35,12 @@ public class EstiloLinguagensService {
     return instancia;
   }
 
+  /**
+   * Aplica estilo para a linha portugol
+   * @param area
+   * @param comecoLinha
+   * @param fimLinha
+   */
   public void setEstiloPortugol(StyleClassedTextArea area, int comecoLinha, int fimLinha) {
     Linguagem linguagem = linguagens.get(Linguagens.PORTUGOL);
     String texto = "";
@@ -60,6 +71,11 @@ public class EstiloLinguagensService {
     
   }
 
+  /**
+   * Aplica estilo em todo o texto traduzido da linguagem desejada
+   * @param lgn
+   * @param area
+   */
   public void setEstiloTraducao(Linguagens lgn, StyleClassedTextArea area) {
     Linguagem linguagem = null;
     switch (lgn) {

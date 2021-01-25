@@ -20,6 +20,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
+import mapler.model.resource.Estilos;
+import mapler.model.resource.Templates;
 import mapler.service.BaseService;
 import mapler.service.EstiloLinguagensService;
 import mapler.service.InicioService;
@@ -73,22 +75,21 @@ public class CodigoController implements Initializable {
   @FXML
   JFXButton btn_left_inicio, btn_left_tutoriais, btn_left_exemplos, btn_left_sobre, btn_left_news;
 
-  private EstiloLinguagensService linguagensService = EstiloLinguagensService.getInstancia();
   /*private File arquivo; // referencia do arquivo que esta sendo manipulado
   private boolean arquivoComAlteracoesNaoSalvas = false;// TODO: implementar detecção de mudancas feitas e não salvas
-  
-
   public CodigoController(File arquivo) {
     this.arquivo = arquivo;
   }*/
   
-  private InicioService inicial;
-
+  private EstiloLinguagensService estiloLinguagensService;
+  private InicioService inicialService;
+  private BaseService baseService;
 
   public CodigoController() throws Exception {
-    this.inicial = InicioService.getInstancia();
-  }
-  
+    this.estiloLinguagensService = EstiloLinguagensService.getInstancia();
+    this.inicialService = InicioService.getInstancia();
+    this.baseService = BaseService.getInstancia();
+  }  
 
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
@@ -106,13 +107,13 @@ public class CodigoController implements Initializable {
       }
 
     }*/
-	style();
+	setStyle();
   }
   
-  private void style() {
+  private void setStyle() {
 	  btn_home.setOnAction(e -> {
 		  try {
-				BaseService.getInstancia().carregaTela("view/tela_inicio.fxml");
+		    this.baseService.carregaTela(Templates.INICIO.getUrl());
 		  } catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -159,7 +160,7 @@ public class CodigoController implements Initializable {
 	  });
 	  
 	  btn_max.setOnAction(e -> { // maximizar aplicacao
-	      int i = this.inicial.maximizar();
+	      int i = this.inicialService.maximizar();
 
 	      if (i == 1) { // maximized
 	        FontAwesomeIcon icon = new FontAwesomeIcon();
@@ -183,7 +184,7 @@ public class CodigoController implements Initializable {
 	  });
 
 	  btn_minus.setOnAction(e -> { // minimizar aplicacao
-	      this.inicial.minimizar();
+	      this.inicialService.minimizar();
 	  });
 
 	  btn_minus.setOnMouseEntered(e -> {
@@ -244,12 +245,12 @@ public class CodigoController implements Initializable {
 	      btn_left_news.setTextFill(Paint.valueOf("white"));
 	    });
 	  
-	  m_bar.getStylesheets().add(CarregadorRecursos.getResourceExternalForm("css/menubar.css"));
-	  tabp_pai.getStylesheets().add(CarregadorRecursos.getResourceExternalForm("css/tabP.css"));
-	  tabp_filho.getStylesheets().add(CarregadorRecursos.getResourceExternalForm("css/tabF.css"));
+	  m_bar.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.MENUBAR.getUrl()));
+	  tabp_pai.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.TABPAI.getUrl()));
+	  tabp_filho.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.TABFILHO.getUrl()));
 	  
 	  area_traducao.setStyle("-fx-font-size: 24; -fx-font-weight: bold; -fx-background-color: #5c6770; -fx-border-color: #5c6770;");
-	  area_traducao.getStylesheets().add(CarregadorRecursos.getResourceExternalForm("css/txt.css"));
+	  area_traducao.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.TEXTO.getUrl()));
 	  area_traducao.setParagraphGraphicFactory(LineNumberFactory.get(area_traducao));
 	  area_traducao.setWrapText(true);
 	  area_traducao.setLineHighlighterOn(false);
@@ -257,12 +258,12 @@ public class CodigoController implements Initializable {
 	  area_traducao.setEditable(false);
 	  
 	  area_terminal.setStyle("-fx-font-size: 20; -fx-font-weight: bold; -fx-background-color: #5c6770; -fx-border-color: #5c6770;");
-	  area_terminal.getStylesheets().add(CarregadorRecursos.getResourceExternalForm("css/txt.css"));
+	  area_terminal.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.TEXTO.getUrl()));
 	  area_terminal.setWrapText(false);
 	  area_terminal.setLineHighlighterOn(false);
 	  
 	  area_cod.setStyle("-fx-font-size: 24; -fx-font-weight: bold; -fx-background-color: #5c6770; -fx-border-color: #5c6770;");
-	  area_cod.getStylesheets().add(CarregadorRecursos.getResourceExternalForm("css/txt.css"));
+	  area_cod.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.TEXTO.getUrl()));
 	  area_cod.setParagraphGraphicFactory(LineNumberFactory.get(area_cod));
 	  area_cod.setWrapText(true);
 	  area_cod.setLineHighlighterOn(false);
@@ -289,20 +290,20 @@ public class CodigoController implements Initializable {
 	          int fimTexto = area_cod.getText().length();
 
 	          if (finalDaLinha == -1 && comecoDaLinha != -1)
-	            linguagensService.setEstiloPortugol(area_cod, comecoDaLinha + 1, fimTexto);
+	            estiloLinguagensService.setEstiloPortugol(area_cod, comecoDaLinha + 1, fimTexto);
 	          else if (finalDaLinha == -1 && comecoDaLinha == -1)
-	            linguagensService.setEstiloPortugol(area_cod, 0, fimTexto);
+	            estiloLinguagensService.setEstiloPortugol(area_cod, 0, fimTexto);
 	          else if (finalDaLinha != -1 && comecoDaLinha == -1)
-	            linguagensService.setEstiloPortugol(area_cod, 0, finalDaLinha);
+	            estiloLinguagensService.setEstiloPortugol(area_cod, 0, finalDaLinha);
 	          else
-	            linguagensService.setEstiloPortugol(area_cod, comecoDaLinha, finalDaLinha);
+	            estiloLinguagensService.setEstiloPortugol(area_cod, comecoDaLinha, finalDaLinha);
 
 	          if (comecoDaLinha > 1) {
 	            comecoDaLinhaAnt = area_cod.getText().lastIndexOf("\n", comecoDaLinha - 1);
 	            if (comecoDaLinhaAnt == -1)
-	              linguagensService.setEstiloPortugol(area_cod, 0, comecoDaLinha);
+	              estiloLinguagensService.setEstiloPortugol(area_cod, 0, comecoDaLinha);
 	            else
-	              linguagensService.setEstiloPortugol(area_cod, comecoDaLinhaAnt, comecoDaLinha);
+	              estiloLinguagensService.setEstiloPortugol(area_cod, comecoDaLinhaAnt, comecoDaLinha);
 	          }
 	        }
 	      }

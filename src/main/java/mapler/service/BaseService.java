@@ -7,8 +7,8 @@ import javafx.scene.layout.AnchorPane;
 import mapler.util.CarregadorRecursos;
 
 /**
- * Service para facilitar a comunicação do stage principal 
- * com outros controllers e encapsular a logica de resize do stage
+ * Service para facilitar a comunicação da tela_base com outros controllers e encapsular a
+ * de mudança de tela
  */
 public final class BaseService {
 
@@ -17,13 +17,12 @@ public final class BaseService {
 
   private BaseService(AnchorPane janela) {
     this.janela = janela;
-    
   }
 
   /**
-   * Inicia a classe com o stage principal
+   * Inicia a classe com o AnchorPane da tela
    * 
-   * @param janela - principal stage da aplicação
+   * @param janela - AnchorPane da tela_base.fxml
    * @return - instancia criada da classe
    */
   public static BaseService iniciarClasse(AnchorPane janela) {
@@ -41,27 +40,28 @@ public final class BaseService {
       throw new Exception("Instancia da classe BaseService não foi criada!");
     return instancia;
   }
-  
-  /*
-   * 
-   */
-  
-  public int carregaTela(String link) {
-	  try {
-		  janela.getChildren().clear();
-	      AnchorPane ap_codigo = FXMLLoader.load(CarregadorRecursos.getResource(link));
-	      janela.getChildren().add(ap_codigo);
-	      janela.setBottomAnchor(ap_codigo, 1.0);
-	      janela.setLeftAnchor(ap_codigo, 0.0);
-	      janela.setTopAnchor(ap_codigo, 0.0);
-	      janela.setRightAnchor(ap_codigo, 1.0);
-	      return 1;
 
-	    } catch (IOException e) {
-	      e.printStackTrace();
-	      return 0;
-	    }
+  /**
+   * Troca o fxml sendo exibido no AnchorPane da tela_base
+   * @param link
+   * @return
+   */
+  public int carregaTela(String link) {
+    try {
+      janela.getChildren().clear();
+      AnchorPane ap_codigo = FXMLLoader.load(CarregadorRecursos.getResource(link));
+      janela.getChildren().add(ap_codigo);
+      janela.setBottomAnchor(ap_codigo, 1.0);
+      janela.setLeftAnchor(ap_codigo, 0.0);
+      janela.setTopAnchor(ap_codigo, 0.0);
+      janela.setRightAnchor(ap_codigo, 1.0);
+      return 1;
+
+    } catch (IOException e) {
+      e.printStackTrace();
+      return 0;
+    }
   }
-  
+
 
 }

@@ -13,6 +13,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
+import mapler.model.resource.Estilos;
+import mapler.model.resource.Templates;
 import mapler.service.BaseService;
 import mapler.service.InicioService;
 import mapler.util.CarregadorRecursos;
@@ -60,11 +62,11 @@ public class InicioController implements Initializable {
   JFXButton btn_left_inicio, btn_left_tutoriais, btn_left_exemplos, btn_left_sobre, btn_left_news, btn_file1, btn_file2;
 
   public static MenuItem mni_console;
-  private InicioService inicial;
+  private InicioService inicioService;
 
 
   public InicioController() throws Exception {
-    this.inicial = InicioService.getInstancia();
+    this.inicioService = InicioService.getInstancia();
   }
 
   @Override
@@ -112,7 +114,7 @@ public class InicioController implements Initializable {
 	  mi_novo.setOnAction(e -> {
 	      //iniciarModoCodigo(null);
 		  try {
-				BaseService.getInstancia().carregaTela("view/tela_codigo.fxml");
+				BaseService.getInstancia().carregaTela(Templates.CODIGO.getUrl());
 		  } catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -141,7 +143,7 @@ public class InicioController implements Initializable {
 	  });
 	  
 	  btn_max.setOnAction(e -> { // maximizar aplicacao
-	      int i = this.inicial.maximizar();
+	      int i = this.inicioService.maximizar();
 
 	      if (i == 1) { // maximized
 	        FontAwesomeIcon icon = new FontAwesomeIcon();
@@ -165,7 +167,7 @@ public class InicioController implements Initializable {
 	  });
 
 	  btn_minus.setOnAction(e -> { // minimizar aplicacao
-	      this.inicial.minimizar();
+	      this.inicioService.minimizar();
 	  });
 
 	  btn_minus.setOnMouseEntered(e -> {
@@ -176,12 +178,12 @@ public class InicioController implements Initializable {
 	      btn_minus.setStyle("");
 	  });
 	  
-	  m_bar.getStylesheets().add(CarregadorRecursos.getResourceExternalForm("css/menubar.css"));
+	  m_bar.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.MENUBAR.getUrl()));
 	  
 	  btn_novo.setOnAction(e -> {
 	     // iniciarModoCodigo(null);
 		  try {
-				BaseService.getInstancia().carregaTela("view/tela_codigos.fxml");
+				BaseService.getInstancia().carregaTela(Templates.CODIGO.getUrl());
 		  } catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
