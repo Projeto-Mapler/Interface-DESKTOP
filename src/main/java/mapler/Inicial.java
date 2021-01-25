@@ -17,10 +17,9 @@ import mapler.util.CarregadorRecursos;
 public class Inicial extends Application {
   @Override
   public void start(Stage stage) throws Exception {
-    InicialService inicial = InicialService.iniciarClasse(stage);
-
+	InicialService inicial = InicialService.iniciarClasse(stage);
     stage.initStyle(StageStyle.UNDECORATED); // removendo botoes padrao
-    Parent root = FXMLLoader.load(CarregadorRecursos.getResource("view/tela_inicial.fxml"));
+    Parent root = FXMLLoader.load(CarregadorRecursos.getResource("view/tela_base.fxml"));
     Scene scene = new Scene(root, 960, 720); // resolucao inicial
     stage.setScene(scene);
     stage.setTitle("MAPLER STUDIO");
@@ -38,7 +37,7 @@ public class Inicial extends Application {
     new ResizeListener().aplicarAoStage(stage);// adiciona resize listener ao stage
     stage.show();
     
-    inicial.maximizar();// iniciar maximizado
+   // inicial.maximizar();// iniciar maximizado
   }
 
   public static void main(String[] args) {

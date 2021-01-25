@@ -1,8 +1,14 @@
 package mapler.service;
 
+import java.io.IOException;
+
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import mapler.util.CarregadorRecursos;
 
 /**
  * Service para facilitar a comunicação do stage principal 
@@ -71,5 +77,6 @@ public final class InicialService {
       return 1;
     }
   }
+  
 
 }

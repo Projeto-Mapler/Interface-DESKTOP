@@ -7,17 +7,29 @@ import java.util.ResourceBundle;
 import java.util.Scanner;
 import org.fxmisc.richtext.LineNumberFactory;
 import org.fxmisc.richtext.StyleClassedTextArea;
+
+import com.jfoenix.controls.JFXButton;
+
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import mapler.model.Linguagens;
+import mapler.service.BaseService;
 import mapler.service.EstiloLinguagensService;
 import mapler.service.EstiloService;
+import mapler.service.InicialService;
 import mapler.util.GerenciadorArquivo;
 
 public class CodigoController implements Initializable {
@@ -30,18 +42,60 @@ public class CodigoController implements Initializable {
 
   @FXML
   StyleClassedTextArea area_cod, area_terminal, area_traducao;
+  
+  @FXML
+  BorderPane bd_inicial;
 
-  private File arquivo; // referencia do arquivo que esta sendo manipulado
-  private boolean arquivoComAlteracoesNaoSalvas = false;// TODO: implementar detecção de mudancas feitas e não salvas
+  @FXML
+  VBox vb_topo;
+
+  @FXML
+  AnchorPane ap_barraPrimaria, ap_barraSecundaria;
+
+  @FXML
+  JFXButton btn_home;
+
+  @FXML
+  MenuBar m_bar;
+
+  @FXML
+  Menu mn_exibir;
+
+  @FXML // arquivo
+  MenuItem mi_novo, mi_abrir, mi_salvar, mi_salvarc;
+
+  @FXML
+  MenuItem mi_traducao, mi_console;
+
+  @FXML
+  JFXButton btn_minus, btn_max, btn_close;
+
+  @FXML
+  AnchorPane ap_centerIncial;
+
+  @FXML
+  JFXButton btn_left_inicio, btn_left_tutoriais, btn_left_exemplos, btn_left_sobre, btn_left_news;
+
   private EstiloLinguagensService linguagensService = EstiloLinguagensService.getInstancia();
+  /*private File arquivo; // referencia do arquivo que esta sendo manipulado
+  private boolean arquivoComAlteracoesNaoSalvas = false;// TODO: implementar detecção de mudancas feitas e não salvas
+  
 
   public CodigoController(File arquivo) {
     this.arquivo = arquivo;
+  }*/
+  
+  private InicialService inicial;
+
+
+  public CodigoController() throws Exception {
+    this.inicial = InicialService.getInstancia();
   }
+  
 
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
-    if (arquivo != null) { // abri um arquivo
+    /*if (arquivo != null) { // abri um arquivo
       try {
         Scanner scanner = new Scanner(new FileReader(arquivo));
         scanner.useDelimiter("\n");
@@ -54,115 +108,211 @@ public class CodigoController implements Initializable {
         es.printStackTrace();
       }
 
-    }
+    }*/
+	style();
+  }
+  
+  private void style() {
+	  btn_home.setOnAction(e -> {
+		  try {
+				BaseService.getInstancia().carregaTela("view/tela_inicio.fxml");
+		  } catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+		  }
+	    });
 
-    tabPane();
-    areasStyle();
-    controlesCodigo();
+	    btn_home.setOnMouseEntered(e -> {
+	      btn_home.setStyle(
+	          "-fx-background-color: #1b1b1b; -fx-border-color: transparent #4A4949 transparent transparent;");
+	    });
+
+	    btn_home.setOnMouseExited(e -> {
+	      btn_home.setStyle(
+	          "-fx-background-color: transparent; -fx-border-color: transparent #4A4949 transparent transparent;");
+	    });
+	    
+	  btn_close.setOnMouseEntered(e -> {
+	      btn_close.setStyle("-fx-background-color: #1b1b1b;");
+	  });
+	  
+	  btn_close.setOnMouseExited(e -> {
+	      btn_close.setStyle("");
+	  });
+	  
+	  mi_salvar.setOnAction(e -> {
+	      // Arquivo.salvarArquivo(Arquivo.arquivo, true, ControllerCodigo.getPortugol());
+	  });
+
+	  mi_salvarc.setOnAction(e -> {
+	      // Arquivo.SalvarComo(Arquivo.arquivo, ControllerCodigo.getPortugol());
+	  });
+	  
+	  btn_close.setOnAction(e -> { // fechar aplicacao
+	      /*
+	       * if(Arquivo.salvar) { int alerta = Alertas.showConfirm("Deseja salvar o projeto?");
+	       * if(alerta == 0) { System.exit(0); }else if(alerta == 1) { if(Arquivo.arquivo == null) {
+	       * boolean salvar = Arquivo.SalvarComo(Arquivo.arquivo, ControllerCodigo.getPortugol());
+	       * if(salvar) System.exit(0); }else { if(Arquivo.salvarArquivo(Arquivo.arquivo, true,
+	       * ControllerCodigo.getPortugol())) System.exit(0); } }
+	       * 
+	       * }else { System.exit(0); }
+	       */
+	       System.exit(0);
+	  });
+	  
+	  btn_max.setOnAction(e -> { // maximizar aplicacao
+	      int i = this.inicial.maximizar();
+
+	      if (i == 1) { // maximized
+	        FontAwesomeIcon icon = new FontAwesomeIcon();
+	        icon.setFill(Paint.valueOf("#ccc4c4"));
+	        icon.setIcon(de.jensd.fx.glyphs.fontawesome.FontAwesomeIcons.COMPRESS);
+	        btn_max.setGraphic(icon);
+	      } else { // !maximized
+	        FontAwesomeIcon icon = new FontAwesomeIcon();
+	        icon.setFill(Paint.valueOf("#ccc4c4"));
+	        icon.setIcon(de.jensd.fx.glyphs.fontawesome.FontAwesomeIcons.SQUARE_ALT);
+	        btn_max.setGraphic(icon);
+	      }
+	  });
+
+	  btn_max.setOnMouseEntered(e -> {
+	      btn_max.setStyle("-fx-background-color: #1b1b1b;");
+	  });
+
+	  btn_max.setOnMouseExited(e -> {
+	      btn_max.setStyle("");
+	  });
+
+	  btn_minus.setOnAction(e -> { // minimizar aplicacao
+	      this.inicial.minimizar();
+	  });
+
+	  btn_minus.setOnMouseEntered(e -> {
+	      btn_minus.setStyle("-fx-background-color: #1b1b1b;");
+	  });
+
+	  btn_minus.setOnMouseExited(e -> {
+	      btn_minus.setStyle("");
+	  });
+	  
+	  btn_left_inicio.setOnMouseEntered(e -> {
+	      btn_left_inicio.setStyle("-fx-background-color: #ddd;");
+	      btn_left_inicio.setTextFill(Paint.valueOf("#272727"));
+	    });
+
+	    btn_left_inicio.setOnMouseExited(e -> {
+	      btn_left_inicio.setStyle("");
+	      btn_left_inicio.setTextFill(Paint.valueOf("white"));
+	    });
+
+	    btn_left_tutoriais.setOnMouseEntered(e -> {
+	      btn_left_tutoriais.setStyle("-fx-background-color: white;");
+	      btn_left_tutoriais.setTextFill(Paint.valueOf("#272727"));
+	    });
+
+	    btn_left_tutoriais.setOnMouseExited(e -> {
+	      btn_left_tutoriais.setStyle("");
+	      btn_left_tutoriais.setTextFill(Paint.valueOf("white"));
+	    });
+
+	    btn_left_exemplos.setOnMouseEntered(e -> {
+	      btn_left_exemplos.setStyle("-fx-background-color: white;");
+	      btn_left_exemplos.setTextFill(Paint.valueOf("#272727"));
+	    });
+
+	    btn_left_exemplos.setOnMouseExited(e -> {
+	      btn_left_exemplos.setStyle("");
+	      btn_left_exemplos.setTextFill(Paint.valueOf("white"));
+	    });
+
+	    btn_left_sobre.setOnMouseEntered(e -> {
+	      btn_left_sobre.setStyle("-fx-background-color: white;");
+	      btn_left_sobre.setTextFill(Paint.valueOf("#272727"));
+	    });
+
+	    btn_left_sobre.setOnMouseExited(e -> {
+	      btn_left_sobre.setStyle("");
+	      btn_left_sobre.setTextFill(Paint.valueOf("white"));
+	    });
+
+	    btn_left_news.setOnMouseEntered(e -> {
+	      btn_left_news.setStyle("-fx-background-color: white;");
+	      btn_left_news.setTextFill(Paint.valueOf("#272727"));
+	    });
+
+	    btn_left_news.setOnMouseExited(e -> {
+	      btn_left_news.setStyle("");
+	      btn_left_news.setTextFill(Paint.valueOf("white"));
+	    });
+	  
+	  m_bar.getStylesheets().add(EstiloService.menuBar());
+	  tabp_pai.getStylesheets().add(EstiloService.tabPanePai());
+	  tabp_filho.getStylesheets().add(EstiloService.tabPaneFilho());
+	  
+	  area_traducao.setStyle("-fx-font-size: 24; -fx-font-weight: bold; -fx-background-color: #5c6770; -fx-border-color: #5c6770;");
+	  area_traducao.getStylesheets().add(EstiloService.codigo());
+	  area_traducao.setParagraphGraphicFactory(LineNumberFactory.get(area_traducao));
+	  area_traducao.setWrapText(true);
+	  area_traducao.setLineHighlighterOn(false);
+	  area_traducao.setLineHighlighterFill(Paint.valueOf("#353535"));
+	  area_traducao.setEditable(false);
+	  
+	  area_terminal.setStyle("-fx-font-size: 20; -fx-font-weight: bold; -fx-background-color: #5c6770; -fx-border-color: #5c6770;");
+	  area_terminal.getStylesheets().add(EstiloService.codigo());
+	  area_terminal.setWrapText(false);
+	  area_terminal.setLineHighlighterOn(false);
+	  
+	  area_cod.setStyle("-fx-font-size: 24; -fx-font-weight: bold; -fx-background-color: #5c6770; -fx-border-color: #5c6770;");
+	  area_cod.getStylesheets().add(EstiloService.codigo());
+	  area_cod.setParagraphGraphicFactory(LineNumberFactory.get(area_cod));
+	  area_cod.setWrapText(true);
+	  area_cod.setLineHighlighterOn(false);
+	  area_cod.setLineHighlighterFill(Paint.valueOf("#353535"));
+	  area_cod.setStyleClass(0, 0, "variaveis");
+	  
+	  area_cod.setOnKeyPressed(new EventHandler<KeyEvent>() {
+	      @Override
+	      public void handle(KeyEvent ke) {
+
+	        if (ke.getText().equals(";") || 
+	            ke.getText().equals(".") || 
+	            ke.getText().equals("'") || 
+	            ke.getCode().equals(KeyCode.ENTER) || 
+	            ke.getCode().equals(KeyCode.BACK_SPACE) || 
+	            ke.getCode().equals(KeyCode.DELETE) || 
+	            ke.getCode().equals(KeyCode.SPACE) || 
+	            ke.getCode().equals(KeyCode.TAB)
+	         ) {
+	          
+	          int comecoDaLinha = area_cod.getText().lastIndexOf("\n", area_cod.getCaretPosition() - 1);
+	          int finalDaLinha = area_cod.getText().indexOf("\n", area_cod.getCaretPosition()); // se == -1 � a ultima
+	          int comecoDaLinhaAnt = 0;
+	          int fimTexto = area_cod.getText().length();
+
+	          if (finalDaLinha == -1 && comecoDaLinha != -1)
+	            linguagensService.setEstiloPortugol(area_cod, comecoDaLinha + 1, fimTexto);
+	          else if (finalDaLinha == -1 && comecoDaLinha == -1)
+	            linguagensService.setEstiloPortugol(area_cod, 0, fimTexto);
+	          else if (finalDaLinha != -1 && comecoDaLinha == -1)
+	            linguagensService.setEstiloPortugol(area_cod, 0, finalDaLinha);
+	          else
+	            linguagensService.setEstiloPortugol(area_cod, comecoDaLinha, finalDaLinha);
+
+	          if (comecoDaLinha > 1) {
+	            comecoDaLinhaAnt = area_cod.getText().lastIndexOf("\n", comecoDaLinha - 1);
+	            if (comecoDaLinhaAnt == -1)
+	              linguagensService.setEstiloPortugol(area_cod, 0, comecoDaLinha);
+	            else
+	              linguagensService.setEstiloPortugol(area_cod, comecoDaLinhaAnt, comecoDaLinha);
+	          }
+	        }
+	      }
+	    });
   }
 
-  public void setTraducao(String str, Linguagens lgn) {
-    area_traducao.deleteText(0, area_traducao.getText().length());
-    area_traducao.appendText(str);
-    linguagensService.setEstiloTraducao(lgn, area_traducao);
-  }
-
-  /**
-   * @return texto no editor portugol
-   */
-  public String getTextoPortugol() {
-    return area_cod.getText();
-  }
-
-  private void tabPane() {
-    tabp_pai.getStylesheets().add(EstiloService.tabPanePai());
-    tabp_filho.getStylesheets().add(EstiloService.tabPaneFilho());
-  }
-
-
-  private void areasStyle() {
-    area_traducao.setStyle("-fx-font-size: 24; -fx-font-weight: bold; -fx-background-color: #5c6770; -fx-border-color: #5c6770;");
-    area_traducao.getStylesheets().add(EstiloService.codigo());
-    area_traducao.setParagraphGraphicFactory(LineNumberFactory.get(area_traducao));
-    area_traducao.setWrapText(true);
-    area_traducao.setLineHighlighterOn(false);
-    area_traducao.setLineHighlighterFill(Paint.valueOf("#353535"));
-    area_traducao.setEditable(false);
-    // area_codigo = ControllerLinguagens.setLinguagem("C", area_traducao);
-    // go to line -> area.displaceCaret(numeroLinha.length);
-
-    area_terminal.setStyle("-fx-font-size: 20; -fx-font-weight: bold; -fx-background-color: #5c6770; -fx-border-color: #5c6770;");
-    area_terminal.getStylesheets().add(EstiloService.codigo());
-    area_terminal.setWrapText(false);
-    area_terminal.setLineHighlighterOn(false);
-
-    area_cod.setStyle("-fx-font-size: 24; -fx-font-weight: bold; -fx-background-color: #5c6770; -fx-border-color: #5c6770;");
-    area_cod.getStylesheets().add(EstiloService.codigo());
-    area_cod.setParagraphGraphicFactory(LineNumberFactory.get(area_cod));
-    area_cod.setWrapText(true);
-    area_cod.setLineHighlighterOn(false);
-    area_cod.setLineHighlighterFill(Paint.valueOf("#353535"));
-    area_cod.setStyleClass(0, 0, "variaveis");
-
-  }
-
-
-
-  private void controlesCodigo() {
-
-    area_cod.setOnKeyPressed(new EventHandler<KeyEvent>() {
-      @Override
-      public void handle(KeyEvent ke) {
-
-        if (ke.getText().equals(";") || 
-            ke.getText().equals(".") || 
-            ke.getText().equals("'") || 
-            ke.getCode().equals(KeyCode.ENTER) || 
-            ke.getCode().equals(KeyCode.BACK_SPACE) || 
-            ke.getCode().equals(KeyCode.DELETE) || 
-            ke.getCode().equals(KeyCode.SPACE) || 
-            ke.getCode().equals(KeyCode.TAB)
-         ) {
-          
-          int comecoDaLinha = area_cod.getText().lastIndexOf("\n", area_cod.getCaretPosition() - 1);
-          int finalDaLinha = area_cod.getText().indexOf("\n", area_cod.getCaretPosition()); // se == -1 � a ultima
-          int comecoDaLinhaAnt = 0;
-          int fimTexto = area_cod.getText().length();
-
-          if (finalDaLinha == -1 && comecoDaLinha != -1)
-            linguagensService.setEstiloPortugol(area_cod, comecoDaLinha + 1, fimTexto);
-          else if (finalDaLinha == -1 && comecoDaLinha == -1)
-            linguagensService.setEstiloPortugol(area_cod, 0, fimTexto);
-          else if (finalDaLinha != -1 && comecoDaLinha == -1)
-            linguagensService.setEstiloPortugol(area_cod, 0, finalDaLinha);
-          else
-            linguagensService.setEstiloPortugol(area_cod, comecoDaLinha, finalDaLinha);
-
-          if (comecoDaLinha > 1) {
-            comecoDaLinhaAnt = area_cod.getText().lastIndexOf("\n", comecoDaLinha - 1);
-            if (comecoDaLinhaAnt == -1)
-              linguagensService.setEstiloPortugol(area_cod, 0, comecoDaLinha);
-            else
-              linguagensService.setEstiloPortugol(area_cod, comecoDaLinhaAnt, comecoDaLinha);
-          }
-        }
-      }
-    });
-
-
-    /*
-     * btn_debug.setOnAction(e -> {
-     * 
-     * });
-     * 
-     * btn_play.setOnAction(e -> { Interface(2); String caminho = this.getCaminhoArquivo();
-     * console.executar(caminho); });
-     * 
-     * btn_save.setOnAction(e -> { Arquivo.salvarArquivo(Arquivo.arquivo, true,
-     * ControllerCodigo.getPortugol()); });
-     */
-
-  }
+/*
 
   public boolean salvarArquivo(boolean isSalvarComo) {
     String txt = this.getTextoPortugol();
@@ -189,6 +339,6 @@ public class CodigoController implements Initializable {
 
   public void setArquivoComAlteracoesNaoSalvas(boolean arquivoComAlteracoesNaoSalvas) {
     this.arquivoComAlteracoesNaoSalvas = arquivoComAlteracoesNaoSalvas;
-  }
+  }*/
 
 }
