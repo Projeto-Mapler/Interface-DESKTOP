@@ -250,6 +250,7 @@ public class CodigoController implements Initializable {
 	  area_terminal.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.TEXTO.getUrl()));
 	  area_terminal.setWrapText(false);
 	  area_terminal.setLineHighlighterOn(false);
+	  area_terminal.appendText("texte");
 	  
 	  area_cod.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.TEXTO.getUrl()));
 	  area_cod.setParagraphGraphicFactory(LineNumberFactory.get(area_cod));
