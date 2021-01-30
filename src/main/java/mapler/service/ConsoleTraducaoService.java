@@ -17,7 +17,7 @@ import modelos.ParserError;
 import modelos.RuntimeError;
 
 /**
- * Intermediaria entre a IDE e o Interpretador
+ * Intermediaria entre a IDE (console e traducao) e o Interpretador
  */
 public class ConsoleTraducaoService implements EventoListener, EspectadorInputConsole {
 

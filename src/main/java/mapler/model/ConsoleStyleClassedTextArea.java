@@ -5,16 +5,22 @@ import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
+/**
+ * StyleClassedTextArea com comportamento alterado para as necessidades do console Mapler
+ * 
+ * @author Kerlyson
+ *
+ */
 public class ConsoleStyleClassedTextArea extends StyleClassedTextAreaWrapper {
 
   private Boolean esperandoInputUsuario = false; // informa se o console esta esperando input do usuário
   private EspectadorInputConsole espectador; // quem vai ser notificado quando o usuario realizar input
 
   public ConsoleStyleClassedTextArea(StyleClassedTextArea areaConsoleOriginal, EspectadorInputConsole espectador) {
-    super(areaConsoleOriginal); // salva  a referencia do original para funcionar normalmente
+    super(areaConsoleOriginal); // salva a referencia do original para funcionar normalmente
     this.espectador = espectador;
     setEditable(false);
-    
+
     // Evento de input:
     setOnKeyPressed(new EventHandler<KeyEvent>() {
       @Override
@@ -34,7 +40,7 @@ public class ConsoleStyleClassedTextArea extends StyleClassedTextAreaWrapper {
     String valor = ultimaLinha.substring(1); // remove o '>'
 
     this.espectador.notificarInput(valor);// notifica o espectador do input
-    
+
     this.esperandoInputUsuario = false;
     this.setEditable(false);
   }
@@ -68,16 +74,17 @@ public class ConsoleStyleClassedTextArea extends StyleClassedTextAreaWrapper {
       imprimirMsgComQuebraLinha("> Erro: linha " + linha + ", em '" + onde + "'. " + msg);
     }
   }
+
   public void limparConsole() {
     clear();
   }
-  
+
   public Boolean isEsperandoInputUsuario() {
     return this.esperandoInputUsuario;
   }
-  
+
   public void solicitarInputUsuario() {
-    if(!this.esperandoInputUsuario) {
+    if (!this.esperandoInputUsuario) {
       this.esperandoInputUsuario = true;
       setEditable(true);
       imprimirMsg(">");
