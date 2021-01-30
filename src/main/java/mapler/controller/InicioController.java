@@ -89,15 +89,15 @@ public class InicioController implements Initializable {
 	       
 	    });
 
-	    btn_home.setOnMouseEntered(e -> {
-	      btn_home.setStyle(
-	          "-fx-background-color: #1b1b1b; -fx-border-color: transparent #4A4949 transparent transparent;");
-	    });
-
-	    btn_home.setOnMouseExited(e -> {
-	      btn_home.setStyle(
-	          "-fx-background-color: transparent; -fx-border-color: transparent #4A4949 transparent transparent;");
-	    });
+//	    btn_home.setOnMouseEntered(e -> {
+//	      btn_home.setStyle(
+//	          "-fx-background-color: #1b1b1b; -fx-border-color: transparent #4A4949 transparent transparent;");
+//	    });
+//
+//	    btn_home.setOnMouseExited(e -> {
+//	      btn_home.setStyle(
+//	          "-fx-background-color: transparent; -fx-border-color: transparent #4A4949 transparent transparent;");
+//	    });
 	    
 	  btn_close.setOnMouseEntered(e -> {
 	      btn_close.setStyle("-fx-background-color: #1b1b1b;");

@@ -6,7 +6,8 @@ public enum Estilos {
   SPLITPANE("css/splitpane.css"),
   TABFILHO("css/tabFilho.css"),
   TABPAI("css/tabPai.css"),
-  TEXTO("css/texto.css");
+  TEXTO("css/texto.css"),
+  BOTOES("css/botoes.css");
   
   
   private String url;

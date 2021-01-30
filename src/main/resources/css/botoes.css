@@ -1,0 +1,13 @@
+#btn_home{
+	-fx-background-color: transparent; 
+	-fx-border-color: transparent #4A4949 transparent transparent;
+	-fx-fill: #151515;
+}
+
+#btn_home:hover{
+	-fx-background-color: #8a8484; 
+	-fx-border-color: transparent #4A4949 transparent transparent;
+}
+#btn_home:hover > #btn_home_icon{	
+  -fx-fill:#1b1b1b;
+}

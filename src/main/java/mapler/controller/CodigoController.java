@@ -120,16 +120,8 @@ public class CodigoController implements Initializable {
 		  }
 	    });
 
-	    btn_home.setOnMouseEntered(e -> {
-	      btn_home.setStyle(
-	          "-fx-background-color: #1b1b1b; -fx-border-color: transparent #4A4949 transparent transparent;");
-	    });
+	  btn_home.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.BOTOES.getUrl()));
 
-	    btn_home.setOnMouseExited(e -> {
-	      btn_home.setStyle(
-	          "-fx-background-color: transparent; -fx-border-color: transparent #4A4949 transparent transparent;");
-	    });
-	    
 	  btn_close.setOnMouseEntered(e -> {
 	      btn_close.setStyle("-fx-background-color: #1b1b1b;");
 	  });
@@ -249,25 +241,20 @@ public class CodigoController implements Initializable {
 	  tabp_pai.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.TABPAI.getUrl()));
 	  tabp_filho.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.TABFILHO.getUrl()));
 	  
-	  area_traducao.setStyle("-fx-font-size: 24; -fx-font-weight: bold; -fx-background-color: #5c6770; -fx-border-color: #5c6770;");
 	  area_traducao.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.TEXTO.getUrl()));
 	  area_traducao.setParagraphGraphicFactory(LineNumberFactory.get(area_traducao));
 	  area_traducao.setWrapText(true);
 	  area_traducao.setLineHighlighterOn(false);
-	  area_traducao.setLineHighlighterFill(Paint.valueOf("#353535"));
 	  area_traducao.setEditable(false);
 	  
-	  area_terminal.setStyle("-fx-font-size: 20; -fx-font-weight: bold; -fx-background-color: #5c6770; -fx-border-color: #5c6770;");
 	  area_terminal.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.TEXTO.getUrl()));
 	  area_terminal.setWrapText(false);
 	  area_terminal.setLineHighlighterOn(false);
 	  
-	  area_cod.setStyle("-fx-font-size: 24; -fx-font-weight: bold; -fx-background-color: #5c6770; -fx-border-color: #5c6770;");
 	  area_cod.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.TEXTO.getUrl()));
 	  area_cod.setParagraphGraphicFactory(LineNumberFactory.get(area_cod));
 	  area_cod.setWrapText(true);
-	  area_cod.setLineHighlighterOn(false);
-	  area_cod.setLineHighlighterFill(Paint.valueOf("#353535"));
+	  area_cod.setLineHighlighterOn(true);
 	  area_cod.setStyleClass(0, 0, "variaveis");
 	  
 	  area_cod.setOnKeyPressed(new EventHandler<KeyEvent>() {

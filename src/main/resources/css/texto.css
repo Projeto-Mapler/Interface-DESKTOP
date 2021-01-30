@@ -1,7 +1,19 @@
 
+.styled-text-area {
+    /* set the entire area's font size to the given size */
+   -fx-font-size: 24.0; 
+   -fx-font-weight: bold; 
+   -fx-background-color: #5c6770; 
+   -fx-border-color: #5c6770;
+}
+
+.styled-text-area .line-highlighter { 
+	-fx-fill:#7D858D;
+}
+
 .lineno{
    -fx-background-color: #5c6770;
-   -fx-font-size: 24;
+   -fx-font-size: 24.0;
    -fx-fill: black; 
 }
 
