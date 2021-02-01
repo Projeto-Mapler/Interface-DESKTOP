@@ -76,7 +76,7 @@ public class CodigoController implements Initializable {
   private ConsoleTraducaoService consoleTraducaoService;
 
   public CodigoController() throws Exception {
-    this.consoleTraducaoService = new ConsoleTraducaoService(area_terminal, area_traducao); // uma instancia por 'aba'
+ 
     this.estiloLinguagensService = EstiloLinguagensService.getInstancia();
     this.inicialService = InicioService.getInstancia();
     this.baseService = BaseService.getInstancia();
@@ -93,6 +93,7 @@ public class CodigoController implements Initializable {
      * }
      */
     setStyle();
+    this.consoleTraducaoService = new ConsoleTraducaoService(area_terminal, area_traducao); // uma instancia por 'aba'
   }
 
   private void setStyle() {
