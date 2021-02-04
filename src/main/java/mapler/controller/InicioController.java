@@ -34,20 +34,6 @@ public class InicioController implements Initializable {
   @FXML
   AnchorPane ap_barraPrimaria, ap_barraSecundaria;
 
-  @FXML
-  JFXButton btn_home;
-
-  @FXML
-  MenuBar m_bar;
-
-  @FXML
-  Menu mn_exibir;
-
-  @FXML // arquivo
-  MenuItem mi_novo, mi_abrir, mi_salvar, mi_salvarc;
-
-  @FXML
-  MenuItem mi_traducao, mi_console;
 
   @FXML
   JFXButton btn_minus, btn_max, btn_close;
@@ -61,9 +47,7 @@ public class InicioController implements Initializable {
   @FXML
   JFXButton btn_left_inicio, btn_left_tutoriais, btn_left_exemplos, btn_left_sobre, btn_left_news, btn_file1, btn_file2;
 
-  public static MenuItem mni_console;
   private InicioService inicioService;
-
 
   public InicioController() throws Exception {
     this.inicioService = InicioService.getInstancia();
@@ -71,62 +55,19 @@ public class InicioController implements Initializable {
 
   @Override
   public void initialize(URL url, ResourceBundle rb) {
-
-    /*iniciarModoInicial();// iniciar na tela principal
-
-    barra_controle();
-    menuBar();
-    botoesMenu();
-    barra_segundo();
-    barra_left();
-
-    mni_console = mi_console;*/
     styles();
+    
   }
   
   public void styles() {
-	    btn_home.setOnAction(e -> {
-	       
-	    });
 
-//	    btn_home.setOnMouseEntered(e -> {
-//	      btn_home.setStyle(
-//	          "-fx-background-color: #1b1b1b; -fx-border-color: transparent #4A4949 transparent transparent;");
-//	    });
-//
-//	    btn_home.setOnMouseExited(e -> {
-//	      btn_home.setStyle(
-//	          "-fx-background-color: transparent; -fx-border-color: transparent #4A4949 transparent transparent;");
-//	    });
-	    
+//	    
 	  btn_close.setOnMouseEntered(e -> {
 	      btn_close.setStyle("-fx-background-color: #1b1b1b;");
 	  });
 	  
 	  btn_close.setOnMouseExited(e -> {
 	      btn_close.setStyle("");
-	  });
-	  
-	  mi_abrir.setOnAction(e -> {
-	      //abrirArquivo();
-	  });
-
-	  mi_novo.setOnAction(e -> {
-	      //iniciarModoCodigo(null);
-		  try {
-				BaseService.getInstancia().carregaTela(Templates.CODIGO.getUrl());
-		  } catch (Exception e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-		  }
-	  });
-
-	  mi_salvar.setOnAction(e -> {
-	      // Arquivo.salvarArquivo(Arquivo.arquivo, true, ControllerCodigo.getPortugol());
-	  });
-
-	  mi_salvarc.setOnAction(e -> {
-	      // Arquivo.SalvarComo(Arquivo.arquivo, ControllerCodigo.getPortugol());
 	  });
 	  
 	  btn_close.setOnAction(e -> { // fechar aplicacao
@@ -177,8 +118,6 @@ public class InicioController implements Initializable {
 	  btn_minus.setOnMouseExited(e -> {
 	      btn_minus.setStyle("");
 	  });
-	  
-	  m_bar.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.MENUBAR.getUrl()));
 	  
 	  btn_novo.setOnAction(e -> {
 	     // iniciarModoCodigo(null);

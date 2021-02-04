@@ -2,6 +2,9 @@ package mapler.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import javax.swing.plaf.basic.BasicBorders.SplitPaneBorder;
+
 import org.fxmisc.richtext.LineNumberFactory;
 import org.fxmisc.richtext.StyleClassedTextArea;
 import com.jfoenix.controls.JFXButton;
@@ -27,6 +30,8 @@ import mapler.service.ConsoleTraducaoService;
 import mapler.service.EstiloLinguagensService;
 import mapler.service.InicioService;
 import mapler.util.CarregadorRecursos;
+import javafx.scene.control.SplitPane;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 
 /**
  * Controller para tela_codigo.fxml
@@ -38,10 +43,13 @@ public class CodigoController implements Initializable {
   TabPane tabp_pai, tabp_filho;
 
   @FXML
-  Tab tab_cod, tab_traducao, tab_terminal;
+  Tab tab_cod, tab_terminal;
+  
+  @FXML
+  SplitPane split_areas;
 
   @FXML
-  StyleClassedTextArea area_cod, area_terminal, area_traducao;
+  StyleClassedTextArea area_cod, area_terminal, area_trad;
 
   @FXML
   BorderPane bd_inicial;
@@ -50,7 +58,7 @@ public class CodigoController implements Initializable {
   VBox vb_topo;
 
   @FXML
-  AnchorPane ap_barraPrimaria, ap_barraSecundaria, ap_centerIncial;
+  AnchorPane ap_barraPrimaria, ap_barraSecundaria, ap_centerIncial, ap_cod, ap_trad;
 
   @FXML
   MenuBar m_bar;
@@ -62,7 +70,10 @@ public class CodigoController implements Initializable {
   MenuItem mi_novo, mi_abrir, mi_salvar, mi_salvarc, mi_traducao, mi_console;
 
   @FXML
-  JFXButton btn_left_inicio, btn_left_tutoriais, btn_left_exemplos, btn_left_sobre, btn_left_news, btn_minus, btn_max, btn_close, btn_home;
+  JFXButton btn_left_inicio, btn_left_tutoriais, btn_left_exemplos, btn_left_sobre, btn_left_news, btn_minus, btn_max, btn_close, btn_home, btn_close_cod, btn_close_trad, btn_trad, btn_exec;
+  
+  @FXML
+  FontAwesomeIcon icon_exec;
 
   /*
    * private File arquivo; // referencia do arquivo que esta sendo manipulado private boolean
@@ -93,10 +104,43 @@ public class CodigoController implements Initializable {
      * }
      */
     setStyle();
-    this.consoleTraducaoService = new ConsoleTraducaoService(area_terminal, area_traducao); // uma instancia por 'aba'
+    setTraducaoVisible(false);
+    this.consoleTraducaoService = new ConsoleTraducaoService(area_terminal, area_trad); // uma instancia por 'aba'
   }
 
   private void setStyle() {
+	btn_close_trad.setOnAction(e->{
+		setTraducaoVisible(false);
+	});
+	
+	mi_traducao.setOnAction(e->{
+		setTraducaoVisible(true);
+	});
+	
+	btn_trad.setOnAction(e->{
+		setTraducaoVisible(true);
+	});
+	
+	btn_exec.setOnAction(e->{
+		if(tabp_filho.getSelectionModel().getSelectedIndex() == 0) {
+			tabp_filho.getSelectionModel().select(1);
+			icon_exec.setFill(Paint.valueOf("#da1a1a"));
+		}else {
+			tabp_filho.getSelectionModel().select(0);
+			icon_exec.setFill(Paint.valueOf("#06a13c"));
+		}
+		
+	});
+	
+	btn_close_cod.setOnAction(e -> {
+	      try {
+	          this.baseService.carregaTela(Templates.INICIO.getUrl());
+	        } catch (Exception e1) {
+	          // TODO Auto-generated catch block
+	          e1.printStackTrace();
+	        }
+	      });
+	
     btn_home.setOnAction(e -> {
       try {
         this.baseService.carregaTela(Templates.INICIO.getUrl());
@@ -222,16 +266,17 @@ public class CodigoController implements Initializable {
       btn_left_news.setStyle("");
       btn_left_news.setTextFill(Paint.valueOf("white"));
     });
-
+    
+    split_areas.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.SPLITPANE.getUrl()));
     m_bar.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.MENUBAR.getUrl()));
     tabp_pai.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.TABPAI.getUrl()));
     tabp_filho.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.TABFILHO.getUrl()));
 
-    area_traducao.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.TEXTO.getUrl()));
-    area_traducao.setParagraphGraphicFactory(LineNumberFactory.get(area_traducao));
-    area_traducao.setWrapText(true);
-    area_traducao.setLineHighlighterOn(false);
-    area_traducao.setEditable(false);
+    area_trad.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.TEXTO.getUrl()));
+    area_trad.setParagraphGraphicFactory(LineNumberFactory.get(area_trad));
+    area_trad.setWrapText(true);
+    area_trad.setLineHighlighterOn(false);
+    area_trad.setEditable(false);
 
     area_terminal.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.TEXTO.getUrl()));
     area_terminal.setWrapText(false);
@@ -276,7 +321,14 @@ public class CodigoController implements Initializable {
       }
     });
   }
-
+  
+  private void setTraducaoVisible(boolean a) {
+	  split_areas.getItems().remove(ap_trad);
+	  if(a) {
+		 split_areas.getItems().add(ap_trad);
+	  }
+	  
+  }
   /*
    * 
    * public boolean salvarArquivo(boolean isSalvarComo) { String txt = this.getTextoPortugol(); if

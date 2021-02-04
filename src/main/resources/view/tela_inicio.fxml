@@ -4,176 +4,39 @@
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity"
-	minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
-	prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1"
-	xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="mapler.controller.InicioController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mapler.controller.InicioController">
 	<children>
-		<BorderPane fx:id="bd_inicial" maxHeight="-Infinity"
-			maxWidth="-Infinity" minHeight="400.0" minWidth="600.0"
-			prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0"
-			AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-			AnchorPane.topAnchor="0.0">
+		<BorderPane fx:id="bd_inicial" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 			<top>
-				<AnchorPane prefWidth="200.0"
-					style="-fx-background-color: blue;" BorderPane.alignment="CENTER">
+				<AnchorPane prefWidth="200.0" style="-fx-background-color: blue;" BorderPane.alignment="CENTER">
 					<children>
-						<VBox fx:id="vb_topo" prefWidth="100.0"
-							AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-							AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+						<VBox fx:id="vb_topo" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 							<children>
-								<AnchorPane fx:id="ap_barraPrimaria"
-									prefWidth="200.0" style="-fx-background-color: #151515;">
+								<AnchorPane fx:id="ap_barraSecundaria" minHeight="60.0" prefHeight="75.0" prefWidth="200.0" style="-fx-background-color: #151515;">
 									<children>
-										<HBox prefWidth="200.0" AnchorPane.bottomAnchor="0.0"
-											AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-											AnchorPane.topAnchor="0.0">
+										<HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 											<children>
-												<JFXButton fx:id="btn_home" ellipsisString=" "
-													maxHeight="34.0" maxWidth="34.0" minHeight="34.0"
-													minWidth="34.0" prefHeight="34.0" prefWidth="34.0"
-													style="-fx-background-color: transparent; -fx-border-color: transparent #4A4949 transparent transparent;"
-													text=" " textFill="#151515">
-													<graphic>
-														<FontAwesomeIcon fill="#8a8484"
-															glyphName="HOME" size="1.8em" />
-													</graphic>
-													<HBox.margin>
-														<Insets />
-													</HBox.margin>
-													<padding>
-														<Insets left="5.0" right="5.0" />
-													</padding>
-												</JFXButton>
-												<MenuBar fx:id="m_bar" prefHeight="34.0"
-													style="-fx-background-color: transparent;"
-													HBox.hgrow="ALWAYS">
-													<menus>
-														<Menu mnemonicParsing="false"
-															style="-fx-text-fill: white;" text="Arquivo">
-															<items>
-																<MenuItem fx:id="mi_novo"
-																	mnemonicParsing="false" text="Novo" />
-																<MenuItem fx:id="mi_abrir"
-																	mnemonicParsing="false" text="Abrir" />
-																<MenuItem fx:id="mi_salvar"
-																	mnemonicParsing="false" text="Salvar" />
-																<MenuItem fx:id="mi_salvarc"
-																	mnemonicParsing="false" text="Salvar como..." />
-															</items>
-														</Menu>
-														<Menu fx:id="mn_exibir" mnemonicParsing="false"
-															text="Exibir">
-															<items>
-																<MenuItem fx:id="mi_traducao"
-																	mnemonicParsing="false" text="Traducao" />
-																<MenuItem fx:id="mi_console"
-																	mnemonicParsing="false" text="Console" />
-															</items>
-														</Menu>
-
-													</menus>
-													<padding>
-														<Insets left="5.0" top="5.0" />
-													</padding>
-												</MenuBar>
-												<JFXButton fx:id="btn_help" text=" "
-													textFill="#343a40">
-													<graphic>
-														<FontAwesomeIcon fill="#ccc4c4"
-															glyphName="QUESTION_CIRCLE" />
-													</graphic>
-													<HBox.margin>
-														<Insets top="7.0" />
-													</HBox.margin>
-													<padding>
-														<Insets left="3.0" />
-													</padding>
-												</JFXButton>
-												<HBox alignment="CENTER_RIGHT" maxHeight="5.0"
-													maxWidth="5.0" prefHeight="5.0" prefWidth="5.0"
-													style="-fx-border-color: #22262a; -fx-border-radius: 0  0 7 7;">
+												<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="130.0" style="-fx-background-color: #151515 #151515;">
 													<children>
-														<JFXButton fx:id="btn_minus"
-															contentDisplay="RIGHT" graphicTextGap="0.0" text=" "
-															textFill="#343a40">
-															<graphic>
-																<FontAwesomeIcon fill="#ccc4c4"
-																	glyphName="MINUS" />
-															</graphic>
-														</JFXButton>
-														<JFXButton fx:id="btn_max"
-															contentDisplay="RIGHT" graphicTextGap="0.0" text=" "
-															textFill="#343a40">
-															<graphic>
-																<FontAwesomeIcon fill="#ccc4c4"
-																	glyphName="SQUARE_ALT" />
-															</graphic>
-														</JFXButton>
-														<JFXButton fx:id="btn_close"
-															contentDisplay="RIGHT" graphicTextGap="0.0" text=" "
-															textFill="#343a40">
-															<graphic>
-																<FontAwesomeIcon fill="#ccc4c4"
-																	glyphName="CLOSE" />
-															</graphic>
-														</JFXButton>
-													</children>
-													<HBox.margin>
-														<Insets bottom="5.0" right="0.5" />
-													</HBox.margin>
-												</HBox>
-											</children>
-										</HBox>
-									</children>
-								</AnchorPane>
-								<AnchorPane fx:id="ap_barraSecundaria"
-									minHeight="60.0" prefHeight="75.0" prefWidth="200.0"
-									style="-fx-background-color: #22262a;">
-									<children>
-										<HBox alignment="CENTER_LEFT" prefHeight="100.0"
-											prefWidth="200.0" AnchorPane.bottomAnchor="0.0"
-											AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-											AnchorPane.topAnchor="0.0">
-											<children>
-												<AnchorPane maxHeight="-Infinity"
-													maxWidth="-Infinity" minHeight="-Infinity"
-													minWidth="-Infinity" prefHeight="75.0" prefWidth="130.0"
-													style="-fx-background-color: #22262a;">
-													<children>
-														<Circle fill="DODGERBLUE" layoutX="96.0"
-															layoutY="40.0" radius="16.0" stroke="BLACK"
-															strokeType="INSIDE" strokeWidth="0.0"
-															style="-fx-fill: #343a40;" AnchorPane.leftAnchor="88.0"
-															AnchorPane.topAnchor="18.0" />
-														<Label text="mapler." textFill="WHITE"
-															AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="13.0">
+														<Circle fill="DODGERBLUE" layoutX="96.0" layoutY="40.0" radius="16.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: #22262a;" AnchorPane.leftAnchor="88.0" AnchorPane.topAnchor="18.0" />
+														<Label text="mapler." textFill="WHITE" AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="13.0">
 															<font>
 																<Font name="System Bold" size="30.0" />
 															</font>
 														</Label>
-														<Label layoutX="57.0" layoutY="57.0" text="portugol"
-															textFill="WHITE" AnchorPane.leftAnchor="58.0"
-															AnchorPane.topAnchor="42.0" />
+														<Label layoutX="57.0" layoutY="57.0" text="portugol" textFill="WHITE" AnchorPane.leftAnchor="58.0" AnchorPane.topAnchor="42.0" />
 													</children>
 												</AnchorPane>
-												<JFXButton cancelButton="true" prefHeight="60.0"
-													prefWidth="5.0"
-													style="-fx-border-color: transparent  transparent transparent #4A4949;"
-													text=" ">
+												<JFXButton cancelButton="true" prefHeight="60.0" prefWidth="5.0" style="-fx-border-color: transparent  transparent transparent #4A4949;" text=" ">
 													<HBox.margin>
 														<Insets bottom="15.0" right="15.0" top="15.0" />
 													</HBox.margin>
@@ -183,15 +46,9 @@
 												</JFXButton>
 												<VBox alignment="CENTER">
 													<children>
-														<JFXButton fx:id="btn_novo"
-															contentDisplay="CENTER" maxHeight="35.0" maxWidth="35.0"
-															minHeight="30.0" minWidth="30.0" prefHeight="35.0"
-															prefWidth="35.0"
-															style="-fx-border-color: white; -fx-border-radius: 5 9 5 5;"
-															text=" " textFill="#343a40">
+														<JFXButton fx:id="btn_novo" contentDisplay="CENTER" maxHeight="35.0" maxWidth="35.0" minHeight="30.0" minWidth="30.0" prefHeight="35.0" prefWidth="35.0" style="-fx-border-color: white; -fx-border-radius: 5 9 5 5;" text=" " textFill="#343a40">
 															<graphic>
-																<FontAwesomeIcon fill="WHITE"
-																	glyphName="PLUS" size="1.6em" />
+																<FontAwesomeIcon fill="WHITE" glyphName="PLUS" size="1.6em" />
 															</graphic>
 															<padding>
 																<Insets left="10.0" right="10.0" />
@@ -208,15 +65,9 @@
 												</VBox>
 												<VBox alignment="CENTER">
 													<children>
-														<JFXButton fx:id="btn_abrir"
-															contentDisplay="CENTER" maxHeight="35.0" maxWidth="35.0"
-															minHeight="30.0" minWidth="30.0" prefHeight="35.0"
-															prefWidth="35.0"
-															style="-fx-border-color: white; -fx-border-radius: 5 9 5 5;"
-															text=" " textFill="#343a40">
+														<JFXButton fx:id="btn_abrir" contentDisplay="CENTER" maxHeight="35.0" maxWidth="35.0" minHeight="30.0" minWidth="30.0" prefHeight="35.0" prefWidth="35.0" style="-fx-border-color: white; -fx-border-radius: 5 9 5 5;" text=" " textFill="#343a40">
 															<graphic>
-																<FontAwesomeIcon fill="WHITE"
-																	glyphName="FOLDER_OPEN" size="1.6em" />
+																<FontAwesomeIcon fill="WHITE" glyphName="FOLDER_OPEN" size="1.6em" />
 															</graphic>
 															<padding>
 																<Insets left="10.0" right="10.0" />
@@ -228,6 +79,43 @@
 														<Label text="Abrir" textFill="WHITE" />
 													</children>
 												</VBox>
+      										<HBox alignment="TOP_RIGHT" prefWidth="200.0" HBox.hgrow="ALWAYS">
+      											<children>
+      												<JFXButton fx:id="btn_help" text=" " textFill="#343a40">
+      													<graphic>
+      														<FontAwesomeIcon fill="#ccc4c4" glyphName="QUESTION_CIRCLE" />
+      													</graphic>
+      													<HBox.margin>
+      														<Insets top="7.0" />
+      													</HBox.margin>
+      													<padding>
+      														<Insets left="3.0" />
+      													</padding>
+      												</JFXButton>
+      												<HBox alignment="CENTER_RIGHT" maxHeight="5.0" maxWidth="5.0" prefHeight="5.0" prefWidth="5.0" style="-fx-border-color: #22262a; -fx-border-radius: 0  0 7 7;">
+      													<children>
+      														<JFXButton fx:id="btn_minus" contentDisplay="RIGHT" graphicTextGap="0.0" text=" " textFill="#343a40">
+      															<graphic>
+      																<FontAwesomeIcon fill="#ccc4c4" glyphName="MINUS" />
+      															</graphic>
+      														</JFXButton>
+      														<JFXButton fx:id="btn_max" contentDisplay="RIGHT" graphicTextGap="0.0" text=" " textFill="#343a40">
+      															<graphic>
+      																<FontAwesomeIcon fill="#ccc4c4" glyphName="SQUARE_ALT" />
+      															</graphic>
+      														</JFXButton>
+      														<JFXButton fx:id="btn_close" contentDisplay="RIGHT" graphicTextGap="0.0" text=" " textFill="#343a40">
+      															<graphic>
+      																<FontAwesomeIcon fill="#da1a1a" glyphName="CLOSE" />
+      															</graphic>
+      														</JFXButton>
+      													</children>
+      													<HBox.margin>
+      														<Insets bottom="5.0" right="0.5" />
+      													</HBox.margin>
+      												</HBox>
+      											</children>
+      										</HBox>
 											</children>
 										</HBox>
 									</children>
@@ -238,34 +126,19 @@
 				</AnchorPane>
 			</top>
 			<left>
-				<AnchorPane prefHeight="200.0" prefWidth="140.0"
-					style="-fx-background-color: #343a40;"
-					BorderPane.alignment="CENTER">
+				<AnchorPane prefHeight="200.0" prefWidth="140.0" style="-fx-background-color: #343a40;" BorderPane.alignment="CENTER">
 					<children>
-						<VBox prefHeight="200.0" prefWidth="100.0"
-							AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="30.0"
-							AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+						<VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
 							<children>
-								<JFXButton fx:id="btn_left_inicio"
-									alignment="TOP_LEFT" prefWidth="100.0" text="Inicio"
-									textFill="WHITE" />
-								<JFXButton fx:id="btn_left_tutoriais"
-									alignment="TOP_LEFT" prefWidth="100.0"
-									style="-fx-background-color: transparent;" text="Tutoriais"
-									textFill="WHITE">
+								<JFXButton fx:id="btn_left_inicio" alignment="TOP_LEFT" prefWidth="100.0" text="Inicio" textFill="WHITE" />
+								<JFXButton fx:id="btn_left_tutoriais" alignment="TOP_LEFT" prefWidth="100.0" style="-fx-background-color: transparent;" text="Tutoriais" textFill="WHITE">
 									<VBox.margin>
 										<Insets bottom="10.0" top="10.0" />
 									</VBox.margin>
 								</JFXButton>
-								<JFXButton fx:id="btn_left_exemplos"
-									alignment="TOP_LEFT" prefWidth="100.0"
-									style="-fx-background-color: transparent;" text="Exemplos"
-									textFill="WHITE" />
-								<VBox alignment="BOTTOM_CENTER" prefHeight="200.0"
-									prefWidth="100.0" VBox.vgrow="ALWAYS" />
-								<JFXButton fx:id="btn_left_sobre" alignment="TOP_LEFT"
-									prefWidth="100.0" style="-fx-background-color: transparent;"
-									text="Sobre o MAPLER" textFill="WHITE">
+								<JFXButton fx:id="btn_left_exemplos" alignment="TOP_LEFT" prefWidth="100.0" style="-fx-background-color: transparent;" text="Exemplos" textFill="WHITE" />
+								<VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS" />
+								<JFXButton fx:id="btn_left_sobre" alignment="TOP_LEFT" prefWidth="100.0" style="-fx-background-color: transparent;" text="Sobre o MAPLER" textFill="WHITE">
 									<font>
 										<Font size="9.0" />
 									</font>
@@ -273,9 +146,7 @@
 										<Insets bottom="5.0" />
 									</VBox.margin>
 								</JFXButton>
-								<JFXButton fx:id="btn_left_news" alignment="TOP_LEFT"
-									prefWidth="100.0" style="-fx-background-color: transparent;"
-									text="Novidades" textFill="WHITE">
+								<JFXButton fx:id="btn_left_news" alignment="TOP_LEFT" prefWidth="100.0" style="-fx-background-color: transparent;" text="Novidades" textFill="WHITE">
 									<font>
 										<Font size="9.0" />
 									</font>
@@ -286,22 +157,13 @@
 				</AnchorPane>
 			</left>
 			<center>
-				<AnchorPane fx:id="ap_centerIncial" minHeight="200.0"
-					minWidth="200.0" prefHeight="200.0" prefWidth="200.0"
-					style="-fx-background-color: #343a40;"
-					BorderPane.alignment="CENTER">
+				<AnchorPane fx:id="ap_centerIncial" minHeight="200.0" minWidth="200.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #343a40;" BorderPane.alignment="CENTER">
 					<children>
-						<VBox AnchorPane.bottomAnchor="0.0"
-							AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0"
-							AnchorPane.topAnchor="0.0">
+						<VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="0.0">
 							<children>
-								<HBox alignment="CENTER_LEFT" maxHeight="90.0"
-									minHeight="90.0" prefHeight="90.0"
-									style="-fx-border-color: transparent transparent #22262a transparent; -fx-border-width: 5;"
-									VBox.vgrow="ALWAYS">
+								<HBox alignment="CENTER_LEFT" maxHeight="90.0" minHeight="90.0" prefHeight="90.0" style="-fx-border-color: transparent transparent #22262a transparent; -fx-border-width: 5;" VBox.vgrow="ALWAYS">
 									<children>
-										<Label text="Experimente um jeito novo de programar"
-											textFill="WHITE">
+										<Label text="Experimente um jeito novo de programar" textFill="WHITE">
 											<font>
 												<Font name="Candy Beans" size="17.0" />
 											</font>
@@ -309,8 +171,7 @@
 												<Insets left="5.0" />
 											</HBox.margin>
 										</Label>
-										<JFXButton fx:id="btn_info" contentDisplay="CENTER"
-											text=" ">
+										<JFXButton fx:id="btn_info" contentDisplay="CENTER" text=" ">
 											<graphic>
 												<FontAwesomeIcon glyphName="INFO_CIRCLE" />
 											</graphic>
@@ -320,31 +181,19 @@
 										</JFXButton>
 									</children>
 								</HBox>
-								<HBox prefHeight="100.0" prefWidth="200.0"
-									VBox.vgrow="ALWAYS">
+								<HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
 									<children>
-										<VBox
-											style="-fx-border-color: transparent transparent transparent transparent; -fx-border-width: 5;"
-											HBox.hgrow="ALWAYS">
+										<VBox style="-fx-border-color: transparent transparent transparent transparent; -fx-border-width: 5;" HBox.hgrow="ALWAYS">
 											<children>
 												<AnchorPane>
 													<children>
-														<AnchorPane maxHeight="-Infinity"
-															maxWidth="-Infinity" minHeight="-Infinity"
-															minWidth="-Infinity"
-															style="-fx-background-color: #22262a; -fx-background-radius: 10;"
-															AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0"
-															AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+														<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #22262a; -fx-background-radius: 10;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
 															<children>
-																<HBox alignment="CENTER" prefHeight="100.0"
-																	prefWidth="200.0" AnchorPane.bottomAnchor="0.0"
-																	AnchorPane.leftAnchor="0.0"
-																	AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+																<HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 																	<children>
 																		<VBox prefHeight="183.0" prefWidth="270.0">
 																			<children>
-																				<Label text="Vamos codificar juntos?"
-																					textFill="WHITE">
+																				<Label text="Vamos codificar juntos?" textFill="WHITE">
 																					<font>
 																						<Font name="System Bold" size="16.0" />
 																					</font>
@@ -352,20 +201,11 @@
 																						<Insets bottom="15.0" left="40.0" />
 																					</VBox.margin>
 																				</Label>
-																				<Label
-																					text="Sabemos que iniciar no mundo da programacao"
-																					textFill="WHITE" />
-																				<Label
-																					text="pode ser desafiador. Para te ajudar nessa"
-																					textFill="WHITE" />
-																				<Label
-																					text="trajetoria, preparamos um material muito"
-																					textFill="WHITE" />
-																				<Label text="especial para voce."
-																					textFill="WHITE" />
-																				<JFXButton fx:id="btn_saber"
-																					style="-fx-background-color: #35f092; -fx-background-radius: 10; -fx-border-color: white; -fx-border-radius: 14;"
-																					text="Saber mais" textFill="WHITE">
+																				<Label text="Sabemos que iniciar no mundo da programacao" textFill="WHITE" />
+																				<Label text="pode ser desafiador. Para te ajudar nessa" textFill="WHITE" />
+																				<Label text="trajetoria, preparamos um material muito" textFill="WHITE" />
+																				<Label text="especial para voce." textFill="WHITE" />
+																				<JFXButton fx:id="btn_saber" style="-fx-background-color: #35f092; -fx-background-radius: 10; -fx-border-color: white; -fx-border-radius: 14;" text="Saber mais" textFill="WHITE">
 																					<VBox.margin>
 																						<Insets left="157.0" />
 																					</VBox.margin>
@@ -380,11 +220,7 @@
 																		</VBox>
 																		<AnchorPane fx:id="pane_img">
 																			<children>
-																				<ImageView fitHeight="187.5"
-																					fitWidth="250.0" pickOnBounds="true"
-																					preserveRatio="true" AnchorPane.bottomAnchor="0.0"
-																					AnchorPane.rightAnchor="0.0"
-																					AnchorPane.topAnchor="5.0">
+																				<ImageView fitHeight="187.5" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0">
 																					<image>
 																						<Image url="@../images/banner_inicio.png" />
 																					</image>
@@ -401,18 +237,13 @@
 										</VBox>
 									</children>
 								</HBox>
-								<HBox prefHeight="100.0" prefWidth="200.0"
-									VBox.vgrow="ALWAYS">
+								<HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
 									<children>
-										<VBox prefHeight="200.0" prefWidth="100.0"
-											HBox.hgrow="ALWAYS">
+										<VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
 											<children>
-												<HBox alignment="BOTTOM_CENTER" prefHeight="30.0"
-													prefWidth="200.0"
-													style="-fx-spacing: 5; -fx-border-color: transparent transparent #22262a transparent; -fx-border-width: 5;">
+												<HBox alignment="BOTTOM_CENTER" prefHeight="30.0" prefWidth="200.0" style="-fx-spacing: 5; -fx-border-color: transparent transparent #22262a transparent; -fx-border-width: 5;">
 													<children>
-														<Label minWidth="50.0" prefHeight="26.0"
-															prefWidth="90.0" text="Recentes" textFill="WHITE">
+														<Label minWidth="50.0" prefHeight="26.0" prefWidth="90.0" text="Recentes" textFill="WHITE">
 															<font>
 																<Font name="Candy Beans" size="17.0" />
 															</font>
@@ -420,8 +251,7 @@
 																<Insets left="5.0" top="5.0" />
 															</VBox.margin>
 														</Label>
-														<Label minWidth="50.0" prefHeight="17.0"
-															prefWidth="90.0" text="NOME" textFill="WHITE">
+														<Label minWidth="50.0" prefHeight="17.0" prefWidth="90.0" text="NOME" textFill="WHITE">
 															<HBox.margin>
 																<Insets bottom="5.0" left="40.0" />
 															</HBox.margin>
@@ -429,8 +259,7 @@
 																<Font name="Candy Beans" size="12.0" />
 															</font>
 														</Label>
-														<Label minWidth="50.0" prefWidth="90.0"
-															text="TAMANHO" textFill="WHITE">
+														<Label minWidth="50.0" prefWidth="90.0" text="TAMANHO" textFill="WHITE">
 															<HBox.margin>
 																<Insets bottom="5.0" />
 															</HBox.margin>
@@ -438,8 +267,7 @@
 																<Font name="Candy Beans" size="12.0" />
 															</font>
 														</Label>
-														<Label prefWidth="90.0" text="CRIADO EM"
-															textFill="WHITE">
+														<Label prefWidth="90.0" text="CRIADO EM" textFill="WHITE">
 															<HBox.margin>
 																<Insets bottom="5.0" />
 															</HBox.margin>
@@ -451,71 +279,52 @@
 												</HBox>
 												<HBox prefHeight="100.0" prefWidth="200.0">
 													<children>
-														<VBox prefHeight="200.0" prefWidth="100.0"
-															HBox.hgrow="ALWAYS">
+														<VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
 															<children>
-																<HBox alignment="CENTER_LEFT" prefHeight="100.0"
-																	prefWidth="200.0">
+																<HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
 																	<children>
-																		<JFXButton fx:id="btn_file1"
-																			contentDisplay="RIGHT" text=" ">
+																		<JFXButton fx:id="btn_file1" contentDisplay="RIGHT" text=" ">
 																			<graphic>
-																				<FontAwesomeIcon fill="WHITE"
-																					glyphName="SHARE" />
+																				<FontAwesomeIcon fill="WHITE" glyphName="SHARE" />
 																			</graphic>
 																		</JFXButton>
-																		<VBox alignment="CENTER" prefHeight="200.0"
-																			prefWidth="100.0" HBox.hgrow="ALWAYS">
+																		<VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
 																			<children>
-																				<Label text="Label" textFill="WHITE"
-																					visible="false" />
+																				<Label text="Label" textFill="WHITE" visible="false" />
 																			</children>
 																		</VBox>
-																		<VBox alignment="CENTER" prefHeight="200.0"
-																			prefWidth="100.0" HBox.hgrow="ALWAYS">
+																		<VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
 																			<children>
-																				<Label text="Label" textFill="WHITE"
-																					visible="false" />
+																				<Label text="Label" textFill="WHITE" visible="false" />
 																			</children>
 																		</VBox>
-																		<VBox alignment="CENTER" prefHeight="200.0"
-																			prefWidth="100.0" HBox.hgrow="ALWAYS">
+																		<VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
 																			<children>
-																				<Label text="Label" textFill="WHITE"
-																					visible="false" />
+																				<Label text="Label" textFill="WHITE" visible="false" />
 																			</children>
 																		</VBox>
 																	</children>
 																</HBox>
-																<HBox alignment="CENTER" prefHeight="100.0"
-																	prefWidth="200.0">
+																<HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
 																	<children>
-																		<JFXButton fx:id="btn_file2"
-																			contentDisplay="RIGHT" text=" ">
+																		<JFXButton fx:id="btn_file2" contentDisplay="RIGHT" text=" ">
 																			<graphic>
-																				<FontAwesomeIcon fill="WHITE"
-																					glyphName="SHARE" />
+																				<FontAwesomeIcon fill="WHITE" glyphName="SHARE" />
 																			</graphic>
 																		</JFXButton>
-																		<VBox alignment="CENTER" prefHeight="200.0"
-																			prefWidth="100.0" HBox.hgrow="ALWAYS">
+																		<VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
 																			<children>
-																				<Label text="Label" textFill="WHITE"
-																					visible="false" />
+																				<Label text="Label" textFill="WHITE" visible="false" />
 																			</children>
 																		</VBox>
-																		<VBox alignment="CENTER" prefHeight="200.0"
-																			prefWidth="100.0" HBox.hgrow="ALWAYS">
+																		<VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
 																			<children>
-																				<Label text="Label" textFill="WHITE"
-																					visible="false" />
+																				<Label text="Label" textFill="WHITE" visible="false" />
 																			</children>
 																		</VBox>
-																		<VBox alignment="CENTER" prefHeight="200.0"
-																			prefWidth="100.0" HBox.hgrow="ALWAYS">
+																		<VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
 																			<children>
-																				<Label text="Label" textFill="WHITE"
-																					visible="false" />
+																				<Label text="Label" textFill="WHITE" visible="false" />
 																			</children>
 																		</VBox>
 																	</children>
