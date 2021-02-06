@@ -1,6 +1,8 @@
 package mapler.service;
 
+import com.goxr3plus.fxborderlessscene.borderless.BorderlessScene;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Node;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -32,6 +34,7 @@ public final class InicioService {
    */
   public static InicioService iniciarClasse(Stage janela) {
     instancia = new InicioService(janela);
+    janela.setResizable(true);
     return instancia;
   }
 
@@ -70,6 +73,11 @@ public final class InicioService {
       janela.setHeight(bounds.getHeight());
       return 1;
     }
+  }
+  
+  public void setDragbleNode(Node child) {
+    BorderlessScene scene = (BorderlessScene) this.janela.getScene();
+    scene.setMoveControl(child);
   }
   
 

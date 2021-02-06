@@ -13,23 +13,30 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
+	<!-- https://github.com/goxr3plus/FX-BorderlessScene -->
+	<repositories>
+		<repository>
+			<id>jitpack.io</id>
+			<url>https://jitpack.io</url>
+		</repository>
+	</repositories>
 
 	<dependencies>
-	
+
 		<!-- https://mvnrepository.com/artifact/de.jensd/fontawesomefx -->
 		<dependency>
 			<groupId>de.jensd</groupId>
 			<artifactId>fontawesomefx</artifactId>
 			<version>8.2</version>
 		</dependency>
-		
+
 		<!-- https://mvnrepository.com/artifact/com.jfoenix/jfoenix -->
 		<dependency>
 			<groupId>com.jfoenix</groupId>
 			<artifactId>jfoenix</artifactId>
 			<version>8.0.7</version>
 		</dependency>
-		
+
 		<!-- https://mvnrepository.com/artifact/org.fxmisc.richtext/richtextfx -->
 		<dependency>
 			<groupId>org.fxmisc.richtext</groupId>
@@ -42,8 +49,14 @@
 			<artifactId>slf4j-api</artifactId>
 			<version>1.7.25</version>
 		</dependency>
+		<!-- https://github.com/goxr3plus/FX-BorderlessScene -->
+		<dependency>
+			<groupId>com.github.goxr3plus</groupId>
+			<artifactId>FX-BorderlessScene</artifactId>
+			<version>4.4.0</version>
+		</dependency>
 	</dependencies>
-	
+
 	<build>
 		<pluginManagement>
 			<plugins>

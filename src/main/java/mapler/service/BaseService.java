@@ -3,12 +3,14 @@ package mapler.service;
 import java.io.IOException;
 
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import mapler.util.CarregadorRecursos;
 
 /**
- * Service para facilitar a comunicação da tela_base com outros controllers e encapsular a
- * de mudança de tela
+ * Service para facilitar a comunicação da tela_base com outros controllers e encapsular a de
+ * mudança de tela
  */
 public final class BaseService {
 
@@ -43,6 +45,7 @@ public final class BaseService {
 
   /**
    * Troca o fxml sendo exibido no AnchorPane da tela_base
+   * 
    * @param link
    * @return
    */
@@ -63,5 +66,14 @@ public final class BaseService {
     }
   }
 
+  public void teste(InicioService inicial) {
+    Label topLabel = new Label("Arrastar aqui.... fazer do tamanho da tela ate os botoes --->");
+    topLabel.setMinHeight(10);
+    topLabel.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+    topLabel.setStyle("-fx-background-color:#303030; -fx-text-fill:white; -fx-font-weight:bold;");
+    topLabel.setAlignment(Pos.CENTER);
+    janela.getChildren().add(topLabel);
+    inicial.setDragbleNode(topLabel);
+  }
 
 }

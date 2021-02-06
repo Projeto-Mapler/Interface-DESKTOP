@@ -51,6 +51,7 @@ public class InicioController implements Initializable {
 
   public InicioController() throws Exception {
     this.inicioService = InicioService.getInstancia();
+ 
   }
 
   @Override

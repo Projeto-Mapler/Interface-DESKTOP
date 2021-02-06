@@ -4,9 +4,12 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import mapler.model.resource.Templates;
 import mapler.service.BaseService;
+import mapler.service.InicioService;
 
 /**
  * Controller para tela_base.fxml
@@ -19,8 +22,13 @@ public class BaseController implements Initializable {
 
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
-	  BaseService baseService = BaseService.iniciarClasse(area_principal);
-	  baseService.carregaTela(Templates.INICIO.getUrl());
+
+
+    BaseService baseService = BaseService.iniciarClasse(area_principal);
+    baseService.carregaTela(Templates.INICIO.getUrl());
+
+
   }
+
 
 }
