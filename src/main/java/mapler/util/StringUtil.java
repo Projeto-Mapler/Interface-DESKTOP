@@ -21,8 +21,8 @@ public class StringUtil {
    * @param string - string a ser convertida
    * @return - string convertida para utf-8
    */
-  public static String getStringUtf8(String string) {
-    byte[] ptext = string.getBytes(ISO_8859_1);
+  public static String getStringUtf8(Object string) {
+    byte[] ptext = ((String)string).getBytes(ISO_8859_1);
     return new String(ptext, UTF_8);
   }
 }

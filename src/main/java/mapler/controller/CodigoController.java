@@ -23,6 +23,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
+import mapler.model.ConsoleStyleClassedTextArea;
 import mapler.model.resource.Estilos;
 import mapler.model.resource.Templates;
 import mapler.service.BaseService;
@@ -44,12 +45,15 @@ public class CodigoController implements Initializable {
 
   @FXML
   Tab tab_cod, tab_terminal;
-  
+
   @FXML
   SplitPane split_areas;
 
   @FXML
-  StyleClassedTextArea area_cod, area_terminal, area_trad;
+  StyleClassedTextArea area_cod, area_trad;
+
+  @FXML
+  ConsoleStyleClassedTextArea area_terminal;
 
   @FXML
   BorderPane bd_inicial;
@@ -71,7 +75,7 @@ public class CodigoController implements Initializable {
 
   @FXML
   JFXButton btn_left_inicio, btn_left_tutoriais, btn_left_exemplos, btn_left_sobre, btn_left_news, btn_minus, btn_max, btn_close, btn_home, btn_close_cod, btn_close_trad, btn_trad, btn_exec;
-  
+
   @FXML
   FontAwesomeIcon icon_exec;
 
@@ -87,7 +91,7 @@ public class CodigoController implements Initializable {
   private ConsoleTraducaoService consoleTraducaoService;
 
   public CodigoController() throws Exception {
- 
+
     this.estiloLinguagensService = EstiloLinguagensService.getInstancia();
     this.inicialService = InicioService.getInstancia();
     this.baseService = BaseService.getInstancia();
@@ -109,38 +113,38 @@ public class CodigoController implements Initializable {
   }
 
   private void setStyle() {
-	btn_close_trad.setOnAction(e->{
-		setTraducaoVisible(false);
-	});
-	
-	mi_traducao.setOnAction(e->{
-		setTraducaoVisible(true);
-	});
-	
-	btn_trad.setOnAction(e->{
-		setTraducaoVisible(true);
-	});
-	
-	btn_exec.setOnAction(e->{
-		if(tabp_filho.getSelectionModel().getSelectedIndex() == 0) {
-			tabp_filho.getSelectionModel().select(1);
-			icon_exec.setFill(Paint.valueOf("#da1a1a"));
-		}else {
-			tabp_filho.getSelectionModel().select(0);
-			icon_exec.setFill(Paint.valueOf("#06a13c"));
-		}
-		
-	});
-	
-	btn_close_cod.setOnAction(e -> {
-	      try {
-	          this.baseService.carregaTela(Templates.INICIO.getUrl());
-	        } catch (Exception e1) {
-	          // TODO Auto-generated catch block
-	          e1.printStackTrace();
-	        }
-	      });
-	
+    btn_close_trad.setOnAction(e -> {
+      setTraducaoVisible(false);
+    });
+
+    mi_traducao.setOnAction(e -> {
+      setTraducaoVisible(true);
+    });
+
+    btn_trad.setOnAction(e -> {
+      setTraducaoVisible(true);
+    });
+
+    btn_exec.setOnAction(e -> {
+      if (tabp_filho.getSelectionModel().getSelectedIndex() == 0) {
+        tabp_filho.getSelectionModel().select(1);
+        icon_exec.setFill(Paint.valueOf("#da1a1a"));
+      } else {
+        tabp_filho.getSelectionModel().select(0);
+        icon_exec.setFill(Paint.valueOf("#06a13c"));
+      }
+      consoleTraducaoService.executarTexto(this.area_cod.getText().trim());
+    });
+
+    btn_close_cod.setOnAction(e -> {
+      try {
+        this.baseService.carregaTela(Templates.INICIO.getUrl());
+      } catch (Exception e1) {
+        // TODO Auto-generated catch block
+        e1.printStackTrace();
+      }
+    });
+
     btn_home.setOnAction(e -> {
       try {
         this.baseService.carregaTela(Templates.INICIO.getUrl());
@@ -266,7 +270,7 @@ public class CodigoController implements Initializable {
       btn_left_news.setStyle("");
       btn_left_news.setTextFill(Paint.valueOf("white"));
     });
-    
+
     split_areas.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.SPLITPANE.getUrl()));
     m_bar.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.MENUBAR.getUrl()));
     tabp_pai.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.TABPAI.getUrl()));
@@ -281,7 +285,6 @@ public class CodigoController implements Initializable {
     area_terminal.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.TEXTO.getUrl()));
     area_terminal.setWrapText(false);
     area_terminal.setLineHighlighterOn(false);
-    area_terminal.appendText("texte");
 
     area_cod.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.TEXTO.getUrl()));
     area_cod.setParagraphGraphicFactory(LineNumberFactory.get(area_cod));
@@ -321,13 +324,13 @@ public class CodigoController implements Initializable {
       }
     });
   }
-  
+
   private void setTraducaoVisible(boolean a) {
-	  split_areas.getItems().remove(ap_trad);
-	  if(a) {
-		 split_areas.getItems().add(ap_trad);
-	  }
-	  
+    split_areas.getItems().remove(ap_trad);
+    if (a) {
+      split_areas.getItems().add(ap_trad);
+    }
+
   }
   /*
    * 
