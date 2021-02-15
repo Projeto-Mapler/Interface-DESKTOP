@@ -2,9 +2,6 @@ package mapler.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import javax.swing.plaf.basic.BasicBorders.SplitPaneBorder;
-
 import org.fxmisc.richtext.LineNumberFactory;
 import org.fxmisc.richtext.StyleClassedTextArea;
 import com.jfoenix.controls.JFXButton;
@@ -15,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.SplitPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.input.KeyCode;
@@ -31,8 +29,6 @@ import mapler.service.ConsoleTraducaoService;
 import mapler.service.EstiloLinguagensService;
 import mapler.service.InicioService;
 import mapler.util.CarregadorRecursos;
-import javafx.scene.control.SplitPane;
-import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 
 /**
  * Controller para tela_codigo.fxml
@@ -91,7 +87,6 @@ public class CodigoController implements Initializable {
   private ConsoleTraducaoService consoleTraducaoService;
 
   public CodigoController() throws Exception {
-
     this.estiloLinguagensService = EstiloLinguagensService.getInstancia();
     this.inicialService = InicioService.getInstancia();
     this.baseService = BaseService.getInstancia();
@@ -126,14 +121,13 @@ public class CodigoController implements Initializable {
     });
 
     btn_exec.setOnAction(e -> {
-      if (tabp_filho.getSelectionModel().getSelectedIndex() == 0) {
-        tabp_filho.getSelectionModel().select(1);
-        icon_exec.setFill(Paint.valueOf("#da1a1a"));
-      } else {
-        tabp_filho.getSelectionModel().select(0);
-        icon_exec.setFill(Paint.valueOf("#06a13c"));
-      }
-      consoleTraducaoService.executarTexto(this.area_cod.getText().trim());
+
+      tabp_filho.getSelectionModel().select(1);
+      icon_exec.setFill(Paint.valueOf("#da1a1a"));
+
+      String texto = this.area_cod.getText().trim();
+      System.out.println(texto);
+      consoleTraducaoService.executarTexto(texto);
     });
 
     btn_close_cod.setOnAction(e -> {

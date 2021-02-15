@@ -4,18 +4,12 @@ import java.io.IOException;
 import org.fxmisc.richtext.StyleClassedTextArea;
 import conversores.ConversorStrategy;
 import debug.DebugSnapshot;
-import debug.Debugador;
 import debug.EstadoDebug;
-import evento.EventoInterpretador;
-import evento.EventoListener;
-import evento.EventosService;
 import interpretador.LeitorEntradaConsole;
-import javafx.application.Platform;
 import main.AcaoInterpretador;
 import main.InterpretadorService;
 import mapler.model.ConsoleStyleClassedTextArea;
 import mapler.model.EspectadorInputConsole;
-import mapler.util.StringUtil;
 import modelos.excecao.ParserError;
 import modelos.excecao.RuntimeError;
 
@@ -36,12 +30,6 @@ public class ConsoleTraducaoService implements AcaoInterpretador, EspectadorInpu
     this.interpretador = new InterpretadorService(this, false);
   }
 
-  /**
-   * Deve ser chamado quando o console for destruido. 
-   */
-  public void fechar() {
-   this.interpretador.fechar();
-  }
   
   public void executar(String pathFile) {
     // TODO: logica de salvar e talz... tlvz deve ficar no codigoController antes de chamar esse metodo
@@ -53,8 +41,8 @@ public class ConsoleTraducaoService implements AcaoInterpretador, EspectadorInpu
     }
   }
   public void executarTexto(String texto) {
-    this.interpretador.executarViaTexto(texto);
-   
+    this.consoleTextArea.limparConsole();
+    this.interpretador.executarViaTexto(texto);   
   }
 
   public void setTraducao(String pathFile, ConversorStrategy tipoConversao) {
@@ -78,18 +66,18 @@ public class ConsoleTraducaoService implements AcaoInterpretador, EspectadorInpu
   @Override
   public void onInput(LeitorEntradaConsole leitor) {
     this.leitor = leitor;
-    Platform.runLater(() -> {
+    //Platform.runLater(() -> {
       this.consoleTextArea.solicitarInputUsuario();
-    });
+   // });
   }
 
   @Override
   public void onOutput(String output) {
     // Platform usado pois ha chamada da area_console dentro do interpretador que não faz parte do
     // sistema FX
-    Platform.runLater(() -> {
+    //Platform.runLater(() -> {
       consoleTextArea.imprimirMsgComQuebraLinha(output);
-    });
+    //});
   }
 
   @Override
@@ -103,9 +91,9 @@ public class ConsoleTraducaoService implements AcaoInterpretador, EspectadorInpu
   }
   
   private void printConclusao(double payload) {
-    Platform.runLater(() -> {
+   // Platform.runLater(() -> {
       consoleTextArea.imprimirMsgComQuebraLinha("Fim execução. "+ (Double)payload);
-    });
+    //});
   }
 
   @Override
@@ -122,14 +110,14 @@ public class ConsoleTraducaoService implements AcaoInterpretador, EspectadorInpu
   public void onErro(RuntimeException erro) {
     if (erro instanceof ParserError) {
       ParserError pe = (ParserError) erro;
-      Platform.runLater(() -> {
+      //Platform.runLater(() -> {
         consoleTextArea.imprimirErro(pe.linha, pe.getLexeme(), pe.mensagem);
-      });
+     // });
     } else if (erro instanceof RuntimeError) {
       RuntimeError re = (RuntimeError ) erro;
-      Platform.runLater(() -> {
+      //Platform.runLater(() -> {
         consoleTextArea.imprimirErro(re.getLinha(), re.getLexeme(), re.getMessage());
-      });
+     // });
     }
   }
 }

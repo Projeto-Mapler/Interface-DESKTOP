@@ -16,8 +16,6 @@ public class ConsoleStyleClassedTextArea extends StyleClassedTextArea {
   private Boolean esperandoInputUsuario = false; // informa se o console esta esperando input do usuário
   private EspectadorInputConsole espectador; // quem vai ser notificado quando o usuario realizar input
 
-  
-  
   public ConsoleStyleClassedTextArea() {
     setEditable(false);
     // Evento de input:
@@ -75,7 +73,9 @@ public class ConsoleStyleClassedTextArea extends StyleClassedTextArea {
   }
 
   public void limparConsole() {
-    clear();
+    //this.setEditable(true);
+    ((StyleClassedTextArea)this).replaceText("");
+    //this.setEditable(false);
   }
 
   public Boolean isEsperandoInputUsuario() {
@@ -89,9 +89,9 @@ public class ConsoleStyleClassedTextArea extends StyleClassedTextArea {
       imprimirMsg(">");
     }
   }
-  
+
   public void setEspectador(EspectadorInputConsole espectador) {
-    
+
     this.espectador = espectador;
   }
 
