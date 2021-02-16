@@ -126,7 +126,6 @@ public class CodigoController implements Initializable {
       icon_exec.setFill(Paint.valueOf("#da1a1a"));
 
       String texto = this.area_cod.getText().trim();
-      System.out.println(texto);
       consoleTraducaoService.executarTexto(texto);
     });
 

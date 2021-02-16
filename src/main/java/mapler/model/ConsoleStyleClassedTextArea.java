@@ -52,9 +52,9 @@ public class ConsoleStyleClassedTextArea extends StyleClassedTextArea {
    * @param text
    */
   public void imprimirMsg(String text) {
-    setStyleClass(getText().length(), getText().length(), "texto");
+    //setStyleClass(getText().length(), getText().length(), "texto");
     appendText(text);
-    setStyleClass(getText().length(), getText().length(), "variaveis");
+   // setStyleClass(getText().length(), getText().length(), "variaveis");
   }
 
   /**
@@ -74,8 +74,11 @@ public class ConsoleStyleClassedTextArea extends StyleClassedTextArea {
 
   public void limparConsole() {
     //this.setEditable(true);
-    ((StyleClassedTextArea)this).replaceText("");
+    //((StyleClassedTextArea)this).replaceText("");
     //this.setEditable(false);
+    if(getLength() > 0)
+    super.replaceText(0, getLength(), "");
+    
   }
 
   public Boolean isEsperandoInputUsuario() {

@@ -6,6 +6,7 @@ import conversores.ConversorStrategy;
 import debug.DebugSnapshot;
 import debug.EstadoDebug;
 import interpretador.LeitorEntradaConsole;
+import javafx.application.Platform;
 import main.AcaoInterpretador;
 import main.InterpretadorService;
 import mapler.model.ConsoleStyleClassedTextArea;
@@ -66,18 +67,18 @@ public class ConsoleTraducaoService implements AcaoInterpretador, EspectadorInpu
   @Override
   public void onInput(LeitorEntradaConsole leitor) {
     this.leitor = leitor;
-    //Platform.runLater(() -> {
+    Platform.runLater(() -> {
       this.consoleTextArea.solicitarInputUsuario();
-   // });
+    });
   }
 
   @Override
   public void onOutput(String output) {
     // Platform usado pois ha chamada da area_console dentro do interpretador que não faz parte do
     // sistema FX
-    //Platform.runLater(() -> {
+    Platform.runLater(() -> {
       consoleTextArea.imprimirMsgComQuebraLinha(output);
-    //});
+    });
   }
 
   @Override
@@ -91,9 +92,9 @@ public class ConsoleTraducaoService implements AcaoInterpretador, EspectadorInpu
   }
   
   private void printConclusao(double payload) {
-   // Platform.runLater(() -> {
+    Platform.runLater(() -> {
       consoleTextArea.imprimirMsgComQuebraLinha("Fim execução. "+ (Double)payload);
-    //});
+    });
   }
 
   @Override
@@ -110,14 +111,14 @@ public class ConsoleTraducaoService implements AcaoInterpretador, EspectadorInpu
   public void onErro(RuntimeException erro) {
     if (erro instanceof ParserError) {
       ParserError pe = (ParserError) erro;
-      //Platform.runLater(() -> {
+      Platform.runLater(() -> {
         consoleTextArea.imprimirErro(pe.linha, pe.getLexeme(), pe.mensagem);
-     // });
+      });
     } else if (erro instanceof RuntimeError) {
       RuntimeError re = (RuntimeError ) erro;
-      //Platform.runLater(() -> {
+      Platform.runLater(() -> {
         consoleTextArea.imprimirErro(re.getLinha(), re.getLexeme(), re.getMessage());
-     // });
+      });
     }
   }
 }
