@@ -5,10 +5,10 @@ import org.fxmisc.richtext.StyleClassedTextArea;
 import conversores.ConversorStrategy;
 import debug.DebugSnapshot;
 import debug.EstadoDebug;
+import interpretador.AcaoInterpretador;
+import interpretador.InterpretadorService;
 import interpretador.LeitorEntradaConsole;
 import javafx.application.Platform;
-import main.AcaoInterpretador;
-import main.InterpretadorService;
 import mapler.model.ConsoleStyleClassedTextArea;
 import mapler.model.EspectadorInputConsole;
 import modelos.excecao.ParserError;
@@ -28,7 +28,7 @@ public class ConsoleTraducaoService implements AcaoInterpretador, EspectadorInpu
     this.consoleTextArea = areaConsole;
     this.consoleTextArea.setEspectador(this);
     this.areaTraducao = areaTraducao;  
-    this.interpretador = new InterpretadorService(this, false);
+    this.interpretador = new InterpretadorService(this);
   }
 
   
@@ -120,5 +120,11 @@ public class ConsoleTraducaoService implements AcaoInterpretador, EspectadorInpu
         consoleTextArea.imprimirErro(re.getLinha(), re.getLexeme(), re.getMessage());
       });
     }
+  }
+
+
+  @Override
+  public void onLog(String msgLog) {
+    // nada    
   }
 }
