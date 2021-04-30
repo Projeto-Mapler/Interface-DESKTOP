@@ -26,9 +26,10 @@ import javafx.scene.paint.Paint;
 import mapler.model.resource.Estilos;
 import mapler.model.resource.Templates;
 import mapler.service.BaseService;
-import mapler.service.ConsoleTraducaoService;
+//import mapler.service.ConsoleTraducaoService;
 import mapler.service.EstiloLinguagensService;
 import mapler.service.InicioService;
+import mapler.service.TabService;
 import mapler.util.CarregadorRecursos;
 import javafx.scene.control.SplitPane;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
@@ -84,7 +85,8 @@ public class CodigoController implements Initializable {
   private EstiloLinguagensService estiloLinguagensService;
   private InicioService inicialService;
   private BaseService baseService;
-  private ConsoleTraducaoService consoleTraducaoService;
+  private int idx = 2;
+  //private ConsoleTraducaoService consoleTraducaoService;
 
   public CodigoController() throws Exception {
  
@@ -105,9 +107,19 @@ public class CodigoController implements Initializable {
      */
     setStyle();
     setTraducaoVisible(false);
-    this.consoleTraducaoService = new ConsoleTraducaoService(area_terminal, area_trad); // uma instancia por 'aba'
+    //this.consoleTraducaoService = new ConsoleTraducaoService(area_terminal, area_trad); // uma instancia por 'aba'
   }
-
+  
+  private TabService createTab(String titulo, String texto) {
+	  TabService nova = new TabService(titulo, texto);
+	  nova.setText(titulo);
+	  return nova;
+  }
+   
+  private boolean salvar() {
+	  return true;
+  }
+  
   private void setStyle() {
 	btn_close_trad.setOnAction(e->{
 		setTraducaoVisible(false);
@@ -120,6 +132,33 @@ public class CodigoController implements Initializable {
 	btn_trad.setOnAction(e->{
 		setTraducaoVisible(true);
 	});
+	
+	mi_novo.setOnAction(e -> {
+    	TabService ts = createTab(tabp_pai.getTabs().get(0).getText(), area_cod.getText());
+    	ts.setOnSelectionChanged(er->{
+    		if(ts.isSelected()) {
+    			TabService tab = createTab(ts.getTitulo(), ts.getConteudo());
+    			ts.setTitulo(tabp_pai.getTabs().get(0).getText());
+    			ts.setConteudo(area_cod.getText());
+    			ts.setText(ts.getTitulo());
+    			tabp_pai.getTabs().get(0).setText(tab.getTitulo());
+    			area_cod.clear();
+    			area_cod.appendText(tab.getConteudo());
+    			tabp_pai.getSelectionModel().select(0);
+    		}
+    	});
+    	tabp_pai.getTabs().add(ts);
+    	tabp_pai.getTabs().get(0).setText("arquivo-"+idx++);
+    	area_cod.clear();
+    });
+    
+    mi_salvar.setOnAction(e -> {
+      // Arquivo.salvarArquivo(Arquivo.arquivo, true, ControllerCodigo.getPortugol());
+    });
+
+    mi_salvarc.setOnAction(e -> {
+      // Arquivo.SalvarComo(Arquivo.arquivo, ControllerCodigo.getPortugol());
+    });
 	
 	btn_exec.setOnAction(e->{
 		if(tabp_filho.getSelectionModel().getSelectedIndex() == 0) {
@@ -134,7 +173,18 @@ public class CodigoController implements Initializable {
 	
 	btn_close_cod.setOnAction(e -> {
 	      try {
-	          this.baseService.carregaTela(Templates.INICIO.getUrl());
+	    	  if(tabp_pai.getTabs().size() == 1) {
+	    		  if(salvar())
+	    			  this.baseService.carregaTela(Templates.INICIO.getUrl());
+	    	  }else {
+	    		  if(salvar()) {
+	    			  TabService ts = (TabService) tabp_pai.getTabs().get(1);
+	    			  tabp_pai.getTabs().remove(1);
+	    			  tabp_pai.getTabs().get(0).setText(ts.getTitulo());
+	    			  area_cod.clear();
+	      			  area_cod.appendText(ts.getConteudo());
+	    		  }
+	    	  }
 	        } catch (Exception e1) {
 	          // TODO Auto-generated catch block
 	          e1.printStackTrace();
@@ -158,14 +208,6 @@ public class CodigoController implements Initializable {
 
     btn_close.setOnMouseExited(e -> {
       btn_close.setStyle("");
-    });
-
-    mi_salvar.setOnAction(e -> {
-      // Arquivo.salvarArquivo(Arquivo.arquivo, true, ControllerCodigo.getPortugol());
-    });
-
-    mi_salvarc.setOnAction(e -> {
-      // Arquivo.SalvarComo(Arquivo.arquivo, ControllerCodigo.getPortugol());
     });
 
     btn_close.setOnAction(e -> { // fechar aplicacao
