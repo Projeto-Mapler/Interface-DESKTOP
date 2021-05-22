@@ -11,16 +11,13 @@ import javafx.scene.input.KeyEvent;
  * @author Kerlyson
  *
  */
-public class ConsoleStyleClassedTextArea extends StyleClassedTextAreaWrapper {
+public class ConsoleStyleClassedTextArea extends StyleClassedTextArea {
 
   private Boolean esperandoInputUsuario = false; // informa se o console esta esperando input do usuário
   private EspectadorInputConsole espectador; // quem vai ser notificado quando o usuario realizar input
 
-  public ConsoleStyleClassedTextArea(StyleClassedTextArea areaConsoleOriginal, EspectadorInputConsole espectador) {
-    super(areaConsoleOriginal); // salva a referencia do original para funcionar normalmente
-    this.espectador = espectador;
+  public ConsoleStyleClassedTextArea() {
     setEditable(false);
-
     // Evento de input:
     setOnKeyPressed(new EventHandler<KeyEvent>() {
       @Override
@@ -34,9 +31,9 @@ public class ConsoleStyleClassedTextArea extends StyleClassedTextAreaWrapper {
   }
 
   private void lerInputUsuario() {
-    String texto = getText();
+    String texto = getText().trim();
     String[] linhas = texto.split("\n");
-    String ultimaLinha = linhas[linhas.length - 1];
+    String ultimaLinha = linhas[linhas.length - 1].trim();
     String valor = ultimaLinha.substring(1); // remove o '>'
 
     this.espectador.notificarInput(valor);// notifica o espectador do input
@@ -45,7 +42,7 @@ public class ConsoleStyleClassedTextArea extends StyleClassedTextAreaWrapper {
     this.setEditable(false);
   }
 
-  private void imprimirMsgComQuebraLinha(String text) {
+  public void imprimirMsgComQuebraLinha(String text) {
     imprimirMsg(text + "\n");
   }
 
@@ -55,9 +52,9 @@ public class ConsoleStyleClassedTextArea extends StyleClassedTextAreaWrapper {
    * @param text
    */
   public void imprimirMsg(String text) {
-    setStyleClass(getText().length(), getText().length(), "texto");
+    //setStyleClass(getText().length(), getText().length(), "texto");
     appendText(text);
-    setStyleClass(getText().length(), getText().length(), "variaveis");
+   // setStyleClass(getText().length(), getText().length(), "variaveis");
   }
 
   /**
@@ -76,7 +73,12 @@ public class ConsoleStyleClassedTextArea extends StyleClassedTextAreaWrapper {
   }
 
   public void limparConsole() {
-    clear();
+    //this.setEditable(true);
+    //((StyleClassedTextArea)this).replaceText("");
+    //this.setEditable(false);
+    if(getLength() > 0)
+    super.replaceText(0, getLength(), "");
+    
   }
 
   public Boolean isEsperandoInputUsuario() {
@@ -89,6 +91,11 @@ public class ConsoleStyleClassedTextArea extends StyleClassedTextAreaWrapper {
       setEditable(true);
       imprimirMsg(">");
     }
+  }
+
+  public void setEspectador(EspectadorInputConsole espectador) {
+
+    this.espectador = espectador;
   }
 
   /* SOBRECARGAS PARA O USUÁRIO EDITAR APENAS A LINHA ATUAL DO CONSOLE */
