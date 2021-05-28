@@ -3,7 +3,7 @@ package mapler.model.resource;
 public enum Templates {
   
   BASE("view/tela_base.fxml"),
-  CODIGO("view/tela_codigo.fxml"),
+  CODIGO("view/tela_codigo_new.fxml"),
   INICIO("view/tela_inicio.fxml");  
   
   private String url;

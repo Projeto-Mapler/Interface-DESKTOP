@@ -7,7 +7,8 @@ public enum Estilos {
   TABFILHO("css/tabFilho.css"),
   TABPAI("css/tabPai.css"),
   TEXTO("css/texto.css"),
-  BOTOES("css/botoes.css");
+  BOTOES("css/botoes.css"),
+  TABAREACOD("css/tabAreacod.css");
   
   
   private String url;

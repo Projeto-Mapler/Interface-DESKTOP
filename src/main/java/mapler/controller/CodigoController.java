@@ -42,19 +42,19 @@ import mapler.util.CarregadorRecursos;
 public class CodigoController implements Initializable {
 
 	@FXML
-	TabPane tabp_pai, tabp_filho;
+	TabPane tab_areacod;
 
 	@FXML
 	Tab tab_cod, tab_terminal;
 
 	@FXML
-	SplitPane split_areas;
+	SplitPane split_vertical,split_horizontal;
 
 	@FXML
 	StyleClassedTextArea area_cod, area_trad;
 
 	@FXML
-	ConsoleStyleClassedTextArea area_terminal;
+	ConsoleStyleClassedTextArea area_console;
 
 	@FXML
 	BorderPane bd_inicial;
@@ -63,7 +63,7 @@ public class CodigoController implements Initializable {
 	VBox vb_topo;
 
 	@FXML
-	AnchorPane ap_barraPrimaria, ap_barraSecundaria, ap_centerIncial, ap_cod, ap_trad;
+	AnchorPane ap_barraPrimaria, ap_barraSecundaria, ap_centerIncial, ap_cod, ap_trad, ap_console;
 
 	@FXML
 	MenuBar m_bar;
@@ -75,8 +75,11 @@ public class CodigoController implements Initializable {
 	MenuItem mi_novo, mi_abrir, mi_salvar, mi_salvarc, mi_traducao, mi_console;
 
 	@FXML
-	JFXButton btn_left_inicio, btn_left_tutoriais, btn_left_exemplos, btn_left_sobre, btn_left_news, btn_minus, btn_max,
-			btn_close, btn_home, btn_close_cod, btn_close_trad, btn_trad, btn_exec;
+	JFXButton btn_left_tutoriais, btn_left_sobre, btn_left_news, btn_minus, btn_max,
+			btn_close, btn_home;
+	
+	@FXML 
+	JFXButton btn_executar, btn_debug, btn_traduzir;
 
 	@FXML
 	FontAwesomeIcon icon_exec;
@@ -114,7 +117,8 @@ public class CodigoController implements Initializable {
 		 */
 		setStyle();
 		setTraducaoVisible(false);
-		 this.consoleTraducaoService = new ConsoleTraducaoService(area_terminal, area_trad); // uma instancia por 'aba'
+		setConsoleVisible(false);
+		this.consoleTraducaoService = new ConsoleTraducaoService(area_console, area_trad); // uma instancia por 'aba'
 	}
 
 	private TabService createTab(String titulo, String texto) {
@@ -128,35 +132,25 @@ public class CodigoController implements Initializable {
 	}
 
 	private void setStyle() {
-		btn_close_trad.setOnAction(e -> {
-			setTraducaoVisible(false);
-		});
-
+		
 		mi_traducao.setOnAction(e -> {
 			setTraducaoVisible(true);
 		});
 
-		btn_trad.setOnAction(e -> {
-			setTraducaoVisible(true);
+		btn_traduzir.setOnAction(e -> {
+			if(btn_traduzir.getText().equals("Esconder")) {
+				setTraducaoVisible(false);
+				btn_traduzir.setText("Traduzir");
+			}else {
+				setTraducaoVisible(true);
+			}
+			
+			
 		});
 
+
 		mi_novo.setOnAction(e -> {
-			TabService ts = createTab(tabp_pai.getTabs().get(0).getText(), area_cod.getText());
-			ts.setOnSelectionChanged(er -> {
-				if (ts.isSelected()) {
-					TabService tab = createTab(ts.getTitulo(), ts.getConteudo());
-					ts.setTitulo(tabp_pai.getTabs().get(0).getText());
-					ts.setConteudo(area_cod.getText());
-					ts.setText(ts.getTitulo());
-					tabp_pai.getTabs().get(0).setText(tab.getTitulo());
-					area_cod.clear();
-					area_cod.appendText(tab.getConteudo());
-					tabp_pai.getSelectionModel().select(0);
-				}
-			});
-			tabp_pai.getTabs().add(ts);
-			tabp_pai.getTabs().get(0).setText("arquivo-" + idx++);
-			area_cod.clear();
+			
 		});
 
 		mi_salvar.setOnAction(e -> {
@@ -167,34 +161,15 @@ public class CodigoController implements Initializable {
 			// Arquivo.SalvarComo(Arquivo.arquivo, ControllerCodigo.getPortugol());
 		});
 
-		btn_exec.setOnAction(e -> {
-			if (tabp_filho.getSelectionModel().getSelectedIndex() == 0) {
-				tabp_filho.getSelectionModel().select(1);
-				icon_exec.setFill(Paint.valueOf("#da1a1a"));
-			} else {
-				tabp_filho.getSelectionModel().select(0);
-				icon_exec.setFill(Paint.valueOf("#06a13c"));
+		btn_executar.setOnAction(e -> {
+			if(btn_executar.getText().equals("Parar")) {
+				setConsoleVisible(false);
+				btn_executar.setText("Executar");
+			}else {
+				setConsoleVisible(true);
 			}
-			consoleTraducaoService.executarTexto(this.area_cod.getText().trim());
-		});
-		btn_close_cod.setOnAction(e -> {
-			try {
-				if (tabp_pai.getTabs().size() == 1) {
-					if (salvar())
-						this.baseService.carregaTela(Templates.INICIO.getUrl());
-				} else {
-					if (salvar()) {
-						TabService ts = (TabService) tabp_pai.getTabs().get(1);
-						tabp_pai.getTabs().remove(1);
-						tabp_pai.getTabs().get(0).setText(ts.getTitulo());
-						area_cod.clear();
-						area_cod.appendText(ts.getConteudo());
-					}
-				}
-			} catch (Exception e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+			//consoleTraducaoService.executarTexto(this.area_cod.getText().trim());
+			
 		});
 
 		btn_home.setOnAction(e -> {
@@ -265,15 +240,35 @@ public class CodigoController implements Initializable {
 		btn_minus.setOnMouseExited(e -> {
 			btn_minus.setStyle("");
 		});
-
-		btn_left_inicio.setOnMouseEntered(e -> {
-			btn_left_inicio.setStyle("-fx-background-color: #ddd;");
-			btn_left_inicio.setTextFill(Paint.valueOf("#272727"));
+		
+		btn_executar.setOnMouseEntered(e -> {
+			btn_executar.setStyle("-fx-background-color: white;");
+			btn_executar.setTextFill(Paint.valueOf("#272727"));
 		});
 
-		btn_left_inicio.setOnMouseExited(e -> {
-			btn_left_inicio.setStyle("");
-			btn_left_inicio.setTextFill(Paint.valueOf("white"));
+		btn_executar.setOnMouseExited(e -> {
+			btn_executar.setStyle("");
+			btn_executar.setTextFill(Paint.valueOf("white"));
+		});
+		
+		btn_debug.setOnMouseEntered(e -> {
+			btn_debug.setStyle("-fx-background-color: white;");
+			btn_debug.setTextFill(Paint.valueOf("#272727"));
+		});
+
+		btn_debug.setOnMouseExited(e -> {
+			btn_debug.setStyle("");
+			btn_debug.setTextFill(Paint.valueOf("white"));
+		});
+		
+		btn_traduzir.setOnMouseEntered(e -> {
+			btn_traduzir.setStyle("-fx-background-color: white;");
+			btn_traduzir.setTextFill(Paint.valueOf("#272727"));
+		});
+
+		btn_traduzir.setOnMouseExited(e -> {
+			btn_traduzir.setStyle("");
+			btn_traduzir.setTextFill(Paint.valueOf("white"));
 		});
 
 		btn_left_tutoriais.setOnMouseEntered(e -> {
@@ -284,16 +279,6 @@ public class CodigoController implements Initializable {
 		btn_left_tutoriais.setOnMouseExited(e -> {
 			btn_left_tutoriais.setStyle("");
 			btn_left_tutoriais.setTextFill(Paint.valueOf("white"));
-		});
-
-		btn_left_exemplos.setOnMouseEntered(e -> {
-			btn_left_exemplos.setStyle("-fx-background-color: white;");
-			btn_left_exemplos.setTextFill(Paint.valueOf("#272727"));
-		});
-
-		btn_left_exemplos.setOnMouseExited(e -> {
-			btn_left_exemplos.setStyle("");
-			btn_left_exemplos.setTextFill(Paint.valueOf("white"));
 		});
 
 		btn_left_sobre.setOnMouseEntered(e -> {
@@ -315,11 +300,12 @@ public class CodigoController implements Initializable {
 			btn_left_news.setStyle("");
 			btn_left_news.setTextFill(Paint.valueOf("white"));
 		});
-
-		split_areas.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.SPLITPANE.getUrl()));
+		
+		//css
+		split_vertical.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.SPLITPANE.getUrl()));
+		split_horizontal.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.SPLITPANE.getUrl()));
 		m_bar.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.MENUBAR.getUrl()));
-		tabp_pai.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.TABPAI.getUrl()));
-		tabp_filho.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.TABFILHO.getUrl()));
+		tab_areacod.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.TABAREACOD.getUrl()));
 
 		area_trad.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.TEXTO.getUrl()));
 		area_trad.setParagraphGraphicFactory(LineNumberFactory.get(area_trad));
@@ -327,10 +313,10 @@ public class CodigoController implements Initializable {
 		area_trad.setLineHighlighterOn(false);
 		area_trad.setEditable(false);
 
-		area_terminal.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.TEXTO.getUrl()));
-		area_terminal.setWrapText(false);
-		area_terminal.setLineHighlighterOn(false);
-		area_terminal.appendText("texte");
+		area_console.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.TEXTO.getUrl()));
+		area_console.setWrapText(false);
+		area_console.setLineHighlighterOn(false);
+		area_console.appendText("texte");
 
 		area_cod.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.TEXTO.getUrl()));
 		area_cod.setParagraphGraphicFactory(LineNumberFactory.get(area_cod));
@@ -375,12 +361,22 @@ public class CodigoController implements Initializable {
 	}
 
 	private void setTraducaoVisible(boolean a) {
-		split_areas.getItems().remove(ap_trad);
+		split_horizontal.getItems().remove(ap_trad);
 		if (a) {
-			split_areas.getItems().add(ap_trad);
+			split_horizontal.getItems().add(ap_trad);
+			btn_traduzir.setText("Esconder");
 		}
-
 	}
+	
+	private void setConsoleVisible(boolean a) {
+		split_vertical.getItems().remove(ap_console);
+		if(a) {
+			split_vertical.getItems().add(ap_console);
+			btn_executar.setText("Parar");
+		}
+	}
+	
+	
 	/*
 	 * 
 	 * public boolean salvarArquivo(boolean isSalvarComo) { String txt =
