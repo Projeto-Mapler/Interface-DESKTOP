@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.Pane?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane 
+style="-fx-background-color: #5c6770;" 
+fitToHeight="true" fitToWidth="true"
+ AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"
+hbarPolicy="AS_NEEDED" prefHeight="403.0" prefWidth="534.0" vbarPolicy="ALWAYS" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <content>
+      <AnchorPane style="-fx-background-color: #5c6770;">
+         <children>
+            <VBox style="-fx-background-color: #5c6770;"  alignment="CENTER" prefHeight="268.0" prefWidth="372.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <HBox style="-fx-background-color: #5c6770;"  alignment="CENTER" prefHeight="32.0" prefWidth="364.0" spacing="50.0" VBox.vgrow="NEVER">
+                     <children>
+                        <JFXButton fx:id="btn_executar" mnemonicParsing="false" text="Executar" styleClass="btn-debug"/>
+                        <JFXButton fx:id="btn_passo" mnemonicParsing="false" text="Proximo Passo" styleClass="btn-debug"/>
+                        <JFXButton fx:id="btn_parar" mnemonicParsing="false" text="Parar" styleClass="btn-debug"/>
+                     </children>
+                  </HBox>
+                  <TableView fx:id="tbv_table" style="-fx-background-color: #5c6770;"  prefHeight="242.0" prefWidth="371.0" VBox.vgrow="ALWAYS">
+                 
+                  </TableView>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </content>
+</ScrollPane>

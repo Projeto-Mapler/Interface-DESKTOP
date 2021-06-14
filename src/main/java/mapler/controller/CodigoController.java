@@ -1,5 +1,6 @@
 package mapler.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -11,6 +12,7 @@ import com.jfoenix.controls.JFXButton;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
@@ -24,16 +26,18 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
+//import mapler.service.ConsoleTraducaoService;
 import mapler.model.ConsoleStyleClassedTextArea;
+import mapler.model.MenuItemTraducao;
 import mapler.model.resource.Estilos;
 import mapler.model.resource.Templates;
 import mapler.service.BaseService;
 import mapler.service.ConsoleTraducaoService;
-//import mapler.service.ConsoleTraducaoService;
 import mapler.service.EstiloLinguagensService;
 import mapler.service.InicioService;
 import mapler.service.TabService;
 import mapler.util.CarregadorRecursos;
+import sun.util.resources.cldr.en.CalendarData_en_GU;
 
 /**
  * Controller para tela_codigo.fxml
@@ -63,20 +67,20 @@ public class CodigoController implements Initializable {
 	VBox vb_topo;
 
 	@FXML
-	AnchorPane ap_barraPrimaria, ap_barraSecundaria, ap_centerIncial, ap_cod, ap_trad;
+	AnchorPane ap_barraPrimaria, ap_barraSecundaria, ap_centerIncial, ap_cod, ap_trad, ap_debug;
 
 	@FXML
 	MenuBar m_bar;
 
 	@FXML
-	Menu mn_exibir;
+	Menu mn_exibir, m_ling;
 
 	@FXML // arquivo
 	MenuItem mi_novo, mi_abrir, mi_salvar, mi_salvarc, mi_traducao, mi_console;
 
 	@FXML
 	JFXButton btn_left_inicio, btn_left_tutoriais, btn_left_exemplos, btn_left_sobre, btn_left_news, btn_minus, btn_max,
-			btn_close, btn_home, btn_close_cod, btn_close_trad, btn_trad, btn_exec;
+			btn_close, btn_home, btn_close_cod, btn_close_trad, btn_trad, btn_exec, btn_debug;
 
 	@FXML
 	FontAwesomeIcon icon_exec;
@@ -93,9 +97,11 @@ public class CodigoController implements Initializable {
 	private BaseService baseService;
 	private int idx = 2;
 	private ConsoleTraducaoService consoleTraducaoService;
+	private DebugController debugController;
 
 	public CodigoController() throws Exception {
 
+		this.debugController = new DebugController();
 		this.estiloLinguagensService = EstiloLinguagensService.getInstancia();
 		this.inicialService = InicioService.getInstancia();
 		this.baseService = BaseService.getInstancia();
@@ -114,7 +120,17 @@ public class CodigoController implements Initializable {
 		 */
 		setStyle();
 		setTraducaoVisible(false);
-		 this.consoleTraducaoService = new ConsoleTraducaoService(area_terminal, area_trad); // uma instancia por 'aba'
+		try {
+			FXMLLoader loader = new FXMLLoader(CarregadorRecursos.getResource(Templates.DEBUG.getUrl()));
+			loader.setController(debugController);
+			ap_debug.getChildren().add(loader.load());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	
+		
+		setDebugVisible(false);
+		 this.consoleTraducaoService = new ConsoleTraducaoService(debugController, area_terminal, area_trad); // uma instancia por 'aba'
 	}
 
 	private TabService createTab(String titulo, String texto) {
@@ -126,8 +142,22 @@ public class CodigoController implements Initializable {
 	private boolean salvar() {
 		return true;
 	}
+	
+	private void initTraducao() {
+		
+	}
 
 	private void setStyle() {
+		
+		m_ling.getItems().forEach(mi ->{
+			mi.setOnAction(e ->{
+				setTraducaoVisible(true);
+				
+			this.consoleTraducaoService.setTraducaoTexto(area_cod.getText(), ((MenuItemTraducao)mi).getConversorStrategy());
+			this.estiloLinguagensService.setEstiloTraducao(((MenuItemTraducao)mi).getLinguagem(), area_trad);
+			});
+		});
+		
 		btn_close_trad.setOnAction(e -> {
 			setTraducaoVisible(false);
 		});
@@ -138,6 +168,16 @@ public class CodigoController implements Initializable {
 
 		btn_trad.setOnAction(e -> {
 			setTraducaoVisible(true);
+		});
+		
+		btn_debug.setOnAction(e -> {
+			boolean visivel = split_areas.getItems().contains(ap_debug);
+			if(visivel) {
+				consoleTraducaoService.pararDebug();
+			} else {
+				consoleTraducaoService.executarTexto(this.area_cod.getText().trim(), true);				
+			}
+			setDebugVisible(!visivel);
 		});
 
 		mi_novo.setOnAction(e -> {
@@ -175,7 +215,7 @@ public class CodigoController implements Initializable {
 				tabp_filho.getSelectionModel().select(0);
 				icon_exec.setFill(Paint.valueOf("#06a13c"));
 			}
-			consoleTraducaoService.executarTexto(this.area_cod.getText().trim());
+			consoleTraducaoService.executarTexto(this.area_cod.getText().trim(), false);
 		});
 		btn_close_cod.setOnAction(e -> {
 			try {
@@ -330,7 +370,7 @@ public class CodigoController implements Initializable {
 		area_terminal.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.TEXTO.getUrl()));
 		area_terminal.setWrapText(false);
 		area_terminal.setLineHighlighterOn(false);
-		area_terminal.appendText("texte");
+		//area_terminal.appendText("texte");
 
 		area_cod.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.TEXTO.getUrl()));
 		area_cod.setParagraphGraphicFactory(LineNumberFactory.get(area_cod));
@@ -378,6 +418,18 @@ public class CodigoController implements Initializable {
 		split_areas.getItems().remove(ap_trad);
 		if (a) {
 			split_areas.getItems().add(ap_trad);
+		}
+
+	}
+	
+	private void setDebugVisible(boolean a) {
+		btn_exec.setDisable(a);
+		
+	
+		split_areas.getItems().remove(ap_debug);
+		if (a) {
+			
+			split_areas.getItems().add(ap_debug);
 		}
 
 	}

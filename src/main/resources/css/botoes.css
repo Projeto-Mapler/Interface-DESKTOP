@@ -11,3 +11,11 @@
 #btn_home:hover > #btn_home_icon{	
   -fx-fill:#1b1b1b;
 }
+.btn-debug{
+	-fx-border-color: white; 
+	-fx-border-radius: 5 5 5 5;
+	-fx-text-fill:white;
+}
+.btn-debug:hover {
+	 -fx-background-color:#8a8484
+}

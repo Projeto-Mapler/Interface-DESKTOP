@@ -1,14 +1,18 @@
 package mapler.service;
 
 import java.io.IOException;
+
 import org.fxmisc.richtext.StyleClassedTextArea;
+
 import conversores.ConversorStrategy;
 import debug.DebugSnapshot;
 import debug.EstadoDebug;
+import debug.PassoAPassoDebugStrategy;
 import interpretador.AcaoInterpretador;
 import interpretador.InterpretadorService;
 import interpretador.LeitorEntradaConsole;
 import javafx.application.Platform;
+import mapler.controller.DebugController;
 import mapler.model.ConsoleStyleClassedTextArea;
 import mapler.model.EspectadorInputConsole;
 import modelos.excecao.ParserError;
@@ -19,112 +23,179 @@ import modelos.excecao.RuntimeError;
  */
 public class ConsoleTraducaoService implements AcaoInterpretador, EspectadorInputConsole {
 
-  private InterpretadorService interpretador;
-  LeitorEntradaConsole leitor;
-  private ConsoleStyleClassedTextArea consoleTextArea;
-  private StyleClassedTextArea areaTraducao;
+	private InterpretadorService interpretador;
+	LeitorEntradaConsole leitor;
+	private ConsoleStyleClassedTextArea consoleTextArea;
+	private StyleClassedTextArea areaTraducao;
+	private DebugController debugController;
 
-  public ConsoleTraducaoService(ConsoleStyleClassedTextArea areaConsole, StyleClassedTextArea areaTraducao) {
-    this.consoleTextArea = areaConsole;
-    this.consoleTextArea.setEspectador(this);
-    this.areaTraducao = areaTraducao;  
-    this.interpretador = new InterpretadorService(this);
-  }
+	public ConsoleTraducaoService(DebugController debugController, ConsoleStyleClassedTextArea areaConsole,
+			StyleClassedTextArea areaTraducao) {
+		this.consoleTextArea = areaConsole;
+		this.consoleTextArea.setEspectador(this);
+		this.areaTraducao = areaTraducao;
+		this.interpretador = new InterpretadorService(this);
+		this.debugController = debugController;
+		debugController.setConsoleTraducaoService(this);
+	}
 
-  
-  public void executar(String pathFile) {
-    // TODO: logica de salvar e talz... tlvz deve ficar no codigoController antes de chamar esse metodo
-    try {
-      this.interpretador.executarViaArquivo(pathFile);
-    } catch (IOException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
-  }
-  public void executarTexto(String texto) {
-    this.consoleTextArea.limparConsole();
-    this.interpretador.executarViaTexto(texto);   
-  }
+	private void initDebug(boolean debugOn) {
+		if (debugOn) {
 
-  public void setTraducao(String pathFile, ConversorStrategy tipoConversao) {
-    String traducao = null;
-    try {
-      traducao = this.interpretador.traduzirDoArquivo(pathFile, tipoConversao);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-    if (traducao != null && !traducao.isEmpty()) {
-      this.areaTraducao.clear();
-      this.areaTraducao.appendText(traducao);
-    }
-  }
+			debugController.reset();
+			interpretador.setDebugStrategy(new PassoAPassoDebugStrategy());
+		}
+			interpretador.setDebugAtivo(debugOn);
+		
+	}
 
-  @Override
-  public void notificarInput(String input) {
-    this.leitor.setValor(input); // informa o interpretador
-  }
+	public void executar(String pathFile, boolean debugOn) {
 
-  @Override
-  public void onInput(LeitorEntradaConsole leitor) {
-    this.leitor = leitor;
-    Platform.runLater(() -> {
-      this.consoleTextArea.solicitarInputUsuario();
-    });
-  }
+		initDebug(debugOn);
 
-  @Override
-  public void onOutput(String output) {
-    // Platform usado pois ha chamada da area_console dentro do interpretador que não faz parte do
-    // sistema FX
-    Platform.runLater(() -> {
-      consoleTextArea.imprimirMsgComQuebraLinha(output);
-    });
-  }
+		// TODO: logica de salvar e talz... tlvz deve ficar no codigoController antes de
+		// chamar esse metodo
+		try {
+			this.interpretador.executarViaArquivo(pathFile);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
-  @Override
-  public void onInterpretacaoConcluida(double tempoExecucao) {
-    this.printConclusao(tempoExecucao);
-  }
+	public void continuarDebug() {
+		interpretador.debugContinuar();
+	}
 
-  @Override
-  public void onInterpretacaoInterrompida(double tempoExecucao) {
-    this.printConclusao(tempoExecucao);
-  }
-  
-  private void printConclusao(double payload) {
-    Platform.runLater(() -> {
-      consoleTextArea.imprimirMsgComQuebraLinha("Fim execução. "+ (Double)payload);
-    });
-  }
+	public void passoDebug() {
+		interpretador.debugProxPasso();
+	}
 
-  @Override
-  public void onDebugMudancaEstado(EstadoDebug novoEstado) {
-    return;
-  }
+	public void pararDebug() {
+		interpretador.debugParar();
+	}
 
-  @Override
-  public void onDebugPassoExecutado(DebugSnapshot snapshot) {
-    return;
-  }
+	public void executarTexto(String texto, boolean debugOn) {
+		initDebug(debugOn);
+		this.consoleTextArea.limparConsole();
+		this.interpretador.executarViaTexto(texto);
+	}
 
-  @Override
-  public void onErro(RuntimeException erro) {
-    if (erro instanceof ParserError) {
-      ParserError pe = (ParserError) erro;
-      Platform.runLater(() -> {
-        consoleTextArea.imprimirErro(pe.linha, pe.getLexeme(), pe.mensagem);
-      });
-    } else if (erro instanceof RuntimeError) {
-      RuntimeError re = (RuntimeError ) erro;
-      Platform.runLater(() -> {
-        consoleTextArea.imprimirErro(re.getLinha(), re.getLexeme(), re.getMessage());
-      });
-    }
-  }
+	public void setTraducao(String pathFile, ConversorStrategy tipoConversao) {
+		String traducao = null;
+		try {
+			traducao = this.interpretador.traduzirDoArquivo(pathFile, tipoConversao);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		if (traducao != null && !traducao.isEmpty()) {
+			this.areaTraducao.clear();
+			this.areaTraducao.appendText(traducao);
+		}
+	}
 
+	public void setTraducaoTexto(String texto, ConversorStrategy tipoConversao) {
+		String traducao = null;
+		try {
+			traducao = this.interpretador.traduzirDoTexto(texto, tipoConversao);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		if (traducao != null && !traducao.isEmpty()) {
+			this.areaTraducao.clear();
+			this.areaTraducao.appendText(traducao);
+		}
+	}
 
-  @Override
-  public void onLog(String msgLog) {
-    // nada    
-  }
+	@Override
+	public void notificarInput(String input) {
+		this.leitor.setValor(input); // informa o interpretador
+	}
+
+	@Override
+	public void onInput(LeitorEntradaConsole leitor) {
+		this.leitor = leitor;
+		Platform.runLater(() -> {
+			this.consoleTextArea.solicitarInputUsuario();
+		});
+	}
+
+	@Override
+	public void onOutput(String output) {
+		// Platform usado pois ha chamada da area_console dentro do interpretador que
+		// não faz parte do
+		// sistema FX
+		Platform.runLater(() -> {
+			consoleTextArea.imprimirMsgComQuebraLinha(output);
+		});
+	}
+
+	@Override
+	public void onInterpretacaoConcluida(double tempoExecucao) {
+		this.printConclusao(tempoExecucao);
+	}
+
+	@Override
+	public void onInterpretacaoInterrompida(double tempoExecucao) {
+		this.printConclusao(tempoExecucao);
+	}
+
+	private void printConclusao(double payload) {
+		Platform.runLater(() -> {
+			consoleTextArea.imprimirMsgComQuebraLinha("Fim execução. " + (Double) payload);
+		});
+	}
+
+	@Override
+	public void onDebugMudancaEstado(EstadoDebug novoEstado) {
+		Platform.runLater(() -> {
+			switch (novoEstado) {
+			case EXECUTANDO:
+				debugController.toggleBtnExecutar(false);
+				debugController.toggleBtnParar(true);
+				debugController.toggleBtnPasso(false);
+				return;
+			case INICIAL:
+				debugController.toggleBtnExecutar(false);
+				debugController.toggleBtnParar(false);
+				debugController.toggleBtnPasso(false);
+				return;
+
+			case PAUSADO:
+				debugController.toggleBtnExecutar(true);
+				debugController.toggleBtnParar(true);
+				debugController.toggleBtnPasso(true);
+				return;
+			}
+		});
+		return;
+	}
+
+	@Override
+	public void onDebugPassoExecutado(DebugSnapshot snapshot) {
+		Platform.runLater(() -> {
+			debugController.addDado(snapshot);
+		});
+		return;
+	}
+
+	@Override
+	public void onErro(RuntimeException erro) {
+		if (erro instanceof ParserError) {
+			ParserError pe = (ParserError) erro;
+			Platform.runLater(() -> {
+				consoleTextArea.imprimirErro(pe.linha, pe.getLexeme(), pe.mensagem);
+			});
+		} else if (erro instanceof RuntimeError) {
+			RuntimeError re = (RuntimeError) erro;
+			Platform.runLater(() -> {
+				consoleTextArea.imprimirErro(re.getLinha(), re.getLexeme(), re.getMessage());
+			});
+		}
+	}
+
+	@Override
+	public void onLog(String msgLog) {
+		// nada
+	}
 }
