@@ -4,7 +4,8 @@ public enum Templates {
   
   BASE("view/tela_base.fxml"),
   CODIGO("view/tela_codigo_new.fxml"),
-  INICIO("view/tela_inicio.fxml");  
+  INICIO("view/tela_inicio.fxml"),
+  DEBUG("view/tela_debug.fxml"),;  
   
   private String url;
   private Templates(String url){
