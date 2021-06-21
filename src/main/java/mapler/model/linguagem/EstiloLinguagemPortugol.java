@@ -2,9 +2,9 @@ package mapler.model.linguagem;
 
 import java.util.HashSet;
 
-public class LinguagemPortugol extends Linguagem {
+public class EstiloLinguagemPortugol extends EstiloLinguagem {
 
-  public LinguagemPortugol() {
+  public EstiloLinguagemPortugol() {
     super();
   }
 

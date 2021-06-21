@@ -8,11 +8,11 @@ import java.util.HashSet;
  * @author Kerlyson
  *
  */
-public abstract class Linguagem {
+public abstract class EstiloLinguagem {
 
   protected HashSet<String> tipos, reservadas, constantes;
 
-  public Linguagem() {
+  public EstiloLinguagem() {
     this.iniciaTipos();
   }
 

@@ -4,12 +4,14 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
+
 import org.fxmisc.richtext.StyleClassedTextArea;
-import mapler.model.linguagem.Linguagem;
-import mapler.model.linguagem.LinguagemC;
-import mapler.model.linguagem.LinguagemJava;
-import mapler.model.linguagem.LinguagemPortugol;
-import mapler.model.linguagem.Linguagens;
+
+import mapler.model.Linguagem;
+import mapler.model.linguagem.EstiloLinguagem;
+import mapler.model.linguagem.EstiloLinguagemC;
+import mapler.model.linguagem.EstiloLinguagemJava;
+import mapler.model.linguagem.EstiloLinguagemPortugol;
 
 /**
  * Service para aplicar estilo css (colorir) os textos de código portugol
@@ -19,14 +21,14 @@ import mapler.model.linguagem.Linguagens;
 public class EstiloLinguagensService {
 
   private static EstiloLinguagensService instancia; // singleton
-  private Map<Linguagens, Linguagem> linguagens;
+  private Map<Linguagem, EstiloLinguagem> linguagens;
 
   // Construtor
   private EstiloLinguagensService() {
-    linguagens = new HashMap<Linguagens, Linguagem>();
-    linguagens.put(Linguagens.PORTUGOL, new LinguagemPortugol());
-    linguagens.put(Linguagens.C, new LinguagemC());
-    linguagens.put(Linguagens.JAVA, new LinguagemJava());
+    linguagens = new HashMap<Linguagem, EstiloLinguagem>();
+    linguagens.put(Linguagem.PORTUGOL, new EstiloLinguagemPortugol());
+    linguagens.put(Linguagem.C, new EstiloLinguagemC());
+    linguagens.put(Linguagem.JAVA, new EstiloLinguagemJava());
   }
 
   public static EstiloLinguagensService getInstancia() {
@@ -42,7 +44,7 @@ public class EstiloLinguagensService {
    * @param fimLinha
    */
   public void setEstiloPortugol(StyleClassedTextArea area, int comecoLinha, int fimLinha) {
-    Linguagem linguagem = linguagens.get(Linguagens.PORTUGOL);
+    EstiloLinguagem linguagem = linguagens.get(Linguagem.PORTUGOL);
     String texto = "";
     try {
       texto = area.getText().replace("\t", " ").replace(";", " ").substring(comecoLinha, fimLinha);
@@ -76,8 +78,8 @@ public class EstiloLinguagensService {
    * @param lgn
    * @param area
    */
-  public void setEstiloTraducao(Linguagens lgn, StyleClassedTextArea area) {
-    Linguagem linguagem = null;
+  public void setEstiloTraducao(Linguagem lgn, StyleClassedTextArea area) {
+    EstiloLinguagem linguagem = null;
     switch (lgn) {
       case C:
       case JAVA:

@@ -58,6 +58,19 @@ public class ConsoleTraducaoService implements AcaoInterpretador, EspectadorInpu
       this.areaTraducao.appendText(traducao);
     }
   }
+  
+  public void setTraducaoTexto(String texto, ConversorStrategy tipoConversao) {
+		String traducao = null;
+		try {
+			traducao = this.interpretador.traduzirDoTexto(texto, tipoConversao);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		if (traducao != null && !traducao.isEmpty()) {
+			this.areaTraducao.clear();
+			this.areaTraducao.appendText(traducao);
+		}
+	}
 
   @Override
   public void notificarInput(String input) {

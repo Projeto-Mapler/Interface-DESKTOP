@@ -8,6 +8,7 @@ import org.fxmisc.richtext.StyleClassedTextArea;
 
 import com.jfoenix.controls.JFXButton;
 
+import conversores.ConversorStrategy;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -25,6 +26,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import mapler.model.ConsoleStyleClassedTextArea;
+import mapler.model.MenuItemTraducao;
 import mapler.model.resource.Estilos;
 import mapler.model.resource.Templates;
 import mapler.service.BaseService;
@@ -69,7 +71,7 @@ public class CodigoController implements Initializable {
 	MenuBar m_bar;
 
 	@FXML
-	Menu mn_exibir;
+	Menu mn_exibir, mn_linguagem;
 
 	@FXML // arquivo
 	MenuItem mi_novo, mi_abrir, mi_salvar, mi_salvarc, mi_traducao, mi_console;
@@ -132,6 +134,15 @@ public class CodigoController implements Initializable {
 	}
 
 	private void setStyle() {
+		
+		mn_linguagem.getItems().forEach(c -> {
+			c.setOnAction(e ->{
+				setTraducaoVisible(true);
+				MenuItemTraducao itemTraducao = (MenuItemTraducao) c;
+				this.consoleTraducaoService.setTraducaoTexto(area_cod.getText(), itemTraducao.getConversorStrategy());
+				this.estiloLinguagensService.setEstiloTraducao(itemTraducao.getLinguagem(), area_trad);
+			});
+		});
 		
 		mi_traducao.setOnAction(e -> {
 			setTraducaoVisible(true);

@@ -16,6 +16,8 @@
 <?import javafx.scene.text.Font?>
 <?import org.fxmisc.richtext.StyleClassedTextArea?>
 <?import mapler.model.ConsoleStyleClassedTextArea?>
+<?import mapler.model.MenuItemTraducao?>
+<?import mapler.model.Linguagem?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mapler.controller.CodigoController" >
 	<children>
@@ -57,13 +59,13 @@
                                                 				<MenuItem mnemonicParsing="false" text="Execucao" />
 															</items>
 														</Menu>
-                                          <Menu mnemonicParsing="false" text="Linguagem">
+                                          <Menu fx:id="mn_linguagem" mnemonicParsing="false" text="Linguagem">
                                             <items>
-                                              <MenuItem mnemonicParsing="false" text="C" />
-                                                <MenuItem mnemonicParsing="false" text="C++" />
-                                                <MenuItem mnemonicParsing="false" text="Java" />
-                                                <MenuItem mnemonicParsing="false" text="Pascal" />
-                                                <MenuItem mnemonicParsing="false" text="Python" />
+                                              <MenuItemTraducao mnemonicParsing="false" text="C" linguagem="C"/>
+                                                <MenuItemTraducao mnemonicParsing="false" text="C++" linguagem="Cpp"/>
+                                                <MenuItemTraducao mnemonicParsing="false" text="Java" linguagem="JAVA"/>
+                                                <MenuItemTraducao mnemonicParsing="false" text="Pascal" linguagem="PASCAL"/>
+                                                <MenuItemTraducao mnemonicParsing="false" text="Python" linguagem="PYTHON"/>
                                             </items>
                                           </Menu>
                                           <Menu mnemonicParsing="false" text="Sobre">
