@@ -165,10 +165,12 @@ public class CodigoController implements Initializable {
 			if(btn_executar.getText().equals("Parar")) {
 				setConsoleVisible(false);
 				btn_executar.setText("Executar");
+				icon_exec.setGlyphName("PLAY");
 			}else {
 				setConsoleVisible(true);
+				icon_exec.setGlyphName("STOP");
 			}
-			//consoleTraducaoService.executarTexto(this.area_cod.getText().trim());
+			consoleTraducaoService.executarTexto(this.area_cod.getText().trim());
 			
 		});
 
@@ -316,7 +318,7 @@ public class CodigoController implements Initializable {
 		area_console.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.TEXTO.getUrl()));
 		area_console.setWrapText(false);
 		area_console.setLineHighlighterOn(false);
-		area_console.appendText("texte");
+		//area_console.appendText("texte");
 
 		area_cod.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.TEXTO.getUrl()));
 		area_cod.setParagraphGraphicFactory(LineNumberFactory.get(area_cod));
