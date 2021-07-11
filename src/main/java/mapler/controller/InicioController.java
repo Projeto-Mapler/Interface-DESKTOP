@@ -1,5 +1,9 @@
 package mapler.controller;
 
+import java.awt.Desktop;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import com.jfoenix.controls.JFXButton;
@@ -48,9 +52,11 @@ public class InicioController implements Initializable {
   JFXButton btn_left_inicio, btn_left_tutoriais, btn_left_exemplos, btn_left_sobre, btn_left_news, btn_file1, btn_file2;
 
   private InicioService inicioService;
+  private BaseService baseService;
 
   public InicioController() throws Exception {
     this.inicioService = InicioService.getInstancia();
+    this.baseService = BaseService.getInstancia();
   }
 
   @Override
@@ -58,6 +64,20 @@ public class InicioController implements Initializable {
     styles();
     
   }
+  
+  public static boolean openWebpage(URI uri) {
+	    Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
+	    if (desktop != null && desktop.isSupported(Desktop.Action.BROWSE)) {
+	        try {
+	            desktop.browse(uri);
+	            return true;
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	    }
+	    return false;
+	}
+
   
   public void styles() {
 
@@ -126,7 +146,7 @@ public class InicioController implements Initializable {
 		  } catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
-		   }
+		  }
 	  });
 
 	  btn_novo.setOnMouseEntered(e -> {
@@ -158,6 +178,29 @@ public class InicioController implements Initializable {
 	      btn_left_inicio.setStyle("");
 	      btn_left_inicio.setTextFill(Paint.valueOf("white"));
 	    });
+	    
+	    btn_left_inicio.setOnAction(e -> {
+	    	try {
+				this.baseService.carregaTela(Templates.INICIO.getUrl());
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+	    	
+	    });
+	    
+	    btn_left_tutoriais.setOnAction(e -> {
+	    	try {
+	    		URL url = new URL("https://portugol.sourceforge.io/");
+				boolean boo = openWebpage(url.toURI());
+			} catch (URISyntaxException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (MalformedURLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+	    });
 
 	    btn_left_tutoriais.setOnMouseEntered(e -> {
 	      btn_left_tutoriais.setStyle("-fx-background-color: white;");
@@ -167,6 +210,19 @@ public class InicioController implements Initializable {
 	    btn_left_tutoriais.setOnMouseExited(e -> {
 	      btn_left_tutoriais.setStyle("");
 	      btn_left_tutoriais.setTextFill(Paint.valueOf("white"));
+	    });
+	    
+	    btn_left_exemplos.setOnAction(e -> {
+	    	try {
+	    		URL url = new URL("https://portugol.sourceforge.io/");
+				boolean boo = openWebpage(url.toURI());
+			} catch (URISyntaxException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (MalformedURLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 	    });
 
 	    btn_left_exemplos.setOnMouseEntered(e -> {
@@ -178,7 +234,20 @@ public class InicioController implements Initializable {
 	      btn_left_exemplos.setStyle("");
 	      btn_left_exemplos.setTextFill(Paint.valueOf("white"));
 	    });
-
+	    
+	    btn_left_sobre.setOnAction(e -> {
+	    	try {
+	    		URL url = new URL("https://portugol.sourceforge.io/sobre.html");
+				boolean boo = openWebpage(url.toURI());
+			} catch (URISyntaxException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (MalformedURLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+	    });
+	    
 	    btn_left_sobre.setOnMouseEntered(e -> {
 	      btn_left_sobre.setStyle("-fx-background-color: white;");
 	      btn_left_sobre.setTextFill(Paint.valueOf("#272727"));
@@ -188,7 +257,20 @@ public class InicioController implements Initializable {
 	      btn_left_sobre.setStyle("");
 	      btn_left_sobre.setTextFill(Paint.valueOf("white"));
 	    });
-
+	    
+	    btn_left_news.setOnAction(e -> {
+	    	try {
+	    		URL url = new URL("https://portugol.sourceforge.io/");
+				boolean boo = openWebpage(url.toURI());
+			} catch (URISyntaxException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (MalformedURLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+	    });
+	    
 	    btn_left_news.setOnMouseEntered(e -> {
 	      btn_left_news.setStyle("-fx-background-color: white;");
 	      btn_left_news.setTextFill(Paint.valueOf("#272727"));

@@ -7,11 +7,11 @@ import java.util.Map;
 
 import org.fxmisc.richtext.StyleClassedTextArea;
 
+import mapler.model.EstiloLinguagem;
+import mapler.model.EstiloLinguagemC;
+import mapler.model.EstiloLinguagemJava;
+import mapler.model.EstiloLinguagemPortugol;
 import mapler.model.Linguagem;
-import mapler.model.linguagem.EstiloLinguagem;
-import mapler.model.linguagem.EstiloLinguagemC;
-import mapler.model.linguagem.EstiloLinguagemJava;
-import mapler.model.linguagem.EstiloLinguagemPortugol;
 
 /**
  * Service para aplicar estilo css (colorir) os textos de código portugol

@@ -78,7 +78,7 @@ public class CodigoController implements Initializable {
 	MenuItem mi_novo, mi_abrir, mi_salvar, mi_salvarc, mi_traducao, mi_console;
 
 	@FXML
-	JFXButton btn_left_tutoriais, btn_left_sobre, btn_left_news, btn_minus, btn_max, btn_close, btn_home;
+	JFXButton btn_left_inicio ,btn_left_tutoriais, btn_left_sobre, btn_left_news, btn_minus, btn_max, btn_close, btn_home;
 
 	@FXML
 	JFXButton btn_executar, btn_debug, btn_traduzir;
@@ -303,7 +303,15 @@ public class CodigoController implements Initializable {
 			btn_traduzir.setStyle("");
 			btn_traduzir.setTextFill(Paint.valueOf("white"));
 		});
-
+		
+		btn_left_inicio.setOnAction(e -> {
+			try {
+				this.baseService.carregaTela(Templates.INICIO.getUrl());
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		});
 		btn_left_tutoriais.setOnMouseEntered(e -> {
 			btn_left_tutoriais.setStyle("-fx-background-color: white;");
 			btn_left_tutoriais.setTextFill(Paint.valueOf("#272727"));

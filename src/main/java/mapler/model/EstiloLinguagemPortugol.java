@@ -1,4 +1,4 @@
-package mapler.model.linguagem;
+package mapler.model;
 
 import java.util.HashSet;
 
