@@ -11,6 +11,7 @@ public class ArquivoService {
 
 	private File arquivo;
 	private final FileChooser fileChooser;
+	private boolean isArquivoAlterado = false;
 	private static ArquivoService instance;
 
 	private ArquivoService() {
@@ -22,12 +23,22 @@ public class ArquivoService {
 			instance = new ArquivoService();
 		return instance;
 	}
+	
+	public boolean isArquivoAlterado() {
+		return isArquivoAlterado;
+	}
 
-	public boolean abrir() {
+	public void setArquivoAlterado() {
+		this.isArquivoAlterado = true;
+	}
+
+	public boolean abrir() {		
+		if(!checkAlteracoesNaoSalvas()) return false;
 		fileChooser.setTitle("Abrir arquivo");
 		File file = fileChooser.showOpenDialog(null);
 		if (file != null) {
 			arquivo = file;
+			isArquivoAlterado = false;
 			return true;
 		}
 		return false;
@@ -44,11 +55,13 @@ public class ArquivoService {
 	public void salvarComo(String conteudo) {
 		fileChooser.setTitle("Salvar arquivo");
 		arquivo = fileChooser.showSaveDialog(null);
+		if(arquivo == null)return;
 		salvarArquivo(conteudo);
 	}
 
 	public void fechar() {
 		this.arquivo = null;
+		isArquivoAlterado = false;
 	}
 	
 	public String getConteudo() {
@@ -61,6 +74,7 @@ public class ArquivoService {
 			writer = new FileWriter(arquivo);
 			writer.write(conteudo);
 			AlertaService.showAviso("O arquivo foi salvo!");
+			isArquivoAlterado = false;
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
@@ -99,5 +113,14 @@ public class ArquivoService {
 		}
 		return content;
 	}
-
+	
+	public boolean checkAlteracoesNaoSalvas() {
+		if(this.isArquivoAlterado) {
+			int resp = AlertaService.showConfirm("Há alterações não salvas no arquivo. Continuar?");
+			if(resp != 1) {
+				return false;
+			}			
+		}
+		return true;
+	}
 }

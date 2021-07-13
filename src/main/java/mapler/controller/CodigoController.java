@@ -10,6 +10,8 @@ import org.fxmisc.richtext.StyleClassedTextArea;
 import com.jfoenix.controls.JFXButton;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -136,6 +138,14 @@ public class CodigoController implements Initializable {
 		this.consoleTraducaoService = new ConsoleTraducaoService(debugController, area_console, area_trad); 
 		String conteudo = this.arquivoService.getConteudo();
 		if(conteudo != null) area_cod.appendText(conteudo);
+		area_cod.textProperty().addListener(new ChangeListener<String>() {
+			@Override
+			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+				
+				if(!arquivoService.isArquivoAlterado()) arquivoService.setArquivoAlterado();
+				
+			}
+		});
 	}
 
 	private TabService createTab(String titulo, String texto) {
@@ -184,7 +194,10 @@ public class CodigoController implements Initializable {
 		});
 
 		mi_novo.setOnAction(e -> {
-			
+			if(arquivoService.checkAlteracoesNaoSalvas()) {
+				arquivoService.fechar();
+				area_cod.clear();
+			}
 		});
 		
 		mi_abrir.setOnAction(e -> {
