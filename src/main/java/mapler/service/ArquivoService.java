@@ -1,0 +1,103 @@
+package mapler.service;
+
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
+import javafx.stage.FileChooser;
+
+public class ArquivoService {
+
+	private File arquivo;
+	private final FileChooser fileChooser;
+	private static ArquivoService instance;
+
+	private ArquivoService() {
+		this.fileChooser = new FileChooser();
+	}
+
+	public static ArquivoService getInstance() {
+		if (instance == null)
+			instance = new ArquivoService();
+		return instance;
+	}
+
+	public boolean abrir() {
+		fileChooser.setTitle("Abrir arquivo");
+		File file = fileChooser.showOpenDialog(null);
+		if (file != null) {
+			arquivo = file;
+			return true;
+		}
+		return false;
+	}
+
+	public void salvar(String conteudo) {
+		if (arquivo != null) {
+			salvarArquivo(conteudo);
+		} else {
+			salvarComo(conteudo);
+		}
+	}
+
+	public void salvarComo(String conteudo) {
+		fileChooser.setTitle("Salvar arquivo");
+		arquivo = fileChooser.showSaveDialog(null);
+		salvarArquivo(conteudo);
+	}
+
+	public void fechar() {
+		this.arquivo = null;
+	}
+	
+	public String getConteudo() {
+		return leArquivo();
+	}
+
+	private void salvarArquivo(String conteudo) {
+		FileWriter writer = null;
+		try {
+			writer = new FileWriter(arquivo);
+			writer.write(conteudo);
+			AlertaService.showAviso("O arquivo foi salvo!");
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (writer != null) {
+				try {
+					writer.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+
+	private String leArquivo() {
+		if(arquivo == null) return null;
+		String content = null;
+		FileReader reader = null;
+		try {
+			reader = new FileReader(arquivo);
+			char[] chars = new char[(int) arquivo.length()];
+			reader.read(chars);
+			content = new String(chars);
+			reader.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (reader != null) {
+				try {
+					reader.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		return content;
+	}
+
+}

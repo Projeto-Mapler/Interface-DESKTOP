@@ -30,6 +30,7 @@ import mapler.model.ConsoleStyleClassedTextArea;
 import mapler.model.MenuItemTraducao;
 import mapler.model.resource.Estilos;
 import mapler.model.resource.Templates;
+import mapler.service.ArquivoService;
 import mapler.service.BaseService;
 import mapler.service.ConsoleTraducaoService;
 //import mapler.service.ConsoleTraducaoService;
@@ -99,12 +100,14 @@ public class CodigoController implements Initializable {
 	private int idx = 2;
 	private ConsoleTraducaoService consoleTraducaoService;
 	private DebugController debugController;
+	private ArquivoService arquivoService;
 
 	public CodigoController() throws Exception {
 		this.debugController = new DebugController();
 		this.estiloLinguagensService = EstiloLinguagensService.getInstancia();
 		this.inicialService = InicioService.getInstancia();
 		this.baseService = BaseService.getInstancia();
+		this.arquivoService = ArquivoService.getInstance();
 	}
 
 	@Override
@@ -130,9 +133,9 @@ public class CodigoController implements Initializable {
 			e.printStackTrace();
 		}
 
-		this.consoleTraducaoService = new ConsoleTraducaoService(debugController, area_console, area_trad); // uma
-																											// instancia
-																											// por 'aba'
+		this.consoleTraducaoService = new ConsoleTraducaoService(debugController, area_console, area_trad); 
+		String conteudo = this.arquivoService.getConteudo();
+		if(conteudo != null) area_cod.appendText(conteudo);
 	}
 
 	private TabService createTab(String titulo, String texto) {
@@ -181,15 +184,24 @@ public class CodigoController implements Initializable {
 		});
 
 		mi_novo.setOnAction(e -> {
-
+			
+		});
+		
+		mi_abrir.setOnAction(e -> {
+			boolean abriu = this.arquivoService.abrir();
+			if(abriu) {
+				String conteudo = this.arquivoService.getConteudo();
+				area_cod.clear();
+				area_cod.appendText(conteudo);
+			}
 		});
 
 		mi_salvar.setOnAction(e -> {
-			// Arquivo.salvarArquivo(Arquivo.arquivo, true, ControllerCodigo.getPortugol());
+			this.arquivoService.salvar(area_cod.getText());
 		});
 
 		mi_salvarc.setOnAction(e -> {
-			// Arquivo.SalvarComo(Arquivo.arquivo, ControllerCodigo.getPortugol());
+			this.arquivoService.salvarComo(area_cod.getText());
 		});
 
 		btn_executar.setOnAction(e -> {
@@ -304,14 +316,14 @@ public class CodigoController implements Initializable {
 			btn_traduzir.setTextFill(Paint.valueOf("white"));
 		});
 		
-		btn_left_inicio.setOnAction(e -> {
-			try {
-				this.baseService.carregaTela(Templates.INICIO.getUrl());
-			} catch (Exception e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-		});
+//		btn_left_inicio.setOnAction(e -> {
+//			try {
+//				this.baseService.carregaTela(Templates.INICIO.getUrl());
+//			} catch (Exception e1) {
+//				// TODO Auto-generated catch block
+//				e1.printStackTrace();
+//			}
+//		});
 		btn_left_tutoriais.setOnMouseEntered(e -> {
 			btn_left_tutoriais.setStyle("-fx-background-color: white;");
 			btn_left_tutoriais.setTextFill(Paint.valueOf("#272727"));
