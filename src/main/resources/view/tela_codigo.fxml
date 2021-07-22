@@ -136,7 +136,7 @@
 								<VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS" />
 								<JFXButton fx:id="btn_left_sobre" alignment="TOP_LEFT" prefWidth="100.0" style="-fx-background-color: transparent;" text="Sobre o MAPLER" textFill="WHITE">
 									<font>
-										<Font size="9.0" />
+										<Font size="11.1" />
 									</font>
 									<VBox.margin>
 										<Insets bottom="5.0" />
@@ -144,7 +144,7 @@
 								</JFXButton>
 								<JFXButton fx:id="btn_left_news" alignment="TOP_LEFT" prefWidth="100.0" style="-fx-background-color: transparent;" text="Novidades" textFill="WHITE">
 									<font>
-										<Font size="9.0" />
+										<Font size="11.1" />
 									</font>
 								</JFXButton>
 							</children>

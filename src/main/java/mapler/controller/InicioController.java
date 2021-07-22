@@ -46,9 +46,7 @@ public class InicioController implements Initializable {
 	AnchorPane ap_centerIncial;
 
 	@FXML
-	JFXButton btn_left_inicio, btn_left_tutoriais, btn_left_exemplos, btn_left_sobre, btn_left_news, btn_file1,
-			btn_file2;
-
+	JFXButton btn_left_inicio, btn_left_tutoriais, btn_left_exemplos, btn_left_sobre, btn_left_news;
 	private InicioService inicioService;
 	private BaseService baseService;
 
@@ -287,21 +285,7 @@ public class InicioController implements Initializable {
 			btn_left_news.setTextFill(Paint.valueOf("white"));
 		});
 
-		btn_file1.setOnMouseEntered(e -> {
-			btn_file1.setStyle("-fx-background-color: #666;");
-		});
-
-		btn_file1.setOnMouseExited(e -> {
-			btn_file1.setStyle("");
-		});
-
-		btn_file2.setOnMouseEntered(e -> {
-			btn_file2.setStyle("-fx-background-color: #666;");
-		});
-
-		btn_file2.setOnMouseExited(e -> {
-			btn_file2.setStyle("");
-		});
+		
 	}
 	/*
 	 * 

@@ -21,22 +21,22 @@ public final class AlertaService {
   public static void showAviso(String aviso) {
     Alert dialogoInfo = new Alert(Alert.AlertType.INFORMATION, "", ButtonType.CLOSE);
     DialogPane dialogPane = dialogoInfo.getDialogPane();
-    dialogPane.getStylesheets().add(ESTILO_CSS);
+    dialogPane.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.ARLETAS.getUrl()));
     dialogPane.getStyleClass().add("myDialog");
     dialogoInfo.setTitle("AVISO");
     dialogoInfo.setHeaderText(aviso);
-    dialogoInfo.setContentText("");
+    dialogoInfo.setContentText(" ");
     dialogoInfo.showAndWait();
   }
 
   public static int showConfirm(String aviso) {
     Alert dialogoInfo = new Alert(Alert.AlertType.CONFIRMATION, "", ButtonType.CLOSE);
     DialogPane dialogPane = dialogoInfo.getDialogPane();
-    dialogPane.getStylesheets().add(ESTILO_CSS);
+    dialogPane.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.ARLETAS.getUrl()));
     dialogPane.getStyleClass().add("myDialog");
     dialogoInfo.setTitle("CONFIRMAÇÃO");
     dialogoInfo.setHeaderText(aviso);
-    dialogoInfo.setContentText("");
+    dialogoInfo.setContentText(" ");
     ButtonType btnSim = new ButtonType("Sim");
     ButtonType btnNao = new ButtonType("Não");
     ButtonType btnCancelar = new ButtonType("Cancelar", ButtonBar.ButtonData.CANCEL_CLOSE);

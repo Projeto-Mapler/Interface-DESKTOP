@@ -14,7 +14,7 @@
 }
 /*ESTILO DOS NUMEROS DE LINHA */
 .lineno{
-	 -fx-font-family: Consolas;
+   -fx-font-family: Consolas;
    -fx-background-color: #5c6770;
    -fx-font-size: 16;
    -fx-fill: black; 
