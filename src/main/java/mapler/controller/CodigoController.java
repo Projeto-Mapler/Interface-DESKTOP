@@ -1,6 +1,10 @@
 package mapler.controller;
 
+import java.awt.Desktop;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -84,7 +88,7 @@ public class CodigoController implements Initializable {
 	JFXButton btn_left_inicio ,btn_left_tutoriais, btn_left_sobre, btn_left_news, btn_minus, btn_max, btn_close, btn_home;
 
 	@FXML
-	JFXButton btn_executar, btn_debug, btn_traduzir;
+	JFXButton btn_executar, btn_debug, btn_traduzir, btn_close_trad;
 
 	@FXML
 	FontAwesomeIcon icon_exec;
@@ -147,7 +151,20 @@ public class CodigoController implements Initializable {
 			}
 		});
 	}
-
+	
+	public static boolean openWebpage(URI uri) {
+		Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
+		if (desktop != null && desktop.isSupported(Desktop.Action.BROWSE)) {
+			try {
+				desktop.browse(uri);
+				return true;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return false;
+	}
+	
 	private TabService createTab(String titulo, String texto) {
 		TabService nova = new TabService(titulo, texto);
 		nova.setText(titulo);
@@ -176,7 +193,6 @@ public class CodigoController implements Initializable {
 		btn_traduzir.setOnAction(e -> {
 			if (btn_traduzir.getText().equals("Esconder")) {
 				setTraducaoVisible(false);
-				btn_traduzir.setText("Traduzir");
 			} else {
 				setTraducaoVisible(true);
 			}
@@ -228,6 +244,10 @@ public class CodigoController implements Initializable {
 			}
 			consoleTraducaoService.executarTexto(this.area_cod.getText().trim(), false);
 
+		});
+		
+		btn_close_trad.setOnAction(e -> {
+			this.setTraducaoVisible(false);
 		});
 
 		btn_home.setOnAction(e -> {
@@ -337,6 +357,19 @@ public class CodigoController implements Initializable {
 //				e1.printStackTrace();
 //			}
 //		});
+		btn_left_tutoriais.setOnAction(e -> {
+			try {
+				URL url = new URL("https://portugol.sourceforge.io/");
+				boolean boo = openWebpage(url.toURI());
+			} catch (URISyntaxException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (MalformedURLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		});
+		
 		btn_left_tutoriais.setOnMouseEntered(e -> {
 			btn_left_tutoriais.setStyle("-fx-background-color: white;");
 			btn_left_tutoriais.setTextFill(Paint.valueOf("#272727"));
@@ -346,7 +379,20 @@ public class CodigoController implements Initializable {
 			btn_left_tutoriais.setStyle("");
 			btn_left_tutoriais.setTextFill(Paint.valueOf("white"));
 		});
-
+		
+		btn_left_sobre.setOnAction(e -> {
+			try {
+				URL url = new URL("https://portugol.sourceforge.io/sobre.html");
+				boolean boo = openWebpage(url.toURI());
+			} catch (URISyntaxException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (MalformedURLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		});
+		
 		btn_left_sobre.setOnMouseEntered(e -> {
 			btn_left_sobre.setStyle("-fx-background-color: white;");
 			btn_left_sobre.setTextFill(Paint.valueOf("#272727"));
@@ -356,7 +402,20 @@ public class CodigoController implements Initializable {
 			btn_left_sobre.setStyle("");
 			btn_left_sobre.setTextFill(Paint.valueOf("white"));
 		});
-
+		
+		btn_left_news.setOnAction(e -> {
+			try {
+				URL url = new URL("https://portugol.sourceforge.io/");
+				boolean boo = openWebpage(url.toURI());
+			} catch (URISyntaxException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (MalformedURLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		});
+		
 		btn_left_news.setOnMouseEntered(e -> {
 			btn_left_news.setStyle("-fx-background-color: white;");
 			btn_left_news.setTextFill(Paint.valueOf("#272727"));
@@ -428,6 +487,7 @@ public class CodigoController implements Initializable {
 
 	private void setTraducaoVisible(boolean a) {
 		split_horizontal.getItems().remove(ap_trad);
+		btn_traduzir.setText("Traduzir");
 		if (a) {
 			split_horizontal.getItems().add(ap_trad);
 			btn_traduzir.setText("Esconder");

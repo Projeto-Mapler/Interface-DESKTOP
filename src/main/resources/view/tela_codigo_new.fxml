@@ -204,6 +204,11 @@
                                                             <AnchorPane fx:id="ap_trad" prefHeight="200.0" prefWidth="200.0">
                                                                <children>
                                                                   <StyleClassedTextArea fx:id="area_trad" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                                  <JFXButton fx:id="btn_close_trad" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" contentDisplay="RIGHT" graphicTextGap="0.0" text=" " textFill="#343a40">
+																	<graphic>
+																		<FontAwesomeIcon fill="#e73232" glyphName="CLOSE" />
+																    </graphic>
+																  </JFXButton>
                                                                </children>
                                                             </AnchorPane>
                                                             <AnchorPane fx:id="ap_debug" prefHeight="200.0" prefWidth="200.0">
