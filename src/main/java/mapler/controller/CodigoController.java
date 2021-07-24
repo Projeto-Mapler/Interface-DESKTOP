@@ -11,7 +11,7 @@ import java.util.ResourceBundle;
 import org.fxmisc.richtext.LineNumberFactory;
 import org.fxmisc.richtext.StyleClassedTextArea;
 
-import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXButton;import com.sun.prism.CompositeMode;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import javafx.beans.value.ChangeListener;
@@ -33,6 +33,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import mapler.model.ConsoleStyleClassedTextArea;
+import mapler.model.Linguagem;
 import mapler.model.MenuItemTraducao;
 import mapler.model.resource.Estilos;
 import mapler.model.resource.Templates;
@@ -182,7 +183,7 @@ public class CodigoController implements Initializable {
 				setTraducaoVisible(true);
 				MenuItemTraducao itemTraducao = (MenuItemTraducao) c;
 				this.consoleTraducaoService.setTraducaoTexto(area_cod.getText(), itemTraducao.getConversorStrategy());
-				this.estiloLinguagensService.setEstiloTraducao(itemTraducao.getLinguagem(), area_trad);
+				this.estiloLinguagensService.setHighlighterLinguagem(area_trad, itemTraducao.getLinguagem());
 			});
 		});
 
@@ -432,7 +433,7 @@ public class CodigoController implements Initializable {
 		m_bar.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.MENUBAR.getUrl()));
 		tab_areacod.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.TABAREACOD.getUrl()));
 
-		area_trad.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.TEXTO.getUrl()));
+		area_trad.getStylesheets().add(CarregadorRecursos.getResourceExternalForm("css/syntax-highlighter.css"));
 		area_trad.setParagraphGraphicFactory(LineNumberFactory.get(area_trad));
 		area_trad.setWrapText(true);
 		area_trad.setLineHighlighterOn(false);
@@ -443,46 +444,12 @@ public class CodigoController implements Initializable {
 		area_console.setLineHighlighterOn(false);
 		// area_console.appendText("texte");
 
-		area_cod.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.TEXTO.getUrl()));
+		area_cod.getStylesheets().add(CarregadorRecursos.getResourceExternalForm("css/syntax-highlighter.css"));
 		area_cod.setParagraphGraphicFactory(LineNumberFactory.get(area_cod));
 		area_cod.setWrapText(true);
 		area_cod.setLineHighlighterOn(true);
-		area_cod.setStyleClass(0, 0, "variaveis");
+		this.estiloLinguagensService.setHighlighterLinguagem(area_cod, Linguagem.PORTUGOL);
 
-		area_cod.setOnKeyPressed(new EventHandler<KeyEvent>() {
-			@Override
-			public void handle(KeyEvent ke) {
-
-				if (ke.getText().equals(";") || ke.getText().equals(".") || ke.getText().equals("'")
-						|| ke.getCode().equals(KeyCode.ENTER) || ke.getCode().equals(KeyCode.BACK_SPACE)
-						|| ke.getCode().equals(KeyCode.DELETE) || ke.getCode().equals(KeyCode.SPACE)
-						|| ke.getCode().equals(KeyCode.TAB)) {
-
-					int comecoDaLinha = area_cod.getText().lastIndexOf("\n", area_cod.getCaretPosition() - 1);
-					int finalDaLinha = area_cod.getText().indexOf("\n", area_cod.getCaretPosition()); // se == -1 � a
-																										// ultima
-					int comecoDaLinhaAnt = 0;
-					int fimTexto = area_cod.getText().length();
-
-					if (finalDaLinha == -1 && comecoDaLinha != -1)
-						estiloLinguagensService.setEstiloPortugol(area_cod, comecoDaLinha + 1, fimTexto);
-					else if (finalDaLinha == -1 && comecoDaLinha == -1)
-						estiloLinguagensService.setEstiloPortugol(area_cod, 0, fimTexto);
-					else if (finalDaLinha != -1 && comecoDaLinha == -1)
-						estiloLinguagensService.setEstiloPortugol(area_cod, 0, finalDaLinha);
-					else
-						estiloLinguagensService.setEstiloPortugol(area_cod, comecoDaLinha, finalDaLinha);
-
-					if (comecoDaLinha > 1) {
-						comecoDaLinhaAnt = area_cod.getText().lastIndexOf("\n", comecoDaLinha - 1);
-						if (comecoDaLinhaAnt == -1)
-							estiloLinguagensService.setEstiloPortugol(area_cod, 0, comecoDaLinha);
-						else
-							estiloLinguagensService.setEstiloPortugol(area_cod, comecoDaLinhaAnt, comecoDaLinha);
-					}
-				}
-			}
-		});
 	}
 
 	private void setTraducaoVisible(boolean a) {

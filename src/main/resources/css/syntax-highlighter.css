@@ -1,0 +1,73 @@
+
+
+/*ESTILO DA AREA DE TEXTO */
+.styled-text-area {
+    /* set the entire area's font size to the given size */
+    -fx-font-family: Consolas;
+   -fx-font-size: 16; 
+   -fx-font-weight: bold; 
+   -fx-background-color: #5c6770; 
+   -fx-border-color: #5c6770;
+}
+
+.styled-text-area .line-highlighter { 
+	-fx-fill:#7D858D;
+}
+/*ESTILO DOS NUMEROS DE LINHA */
+.lineno{
+   -fx-font-family: Consolas;
+   -fx-background-color: #5c6770;
+   -fx-font-size: 16;
+   -fx-fill: #1F1300; 
+}
+
+.lineno .text{
+   -fx-fill: white; 
+}
+
+.background {
+    -fx-background-color: #5c6770;
+}
+
+/* ------------ */
+.keyword {
+    -fx-fill: #f4b350;
+    -fx-font-weight: bold;
+}
+.semicolon {
+    -fx-font-weight: bold;
+}
+.paren {
+    -fx-fill:  #36D7B7;
+    -fx-font-weight: bold;
+}
+.bracket {
+    -fx-fill:  #36D7B7;
+    -fx-font-weight: bold;
+}
+.brace {
+    -fx-fill: #36D7B7;
+    -fx-font-weight: bold;
+}
+.string {
+    -fx-fill: #360036;
+}
+
+.comment {
+	-fx-fill: #aeb5b1;
+}
+
+.paragraph-box:has-caret {
+    -fx-background-color: #f2f9fc;
+}
+
+.type {
+	-fx-fill: #f4b350;
+}
+.atr {
+	  -fx-fill:  #36D7B7;
+    -fx-font-weight: bold;
+}
+.test { /*para testar os matchs do highlighter */
+	 -fx-fill:  red;
+}
