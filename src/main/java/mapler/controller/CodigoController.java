@@ -182,8 +182,8 @@ public class CodigoController implements Initializable {
 			c.setOnAction(e -> {
 				setTraducaoVisible(true);
 				MenuItemTraducao itemTraducao = (MenuItemTraducao) c;
-				this.consoleTraducaoService.setTraducaoTexto(area_cod.getText(), itemTraducao.getConversorStrategy());
 				this.estiloLinguagensService.setHighlighterLinguagem(area_trad, itemTraducao.getLinguagem());
+				this.consoleTraducaoService.setTraducaoTexto(area_cod.getText(), itemTraducao.getConversorStrategy());
 			});
 		});
 
