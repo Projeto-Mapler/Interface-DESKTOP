@@ -11,7 +11,8 @@ import java.util.ResourceBundle;
 import org.fxmisc.richtext.LineNumberFactory;
 import org.fxmisc.richtext.StyleClassedTextArea;
 
-import com.jfoenix.controls.JFXButton;import com.sun.prism.CompositeMode;
+import com.jfoenix.controls.JFXButton;
+import com.sun.prism.CompositeMode;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import javafx.beans.value.ChangeListener;
@@ -35,6 +36,8 @@ import javafx.scene.paint.Paint;
 import mapler.model.ConsoleStyleClassedTextArea;
 import mapler.model.Linguagem;
 import mapler.model.MenuItemTraducao;
+import mapler.model.Terminavel;
+import mapler.model.highlight.SyntaxHighlighter;
 import mapler.model.resource.Estilos;
 import mapler.model.resource.Templates;
 import mapler.service.ArquivoService;
@@ -50,7 +53,7 @@ import mapler.util.CarregadorRecursos;
  * Controller para tela_codigo.fxml
  *
  */
-public class CodigoController implements Initializable {
+public class CodigoController implements Initializable, Terminavel {
 
 	@FXML
 	TabPane tab_areacod;
@@ -86,7 +89,8 @@ public class CodigoController implements Initializable {
 	MenuItem mi_novo, mi_abrir, mi_salvar, mi_salvarc, mi_traducao, mi_console;
 
 	@FXML
-	JFXButton btn_left_inicio ,btn_left_tutoriais, btn_left_sobre, btn_left_news, btn_minus, btn_max, btn_close, btn_home;
+	JFXButton btn_left_inicio, btn_left_tutoriais, btn_left_sobre, btn_left_news, btn_minus, btn_max, btn_close,
+			btn_home;
 
 	@FXML
 	JFXButton btn_executar, btn_debug, btn_traduzir, btn_close_trad;
@@ -108,6 +112,7 @@ public class CodigoController implements Initializable {
 	private ConsoleTraducaoService consoleTraducaoService;
 	private DebugController debugController;
 	private ArquivoService arquivoService;
+	private SyntaxHighlighter codAreaHighlighter, tradAreaHighlighter;
 
 	public CodigoController() throws Exception {
 		this.debugController = new DebugController();
@@ -140,19 +145,21 @@ public class CodigoController implements Initializable {
 			e.printStackTrace();
 		}
 
-		this.consoleTraducaoService = new ConsoleTraducaoService(debugController, area_console, area_trad); 
+		this.consoleTraducaoService = new ConsoleTraducaoService(debugController, area_console, area_trad);
 		String conteudo = this.arquivoService.getConteudo();
-		if(conteudo != null) area_cod.appendText(conteudo);
+		if (conteudo != null)
+			area_cod.appendText(conteudo);
 		area_cod.textProperty().addListener(new ChangeListener<String>() {
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-				
-				if(!arquivoService.isArquivoAlterado()) arquivoService.setArquivoAlterado();
-				
+
+				if (!arquivoService.isArquivoAlterado())
+					arquivoService.setArquivoAlterado();
+
 			}
 		});
 	}
-	
+
 	public static boolean openWebpage(URI uri) {
 		Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
 		if (desktop != null && desktop.isSupported(Desktop.Action.BROWSE)) {
@@ -165,7 +172,7 @@ public class CodigoController implements Initializable {
 		}
 		return false;
 	}
-	
+
 	private TabService createTab(String titulo, String texto) {
 		TabService nova = new TabService(titulo, texto);
 		nova.setText(titulo);
@@ -182,7 +189,12 @@ public class CodigoController implements Initializable {
 			c.setOnAction(e -> {
 				setTraducaoVisible(true);
 				MenuItemTraducao itemTraducao = (MenuItemTraducao) c;
-				this.estiloLinguagensService.setHighlighterLinguagem(area_trad, itemTraducao.getLinguagem());
+
+				if (tradAreaHighlighter != null)
+					tradAreaHighlighter.stop();
+
+				this.tradAreaHighlighter = estiloLinguagensService.setHighlighterLinguagem(area_trad,
+						itemTraducao.getLinguagem());
 				this.consoleTraducaoService.setTraducaoTexto(area_cod.getText(), itemTraducao.getConversorStrategy());
 			});
 		});
@@ -199,27 +211,27 @@ public class CodigoController implements Initializable {
 			}
 
 		});
-		
+
 		btn_debug.setOnAction(e -> {
 			boolean visivel = split_horizontal.getItems().contains(ap_debug);
-			if(visivel) {
+			if (visivel) {
 				consoleTraducaoService.pararDebug();
 			} else {
-				consoleTraducaoService.executarTexto(this.area_cod.getText().trim(), true);				
+				consoleTraducaoService.executarTexto(this.area_cod.getText().trim(), true);
 			}
 			setDebugVisible(!visivel);
 		});
 
 		mi_novo.setOnAction(e -> {
-			if(arquivoService.checkAlteracoesNaoSalvas()) {
+			if (arquivoService.checkAlteracoesNaoSalvas()) {
 				arquivoService.fechar();
 				area_cod.clear();
 			}
 		});
-		
+
 		mi_abrir.setOnAction(e -> {
 			boolean abriu = this.arquivoService.abrir();
-			if(abriu) {
+			if (abriu) {
 				String conteudo = this.arquivoService.getConteudo();
 				area_cod.clear();
 				area_cod.appendText(conteudo);
@@ -246,7 +258,7 @@ public class CodigoController implements Initializable {
 			consoleTraducaoService.executarTexto(this.area_cod.getText().trim(), false);
 
 		});
-		
+
 		btn_close_trad.setOnAction(e -> {
 			this.setTraducaoVisible(false);
 		});
@@ -349,7 +361,7 @@ public class CodigoController implements Initializable {
 			btn_traduzir.setStyle("");
 			btn_traduzir.setTextFill(Paint.valueOf("white"));
 		});
-		
+
 //		btn_left_inicio.setOnAction(e -> {
 //			try {
 //				this.baseService.carregaTela(Templates.INICIO.getUrl());
@@ -370,7 +382,7 @@ public class CodigoController implements Initializable {
 				e1.printStackTrace();
 			}
 		});
-		
+
 		btn_left_tutoriais.setOnMouseEntered(e -> {
 			btn_left_tutoriais.setStyle("-fx-background-color: white;");
 			btn_left_tutoriais.setTextFill(Paint.valueOf("#272727"));
@@ -380,7 +392,7 @@ public class CodigoController implements Initializable {
 			btn_left_tutoriais.setStyle("");
 			btn_left_tutoriais.setTextFill(Paint.valueOf("white"));
 		});
-		
+
 		btn_left_sobre.setOnAction(e -> {
 			try {
 				URL url = new URL("https://portugol.sourceforge.io/sobre.html");
@@ -393,7 +405,7 @@ public class CodigoController implements Initializable {
 				e1.printStackTrace();
 			}
 		});
-		
+
 		btn_left_sobre.setOnMouseEntered(e -> {
 			btn_left_sobre.setStyle("-fx-background-color: white;");
 			btn_left_sobre.setTextFill(Paint.valueOf("#272727"));
@@ -403,7 +415,7 @@ public class CodigoController implements Initializable {
 			btn_left_sobre.setStyle("");
 			btn_left_sobre.setTextFill(Paint.valueOf("white"));
 		});
-		
+
 		btn_left_news.setOnAction(e -> {
 			try {
 				URL url = new URL("https://portugol.sourceforge.io/");
@@ -416,7 +428,7 @@ public class CodigoController implements Initializable {
 				e1.printStackTrace();
 			}
 		});
-		
+
 		btn_left_news.setOnMouseEntered(e -> {
 			btn_left_news.setStyle("-fx-background-color: white;");
 			btn_left_news.setTextFill(Paint.valueOf("#272727"));
@@ -448,7 +460,11 @@ public class CodigoController implements Initializable {
 		area_cod.setParagraphGraphicFactory(LineNumberFactory.get(area_cod));
 		area_cod.setWrapText(true);
 		area_cod.setLineHighlighterOn(true);
-		this.estiloLinguagensService.setHighlighterLinguagem(area_cod, Linguagem.PORTUGOL);
+
+		if (this.codAreaHighlighter != null)
+			this.codAreaHighlighter.stop();
+
+		this.codAreaHighlighter = estiloLinguagensService.setHighlighterLinguagem(area_cod, Linguagem.PORTUGOL);
 
 	}
 
@@ -479,23 +495,14 @@ public class CodigoController implements Initializable {
 		}
 
 	}
-
-	/*
-	 * 
-	 * public boolean salvarArquivo(boolean isSalvarComo) { String txt =
-	 * this.getTextoPortugol(); if (txt.isEmpty()) { txt = new String(""); } if
-	 * (isSalvarComo) { return GerenciadorArquivo.salvarArquivoComo(arquivo, txt); }
-	 * else { return GerenciadorArquivo.salvarArquivo(arquivo, true, txt); } }
-	 * 
-	 * private String getCaminhoArquivo() { if (arquivo == null) {
-	 * this.salvarArquivo(false); } return arquivo.getAbsolutePath(); }
-	 * 
-	 * public boolean isArquivoComAlteracoesNaoSalvas() { return
-	 * arquivoComAlteracoesNaoSalvas; }
-	 * 
-	 * public void setArquivoComAlteracoesNaoSalvas(boolean
-	 * arquivoComAlteracoesNaoSalvas) { this.arquivoComAlteracoesNaoSalvas =
-	 * arquivoComAlteracoesNaoSalvas; }
-	 */
+	
+	@Override
+	public void terminar() {
+		if(this.codAreaHighlighter != null) this.codAreaHighlighter.stop();
+		if(this.tradAreaHighlighter != null) this.tradAreaHighlighter.stop();
+		
+	}
+	
+	
 
 }
