@@ -3,8 +3,12 @@ package mapler.service;
 import org.fxmisc.richtext.StyleClassedTextArea;
 
 import mapler.model.Linguagem;
+import mapler.model.highlight.CHighlight;
+import mapler.model.highlight.CppHighlight;
 import mapler.model.highlight.JavaHighlight;
+import mapler.model.highlight.PascalHighlight;
 import mapler.model.highlight.PortugolHighlight;
+import mapler.model.highlight.PythonHighlight;
 import mapler.model.highlight.SyntaxHighlighter;
 
 /**
@@ -32,11 +36,18 @@ public class EstiloLinguagensService {
 			return new PortugolHighlight(area);
 		case JAVA:
 			return new JavaHighlight(area);
+		case C:
+			return new CHighlight(area);
+		case Cpp:
+			return new CppHighlight(area);
+		case PASCAL:
+			return new PascalHighlight(area);
+		case PYTHON:
+			return new PythonHighlight(area);
 		default:
 			return null;
 		}
 
 	}
-
 
 }

@@ -19,7 +19,7 @@ import mapler.util.CarregadorRecursos;
 public class Principal extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
-		InicioService inicial = InicioService.iniciarClasse(stage);
+		InicioService.iniciarClasse(stage);
 		stage.initStyle(StageStyle.UNDECORATED); // removendo botoes padrao
 		Parent root = FXMLLoader.load(CarregadorRecursos.getResource(Templates.BASE.getUrl()));
 		Scene scene = new Scene(root, 960, 720); // resolucao inicial

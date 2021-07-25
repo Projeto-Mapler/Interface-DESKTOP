@@ -448,7 +448,7 @@ public class CodigoController implements Initializable, Terminavel {
 		area_trad.getStylesheets().add(CarregadorRecursos.getResourceExternalForm("css/syntax-highlighter.css"));
 		area_trad.setParagraphGraphicFactory(LineNumberFactory.get(area_trad));
 		area_trad.setWrapText(true);
-		area_trad.setLineHighlighterOn(false);
+		area_trad.setLineHighlighterOn(true);
 		area_trad.setEditable(false);
 
 		area_console.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.TEXTO.getUrl()));
