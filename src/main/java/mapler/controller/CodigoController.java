@@ -55,8 +55,6 @@ import mapler.util.CarregadorRecursos;
  */
 public class CodigoController implements Initializable, Terminavel {
 
-	@FXML
-	TabPane tab_areacod;
 
 	@FXML
 	Tab tab_cod, tab_terminal;
@@ -440,7 +438,6 @@ public class CodigoController implements Initializable, Terminavel {
 		split_vertical.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.SPLITPANE.getUrl()));
 		split_horizontal.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.SPLITPANE.getUrl()));
 		m_bar.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.MENUBAR.getUrl()));
-		tab_areacod.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.TABAREACOD.getUrl()));
 
 		area_trad.getStylesheets().add(CarregadorRecursos.getResourceExternalForm("css/syntax-highlighter.css"));
 		area_trad.setParagraphGraphicFactory(LineNumberFactory.get(area_trad));
