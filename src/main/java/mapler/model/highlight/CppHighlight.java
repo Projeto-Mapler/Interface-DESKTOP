@@ -12,7 +12,7 @@ public class CppHighlight extends SyntaxHighlighter {
 	@Override
 	public String[] initKeywords() {
 		return new String[] { "break", "case", "continue", "default", "do", "else", "for", "goto", "if", "return",
-				"switch", "while", "true", "false", "include", "strcpy", "main", "cout << ", "cin >> ", "using",
+				"switch", "while", "true", "false", "include", "strcpy", "main", "cout", "cin", "using",
 				"namespace" };
 	}
 
