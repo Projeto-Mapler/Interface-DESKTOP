@@ -12,11 +12,7 @@ import mapler.util.CarregadorRecursos;
  * Exibe alertas da IDE
  */
 public final class AlertaService {
-	private static final String ESTILO_CSS = CarregadorRecursos.getResourceExternalForm(Estilos.ARLETAS.getUrl());
 
-	/**
-	 * Classe estática
-	 */
 	private AlertaService() {
 	}
 
