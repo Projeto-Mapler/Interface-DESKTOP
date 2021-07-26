@@ -129,12 +129,8 @@ public abstract class SyntaxHighlighter {
 															: matcher.group("ATRTYPE") != null ? "atr"
 																	: matcher.group("INTER") != null ? "atr"
 																			: matcher.group("STRING") != null ? "texto"
-																					: matcher.group("COMMENT") != null
-																							? "comment"
-																							: matcher.group(
-																									"TYPE") != null
-																											? "type"
-																											: null;
+																					: matcher.group("COMMENT") != null ? "comment"
+																							: matcher.group("TYPE") != null ? "type" : null;
 			/* never happens */ assert styleClass != null;
 			spansBuilder.add(Collections.emptyList(), matcher.start() - lastKwEnd);
 			spansBuilder.add(Collections.singleton(styleClass), matcher.end() - matcher.start());
