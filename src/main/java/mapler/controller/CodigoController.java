@@ -83,10 +83,10 @@ public class CodigoController implements Initializable, Terminavel {
 	MenuBar m_bar;
 
 	@FXML
-	Menu mn_exibir, mn_linguagem;
+	Menu mn_linguagem;
 
 	@FXML // arquivo
-	MenuItem mi_novo, mi_abrir, mi_salvar, mi_salvarc, mi_traducao, mi_console;
+	MenuItem mi_novo, mi_abrir, mi_salvar, mi_salvarc, mi_console;
 
 	@FXML
 	JFXButton btn_left_inicio, btn_left_tutoriais, btn_left_sobre, btn_left_news, btn_minus, btn_max, btn_close,
@@ -199,9 +199,6 @@ public class CodigoController implements Initializable, Terminavel {
 			});
 		});
 
-		mi_traducao.setOnAction(e -> {
-			setTraducaoVisible(true);
-		});
 
 		btn_traduzir.setOnAction(e -> {
 			if (btn_traduzir.getText().equals("Esconder")) {
@@ -451,7 +448,7 @@ public class CodigoController implements Initializable, Terminavel {
 		area_trad.setLineHighlighterOn(true);
 		area_trad.setEditable(false);
 
-		area_console.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.TEXTO.getUrl()));
+		area_console.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.CONSOLE.getUrl()));
 		area_console.setWrapText(false);
 		area_console.setLineHighlighterOn(false);
 		// area_console.appendText("texte");

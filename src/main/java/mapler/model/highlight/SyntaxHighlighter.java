@@ -32,6 +32,7 @@ public abstract class SyntaxHighlighter {
 	private final String SEMICOLON_PATTERN = "\\;";
 	private final String STRING_PATTERN = "\"([^\"\\\\]|\\\\.)*\"";
 	private final String COMMENT_PATTERN = "//[^\n]*" + "|" + "/\\*(.|\\R)*?\\*/";
+	private final String CHAR_PATTERN = "'[^\n]*'";
 
 	private ExecutorService executor; // para thread
 	private StyleClassedTextArea codeArea;
@@ -55,6 +56,7 @@ public abstract class SyntaxHighlighter {
 						"|(?<BRACKET>"	+ BRACKET_PATTERN + ")" + 
 						"|(?<SEMICOLON>" + SEMICOLON_PATTERN + ")" + 
 						"|(?<STRING>" + STRING_PATTERN + ")" + 
+						"|(?<CHAR>" + CHAR_PATTERN + ")" + 
 						"|(?<COMMENT>" + COMMENT_PATTERN + ")"
 						);
 
@@ -119,13 +121,14 @@ public abstract class SyntaxHighlighter {
 			// e atribui a classe css correta
 			String styleClass = matcher.group("KEYWORD") != null ? "keyword"
 					: matcher.group("PAREN") != null ? "paren"
+						:matcher.group("CHAR") != null ? "texto"
 							: matcher.group("BRACE") != null ? "brace"
 									: matcher.group("BRACKET") != null ? "bracket"
 											: matcher.group("SEMICOLON") != null ? "semicolon"
 													: matcher.group("ATR") != null ? "atr"
 															: matcher.group("ATRTYPE") != null ? "atr"
 																	: matcher.group("INTER") != null ? "atr"
-																			: matcher.group("STRING") != null ? "string"
+																			: matcher.group("STRING") != null ? "texto"
 																					: matcher.group("COMMENT") != null
 																							? "comment"
 																							: matcher.group(

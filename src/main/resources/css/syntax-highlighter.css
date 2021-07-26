@@ -11,7 +11,7 @@
 }
 
 .styled-text-area .line-highlighter { 
-	-fx-fill:#7D858D;
+	-fx-fill: #505a62;
 }
 /*ESTILO DOS NUMEROS DE LINHA */
 .lineno{
@@ -31,7 +31,8 @@
 
 /* ------------ */
 .keyword {
-    -fx-fill: #f4b350;
+    /*-fx-fill: #f4b350;*/
+    -fx-fill: #40a8f2;
     -fx-font-weight: bold;
 }
 .semicolon {
@@ -70,4 +71,8 @@
 }
 .test { /*para testar os matchs do highlighter */
 	 -fx-fill:  red;
+}
+
+.texto { 
+    -fx-fill: #ed3232; 
 }

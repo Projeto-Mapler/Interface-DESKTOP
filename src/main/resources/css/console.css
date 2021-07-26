@@ -1,0 +1,20 @@
+
+/*ESTILO DA AREA DE TEXTO */
+.styled-text-area {
+    /* set the entire area's font size to the given size */
+    -fx-font-family: Consolas;
+   -fx-font-size: 18; 
+   -fx-font-weight: bold; 
+   -fx-background-color: #5c6770; 
+   -fx-border-color: #5c6770;
+   -fx-fill: red;
+}
+
+
+.erro { 
+    -fx-fill: red; 
+}
+
+.normal{
+	-fx-fill: black; 
+}
