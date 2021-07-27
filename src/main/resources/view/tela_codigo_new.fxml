@@ -18,6 +18,7 @@
 <?import mapler.model.ConsoleStyleClassedTextArea?>
 <?import mapler.model.MenuItemTraducao?>
 <?import mapler.model.Linguagem?>
+<?import javafx.scene.control.Label?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mapler.controller.CodigoController" >
 	<children>
@@ -52,13 +53,6 @@
 																<MenuItem fx:id="mi_salvarc" mnemonicParsing="false" text="Salvar como..." />
 															</items>
 														</Menu>
-														<Menu fx:id="mn_exibir" mnemonicParsing="false" text="Exibir">
-															<items>
-                                                			    <MenuItem mnemonicParsing="false" text="Codigo" />
-																<MenuItem fx:id="mi_traducao" mnemonicParsing="false" text="Traducao" />
-                                                				<MenuItem mnemonicParsing="false" text="Execucao" />
-															</items>
-														</Menu>
                                           <Menu fx:id="mn_linguagem" mnemonicParsing="false" text="Linguagem">
                                             <items>
                                               <MenuItemTraducao mnemonicParsing="false" text="C" linguagem="C"/>
@@ -72,7 +66,6 @@
                                             <items>
                                                 <MenuItem mnemonicParsing="false" text="Site" />
                                                 <MenuItem mnemonicParsing="false" text="Software" />
-                                              <MenuItem mnemonicParsing="false" text="sobre" />
                                             </items>
                                           </Menu>
 
@@ -184,41 +177,37 @@
 					<children>
 						<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
 							<children>
-								<TabPane fx:id="tab_areacod" layoutX="61.0" layoutY="32.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-									<tabs>
-										<Tab text="portugol">
-											<content>
-												<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+												<AnchorPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 													<children>
-                                          <SplitPane fx:id="split_vertical" dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                            <items>
-                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
-                                                   <children>
-                                                      <SplitPane fx:id="split_horizontal" dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                        <items>
-                                                            <AnchorPane fx:id="ap_cod" prefHeight="200.0" prefWidth="200.0">
-                                                               <children>
-            															<StyleClassedTextArea fx:id="area_cod" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                                               </children>
-                                                            </AnchorPane>
-                                                            <AnchorPane fx:id="ap_trad" prefHeight="200.0" prefWidth="200.0">
-                                                               <children>
-                                                                  <StyleClassedTextArea fx:id="area_trad" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                                                  <JFXButton fx:id="btn_close_trad" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" contentDisplay="RIGHT" graphicTextGap="0.0" text=" " textFill="#343a40">
-																	<graphic>
-																		<FontAwesomeIcon fill="#e73232" glyphName="CLOSE" />
-																    </graphic>
-																  </JFXButton>
-                                                               </children>
-                                                            </AnchorPane>
-                                                            <AnchorPane fx:id="ap_debug" prefHeight="200.0" prefWidth="200.0">
+                                          			   <SplitPane fx:id="split_vertical" dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            			  <items>
+                                              				 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                                   				<children>
+                                                      				<SplitPane fx:id="split_horizontal" dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                        				<items>
+                                                            				<AnchorPane fx:id="ap_cod" prefHeight="200.0" prefWidth="200.0">
+                                                               					<children>
+            																		<StyleClassedTextArea fx:id="area_cod" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                               				    </children>
+                                                            				</AnchorPane>
+                                                            				<AnchorPane fx:id="ap_trad" prefHeight="200.0" prefWidth="200.0">
+                                                               					<children>
+                                                                  					<StyleClassedTextArea fx:id="area_trad" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                                  					<JFXButton fx:id="btn_close_trad" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" contentDisplay="RIGHT" graphicTextGap="0.0" text=" " textFill="#343a40">
+																						<graphic>
+																							<FontAwesomeIcon fill="#e73232" glyphName="CLOSE" />
+																    					</graphic>
+																  				    </JFXButton>
+                                                               					</children>
+                                                            				</AnchorPane>
+                                                            				<AnchorPane fx:id="ap_debug" prefHeight="200.0" prefWidth="200.0">
                                                              
-                                                            </AnchorPane>
-                                                        </items>
-                                                      </SplitPane>
-                                                   </children>
-                                                </AnchorPane>
-                                              <AnchorPane fx:id="ap_console" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                                            				</AnchorPane>
+                                                        				</items>
+                                                      				</SplitPane>
+                                                   				</children>
+                                                			</AnchorPane>
+                                              				<AnchorPane fx:id="ap_console" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                                    <children>
                                                       <ConsoleStyleClassedTextArea fx:id="area_console" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                                    </children>
@@ -227,10 +216,7 @@
                                           </SplitPane>
 													</children>
 												</AnchorPane>
-											</content>
-										</Tab>
-									</tabs>
-								</TabPane>
+											
 							</children>
 						</AnchorPane>
 

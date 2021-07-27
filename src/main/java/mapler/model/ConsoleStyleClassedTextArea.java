@@ -52,8 +52,9 @@ public class ConsoleStyleClassedTextArea extends StyleClassedTextArea {
    * @param text
    */
   public void imprimirMsg(String text) {
-    //setStyleClass(getText().length(), getText().length(), "texto");
+    
     appendText(text);
+    setStyleClass(0, getText().length(), "normal");
    // setStyleClass(getText().length(), getText().length(), "variaveis");
   }
 
@@ -70,6 +71,7 @@ public class ConsoleStyleClassedTextArea extends StyleClassedTextArea {
     } else {
       imprimirMsgComQuebraLinha("> Erro: linha " + linha + ", em '" + onde + "'. " + msg);
     }
+    setStyleClass(0, getText().length(), "erro");
   }
 
   public void limparConsole() {
