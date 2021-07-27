@@ -145,9 +145,12 @@ public class CodigoController implements Initializable, Terminavel {
 
 		this.consoleTraducaoService = new ConsoleTraducaoService(debugController, area_console, area_trad);
 		String conteudo = this.arquivoService.getConteudo();
-		if (conteudo != null)
+		if (conteudo != null) {
+			area_cod.clear();
 			area_cod.appendText(conteudo);
-		area_cod.textProperty().addListener(new ChangeListener<String>() {
+		}
+			
+			area_cod.textProperty().addListener(new ChangeListener<String>() {
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
 
@@ -156,6 +159,8 @@ public class CodigoController implements Initializable, Terminavel {
 
 			}
 		});
+			
+		
 	}
 
 	public static boolean openWebpage(URI uri) {
@@ -221,6 +226,12 @@ public class CodigoController implements Initializable, Terminavel {
 			if (arquivoService.checkAlteracoesNaoSalvas()) {
 				arquivoService.fechar();
 				area_cod.clear();
+				area_cod.appendText("variaveis\r\n" + 
+						"  //declare aqui suas variaveis\r\n" + 
+						"inicio\r\n" + 
+						"  //auto gerado pelo MAPLER\r\n" + 
+						"  escrever \"Ola mundo!\";\r\n" + 
+						"fim");
 			}
 		});
 
@@ -444,7 +455,9 @@ public class CodigoController implements Initializable, Terminavel {
 		area_trad.setWrapText(true);
 		area_trad.setLineHighlighterOn(true);
 		area_trad.setEditable(false);
-
+		area_trad.clear();
+		area_trad.appendText("Selecione a linguagem no menu superior.");
+		
 		area_console.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.CONSOLE.getUrl()));
 		area_console.setWrapText(false);
 		area_console.setLineHighlighterOn(false);
@@ -459,6 +472,13 @@ public class CodigoController implements Initializable, Terminavel {
 			this.codAreaHighlighter.stop();
 
 		this.codAreaHighlighter = estiloLinguagensService.setHighlighterLinguagem(area_cod, Linguagem.PORTUGOL);
+		area_cod.clear();
+		area_cod.appendText("variaveis\r\n" + 
+				"  //declare aqui suas variaveis\r\n" + 
+				"inicio\r\n" + 
+				"  //auto gerado pelo MAPLER\r\n" + 
+				"  escrever \"Ola mundo!\";\r\n" + 
+				"fim");
 
 	}
 

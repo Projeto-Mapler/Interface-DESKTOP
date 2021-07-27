@@ -11,8 +11,9 @@
 }
 
 .styled-text-area .line-highlighter { 
-	-fx-fill: #505a62;
+	-fx-fill: #232425;
 }
+
 /*ESTILO DOS NUMEROS DE LINHA */
 .lineno{
    -fx-font-family: Consolas;
@@ -32,7 +33,11 @@
 /* ------------ */
 
 .styled-text-area .text{
-    -fx-fill: white; 
+    -fx-fill: #d2d2d2; 
+}
+
+.styled-text-area .caret {
+    -fx-stroke: white;
 }
 
 .styled-text-area .text.keyword {
@@ -72,7 +77,7 @@
 }
 
 .styled-text-area .text.comment {
-	-fx-fill: #aeb5b1;
+	-fx-fill: #808080;
 }
 
 .styled-text-area .text.paragraph-box:has-caret {
