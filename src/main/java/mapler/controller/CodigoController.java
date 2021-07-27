@@ -14,6 +14,7 @@ import org.fxmisc.richtext.StyleClassedTextArea;
 import com.jfoenix.controls.JFXButton;
 import com.sun.prism.CompositeMode;
 
+import javafx.stage.Stage;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -21,6 +22,8 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -33,9 +36,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
+import javafx.stage.StageStyle;
 import mapler.model.ConsoleStyleClassedTextArea;
 import mapler.model.Linguagem;
 import mapler.model.MenuItemTraducao;
+import mapler.model.ResizeListener;
 import mapler.model.Terminavel;
 import mapler.model.highlight.SyntaxHighlighter;
 import mapler.model.resource.Estilos;
@@ -84,7 +89,7 @@ public class CodigoController implements Initializable, Terminavel {
 	Menu mn_linguagem;
 
 	@FXML // arquivo
-	MenuItem mi_novo, mi_abrir, mi_salvar, mi_salvarc, mi_console;
+	MenuItem mi_novo, mi_abrir, mi_salvar, mi_salvarc, mi_console, mi_site, mi_software;
 
 	@FXML
 	JFXButton btn_left_inicio, btn_left_tutoriais, btn_left_sobre, btn_left_news, btn_minus, btn_max, btn_close,
@@ -251,6 +256,38 @@ public class CodigoController implements Initializable, Terminavel {
 		mi_salvarc.setOnAction(e -> {
 			this.arquivoService.salvarComo(area_cod.getText());
 		});
+		
+		mi_site.setOnAction(e -> {
+			try {
+				URL url = new URL("https://portugol.sourceforge.io/sobre.html");
+				boolean boo = openWebpage(url.toURI());
+			} catch (URISyntaxException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (MalformedURLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		});
+		
+		mi_software.setOnAction(e -> {
+			
+			try {
+				Stage stage = new Stage();
+				Parent root;
+				root = FXMLLoader.load(CarregadorRecursos.getResource(Templates.SOBRE.getUrl()));
+				Scene scene = new Scene(root, 320, 400); // resolucao inicial
+				stage.setScene(scene);
+				stage.setTitle("MAPLER STUDIO - Sobre");
+				stage.setResizable(false);
+				stage.show();
+				
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+		});
 
 		btn_executar.setOnAction(e -> {
 			if (btn_executar.getText().equals("Parar")) {
@@ -411,7 +448,8 @@ public class CodigoController implements Initializable, Terminavel {
 				e1.printStackTrace();
 			}
 		});
-
+		
+		
 		btn_left_sobre.setOnMouseEntered(e -> {
 			btn_left_sobre.setStyle("-fx-background-color: white;");
 			btn_left_sobre.setTextFill(Paint.valueOf("#272727"));

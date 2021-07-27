@@ -55,7 +55,7 @@
 														</Menu>
                                           <Menu fx:id="mn_linguagem" mnemonicParsing="false" text="Linguagem">
                                             <items>
-                                              <MenuItemTraducao mnemonicParsing="false" text="C" linguagem="C"/>
+                                              <MenuItemTraducao mnemonicParsing="false" text="C" linguagem="C" />
                                                 <MenuItemTraducao mnemonicParsing="false" text="C++" linguagem="Cpp"/>
                                                 <MenuItemTraducao mnemonicParsing="false" text="Java" linguagem="JAVA"/>
                                                 <MenuItemTraducao mnemonicParsing="false" text="Pascal" linguagem="PASCAL"/>
@@ -64,8 +64,8 @@
                                           </Menu>
                                           <Menu mnemonicParsing="false" text="Sobre">
                                             <items>
-                                                <MenuItem mnemonicParsing="false" text="Site" />
-                                                <MenuItem mnemonicParsing="false" text="Software" />
+                                                <MenuItem mnemonicParsing="false" text="Site" fx:id="mi_site"/>
+                                                <MenuItem mnemonicParsing="false" text="Software" fx:id="mi_software"/>
                                             </items>
                                           </Menu>
 
