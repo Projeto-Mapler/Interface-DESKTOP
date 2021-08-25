@@ -6,18 +6,18 @@
     -fx-font-family: Consolas;
    -fx-font-size: 16; 
    -fx-font-weight: bold; 
-   -fx-background-color: #292a2c; 
-   -fx-border-color: #292a2c;
+   -fx-background-color:  #21222c; 
+   -fx-border-color:  #21222c;
 }
 
 .styled-text-area .line-highlighter { 
-	-fx-fill: #232425;
+	-fx-fill: #343434;
 }
 
 /*ESTILO DOS NUMEROS DE LINHA */
 .lineno{
    -fx-font-family: Consolas;
-   -fx-background-color: #292a2c;
+   -fx-background-color:  #21222c;
    -fx-font-size: 16;
    -fx-fill: #1F1300; 
 }

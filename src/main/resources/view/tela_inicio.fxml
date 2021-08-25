@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -13,7 +14,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mapler.controller.InicioController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mapler.controller.InicioController">
 	<children>
 		<BorderPane fx:id="bd_inicial" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 			<top>
@@ -21,64 +22,10 @@
 					<children>
 						<VBox fx:id="vb_topo" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 							<children>
-								<AnchorPane fx:id="ap_barraSecundaria" minHeight="60.0" prefHeight="75.0" prefWidth="200.0" style="-fx-background-color: #151515;">
+								<AnchorPane fx:id="ap_barraSecundaria" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #151515;">
 									<children>
-										<HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+										<HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 											<children>
-												<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="130.0" style="-fx-background-color: #151515 #151515;">
-													<children>
-														<Circle fill="DODGERBLUE" layoutX="96.0" layoutY="40.0" radius="16.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: #22262a;" AnchorPane.leftAnchor="88.0" AnchorPane.topAnchor="18.0" />
-														<Label text="mapler." textFill="WHITE" AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="13.0">
-															<font>
-																<Font name="System Bold" size="30.0" />
-															</font>
-														</Label>
-														<Label layoutX="57.0" layoutY="57.0" text="portugol" textFill="WHITE" AnchorPane.leftAnchor="58.0" AnchorPane.topAnchor="42.0" />
-													</children>
-												</AnchorPane>
-												<JFXButton cancelButton="true" prefHeight="60.0" prefWidth="5.0" style="-fx-border-color: transparent  transparent transparent #4A4949;" text=" ">
-													<HBox.margin>
-														<Insets bottom="15.0" right="15.0" top="15.0" />
-													</HBox.margin>
-													<padding>
-														<Insets bottom="5.0" top="5.0" />
-													</padding>
-												</JFXButton>
-												<VBox alignment="CENTER">
-													<children>
-														<JFXButton fx:id="btn_novo" contentDisplay="CENTER" maxHeight="35.0" maxWidth="35.0" minHeight="30.0" minWidth="30.0" prefHeight="35.0" prefWidth="35.0" style="-fx-border-color: white; -fx-border-radius: 5 9 5 5;" text=" " textFill="#343a40">
-															<graphic>
-																<FontAwesomeIcon fill="WHITE" glyphName="PLUS" size="1.6em" />
-															</graphic>
-															<padding>
-																<Insets left="10.0" right="10.0" />
-															</padding>
-															<VBox.margin>
-																<Insets top="10.0" />
-															</VBox.margin>
-														</JFXButton>
-														<Label text="Novo" textFill="WHITE" />
-													</children>
-													<HBox.margin>
-														<Insets left="30.0" right="15.0" />
-													</HBox.margin>
-												</VBox>
-												<VBox alignment="CENTER">
-													<children>
-														<JFXButton fx:id="btn_abrir" contentDisplay="CENTER" maxHeight="35.0" maxWidth="35.0" minHeight="30.0" minWidth="30.0" prefHeight="35.0" prefWidth="35.0" style="-fx-border-color: white; -fx-border-radius: 5 9 5 5;" text=" " textFill="#343a40">
-															<graphic>
-																<FontAwesomeIcon fill="WHITE" glyphName="FOLDER_OPEN" size="1.6em" />
-															</graphic>
-															<padding>
-																<Insets left="10.0" right="10.0" />
-															</padding>
-															<VBox.margin>
-																<Insets top="10.0" />
-															</VBox.margin>
-														</JFXButton>
-														<Label text="Abrir" textFill="WHITE" />
-													</children>
-												</VBox>
       										<HBox alignment="TOP_RIGHT" prefWidth="200.0" HBox.hgrow="ALWAYS">
       											<children>
       												<JFXButton fx:id="btn_help" text=" " textFill="#343a40">
@@ -126,17 +73,96 @@
 				</AnchorPane>
 			</top>
 			<left>
-				<AnchorPane prefHeight="200.0" prefWidth="140.0" style="-fx-background-color: #343a40;" BorderPane.alignment="CENTER">
+				<AnchorPane prefHeight="200.0" prefWidth="140.0" style="-fx-background-color: #282a36;" BorderPane.alignment="CENTER">
 					<children>
-						<VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+						<VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 							<children>
-								<JFXButton fx:id="btn_left_inicio" alignment="TOP_LEFT" prefWidth="100.0" text="Inicio" textFill="WHITE" />
-								<JFXButton fx:id="btn_left_tutoriais" alignment="TOP_LEFT" prefWidth="100.0" style="-fx-background-color: transparent;" text="Tutoriais" textFill="WHITE">
-									<VBox.margin>
-										<Insets bottom="10.0" top="10.0" />
-									</VBox.margin>
-								</JFXButton>
-								<JFXButton fx:id="btn_left_exemplos" alignment="TOP_LEFT" prefWidth="100.0" style="-fx-background-color: transparent;" text="Exemplos" textFill="WHITE" />
+      												<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="150.0" style="-fx-background-color: #282a36;">
+      													<children>
+      														<Circle fill="DODGERBLUE" layoutX="96.0" layoutY="40.0" radius="16.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: #191a21;" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="18.0" />
+      														<Label text="mapler." textFill="WHITE" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="13.0">
+      															<font>
+      																<Font name="System Bold" size="30.0" />
+      															</font>
+      														</Label>
+      														<Label layoutX="57.0" layoutY="57.0" text="portugol" textFill="WHITE" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="42.0" />
+      													</children>
+      												</AnchorPane>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+												<VBox alignment="CENTER">
+													<children>
+														<JFXButton fx:id="btn_novo" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="36.0" style="-fx-border-color: white; -fx-border-radius: 5 9 5 5; -fx-background-color: #21222c;" text=" ">
+															<graphic>
+																<FontAwesomeIcon fill="WHITE" glyphName="PLUS" size="1.9em" />
+															</graphic>
+															<padding>
+																<Insets left="10.0" right="10.0" />
+															</padding>
+															<VBox.margin>
+																<Insets top="10.0" />
+															</VBox.margin>
+														</JFXButton>
+														<Label text="Novo" textFill="WHITE" />
+													</children>
+													<HBox.margin>
+														<Insets left="30.0" right="15.0" />
+													</HBox.margin>
+												</VBox>
+												<VBox alignment="CENTER">
+													<children>
+														<JFXButton fx:id="btn_abrir" contentDisplay="CENTER" maxHeight="35.0" maxWidth="35.0" minHeight="30.0" minWidth="30.0" prefHeight="35.0" prefWidth="35.0" style="-fx-border-color: white; -fx-background-color: #21222c; -fx-border-radius: 5 9 5 5;" text=" " textFill="#343a40">
+															<graphic>
+																<FontAwesomeIcon fill="WHITE" glyphName="FOLDER_OPEN" size="1.6em" />
+															</graphic>
+															<padding>
+																<Insets left="10.0" right="10.0" />
+															</padding>
+															<VBox.margin>
+																<Insets top="10.0" />
+															</VBox.margin>
+														</JFXButton>
+														<Label text="Abrir" textFill="WHITE" />
+													</children>
+												</VBox>
+                           </children>
+                        </HBox>
+                        <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <VBox alignment="TOP_CENTER">
+                                 <children>
+            								<JFXButton fx:id="btn_left_tutoriais" alignment="TOP_LEFT" contentDisplay="CENTER" maxHeight="35.0" maxWidth="35.0" minHeight="30.0" minWidth="30.0" prefHeight="35.0" prefWidth="35.0" style="-fx-border-color: white; -fx-border-radius: 5 9 5 5; -fx-background-color: #21222c;" text=" " textFill="WHITE">
+            									<VBox.margin>
+            										<Insets />
+            									</VBox.margin>
+                                       <graphic>
+                                          <FontAwesomeIcon fill="WHITE" glyphName="INFO_CIRCLE" size="1.6em" />
+                                       </graphic>
+            								</JFXButton>
+                                    <Label text="Tutoriais" textFill="WHITE" />
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets right="5.0" />
+                                 </HBox.margin>
+                              </VBox>
+                              <VBox alignment="TOP_CENTER">
+                                 <children>
+            								<JFXButton fx:id="btn_left_exemplos" alignment="TOP_LEFT" maxHeight="35.0" maxWidth="35.0" minHeight="30.0" minWidth="30.0" prefHeight="35.0" prefWidth="35.0" style="-fx-border-color: white; -fx-background-color: #21222c; -fx-border-radius: 5 9 5 5;" text=" " textFill="WHITE">
+                                       <graphic>
+                                          <FontAwesomeIcon fill="WHITE" glyphName="DATABASE" size="1.6em" />
+                                       </graphic>
+                                    </JFXButton>
+                                    <Label text="Exemplos" textFill="WHITE" />
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets right="7.0" />
+                                 </HBox.margin>
+                              </VBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="7.0" />
+                           </VBox.margin>
+                        </HBox>
 								<VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS" />
 								<JFXButton fx:id="btn_left_sobre" alignment="TOP_LEFT" prefWidth="100.0" style="-fx-background-color: transparent;" text="Sobre o MAPLER" textFill="WHITE">
 									<font>
@@ -146,22 +172,17 @@
 										<Insets bottom="5.0" />
 									</VBox.margin>
 								</JFXButton>
-								<JFXButton fx:id="btn_left_news" alignment="TOP_LEFT" prefWidth="100.0" style="-fx-background-color: transparent;" text="Novidades" textFill="WHITE">
-									<font>
-										<Font size="11.1" />
-									</font>
-								</JFXButton>
 							</children>
 						</VBox>
 					</children>
 				</AnchorPane>
 			</left>
 			<center>
-				<AnchorPane fx:id="ap_centerIncial" minHeight="200.0" minWidth="200.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #343a40;" BorderPane.alignment="CENTER">
+				<AnchorPane fx:id="ap_centerIncial" minHeight="200.0" minWidth="200.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #282a36;" BorderPane.alignment="CENTER">
 					<children>
 						<VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="0.0">
 							<children>
-								<HBox alignment="CENTER_LEFT" maxHeight="90.0" minHeight="90.0" prefHeight="90.0" style="-fx-border-color: transparent transparent #22262a transparent; -fx-border-width: 5;" VBox.vgrow="ALWAYS">
+								<HBox alignment="CENTER_LEFT" maxHeight="90.0" minHeight="90.0" prefHeight="90.0" style="-fx-border-color: transparent transparent #21222c transparent; -fx-border-width: 5;" VBox.vgrow="ALWAYS">
 									<children>
 										<Label text="Experimente um jeito novo de programar" textFill="WHITE">
 											<font>
@@ -173,7 +194,7 @@
 										</Label>
 										<JFXButton fx:id="btn_info" contentDisplay="CENTER" text=" ">
 											<graphic>
-												<FontAwesomeIcon glyphName="INFO_CIRCLE" />
+												<FontAwesomeIcon fx:id="btn_i_principal" glyphName="INFO_CIRCLE" />
 											</graphic>
 											<padding>
 												<Insets left="2.0" />
@@ -185,49 +206,259 @@
 									<children>
 										<VBox style="-fx-border-color: transparent transparent transparent transparent; -fx-border-width: 5;" HBox.hgrow="ALWAYS">
 											<children>
-												<AnchorPane>
+                                    <HBox prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <VBox style="-fx-border-color: transparent transparent transparent transparent; -fx-border-width: 5;" HBox.hgrow="ALWAYS">
+      											<children>
+      												<AnchorPane>
+      													<children>
+      														<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #21222c; -fx-background-radius: 10;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+      															<children>
+      																<HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      																	<children>
+      																		<VBox prefHeight="183.0" prefWidth="270.0">
+      																			<children>
+      																				<Label text="Vamos codificar juntos?" textFill="WHITE">
+      																					<font>
+      																						<Font name="System Bold" size="16.0" />
+      																					</font>
+      																					<VBox.margin>
+      																						<Insets bottom="15.0" left="40.0" />
+      																					</VBox.margin>
+      																				</Label>
+      																				<Label text="Sabemos que iniciar no mundo da programacao" textFill="WHITE" />
+      																				<Label text="pode ser desafiador. Para te ajudar nessa" textFill="WHITE" />
+      																				<Label text="trajetoria, preparamos um material muito" textFill="WHITE" />
+      																				<Label text="especial para voce." textFill="WHITE" />
+      																				<JFXButton fx:id="btn_saber" style="-fx-background-color: #55ce91; -fx-background-radius: 10; -fx-border-color: white; -fx-border-radius: 14;" text="Saber mais" textFill="WHITE">
+      																					<VBox.margin>
+      																						<Insets left="157.0" />
+      																					</VBox.margin>
+      																					<font>
+      																						<Font size="9.0" />
+      																					</font>
+      																				</JFXButton>
+      																			</children>
+      																			<HBox.margin>
+      																				<Insets right="-50.0" top="40.0" />
+      																			</HBox.margin>
+      																		</VBox>
+      																		<AnchorPane fx:id="pane_img">
+      																			<children>
+      																				<ImageView fitHeight="187.5" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0">
+      																					<image>
+      																						<Image url="@../images/banner_inicio.png" />
+      																					</image>
+      																				</ImageView>
+      																			</children>
+      																		</AnchorPane>
+                                                                  <VBox alignment="BOTTOM_LEFT" prefHeight="200.0" prefWidth="100.0">
+                                                                     <children>
+                                                                        <Label text="Novidades" textFill="WHITE">
+                                                                           <VBox.margin>
+                                                                              <Insets left="30.0" top="10.0" />
+                                                                           </VBox.margin>
+                                                                           <font>
+                                                                              <Font size="14.0" />
+                                                                           </font>
+                                                                        </Label>
+                                                                        <AnchorPane maxWidth="-Infinity">
+                                                                           <children>
+                                                                              <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #21222c; -fx-background-radius: 10;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                                                                                 <children>
+                                                                                    <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-spacing: 2;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                                       <children>
+                                                                                          <VBox>
+                                                                                             <children>
+                                                                                                <Hyperlink fx:id="lk_portugol" text="Ensino em Portugol" textFill="WHITE">
+                                                                                                   <font>
+                                                                                                      <Font size="14.0" />
+                                                                                                   </font>
+                                                                                                   <graphic>
+                                                                                                      <FontAwesomeIcon fill="#2c71b2" glyphName="SEARCH" />
+                                                                                                   </graphic>
+                                                                                                </Hyperlink>
+                                                                                                <Hyperlink fx:id="lk_macp" text="MACP agora é MAPLER" textFill="WHITE">
+                                                                                                   <graphic>
+                                                                                                      <FontAwesomeIcon fill="#2c71b2" glyphName="SEARCH" />
+                                                                                                   </graphic>
+                                                                                                </Hyperlink>
+                                                                                             </children>
+                                                                                          </VBox>
+                                                                                       </children>
+                                                                                    </HBox>
+                                                                                 </children>
+                                                                              </AnchorPane>
+                                                                           </children>
+                                                                        </AnchorPane>
+                                                                     </children>
+                                                                  </VBox>
+      																	</children>
+      																</HBox>
+      															</children>
+      														</AnchorPane>
+      													</children>
+      												</AnchorPane>
+      											</children>
+      										</VBox>
+                                       </children>
+                                    </HBox>
+                                    <Label text="Sobre portugol" textFill="WHITE">
+                                       <VBox.margin>
+                                          <Insets left="30.0" />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+												<AnchorPane prefHeight="320.0">
 													<children>
-														<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #22262a; -fx-background-radius: 10;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+														<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-radius: 10;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
 															<children>
-																<HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-																	<children>
-																		<VBox prefHeight="183.0" prefWidth="270.0">
-																			<children>
-																				<Label text="Vamos codificar juntos?" textFill="WHITE">
-																					<font>
-																						<Font name="System Bold" size="16.0" />
-																					</font>
-																					<VBox.margin>
-																						<Insets bottom="15.0" left="40.0" />
-																					</VBox.margin>
-																				</Label>
-																				<Label text="Sabemos que iniciar no mundo da programacao" textFill="WHITE" />
-																				<Label text="pode ser desafiador. Para te ajudar nessa" textFill="WHITE" />
-																				<Label text="trajetoria, preparamos um material muito" textFill="WHITE" />
-																				<Label text="especial para voce." textFill="WHITE" />
-																				<JFXButton fx:id="btn_saber" style="-fx-background-color: #35f092; -fx-background-radius: 10; -fx-border-color: white; -fx-border-radius: 14;" text="Saber mais" textFill="WHITE">
-																					<VBox.margin>
-																						<Insets left="157.0" />
-																					</VBox.margin>
-																					<font>
-																						<Font size="9.0" />
-																					</font>
-																				</JFXButton>
-																			</children>
-																			<HBox.margin>
-																				<Insets right="-50.0" top="40.0" />
-																			</HBox.margin>
-																		</VBox>
-																		<AnchorPane fx:id="pane_img">
-																			<children>
-																				<ImageView fitHeight="187.5" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0">
-																					<image>
-																						<Image url="@../images/banner_inicio.png" />
-																					</image>
-																				</ImageView>
-																			</children>
-																		</AnchorPane>
-																	</children>
+																<HBox alignment="BOTTOM_LEFT" maxHeight="300.0" maxWidth="400.0" prefHeight="100.0" prefWidth="200.0" style="-fx-spacing: 2;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                   <children>
+                                                      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #21222c; -fx-background-radius: 10;">
+                                                         <HBox.margin>
+                                                            <Insets bottom="2.0" left="5.0" top="2.0" />
+                                                         </HBox.margin>
+                                                         <children>
+                                                            <AnchorPane maxHeight="200.0" maxWidth="200.0" prefHeight="100.0" prefWidth="100.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                               <children>
+                                                                  <Label text="//estrutura do codigo" textFill="#6b6868" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="14.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                                  <Hyperlink fx:id="link_cod_var" text="variveis" textFill="#2c71b2" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="20.0">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="14.0" />
+                                                                     </font>
+                                                                  </Hyperlink>
+                                                                  <Hyperlink fx:id="link_cod_inicio" text="inicio" textFill="#2c71b2" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="40.0">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="14.0" />
+                                                                     </font>
+                                                                  </Hyperlink>
+                                                                  <Hyperlink fx:id="link_cod_fim" text="fim" textFill="#2c71b2" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="60.0">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="14.0" />
+                                                                     </font>
+                                                                  </Hyperlink>
+                                                               </children>
+                                                            </AnchorPane>
+                                                            <JFXButton fx:id="btn_aprender_estrutura" contentDisplay="RIGHT" style="-fx-background-color: #16171d;" text="Ver tudo" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                                               <graphic>
+                                                                  <FontAwesomeIcon fill="#3ebf6b" glyphName="EXTERNAL_LINK_SQUARE" />
+                                                               </graphic>
+                                                            </JFXButton>
+                                                         </children>
+                                                      </AnchorPane>
+                                                      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #21222c; -fx-background-radius: 10;">
+                                                         <HBox.margin>
+                                                            <Insets bottom="2.0" top="2.0" />
+                                                         </HBox.margin>
+                                                         <children>
+                                                            <AnchorPane maxHeight="200.0" maxWidth="200.0" prefHeight="100.0" prefWidth="100.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                               <children>
+                                                                  <Label minWidth="70.0" text="//Condicionais" textFill="#6b6868" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                     <font>
+                                                                        <Font size="14.0" />
+                                                                     </font></Label>
+                                                                  <Hyperlink fx:id="link_cod_se" text="se" textFill="#2c71b2" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="20.0">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="14.0" />
+                                                                     </font>
+                                                                  </Hyperlink>
+                                                                  <Hyperlink fx:id="link_cod_senao" text="senao" textFill="#2c71b2" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="40.0">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="14.0" />
+                                                                     </font>
+                                                                  </Hyperlink>
+                                                                  <Hyperlink fx:id="link_cod_fimse" text="fim se" textFill="#2c71b2" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="60.0">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="14.0" />
+                                                                     </font>
+                                                                  </Hyperlink>
+                                                               </children>
+                                                            </AnchorPane>
+                                                            <JFXButton fx:id="btn_aprender_cond" contentDisplay="RIGHT" style="-fx-background-color: #16171d;" text="Ver tudo" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                                               <graphic>
+                                                                  <FontAwesomeIcon fill="#3ebf6b" glyphName="EXTERNAL_LINK_SQUARE" />
+                                                               </graphic>
+                                                            </JFXButton>
+                                                         </children>
+                                                      </AnchorPane>
+                                                      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #21222c; -fx-background-radius: 10;">
+                                                         <HBox.margin>
+                                                            <Insets bottom="2.0" top="2.0" />
+                                                         </HBox.margin>
+                                                         <children>
+                                                            <AnchorPane maxHeight="200.0" maxWidth="200.0" prefHeight="100.0" prefWidth="100.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                               <children>
+                                                                  <Label text="//operacoes" textFill="#6b6868" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="14.0" />
+                                                                     </font></Label>
+                                                                  <Hyperlink fx:id="link_cod_num" text="numericas" textFill="#2c71b2" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="20.0">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="14.0" />
+                                                                     </font>
+                                                                  </Hyperlink>
+                                                                  <Hyperlink fx:id="link_cod_log" text="logicas" textFill="#2c71b2" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="40.0">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="14.0" />
+                                                                     </font>
+                                                                  </Hyperlink>
+                                                                  <Hyperlink fx:id="link_cod_lit" text="literais" textFill="#2c71b2" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="60.0">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="14.0" />
+                                                                     </font>
+                                                                  </Hyperlink>
+                                                               </children>
+                                                            </AnchorPane>
+                                                            <JFXButton fx:id="btn_aprender_operac" contentDisplay="RIGHT" style="-fx-background-color: #16171d;" text="Ver tudo" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                                               <graphic>
+                                                                  <FontAwesomeIcon fill="#3ebf6b" glyphName="EXTERNAL_LINK_SQUARE" />
+                                                               </graphic>
+                                                            </JFXButton>
+                                                         </children>
+                                                      </AnchorPane>
+                                                      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #21222c; -fx-background-radius: 10;">
+                                                         <HBox.margin>
+                                                            <Insets bottom="2.0" top="2.0" />
+                                                         </HBox.margin>
+                                                         <children>
+                                                            <AnchorPane maxHeight="200.0" maxWidth="200.0" prefHeight="100.0" prefWidth="100.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                               <children>
+                                                                  <Label text="//laços de repeticao" textFill="#6b6868" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="14.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                                  <Hyperlink fx:id="link_cod_para" text="para" textFill="#2c71b2" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="20.0">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="14.0" />
+                                                                     </font>
+                                                                  </Hyperlink>
+                                                                  <Hyperlink fx:id="link_cod_enquanto" text="enquanto" textFill="#2c71b2" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="40.0">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="14.0" />
+                                                                     </font>
+                                                                  </Hyperlink>
+                                                                  <Hyperlink fx:id="link_cod_repita" text="repita" textFill="#2c71b2" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="60.0">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="14.0" />
+                                                                     </font>
+                                                                  </Hyperlink>
+                                                               </children></AnchorPane>
+                                                            <JFXButton fx:id="btn_aprender_repita" contentDisplay="RIGHT" style="-fx-background-color: #16171d;" text="Ver tudo" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                                               <graphic>
+                                                                  <FontAwesomeIcon fill="#3ebf6b" glyphName="EXTERNAL_LINK_SQUARE" />
+                                                               </graphic>
+                                                            </JFXButton>
+                                                         </children>
+                                                      </AnchorPane>
+                                                   </children>
 																</HBox>
 															</children>
 														</AnchorPane>
