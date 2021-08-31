@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
@@ -53,6 +54,42 @@
 																<MenuItem fx:id="mi_salvarc" mnemonicParsing="false" text="Salvar como..." />
 															</items>
 														</Menu>
+										  <Menu mnemonicParsing="false" text="Exemplos">
+          									<items>
+            									<MenuItem mnemonicParsing="false" text="Estrutura do codigo" />
+                  								<Menu mnemonicParsing="false" text="Tipos">
+                    								<items>
+                      									<MenuItem mnemonicParsing="false" text="Numericos" />
+                        								<MenuItem mnemonicParsing="false" text="Booleano" />
+                        								<MenuItem mnemonicParsing="false" text="Literais" />
+                        								<MenuItem mnemonicParsing="false" text="Vetor" />
+                    								</items>
+                  								</Menu>
+                  								<Menu mnemonicParsing="false" text="Operaçoes">
+                    								<items>
+                      									<MenuItem mnemonicParsing="false" text="Adiçao"/>
+                        								<MenuItem mnemonicParsing="false" text="Subtraçao"/>
+                        								<MenuItem mnemonicParsing="false" text="Multiplicaçao"/>
+                        								<MenuItem mnemonicParsing="false" text="Divisao"/>
+                        								<MenuItem mnemonicParsing="false" text="Precedencia"/>
+                    								</items>
+                  								</Menu>
+                  								<Menu mnemonicParsing="false" text="Condicionais">
+                    								<items>
+                      									<MenuItem mnemonicParsing="false" text="Se"/>
+                        								<MenuItem mnemonicParsing="false" text="Senao"/>
+                    								</items>
+                  								</Menu>
+                  								<Menu mnemonicParsing="false" text="Laços">
+                    								<items>
+                      									<MenuItem mnemonicParsing="false" text="Para" />
+                        								<MenuItem mnemonicParsing="false" text="Enquanto" />
+                        								<MenuItem mnemonicParsing="false" text="Repita" />
+                    								</items>
+                  								</Menu>
+                  								<MenuItem mnemonicParsing="false" text="Modulos" />
+          									</items>
+        								  </Menu>
                                           <Menu fx:id="mn_linguagem" mnemonicParsing="false" text="Linguagem">
                                             <items>
                                               <MenuItemTraducao mnemonicParsing="false" text="C" linguagem="C" />
