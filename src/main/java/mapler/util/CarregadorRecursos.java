@@ -6,22 +6,28 @@ import java.net.URL;
  * Carrega arquivos da pasta de recursos
  */
 public class CarregadorRecursos {
-  private static ClassLoader classLoader;
+//  private static ClassLoader classLoader;
 
-  static {
-    classLoader = CarregadorRecursos.class.getClassLoader();
-  }
-
+//  static {
+//    classLoader = CarregadorRecursos.class.getClassLoader();
+//  }
+	private static CarregadorRecursos instance;
+  
   /**
    * classe estatica
    */
   private CarregadorRecursos() {}
-
-  public static URL getResource(String path) {
-    return classLoader.getResource(path);
+  
+  public static CarregadorRecursos get() {
+	  if(instance == null) instance = new CarregadorRecursos();
+	  return instance;
   }
 
-  public static String getResourceExternalForm(String path) {
-    return classLoader.getResource(path).toExternalForm();
+  public URL getResource(String path) {
+    return getClass().getResource(path);
+  }
+
+  public String getResourceExternalForm(String path) {
+    return getClass().getResource(path).toExternalForm();
   }
 }

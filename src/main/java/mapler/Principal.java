@@ -1,5 +1,7 @@
 package mapler;
 
+import java.net.URL;
+
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXMLLoader;
@@ -21,7 +23,9 @@ public class Principal extends Application {
 	public void start(Stage stage) throws Exception {
 		InicioService.iniciarClasse(stage);
 		stage.initStyle(StageStyle.UNDECORATED); // removendo botoes padrao
-		Parent root = FXMLLoader.load(CarregadorRecursos.getResource(Templates.BASE.getUrl()));
+		URL resources = getClass().getResource("");
+		System.out.println(resources.getPath());
+		Parent root = FXMLLoader.load(CarregadorRecursos.get().getResource(Templates.BASE.getUrl()));
 		Scene scene = new Scene(root, 960, 720); // resolucao inicial
 		stage.setScene(scene);
 		stage.setTitle("MAPLER STUDIO");
@@ -47,8 +51,9 @@ public class Principal extends Application {
 		super.stop();
 		BaseService.getInstancia().terminarTodosTerminaveis();
 	}
-
+	
 	public static void main(String[] args) {
 		launch(args);
 	}
+
 }
