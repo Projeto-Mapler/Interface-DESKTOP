@@ -12,13 +12,10 @@ import org.fxmisc.richtext.LineNumberFactory;
 import org.fxmisc.richtext.StyleClassedTextArea;
 
 import com.jfoenix.controls.JFXButton;
-import com.sun.prism.CompositeMode;
 
-import javafx.stage.Stage;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -29,18 +26,14 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
-import javafx.stage.StageStyle;
+import javafx.stage.Stage;
 import mapler.model.ConsoleStyleClassedTextArea;
 import mapler.model.Linguagem;
 import mapler.model.MenuItemTraducao;
-import mapler.model.ResizeListener;
 import mapler.model.Terminavel;
 import mapler.model.highlight.SyntaxHighlighter;
 import mapler.model.resource.Estilos;
@@ -141,7 +134,7 @@ public class CodigoController implements Initializable, Terminavel {
 		setConsoleVisible(false);
 		setDebugVisible(false);
 		try {
-			FXMLLoader loader = new FXMLLoader(CarregadorRecursos.getResource(Templates.DEBUG.getUrl()));
+			FXMLLoader loader = new FXMLLoader(CarregadorRecursos.get().getResource(Templates.DEBUG.getUrl()));
 			loader.setController(debugController);
 			ap_debug.getChildren().add(loader.load());
 		} catch (IOException e) {
@@ -275,7 +268,7 @@ public class CodigoController implements Initializable, Terminavel {
 			try {
 				Stage stage = new Stage();
 				Parent root;
-				root = FXMLLoader.load(CarregadorRecursos.getResource(Templates.SOBRE.getUrl()));
+				root = FXMLLoader.load(CarregadorRecursos.get().getResource(Templates.SOBRE.getUrl()));
 				Scene scene = new Scene(root, 320, 400); // resolucao inicial
 				stage.setScene(scene);
 				stage.setTitle("MAPLER STUDIO - Sobre");
@@ -291,14 +284,16 @@ public class CodigoController implements Initializable, Terminavel {
 
 		btn_executar.setOnAction(e -> {
 			if (btn_executar.getText().equals("Parar")) {
+				consoleTraducaoService.pararExecucao();
 				setConsoleVisible(false);
 				btn_executar.setText("Executar");
 				icon_exec.setGlyphName("PLAY");
 			} else {
 				setConsoleVisible(true);
 				icon_exec.setGlyphName("STOP");
+				this.area_console.limparConsole();
+				consoleTraducaoService.executarTexto(this.area_cod.getText().trim(), false);
 			}
-			consoleTraducaoService.executarTexto(this.area_cod.getText().trim(), false);
 
 		});
 
@@ -315,7 +310,7 @@ public class CodigoController implements Initializable, Terminavel {
 			}
 		});
 
-		btn_home.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.BOTOES.getUrl()));
+		btn_home.getStylesheets().add(CarregadorRecursos.get().getResourceExternalForm(Estilos.BOTOES.getUrl()));
 
 		btn_close.setOnMouseEntered(e -> {
 			btn_close.setStyle("-fx-background-color: #1b1b1b;");
@@ -484,11 +479,11 @@ public class CodigoController implements Initializable, Terminavel {
 		});
 
 		// css
-		split_vertical.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.SPLITPANE.getUrl()));
-		split_horizontal.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.SPLITPANE.getUrl()));
-		m_bar.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.MENUBAR.getUrl()));
+		split_vertical.getStylesheets().add(CarregadorRecursos.get().getResourceExternalForm(Estilos.SPLITPANE.getUrl()));
+		split_horizontal.getStylesheets().add(CarregadorRecursos.get().getResourceExternalForm(Estilos.SPLITPANE.getUrl()));
+		m_bar.getStylesheets().add(CarregadorRecursos.get().getResourceExternalForm(Estilos.MENUBAR.getUrl()));
 
-		area_trad.getStylesheets().add(CarregadorRecursos.getResourceExternalForm("css/syntax-highlighter.css"));
+		area_trad.getStylesheets().add(CarregadorRecursos.get().getResourceExternalForm("/css/syntax-highlighter.css"));
 		area_trad.setParagraphGraphicFactory(LineNumberFactory.get(area_trad));
 		area_trad.setWrapText(true);
 		area_trad.setLineHighlighterOn(true);
@@ -496,12 +491,12 @@ public class CodigoController implements Initializable, Terminavel {
 		area_trad.clear();
 		area_trad.appendText("Selecione a linguagem no menu superior.");
 		
-		area_console.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.CONSOLE.getUrl()));
+		area_console.getStylesheets().add(CarregadorRecursos.get().getResourceExternalForm(Estilos.CONSOLE.getUrl()));
 		area_console.setWrapText(false);
 		area_console.setLineHighlighterOn(false);
 		// area_console.appendText("texte");
 
-		area_cod.getStylesheets().add(CarregadorRecursos.getResourceExternalForm("css/syntax-highlighter.css"));
+		area_cod.getStylesheets().add(CarregadorRecursos.get().getResourceExternalForm("/css/syntax-highlighter.css"));
 		area_cod.setParagraphGraphicFactory(LineNumberFactory.get(area_cod));
 		area_cod.setWrapText(true);
 		area_cod.setLineHighlighterOn(true);
