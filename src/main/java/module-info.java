@@ -1,12 +1,7 @@
 module mapler_interface {
-	exports mapler;
-	exports mapler.controller;
-	exports mapler.model;
-	exports mapler.model.highlight;
-	exports mapler.model.resource;
-	exports mapler.service;
-	exports mapler.util;
+	
 
+	 
 	requires flowless;
 	requires fontawesomefx;
 	requires interpretadorMACP;
@@ -14,12 +9,12 @@ module mapler_interface {
 	requires javafx.base;
 	requires javafx.controls;
 	requires javafx.fxml;
-	requires javafx.graphics;
 	requires javafx.media;
 	requires reactfx;
 	requires richtextfx;
 	requires undofx;
 	requires com.jfoenix;
+	requires transitive javafx.graphics;	  
 	
 	
 	opens mapler to javafx.fxml;
@@ -29,5 +24,16 @@ module mapler_interface {
 	opens mapler.model.resource to javafx.fxml;
 	opens mapler.service to javafx.fxml;
 	opens mapler.util to javafx.fxml;
+	
+
+	
+	exports mapler;
+	exports mapler.controller;
+	exports mapler.model;
+	exports mapler.model.highlight;
+	exports mapler.model.resource;
+	exports mapler.service;
+	exports mapler.util;
+
 	
 }
