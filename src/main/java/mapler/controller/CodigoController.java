@@ -1,12 +1,16 @@
 package mapler.controller;
 
 import java.awt.Desktop;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.Scanner;
 
 import org.fxmisc.richtext.LineNumberFactory;
 import org.fxmisc.richtext.StyleClassedTextArea;
@@ -37,6 +41,7 @@ import mapler.model.MenuItemTraducao;
 import mapler.model.Terminavel;
 import mapler.model.highlight.SyntaxHighlighter;
 import mapler.model.resource.Estilos;
+import mapler.model.resource.Exemplos;
 import mapler.model.resource.Templates;
 import mapler.service.ArquivoService;
 import mapler.service.BaseService;
@@ -83,6 +88,13 @@ public class CodigoController implements Initializable, Terminavel {
 
 	@FXML // arquivo
 	MenuItem mi_novo, mi_abrir, mi_salvar, mi_salvarc, mi_console, mi_site, mi_software;
+	
+	@FXML
+	MenuItem mi_ex_estrutura, mi_ex_io, mi_ex_mdl,
+		     mi_ex_tp_v, mi_ex_tp_l, mi_ex_tp_b, mi_ex_tp_n, mi_ex_tp_g, 
+		     mi_ex_op_g, mi_ex_op_a, mi_ex_op_s, mi_ex_op_m, mi_ex_op_d, mi_ex_op_p, 
+		     mi_ex_co_se, mi_ex_co_sn,
+		     mi_ex_lc_r, mi_ex_lc_p, mi_ex_lc_e, mi_ex_lc_g;
 
 	@FXML
 	JFXButton btn_left_inicio, btn_left_tutoriais, btn_left_sobre, btn_left_news, btn_minus, btn_max, btn_close,
@@ -178,6 +190,16 @@ public class CodigoController implements Initializable, Terminavel {
 		TabService nova = new TabService(titulo, texto);
 		nova.setText(titulo);
 		return nova;
+	}
+	
+	private void CarregaExemplo(String exemplo) {
+		area_trad.clear();
+		//area_trad.applyCss();
+		area_trad.appendText(exemplo);
+		//area_trad.requestFocus();
+		//area_trad.selectAll();
+		split_horizontal.getItems().remove(ap_trad);
+		split_horizontal.getItems().add(ap_trad);
 	}
 
 	private boolean salvar() {
@@ -281,6 +303,101 @@ public class CodigoController implements Initializable, Terminavel {
 			}
 			
 		});
+		
+		mi_ex_estrutura.setOnAction(e->{
+			/*Scanner in;
+			try {
+				in = new Scanner(new FileReader(CarregadorRecursos.get().getResourceExternalForm(Exemplos.ESTRUTURA.getUrl())));
+				StringBuilder sb = new StringBuilder();
+				while(in.hasNext()) {
+				    sb.append(in.next());
+				}
+				in.close();
+				CarregaExemplo(sb.toString());
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}*/
+			CarregaExemplo("Em breve - estrutura");
+			
+			
+		});
+		
+		mi_ex_io.setOnAction(e->{
+			CarregaExemplo("Em breve - IO");
+		}); 
+		
+		mi_ex_mdl.setOnAction(e->{
+			CarregaExemplo("Em breve - Modulo");
+		});
+	    
+		mi_ex_tp_v.setOnAction(e->{
+				CarregaExemplo("Em breve - Tipo vetor");
+			}); 
+	    
+		mi_ex_tp_l.setOnAction(e->{
+			CarregaExemplo("Em breve - Tipo literal");
+		}); 
+		
+		mi_ex_tp_b.setOnAction(e->{
+			CarregaExemplo("Em breve - Tipo boolean");
+		}); 
+		
+		mi_ex_tp_n.setOnAction(e->{
+			CarregaExemplo("Em breve - Tipo numero");
+		}); 
+		
+		mi_ex_tp_g.setOnAction(e->{
+			CarregaExemplo("Em breve - Tipos");
+		}); 
+	     
+		mi_ex_op_g.setOnAction(e->{
+				CarregaExemplo("Em breve - Operacoes");
+			}); 
+		
+		mi_ex_op_a.setOnAction(e->{
+				CarregaExemplo("Em breve - Adicao");
+			}); 
+		
+		mi_ex_op_s.setOnAction(e->{
+				CarregaExemplo("Em breve - Substracao");
+			}); 
+		
+		mi_ex_op_m.setOnAction(e->{
+				CarregaExemplo("Em breve - Multiplicacao");
+			}); 
+		
+		mi_ex_op_d.setOnAction(e->{
+				CarregaExemplo("Em breve - Divisao");
+			}); 
+		
+		mi_ex_op_p.setOnAction(e->{
+				CarregaExemplo("Em breve - Procedencia");
+			}); 
+	     
+		mi_ex_co_se.setOnAction(e->{
+				CarregaExemplo("Em breve - Se");
+			}); 
+		
+		mi_ex_co_sn.setOnAction(e->{
+				CarregaExemplo("Em breve - Senao");
+			});
+	     
+		mi_ex_lc_r.setOnAction(e->{
+				CarregaExemplo("Em breve - Repita");
+			}); 
+		
+		mi_ex_lc_p.setOnAction(e->{
+				CarregaExemplo("Em breve - Para");
+			}); 
+		
+		mi_ex_lc_e.setOnAction(e->{
+				CarregaExemplo("Em breve - Enquanto");
+			}); 
+		
+		mi_ex_lc_g.setOnAction(e->{
+				CarregaExemplo("Em breve - Lacos");
+			});
 
 		btn_executar.setOnAction(e -> {
 			if (btn_executar.getText().equals("Parar")) {

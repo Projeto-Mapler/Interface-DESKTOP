@@ -56,38 +56,42 @@
 														</Menu>
 										  <Menu mnemonicParsing="false" text="Exemplos">
           									<items>
-            									<MenuItem mnemonicParsing="false" text="Estrutura do codigo" />
+            									<MenuItem mnemonicParsing="false" text="Estrutura do codigo" fx:id="mi_ex_estrutura"/>
+            									<MenuItem mnemonicParsing="false" text="Comandos de entrada e saida" fx:id="mi_ex_io"/>
                   								<Menu mnemonicParsing="false" text="Tipos">
                     								<items>
-                      									<MenuItem mnemonicParsing="false" text="Numericos" />
-                        								<MenuItem mnemonicParsing="false" text="Booleano" />
-                        								<MenuItem mnemonicParsing="false" text="Literais" />
-                        								<MenuItem mnemonicParsing="false" text="Vetor" />
+                      									<MenuItem mnemonicParsing="false" text="Visao Geral" fx:id="mi_ex_tp_g"/>
+                      									<MenuItem mnemonicParsing="false" text="Numericos" fx:id="mi_ex_tp_n"/>
+                        								<MenuItem mnemonicParsing="false" text="Booleano" fx:id="mi_ex_tp_b"/>
+                        								<MenuItem mnemonicParsing="false" text="Literais" fx:id="mi_ex_tp_l"/>
+                        								<MenuItem mnemonicParsing="false" text="Vetor" fx:id="mi_ex_tp_v"/>
                     								</items>
                   								</Menu>
                   								<Menu mnemonicParsing="false" text="Operaçoes">
                     								<items>
-                      									<MenuItem mnemonicParsing="false" text="Adiçao"/>
-                        								<MenuItem mnemonicParsing="false" text="Subtraçao"/>
-                        								<MenuItem mnemonicParsing="false" text="Multiplicaçao"/>
-                        								<MenuItem mnemonicParsing="false" text="Divisao"/>
-                        								<MenuItem mnemonicParsing="false" text="Precedencia"/>
+                      									<MenuItem mnemonicParsing="false" text="Visao Geral" fx:id="mi_ex_op_g"/>
+                      									<MenuItem mnemonicParsing="false" text="Adiçao" fx:id="mi_ex_op_a"/>
+                        								<MenuItem mnemonicParsing="false" text="Subtraçao" fx:id="mi_ex_op_s"/>
+                        								<MenuItem mnemonicParsing="false" text="Multiplicaçao" fx:id="mi_ex_op_m"/>
+                        								<MenuItem mnemonicParsing="false" text="Divisao" fx:id="mi_ex_op_d"/>
+                        								<MenuItem mnemonicParsing="false" text="Precedencia" fx:id="mi_ex_op_p"/>
                     								</items>
                   								</Menu>
                   								<Menu mnemonicParsing="false" text="Condicionais">
                     								<items>
-                      									<MenuItem mnemonicParsing="false" text="Se"/>
-                        								<MenuItem mnemonicParsing="false" text="Senao"/>
+                      									<MenuItem mnemonicParsing="false" text="Se" fx:id="mi_ex_co_se"/>
+                        								<MenuItem mnemonicParsing="false" text="Senao" fx:id="mi_ex_co_sn"/>
                     								</items>
                   								</Menu>
                   								<Menu mnemonicParsing="false" text="Laços">
                     								<items>
-                      									<MenuItem mnemonicParsing="false" text="Para" />
-                        								<MenuItem mnemonicParsing="false" text="Enquanto" />
-                        								<MenuItem mnemonicParsing="false" text="Repita" />
+                    								    <MenuItem mnemonicParsing="false" text="Visao Geral" fx:id="mi_ex_lc_g"/>
+                      									<MenuItem mnemonicParsing="false" text="Para" fx:id="mi_ex_lc_p"/>
+                        								<MenuItem mnemonicParsing="false" text="Enquanto" fx:id="mi_ex_lc_e"/>
+                        								<MenuItem mnemonicParsing="false" text="Repita" fx:id="mi_ex_lc_r"/>
                     								</items>
                   								</Menu>
-                  								<MenuItem mnemonicParsing="false" text="Modulos" />
+                  								<MenuItem mnemonicParsing="false" text="Modulos" fx:id="mi_ex_mdl"/>
           									</items>
         								  </Menu>
                                           <Menu fx:id="mn_linguagem" mnemonicParsing="false" text="Linguagem">
