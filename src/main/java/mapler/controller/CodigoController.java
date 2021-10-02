@@ -297,8 +297,8 @@ public class CodigoController implements Initializable, Terminavel {
 			} else {
 				setConsoleVisible(true);
 				icon_exec.setGlyphName("STOP");
+				consoleTraducaoService.executarTexto(this.area_cod.getText().trim(), false);
 			}
-			consoleTraducaoService.executarTexto(this.area_cod.getText().trim(), false);
 
 		});
 
