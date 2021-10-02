@@ -1,24 +1,25 @@
 package mapler.controller;
 
 import java.awt.Desktop;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.Scanner;
 
 import org.fxmisc.richtext.LineNumberFactory;
 import org.fxmisc.richtext.StyleClassedTextArea;
 
 import com.jfoenix.controls.JFXButton;
-import com.sun.prism.CompositeMode;
 
-import javafx.stage.Stage;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -29,21 +30,18 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
-import javafx.stage.StageStyle;
+import javafx.stage.Stage;
 import mapler.model.ConsoleStyleClassedTextArea;
 import mapler.model.Linguagem;
 import mapler.model.MenuItemTraducao;
-import mapler.model.ResizeListener;
 import mapler.model.Terminavel;
 import mapler.model.highlight.SyntaxHighlighter;
 import mapler.model.resource.Estilos;
+import mapler.model.resource.Exemplos;
 import mapler.model.resource.Templates;
 import mapler.service.ArquivoService;
 import mapler.service.BaseService;
@@ -90,6 +88,13 @@ public class CodigoController implements Initializable, Terminavel {
 
 	@FXML // arquivo
 	MenuItem mi_novo, mi_abrir, mi_salvar, mi_salvarc, mi_console, mi_site, mi_software;
+	
+	@FXML
+	MenuItem mi_ex_estrutura, mi_ex_io, mi_ex_mdl,
+		     mi_ex_tp_v, mi_ex_tp_l, mi_ex_tp_b, mi_ex_tp_n, mi_ex_tp_g, 
+		     mi_ex_op_g, mi_ex_op_a, mi_ex_op_s, mi_ex_op_m, mi_ex_op_d, mi_ex_op_p, 
+		     mi_ex_co_se, mi_ex_co_sn,
+		     mi_ex_lc_r, mi_ex_lc_p, mi_ex_lc_e, mi_ex_lc_g;
 
 	@FXML
 	JFXButton btn_left_inicio, btn_left_tutoriais, btn_left_sobre, btn_left_news, btn_minus, btn_max, btn_close,
@@ -141,7 +146,7 @@ public class CodigoController implements Initializable, Terminavel {
 		setConsoleVisible(false);
 		setDebugVisible(false);
 		try {
-			FXMLLoader loader = new FXMLLoader(CarregadorRecursos.getResource(Templates.DEBUG.getUrl()));
+			FXMLLoader loader = new FXMLLoader(CarregadorRecursos.get().getResource(Templates.DEBUG.getUrl()));
 			loader.setController(debugController);
 			ap_debug.getChildren().add(loader.load());
 		} catch (IOException e) {
@@ -185,6 +190,16 @@ public class CodigoController implements Initializable, Terminavel {
 		TabService nova = new TabService(titulo, texto);
 		nova.setText(titulo);
 		return nova;
+	}
+	
+	private void CarregaExemplo(String exemplo) {
+		area_trad.clear();
+		//area_trad.applyCss();
+		area_trad.appendText(exemplo);
+		//area_trad.requestFocus();
+		//area_trad.selectAll();
+		split_horizontal.getItems().remove(ap_trad);
+		split_horizontal.getItems().add(ap_trad);
 	}
 
 	private boolean salvar() {
@@ -275,7 +290,7 @@ public class CodigoController implements Initializable, Terminavel {
 			try {
 				Stage stage = new Stage();
 				Parent root;
-				root = FXMLLoader.load(CarregadorRecursos.getResource(Templates.SOBRE.getUrl()));
+				root = FXMLLoader.load(CarregadorRecursos.get().getResource(Templates.SOBRE.getUrl()));
 				Scene scene = new Scene(root, 320, 400); // resolucao inicial
 				stage.setScene(scene);
 				stage.setTitle("MAPLER STUDIO - Sobre");
@@ -288,9 +303,105 @@ public class CodigoController implements Initializable, Terminavel {
 			}
 			
 		});
+		
+		mi_ex_estrutura.setOnAction(e->{
+			/*Scanner in;
+			try {
+				in = new Scanner(new FileReader(CarregadorRecursos.get().getResourceExternalForm(Exemplos.ESTRUTURA.getUrl())));
+				StringBuilder sb = new StringBuilder();
+				while(in.hasNext()) {
+				    sb.append(in.next());
+				}
+				in.close();
+				CarregaExemplo(sb.toString());
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}*/
+			CarregaExemplo("Em breve - estrutura");
+			
+			
+		});
+		
+		mi_ex_io.setOnAction(e->{
+			CarregaExemplo("Em breve - IO");
+		}); 
+		
+		mi_ex_mdl.setOnAction(e->{
+			CarregaExemplo("Em breve - Modulo");
+		});
+	    
+		mi_ex_tp_v.setOnAction(e->{
+				CarregaExemplo("Em breve - Tipo vetor");
+			}); 
+	    
+		mi_ex_tp_l.setOnAction(e->{
+			CarregaExemplo("Em breve - Tipo literal");
+		}); 
+		
+		mi_ex_tp_b.setOnAction(e->{
+			CarregaExemplo("Em breve - Tipo boolean");
+		}); 
+		
+		mi_ex_tp_n.setOnAction(e->{
+			CarregaExemplo("Em breve - Tipo numero");
+		}); 
+		
+		mi_ex_tp_g.setOnAction(e->{
+			CarregaExemplo("Em breve - Tipos");
+		}); 
+	     
+		mi_ex_op_g.setOnAction(e->{
+				CarregaExemplo("Em breve - Operacoes");
+			}); 
+		
+		mi_ex_op_a.setOnAction(e->{
+				CarregaExemplo("Em breve - Adicao");
+			}); 
+		
+		mi_ex_op_s.setOnAction(e->{
+				CarregaExemplo("Em breve - Substracao");
+			}); 
+		
+		mi_ex_op_m.setOnAction(e->{
+				CarregaExemplo("Em breve - Multiplicacao");
+			}); 
+		
+		mi_ex_op_d.setOnAction(e->{
+				CarregaExemplo("Em breve - Divisao");
+			}); 
+		
+		mi_ex_op_p.setOnAction(e->{
+				CarregaExemplo("Em breve - Procedencia");
+			}); 
+	     
+		mi_ex_co_se.setOnAction(e->{
+				CarregaExemplo("Em breve - Se");
+			}); 
+		
+		mi_ex_co_sn.setOnAction(e->{
+				CarregaExemplo("Em breve - Senao");
+			});
+	     
+		mi_ex_lc_r.setOnAction(e->{
+				CarregaExemplo("Em breve - Repita");
+			}); 
+		
+		mi_ex_lc_p.setOnAction(e->{
+				CarregaExemplo("Em breve - Para");
+			}); 
+		
+		mi_ex_lc_e.setOnAction(e->{
+				CarregaExemplo("Em breve - Enquanto");
+			}); 
+		
+		mi_ex_lc_g.setOnAction(e->{
+				CarregaExemplo("Em breve - Lacos");
+			});
 
 		btn_executar.setOnAction(e -> {
 			if (btn_executar.getText().equals("Parar")) {
+				consoleTraducaoService.pararExecucao();
 				setConsoleVisible(false);
 				btn_executar.setText("Executar");
 				icon_exec.setGlyphName("PLAY");
@@ -315,7 +426,7 @@ public class CodigoController implements Initializable, Terminavel {
 			}
 		});
 
-		btn_home.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.BOTOES.getUrl()));
+		btn_home.getStylesheets().add(CarregadorRecursos.get().getResourceExternalForm(Estilos.BOTOES.getUrl()));
 
 		btn_close.setOnMouseEntered(e -> {
 			btn_close.setStyle("-fx-background-color: #1b1b1b;");
@@ -484,11 +595,11 @@ public class CodigoController implements Initializable, Terminavel {
 		});
 
 		// css
-		split_vertical.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.SPLITPANE.getUrl()));
-		split_horizontal.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.SPLITPANE.getUrl()));
-		m_bar.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.MENUBAR.getUrl()));
+		split_vertical.getStylesheets().add(CarregadorRecursos.get().getResourceExternalForm(Estilos.SPLITPANE.getUrl()));
+		split_horizontal.getStylesheets().add(CarregadorRecursos.get().getResourceExternalForm(Estilos.SPLITPANE.getUrl()));
+		m_bar.getStylesheets().add(CarregadorRecursos.get().getResourceExternalForm(Estilos.MENUBAR.getUrl()));
 
-		area_trad.getStylesheets().add(CarregadorRecursos.getResourceExternalForm("css/syntax-highlighter.css"));
+		area_trad.getStylesheets().add(CarregadorRecursos.get().getResourceExternalForm("/css/syntax-highlighter.css"));
 		area_trad.setParagraphGraphicFactory(LineNumberFactory.get(area_trad));
 		area_trad.setWrapText(true);
 		area_trad.setLineHighlighterOn(true);
@@ -496,12 +607,12 @@ public class CodigoController implements Initializable, Terminavel {
 		area_trad.clear();
 		area_trad.appendText("Selecione a linguagem no menu superior.");
 		
-		area_console.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.CONSOLE.getUrl()));
+		area_console.getStylesheets().add(CarregadorRecursos.get().getResourceExternalForm(Estilos.CONSOLE.getUrl()));
 		area_console.setWrapText(false);
 		area_console.setLineHighlighterOn(false);
 		// area_console.appendText("texte");
 
-		area_cod.getStylesheets().add(CarregadorRecursos.getResourceExternalForm("css/syntax-highlighter.css"));
+		area_cod.getStylesheets().add(CarregadorRecursos.get().getResourceExternalForm("/css/syntax-highlighter.css"));
 		area_cod.setParagraphGraphicFactory(LineNumberFactory.get(area_cod));
 		area_cod.setWrapText(true);
 		area_cod.setLineHighlighterOn(true);

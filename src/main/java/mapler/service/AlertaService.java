@@ -19,7 +19,7 @@ public final class AlertaService {
 	private static Alert criarJanela(Alert.AlertType alertType, String aviso, String titulo) {
 		Alert dialogoInfo = new Alert(Alert.AlertType.INFORMATION, "", ButtonType.CLOSE);
 		DialogPane dialogPane = dialogoInfo.getDialogPane();
-		dialogPane.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.ARLETAS.getUrl()));
+		dialogPane.getStylesheets().add(CarregadorRecursos.get().getResourceExternalForm(Estilos.ARLETAS.getUrl()));
 		dialogPane.getStyleClass().add("myDialog");
 		dialogoInfo.setTitle(titulo);
 		dialogoInfo.setHeaderText(aviso);

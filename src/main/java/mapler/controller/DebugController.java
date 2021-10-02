@@ -32,9 +32,9 @@ public class DebugController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
-		btn_executar.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.BOTOES.getUrl()));
-		btn_passo.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.BOTOES.getUrl()));
-		btn_parar.getStylesheets().add(CarregadorRecursos.getResourceExternalForm(Estilos.BOTOES.getUrl()));
+		btn_executar.getStylesheets().add(CarregadorRecursos.get().getResourceExternalForm(Estilos.BOTOES.getUrl()));
+		btn_passo.getStylesheets().add(CarregadorRecursos.get().getResourceExternalForm(Estilos.BOTOES.getUrl()));
+		btn_parar.getStylesheets().add(CarregadorRecursos.get().getResourceExternalForm(Estilos.BOTOES.getUrl()));
 		btn_executar.setOnAction(e -> {
 //			Map<String, Object> ambienteSnapshot = new HashMap<String, Object>();
 //			ambienteSnapshot.put("V", 32);

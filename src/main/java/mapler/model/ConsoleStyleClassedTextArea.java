@@ -87,6 +87,10 @@ public class ConsoleStyleClassedTextArea extends StyleClassedTextArea {
     return this.esperandoInputUsuario;
   }
 
+  public void resetEsperandoInputUsuario() {
+	  this.esperandoInputUsuario = false;
+  }
+  
   public void solicitarInputUsuario() {
     if (!this.esperandoInputUsuario) {
       this.esperandoInputUsuario = true;

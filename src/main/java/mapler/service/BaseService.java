@@ -55,7 +55,7 @@ public final class BaseService  {
   public int carregaTela(String link) {
     try {
       janela.getChildren().clear();
-      FXMLLoader loader = new FXMLLoader(CarregadorRecursos.getResource(link));
+      FXMLLoader loader = new FXMLLoader(getClass().getResource(link));
       
       Object controller = loader.getController();
       

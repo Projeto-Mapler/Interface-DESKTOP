@@ -1,6 +1,7 @@
 package mapler.service;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 import org.fxmisc.richtext.StyleClassedTextArea;
 
@@ -8,6 +9,7 @@ import conversores.ConversorStrategy;
 import debug.DebugSnapshot;
 import debug.EstadoDebug;
 import debug.PassoAPassoDebugStrategy;
+import evento.EventoInterpretador;
 import interpretador.AcaoInterpretador;
 import interpretador.InterpretadorService;
 import interpretador.LeitorEntradaConsole;
@@ -36,6 +38,8 @@ public class ConsoleTraducaoService implements AcaoInterpretador, EspectadorInpu
 		this.interpretador = new InterpretadorService(this);
 		this.debugController = debugController;
 		debugController.setConsoleTraducaoService(this);
+		this.interpretador.setEventosLog(Arrays.asList(EventoInterpretador.values()));
+		this.interpretador.setLogAtivo(true);
 	}
 
 	private void initDebug(boolean debugOn) {
@@ -109,6 +113,7 @@ public class ConsoleTraducaoService implements AcaoInterpretador, EspectadorInpu
 	@Override
 	public void notificarInput(String input) {
 		this.leitor.setValor(input); // informa o interpretador
+		this.leitor = null;
 	}
 
 	@Override
@@ -195,6 +200,14 @@ public class ConsoleTraducaoService implements AcaoInterpretador, EspectadorInpu
 
 	@Override
 	public void onLog(String msgLog) {
-		// nada
+		System.out.println(msgLog);
 	}
+
+	public void pararExecucao() {
+		this.consoleTextArea.resetEsperandoInputUsuario();
+		this.interpretador.destruir();
+		
+	}
+
+	
 }
