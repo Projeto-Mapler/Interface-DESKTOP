@@ -80,6 +80,7 @@
 	-fx-fill: #808080;
 }
 
+/* */
 .styled-text-area .text.paragraph-box:has-caret {
     -fx-background-color: #f2f9fc;
 }
@@ -137,10 +138,11 @@
 	-fx-fill: #aeb5b1;
 }
 
+/*
 .paragraph-box:has-caret {
     -fx-background-color: #f2f9fc;
 }
-
+*/
 .type {
 	-fx-fill: #f4b350;
 }
