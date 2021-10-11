@@ -4,7 +4,8 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
-
+import org.fxmisc.richtext.StyleClassedTextArea;
+import org.fxmisc.richtext.StyledTextArea;
 import com.jfoenix.controls.JFXButton;
 
 import debug.DebugSnapshot;
@@ -25,11 +26,12 @@ public class DebugController implements Initializable {
 	@FXML
 	private JFXButton btn_executar, btn_passo, btn_parar;
 	private ConsoleTraducaoService consoleTraducaoService;
+	private StyleClassedTextArea area_cod;
 
 //	private ObservableList<Map<String, Object>> dados;
 	private Map<String, TableColumn<Map, String>> colunas;
 
-	@Override
+  @Override
 	public void initialize(URL location, ResourceBundle resources) {
 
 		btn_executar.getStylesheets().add(CarregadorRecursos.get().getResourceExternalForm(Estilos.BOTOES.getUrl()));
@@ -64,8 +66,13 @@ public class DebugController implements Initializable {
 	public void setConsoleTraducaoService(ConsoleTraducaoService consoleTraducaoService) {
 		this.consoleTraducaoService = consoleTraducaoService;
 	}
+	
 
-	private void criarColuna(String nome) {
+	public void setArea_cod(StyleClassedTextArea area_cod) {
+    this.area_cod = area_cod;
+  }
+
+  private void criarColuna(String nome) {
 		TableColumn<Map, String> colunaLinha = new TableColumn<>(nome);
 		colunaLinha.setCellValueFactory(new MapValueFactory<>(nome));
 
@@ -90,7 +97,7 @@ public class DebugController implements Initializable {
 		});
 		// dados.add(novaLinha)
 		tbv_table.getItems().add(novaLinha);
-
+		this.area_cod.moveTo(linha-1, 0);
 	}
 
 	public void reset() {
