@@ -1,3 +1,18 @@
+//VARIAVEIS são espaços da memoria reservados para armazenar valores obtidos pelo algoritmo
+//Em portugol, as variaveis sao declaradas no parte do bloco principal chamada "VARIAVEIS" e depois usado
+//o seu nome declarado para acessar e manipular seus valores
+
+//SINTAXE
+//	Uma variavel é declarada dentro da estrutura VARIAVEIS usando "nome_da_variavel: tipo_da_variavel;"
+//	Uma variavel para ser acessada basta usar seu nome na estrutura INICIO, EXEMPLO: "escrever nome_da_variavel;"
+//	Um variavek pode ser manipulada atribuindo valores, variaveis ou expressoes a essa variavel, EXEMPLO "nome_variavel <- VALOR"
+
+//OBS
+//	O sistema ira reportar erro sempre que uma variavel chamada nao tenha sido declarada  
+//	É considerado como erro uma variavel receber um valor de tipagem diferente ao declarado para aquela variavel
+
+//EXEMPLO
+
 variaveis
 	
   // numericos

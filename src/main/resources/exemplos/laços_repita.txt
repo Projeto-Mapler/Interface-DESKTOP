@@ -1,0 +1,26 @@
+//O "REPITA" É UM LAÇO QUE OBRIGATORIAMENTE RODARÁ OS COMANDOS INTERNOS PELO MENOS UMA VEZ, ISSO PORQUE ELE FAZ A VERIFICACAO APOS A EXECUTAR SEU BLOCO INTERNO
+
+//SINTAXE
+//	A sintaxe do "repita" é: "repita <ACAO> ate X;"
+									//<ACAO> é o conjunto de instruções que serao executadas pelo bloco
+											   //X é a condição usada para repetir a execucao do bloco, enquanto X for verdadeiro o bloco será novamente executado
+											  
+//EXEMPLO
+//	Escrevendo uma sequencia de 1 até 5 com repita
+
+
+
+variaveis
+	
+  x:inteiro;
+
+inicio
+	
+  x<-1;
+
+  repita 
+    escrever x;
+    x<- x+1;
+  ate (x <= 5);
+
+fim

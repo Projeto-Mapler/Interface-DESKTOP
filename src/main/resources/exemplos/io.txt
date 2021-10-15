@@ -1,3 +1,18 @@
+//COMANDOS DE ENTRADA E SAIDA
+
+//ENTRADA
+//	O comando usado receber dados do usuario é o "ler"
+//	Sua sintaxe é: "ler <variavel>;", onde o valor digitado pelo usuario ficara armazenado na variavel indicada
+											   
+//SAIDA
+//	O comando usado para gerar saidas no terminal é o "escrever"
+//	sua sintaxe é feita de dois modos:
+	// escrever "TEXTO"; //A cadeia de caracteres passada em texto sera mostrada no terminal para o usuario
+	// escrever "TEXTO", variavel; //A uniao da cadeia de caracteres passada em texto e do valor presente em "variavel" sera mostrada no terminal para o usuario
+
+//EXEMPLO
+//	Lendo nome do usuario e em seguida dando Ola
+
 variaveis
 
   var_nome: cadeia;

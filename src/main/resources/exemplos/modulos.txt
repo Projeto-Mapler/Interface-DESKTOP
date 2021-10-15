@@ -1,0 +1,51 @@
+//MODULOS sao blocos externos ao bloco principal, podem ser executados varias vezes apenas com uma chamada
+//evitam assim que um mesmo algoritmo precise ser escrito varias vezes
+
+//SINTAXE
+variveis
+  nome_modulo : modulo;
+inicio
+  nome_modulo;
+fim;
+
+modulo nome_modulo
+   escrever "esse é um modulo externo ao modulo principal";
+fim modulo
+
+//	O modulo precisa ser declarado no bloco principal
+//	Um modulo reconhece as variaveis que pertecem ao bloco principal
+//	Um modulo pode ter diversos comandos internos
+
+// EXEMPLO DE USO DE MODULOS
+
+variaveis
+
+	a, b:inteiro;
+	soma, divisao, subtracao, multiplicacao: modulo;
+
+inicio
+
+	a<-10;
+	b<-5;	
+	soma;
+	subtracao;
+	multiplicacao;
+	divisao;
+
+fim
+
+modulo soma 
+	escrever a, "+", b, "=", a+b;
+fim modulo;
+
+modulo multiplicacao 
+	escrever a, "*", b, "=", a*b;
+fim modulo;
+
+modulo subtracao 
+	escrever a, "-", b, "=", a-b;
+fim modulo;
+
+modulo divisao 
+	escrever a, "/", b, "=", a/b;
+fim modulo;

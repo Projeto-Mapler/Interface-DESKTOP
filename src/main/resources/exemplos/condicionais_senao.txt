@@ -1,3 +1,17 @@
+//O COMANDO "SENAO" É UM COMPLEMENTO DO COMANDO "SE"
+
+//SUA SINTAXE É: "se X entao <ACAO> senao <ACAO2> fim se;"
+			                        //O senao sera executado sempre que a condicao X for falsa
+			                        	  //A <ACAO2> serao comandos desejados caso X seja falso
+			                        	  	      //O fim se deverá ficar apos os comandos do senao, indicando que o se e o senao estao em um mesmo bloco		             
+
+//OBSERVACOES: O comando "SENAO" aceita outros blocos de "SE" dentro de sua <ACAO2>, mas estes devem ser fechados antes que o "SE" mais externo finalize.
+
+
+//EXEMPLO
+//	verificando a faixa etaria de idades presentes em um vetor
+
+
 variaveis
 	
   idades: vetor[1..4] de inteiro;

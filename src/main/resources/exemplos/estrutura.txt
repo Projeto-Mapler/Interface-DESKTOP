@@ -1,21 +1,27 @@
+//A ESTRUTURA BASE PARA UTILIZAR O PORTUGOL É COM 3 BLOCOS:
+
+variaveis 
+	
+	//AQUI SAO DECLARADAS AS VARIAVEIS QUE SERAO USADAS NO ALGORITMO
+	
+inicio 
+	
+	//AQUI FICAM OS COMANDOS USADOS NO ALGORITMO
+	
+fim //FIM INDICA O FIM DA SEQUENCIA DE COMANDOS
+
+
+//EXEMPLO
+//	Algoritmo para dizer ola ao usuario
+
 variaveis
-	numero: inteiro;
-	contador: inteiro;
-	fatorial: inteiro;
+
+  var_nome: cadeia;
+
 inicio
 
-	escrever "Informe um número: ";
-	ler numero;
-	
-	se numero = 0 entao
-		escrever "Fatorial de ", numero, " é 1.";
-	senao
-		contador <- 1;
-		fatorial <- 1;
-		enquanto contador <= numero faca
-			fatorial <- fatorial * contador;
-			contador <- contador + 1;
-		fim enquanto;
-		escrever "Fatorial de ", numero, " é ", fatorial, ".";
-	fim se;			
-fim 
+  escrever "Digite seu nome: ";
+  ler var_nome;
+  escrever "Olá ", var_nome;
+
+fim

@@ -1,0 +1,24 @@
+//Em portugol as variaveis do tipo numerico podem ser:
+//	INTEIROS, aqueles numeros que nao utilizam de valores decimais
+//	REAIS, aqueles numeros que precisam de valores decimais
+
+//OBS
+//Atribuir valores reais para variaveis inteiras resultará em erro
+//Pode ser feito a conversao apenas de inteiro para real, mas para isso é necessario que o inteiro esteja em uma expressao que contenha outro real
+//Ou seja "var_real <- 2.5 + 2;" funciona, mas "var_real <- 2 + 2;" falharia pois é necessario pelo menos um valor real na expressao
+
+//EXEMPLO
+variaveis
+	
+  var_inteiro: inteiro;
+  var_real: real;
+
+inicio
+  
+  var_inteiro <- -1;
+  
+  var_real <- 2.5;
+  
+  var_real <- 2.0 + var_inteiro;
+
+fim

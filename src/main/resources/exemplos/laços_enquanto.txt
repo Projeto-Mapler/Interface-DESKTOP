@@ -1,0 +1,24 @@
+//O "ENQUANTO" IRA REPETIR UMA SEQUENCIA DE CODIGOS ENQUANTO SUA CONDICAO FOR VERDADEIRA
+
+//SINTAXE
+//	A sintaxe do "ENQUANTO" é: "enquanto X faca <ACAO> fim enquanto"
+									    //X é a condicao passada para o bloco, o mesmo só executara se esta for verdadeira
+									           //<ACAO> é um conjunto de comandos que serao executados caso X seja verdadeiro
+									           
+//EXEMPLO
+//	Codigo para escrever uma sequencia de 1 ate 5
+
+variaveis
+	
+  x:inteiro;
+
+inicio
+	
+   x <- 1;
+
+  enquanto x <= 5 faca 
+    escrever x;
+    x <- x+1;
+  fim enquanto;
+
+fim

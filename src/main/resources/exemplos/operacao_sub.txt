@@ -1,0 +1,16 @@
+//A Subtracao é feita usando o operador "-"
+
+//SINTAXE
+// "X - Y", onde X e Y são valores quaisquer
+
+//OBS
+//	O compilador realiza jogo de sinais, de forma que verifica se o resultado sera positivo ou negativo
+
+variaveis
+  
+	v : inteiro;
+inicio
+  
+	v <- 6 - 2;
+	escrever v;
+fim

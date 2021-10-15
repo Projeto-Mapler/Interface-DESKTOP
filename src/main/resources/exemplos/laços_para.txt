@@ -1,0 +1,24 @@
+//O "PARA" IRA REPETIR UMA SEQUENCIA DE CODIGOS ENQUANTO A VARIAVEL PASSADA ESTEJA COM VALOR DENTRO DO INTERVALO DEFINIDO
+
+//SINTAXE
+//	A sintaxe do "PARA" é: "para X de A ate B faca <ACAO> passo Y fim para"
+								//X é a varivel passada para o bloco, o mesmo só executara se esta estiver com valor entre os valores de A e B
+									              //<ACAO> é um conjunto de comandos que serao executados caso X seja verdadeiro
+									                           //Y é o valor que sera incrementado em X a cada repeticao
+									           
+//EXEMPLO
+//	Codigo para escrever uma sequencia de 1 ate 5, incrementando o valor de 1 a cada repeticao
+
+variaveis
+	
+  x:inteiro;
+
+inicio
+	
+   x <- 1;
+
+  para x de 1 ate 5 passo 1 faca 
+		escrever x;
+  fim para;
+
+fim

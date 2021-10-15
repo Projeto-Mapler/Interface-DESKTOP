@@ -186,28 +186,23 @@ public class CodigoController implements Initializable, Terminavel {
     return nova;
   }
 
-  private void CarregaExemplo(String exemplo) {
-
-    URL url = CarregadorRecursos.get().getResource("/exemplos/estrutura.txt");
-    String content = null;
-    try {
-      content = Files.readString(Paths.get(url.toURI()));
-    } catch (IOException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    } catch (URISyntaxException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
-
-    area_trad.clear();
-    // area_trad.applyCss();
-    area_trad.appendText(content);
-    // area_trad.requestFocus();
-    // area_trad.selectAll();
-    split_horizontal.getItems().remove(ap_trad);
-    split_horizontal.getItems().add(ap_trad);
-  }
+  private void CarregaExemplo(URL url) {
+		String content = null;
+	    try {
+	      content = Files.readString(Paths.get(url.toURI()));
+	      area_trad.clear();
+		  area_trad.appendText(content);
+		  split_horizontal.getItems().remove(ap_trad);
+		  split_horizontal.getItems().add(ap_trad);
+	    } catch (IOException exc) {
+	      // TODO Auto-generated catch block
+	      exc.printStackTrace();
+	    } catch (URISyntaxException exc) {
+	      // TODO Auto-generated catch block
+	      exc.printStackTrace();
+	    }
+		
+	}
 
   private boolean salvar() {
     return true;
@@ -309,92 +304,103 @@ public class CodigoController implements Initializable, Terminavel {
     });
 
     mi_ex_estrutura.setOnAction(e -> {
-      /*
-       * Scanner in; try { in = new Scanner(new
-       * FileReader(CarregadorRecursos.get().getResourceExternalForm(Exemplos.ESTRUTURA.getUrl())));
-       * StringBuilder sb = new StringBuilder(); while(in.hasNext()) { sb.append(in.next()); }
-       * in.close(); CarregaExemplo(sb.toString()); } catch (Exception e1) { // TODO Auto-generated
-       * catch block e1.printStackTrace(); }
-       */
-      CarregaExemplo("Em breve - estrutura");
-
-
+    	URL url = CarregadorRecursos.get().getResource("/exemplos/estrutura.txt");
+		CarregaExemplo(url);
     });
 
     mi_ex_io.setOnAction(e -> {
-      CarregaExemplo("Em breve - IO");
+    	URL url = CarregadorRecursos.get().getResource("/exemplos/io.txt");
+		CarregaExemplo(url);
     });
 
     mi_ex_mdl.setOnAction(e -> {
-      CarregaExemplo("Em breve - Modulo");
+    	URL url = CarregadorRecursos.get().getResource("/exemplos/modulos.txt");
+		CarregaExemplo(url);
     });
 
     mi_ex_tp_v.setOnAction(e -> {
-      CarregaExemplo("Em breve - Tipo vetor");
+    	URL url = CarregadorRecursos.get().getResource("/exemplos/variaveis_vetores.txt");
+		CarregaExemplo(url);
     });
 
     mi_ex_tp_l.setOnAction(e -> {
-      CarregaExemplo("Em breve - Tipo literal");
+    	URL url = CarregadorRecursos.get().getResource("/exemplos/variaveis_literais.txt");
+		CarregaExemplo(url);
     });
 
     mi_ex_tp_b.setOnAction(e -> {
-      CarregaExemplo("Em breve - Tipo boolean");
+    	URL url = CarregadorRecursos.get().getResource("/exemplos/variaveis_booleano.txt");
+		CarregaExemplo(url);
     });
 
     mi_ex_tp_n.setOnAction(e -> {
-      CarregaExemplo("Em breve - Tipo numero");
+    	URL url = CarregadorRecursos.get().getResource("/exemplos/variaveis_numericos.txt");
+		CarregaExemplo(url);
     });
 
     mi_ex_tp_g.setOnAction(e -> {
-      CarregaExemplo("Em breve - Tipos");
+    	URL url = CarregadorRecursos.get().getResource("/exemplos/variaveis.txt");
+		CarregaExemplo(url);
     });
 
     mi_ex_op_g.setOnAction(e -> {
-      CarregaExemplo("Em breve - Operacoes");
+    	URL url = CarregadorRecursos.get().getResource("/exemplos/operacoes.txt");
+		CarregaExemplo(url);
     });
 
     mi_ex_op_a.setOnAction(e -> {
-      CarregaExemplo("Em breve - Adicao");
+    	URL url = CarregadorRecursos.get().getResource("/exemplos/operacao_add.txt");
+		CarregaExemplo(url);
     });
 
     mi_ex_op_s.setOnAction(e -> {
-      CarregaExemplo("Em breve - Substracao");
+    	URL url = CarregadorRecursos.get().getResource("/exemplos/operacao_sub.txt");
+		CarregaExemplo(url);
     });
 
     mi_ex_op_m.setOnAction(e -> {
-      CarregaExemplo("Em breve - Multiplicacao");
+    	URL url = CarregadorRecursos.get().getResource("/exemplos/operacao_mult.txt");
+		CarregaExemplo(url);
     });
 
     mi_ex_op_d.setOnAction(e -> {
-      CarregaExemplo("Em breve - Divisao");
+    	URL url = CarregadorRecursos.get().getResource("/exemplos/operacao_div.txt");
+		CarregaExemplo(url);
     });
 
     mi_ex_op_p.setOnAction(e -> {
-      CarregaExemplo("Em breve - Procedencia");
+    	URL url = CarregadorRecursos.get().getResource("/exemplos/operacao_precedencia.txt");
+		CarregaExemplo(url);
     });
 
     mi_ex_co_se.setOnAction(e -> {
-      CarregaExemplo("Em breve - Se");
+    	URL url = CarregadorRecursos.get().getResource("/exemplos/condicionais_se.txt");
+		CarregaExemplo(url);
     });
 
     mi_ex_co_sn.setOnAction(e -> {
-      CarregaExemplo("Em breve - Senao");
+    	URL url = CarregadorRecursos.get().getResource("/exemplos/condicionais_senao.txt");
+		CarregaExemplo(url);
     });
 
     mi_ex_lc_r.setOnAction(e -> {
-      CarregaExemplo("Em breve - Repita");
+    	URL url = CarregadorRecursos.get().getResource("/exemplos/laços_repita.txt");
+		CarregaExemplo(url);
     });
 
     mi_ex_lc_p.setOnAction(e -> {
-      CarregaExemplo("Em breve - Para");
+    	URL url = CarregadorRecursos.get().getResource("/exemplos/laços_para.txt");
+		CarregaExemplo(url);
     });
 
     mi_ex_lc_e.setOnAction(e -> {
-      CarregaExemplo("Em breve - Enquanto");
+    	URL url = CarregadorRecursos.get().getResource("/exemplos/laços_enquanto.txt");
+		CarregaExemplo(url);
     });
 
     mi_ex_lc_g.setOnAction(e -> {
-      CarregaExemplo("Em breve - Lacos");
+    	URL url = CarregadorRecursos.get().getResource("/exemplos/laços.txt");
+		CarregaExemplo(url);
     });
 
     btn_executar.setOnAction(e -> {

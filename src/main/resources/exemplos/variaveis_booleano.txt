@@ -1,0 +1,24 @@
+//Variaveis do tipo Logico, armazenam resultado de expressoes logicas ( VERDADEIRO OU FALSO)
+
+//EXEMPLO
+variaveis
+	
+  var_logico: logico;
+
+inicio
+  
+  var_logico <- verdadeiro;
+  escrever var_logico;
+  
+  var_logico <- 1 >= 2;
+  escrever var_logico;
+  
+  var_logico <- nao var_logico;
+  escrever var_logico;
+  
+  escrever nao var_logico;
+  escrever var_logico;
+  
+  
+
+fim

@@ -1,0 +1,17 @@
+//Variaveis literais são usadas para armazenar textos, sendo elas:
+// CADEIA, usadas para textos curtos ou longos
+// CARACTERE, usadas quando se deseja armazenar apenas uma letra. Seu uso pode trazer economia de memoria se comparadas ao uso variaveis de cadeia
+
+//EXEMPLO
+variaveis
+	
+  var_cadeia: cadeia;
+  var_caractere: caractere;
+
+inicio
+  
+  var_cadeia <- "São Luís";
+
+  var_caractere <- "c";
+
+fim
