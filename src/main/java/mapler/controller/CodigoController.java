@@ -191,6 +191,13 @@ public class CodigoController implements Initializable, Terminavel {
 	    try {
 	      content = Files.readString(Paths.get(url.toURI()));
 	      area_trad.clear();
+	      
+	      if (tradAreaHighlighter != null)
+	          tradAreaHighlighter.stop();
+
+	        this.tradAreaHighlighter =
+	            estiloLinguagensService.setHighlighterLinguagem(area_trad, Linguagem.PORTUGOL);
+	      
 		  area_trad.appendText(content);
 		  split_horizontal.getItems().remove(ap_trad);
 		  split_horizontal.getItems().add(ap_trad);
