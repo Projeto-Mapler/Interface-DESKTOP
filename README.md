@@ -25,9 +25,10 @@ Atualmente desenvolvido e mantido por alunos do Instituto Federal
 do Maranhão (IFMA) e da Universidade Federal do Maranhão (UFMA), a
 ferramenta encontra-se em fase beta de desenvolvimento e testes, 
 disponibilizando as seguintes funcionalidades básicas:
-• Execução do pseudo-código;
-• Depuração (debug) passo-a-passo;
-• Tradução do pseudo-código para linguagens alto nível: Java, C, C++,
+
+- Execução do pseudo-código;
+- Depuração (debug) passo-a-passo;
+- Tradução do pseudo-código para linguagens alto nível: Java, C, C++,
 Pascal, Python;
 
 INSTALACAO
