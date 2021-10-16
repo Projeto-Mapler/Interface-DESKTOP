@@ -32,7 +32,7 @@ INSTALACAO
 >Atualmente, o Mapler Studio está compilado em um executável .jar
 para fácil execução em qualquer sistema operacional com Java instalado
 
-DOWNLOAD<
+DOWNLOAD
 >Para baixar a versao mais atualizada acesse [sourceforge/portugol](https://portugol.sourceforge.io/download.html)
 
 REQUERIMENTOS
