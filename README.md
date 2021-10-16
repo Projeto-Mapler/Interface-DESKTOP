@@ -15,6 +15,8 @@ SOBRE A INTERFACE
 
 ![tela debug](https://github.com/EliasRLima/Interface-MAPLER/blob/master/images/debug_rodando.png)
 
+>veja mais imagens em [github/mapler](https://github.com/EliasRLima/Interface-MAPLER/tree/master/images)
+
 INTRODUCAO
 >Mapler Studio é uma ferramenta educacional para aprendizagem e
 desenvolvimento de algoritmos utilizando pseudo-código com a linguagem
