@@ -1,7 +1,7 @@
 # Interface-MAPLER
 
 
-SOBRE O MAPLER<
+SOBRE O MAPLER
 >Este projeto visa o desenvolvimento e produção de uma ferramenta de compilação da pseudo-linguagem português estruturado (portugol)
 para auxliar estudantes brasileiros iniciando em atividades de programação. Para mais informacoes, acesse [Site do Mapler](https://portugol.sourceforge.io/)
 
