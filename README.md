@@ -6,7 +6,14 @@ SOBRE O MAPLER
 para auxliar estudantes brasileiros iniciando em atividades de programação. Para mais informacoes, acesse [Site do Mapler](https://portugol.sourceforge.io/)
 
 SOBRE A INTERFACE
->A interface foi desenvolvida para atender ao [interpretador](https://github.com/kerlyson/interpretadorPtEstruturadoJava), de forma que ambos se comuniquem e sejam capazes de oferecer aos usuarios a capacidade de escrever, compilar, debugar e traduzir codigos em portugol.</br>
+>A interface foi desenvolvida para atender ao [interpretador](https://github.com/kerlyson/interpretadorPtEstruturadoJava), de forma que ambos se comuniquem e sejam capazes de oferecer aos usuarios a capacidade de escrever, compilar, debugar e traduzir codigos em portugol.
+
+
+![tela inicio](https://github.com/EliasRLima/Interface-MAPLER/blob/master/images/inicio.png)
+
+![tela traducao](https://github.com/EliasRLima/Interface-MAPLER/blob/master/images/traducao.png)
+
+![tela debug](https://github.com/EliasRLima/Interface-MAPLER/blob/master/images/debug_rodando.png)
 
 INTRODUCAO
 >Mapler Studio é uma ferramenta educacional para aprendizagem e
@@ -29,10 +36,10 @@ DOWNLOAD<
 >Para baixar a versao mais atualizada acesse [sourceforge/portugol](https://portugol.sourceforge.io/download.html)
 
 REQUERIMENTOS
->Java 11 ou superior, caso necessite voce pode encontrar nesse [link](https://www.oracle.com/java/technologies/downloads/)
+>Java 11 ou superior, caso necessite voce pode encontrar o java para download nesse [link](https://www.oracle.com/java/technologies/downloads/).
 
 COMO UTILIZAR
->Um pequeno manual sobre o uso do compilador esta disponivel em [link](https://portugol.sourceforge.io/download.html)
+>Um pequeno manual sobre o uso do compilador esta disponivel em [sourceforge](https://portugol.sourceforge.io/download.html).
 
 
 
