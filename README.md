@@ -44,5 +44,7 @@ REQUERIMENTOS
 COMO UTILIZAR
 >Um pequeno manual sobre o uso do compilador esta disponivel em [sourceforge](https://portugol.sourceforge.io/download.html).
 
+BUILD
+>```mvn clean -Dmaven.clean.failOnError=false compile assembly:single -DskipTests=true```
 
 
