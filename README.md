@@ -3,7 +3,7 @@
 
 SOBRE O MAPLER
 >Este projeto visa o desenvolvimento e produção de uma ferramenta de compilação da pseudo-linguagem português estruturado (portugol)
-para auxliar estudantes brasileiros iniciando em atividades de programação. Para mais informacoes, acesse [Site do Mapler](https://portugol.sourceforge.io/)
+para auxiliar estudantes brasileiros iniciando em atividades de programação. Para mais informacoes, acesse [Site do Mapler](https://portugol.sourceforge.io/)
 
 SOBRE A INTERFACE
 >A interface foi desenvolvida para atender ao [interpretador](https://github.com/kerlyson/interpretadorPtEstruturadoJava), de forma que ambos se comuniquem e sejam capazes de oferecer aos usuarios a capacidade de escrever, compilar, debugar e traduzir codigos em portugol.
