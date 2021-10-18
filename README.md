@@ -36,7 +36,7 @@ INSTALACAO
 para fácil execução em qualquer sistema operacional com Java instalado
 
 DOWNLOAD
->Para baixar a versao mais atualizada acesse [sourceforge/portugol](https://portugol.sourceforge.io/download.html)
+>Para baixar a versao mais atualizada acesse [sourceforge/portugol](https://sourceforge.net/projects/portugol/files/latest/download)
 
 REQUERIMENTOS
 >Java 11 ou superior, caso necessite voce pode encontrar o java para download nesse [link](https://www.oracle.com/java/technologies/downloads/).
