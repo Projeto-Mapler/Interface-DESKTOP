@@ -6,12 +6,19 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.file.FileSystemNotFoundException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.spi.FileSystemProvider;
+import java.util.Collections;
 import java.util.ResourceBundle;
+
 import org.fxmisc.richtext.LineNumberFactory;
 import org.fxmisc.richtext.StyleClassedTextArea;
+
 import com.jfoenix.controls.JFXButton;
+
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -189,7 +196,22 @@ public class CodigoController implements Initializable, Terminavel {
   private void CarregaExemplo(URL url) {
 		String content = null;
 	    try {
-	      content = Files.readString(Paths.get(url.toURI()));
+	    	URI uri = url.toURI();
+
+	    	if("jar".equals(uri.getScheme())){
+	    	    for (FileSystemProvider provider: FileSystemProvider.installedProviders()) {
+	    	        if (provider.getScheme().equalsIgnoreCase("jar")) {
+	    	            try {
+	    	                provider.getFileSystem(uri);
+	    	            } catch (FileSystemNotFoundException e) {
+	    	                // in this case we need to initialize it first:
+	    	                provider.newFileSystem(uri, Collections.emptyMap());
+	    	            }
+	    	        }
+	    	    }
+	    	}
+	    	Path source = Paths.get(uri);
+	      content = Files.readString(source);
 	      area_trad.clear();
 	      
 	      if (tradAreaHighlighter != null)
