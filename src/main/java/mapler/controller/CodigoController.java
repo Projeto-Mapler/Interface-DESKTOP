@@ -25,6 +25,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Menu;
@@ -40,6 +41,7 @@ import javafx.stage.Stage;
 import mapler.model.ConsoleStyleClassedTextArea;
 import mapler.model.Linguagem;
 import mapler.model.MenuItemTraducao;
+import mapler.model.ResizeListener;
 import mapler.model.Terminavel;
 import mapler.model.highlight.SyntaxHighlighter;
 import mapler.model.resource.Estilos;
@@ -120,6 +122,7 @@ public class CodigoController implements Initializable, Terminavel {
   private DebugController debugController;
   private ArquivoService arquivoService;
   private SyntaxHighlighter codAreaHighlighter, tradAreaHighlighter;
+  private ResizeListener resize;
 
   public CodigoController() throws Exception {
     this.debugController = new DebugController();
@@ -127,6 +130,7 @@ public class CodigoController implements Initializable, Terminavel {
     this.inicialService = InicioService.getInstancia();
     this.baseService = BaseService.getInstancia();
     this.arquivoService = ArquivoService.getInstance();
+    this.resize = ResizeListener.getInstancia();
   }
 
   @Override
@@ -664,6 +668,9 @@ public class CodigoController implements Initializable, Terminavel {
     area_cod.clear();
     area_cod.appendText("variaveis\r\n" + "  //declare aqui suas variaveis\r\n" + "inicio\r\n"
         + "  //auto gerado pelo MAPLER\r\n" + "  escrever \"Ola mundo!\";\r\n" + "fim");
+    
+    resize.DraggableStage(m_bar);
+    
 
   }
 
@@ -704,6 +711,6 @@ public class CodigoController implements Initializable, Terminavel {
 
   }
 
-
+  
 
 }

@@ -25,7 +25,7 @@
 	<children>
 		<BorderPane fx:id="bd_inicial" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 			<top>
-				<AnchorPane prefWidth="200.0" style="-fx-background-color: blue;" BorderPane.alignment="CENTER">
+				<AnchorPane fx:id="ap_barraPrimaria" prefWidth="200.0" style="-fx-background-color: blue;" BorderPane.alignment="CENTER">
 					<children>
 						<VBox fx:id="vb_topo" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 							<children>

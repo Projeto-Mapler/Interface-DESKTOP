@@ -262,7 +262,162 @@ public class InicioController implements Initializable {
 			btn_left_sobre.setStyle("");
 			btn_left_sobre.setTextFill(Paint.valueOf("white"));
 		});
-
+		
+		link_cod_enquanto.setOnAction(e -> {
+			try {
+				URL url = new URL("https://portugol.sourceforge.io/exemplos.html");
+				boolean boo = openWebpage(url.toURI());
+			} catch (URISyntaxException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (MalformedURLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		});
+		
+		link_cod_repita.setOnAction(e -> {
+			try {
+				URL url = new URL("https://portugol.sourceforge.io/exemplos.html");
+				boolean boo = openWebpage(url.toURI());
+			} catch (URISyntaxException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (MalformedURLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		});
+		
+		link_cod_para.setOnAction(e -> {
+			try {
+				URL url = new URL("https://portugol.sourceforge.io/exemplos.html");
+				boolean boo = openWebpage(url.toURI());
+			} catch (URISyntaxException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (MalformedURLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		});
+		
+		link_cod_lit.setOnAction(e -> {
+			try {
+				URL url = new URL("https://portugol.sourceforge.io/exemplos.html");
+				boolean boo = openWebpage(url.toURI());
+			} catch (URISyntaxException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (MalformedURLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}); 
+		
+		link_cod_log.setOnAction(e -> {
+			try {
+				URL url = new URL("https://portugol.sourceforge.io/exemplos.html");
+				boolean boo = openWebpage(url.toURI());
+			} catch (URISyntaxException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (MalformedURLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}); 
+		
+		link_cod_num.setOnAction(e -> {
+			try {
+				URL url = new URL("https://portugol.sourceforge.io/exemplos.html");
+				boolean boo = openWebpage(url.toURI());
+			} catch (URISyntaxException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (MalformedURLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		});
+		
+		link_cod_fimse.setOnAction(e -> {
+			try {
+				URL url = new URL("https://portugol.sourceforge.io/exemplos.html");
+				boolean boo = openWebpage(url.toURI());
+			} catch (URISyntaxException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (MalformedURLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		});
+		
+		link_cod_senao.setOnAction(e -> {
+			try {
+				URL url = new URL("https://portugol.sourceforge.io/exemplos.html");
+				boolean boo = openWebpage(url.toURI());
+			} catch (URISyntaxException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (MalformedURLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		});
+		
+		link_cod_se.setOnAction(e -> {
+			try {
+				URL url = new URL("https://portugol.sourceforge.io/exemplos.html");
+				boolean boo = openWebpage(url.toURI());
+			} catch (URISyntaxException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (MalformedURLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		});
+		
+		link_cod_fim.setOnAction(e -> {
+			try {
+				URL url = new URL("https://portugol.sourceforge.io/exemplos.html");
+				boolean boo = openWebpage(url.toURI());
+			} catch (URISyntaxException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (MalformedURLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		});
+		
+		link_cod_inicio.setOnAction(e -> {
+			try {
+				URL url = new URL("https://portugol.sourceforge.io/exemplos.html");
+				boolean boo = openWebpage(url.toURI());
+			} catch (URISyntaxException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (MalformedURLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		});
+		
+		link_cod_var.setOnAction(e -> {
+			try {
+				URL url = new URL("https://portugol.sourceforge.io/exemplos.html");
+				boolean boo = openWebpage(url.toURI());
+			} catch (URISyntaxException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (MalformedURLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		});
 		
 	}
 	/*

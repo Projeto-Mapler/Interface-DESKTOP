@@ -2,15 +2,15 @@
 //evitam assim que um mesmo algoritmo precise ser escrito varias vezes
 
 //SINTAXE
-variveis
+variaveis
   nome_modulo : modulo;
 inicio
   nome_modulo;
-fim;
+fim
 
 modulo nome_modulo
    escrever "esse é um modulo externo ao modulo principal";
-fim modulo
+fim modulo;
 
 //	O modulo precisa ser declarado no bloco principal
 //	Um modulo reconhece as variaveis que pertecem ao bloco principal

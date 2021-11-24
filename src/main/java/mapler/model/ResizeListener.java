@@ -19,8 +19,18 @@ public final class ResizeListener implements EventHandler<MouseEvent> {
   /* RESIZEEE */
   private static double xOffset = 0;
   private static double yOffset = 0;
+  
+  private static ResizeListener instancia;
 
   public ResizeListener() {
+  
+  }
+  
+  public static ResizeListener getInstancia() {
+	  if (instancia == null) {
+		  instancia = new ResizeListener();
+	  }
+	  return instancia;
   }
 
   public void handle(MouseEvent mouseEvent) {
@@ -61,11 +71,12 @@ public final class ResizeListener implements EventHandler<MouseEvent> {
       yOffset = mouseEvent.getSceneY();
 
     } else if (MouseEvent.MOUSE_DRAGGED.equals(mouseEventType) == true) {
+      
+      
       if (Cursor.DEFAULT.equals(cursorEvent) == false) {
         if (Cursor.W_RESIZE.equals(cursorEvent) == false
             && Cursor.E_RESIZE.equals(cursorEvent) == false) {
-          double minHeight =
-              stage.getMinHeight() > (border * 2) ? stage.getMinHeight() : (border * 2);
+          double minHeight = stage.getMinHeight();
           if (Cursor.NW_RESIZE.equals(cursorEvent) == true
               || Cursor.N_RESIZE.equals(cursorEvent) == true
               || Cursor.NE_RESIZE.equals(cursorEvent) == true) {
@@ -82,7 +93,7 @@ public final class ResizeListener implements EventHandler<MouseEvent> {
 
         if (Cursor.N_RESIZE.equals(cursorEvent) == false
             && Cursor.S_RESIZE.equals(cursorEvent) == false) {
-          double minWidth = stage.getMinWidth() > (border * 2) ? stage.getMinWidth() : (border * 2);
+          double minWidth = stage.getMinWidth();
           if (Cursor.NW_RESIZE.equals(cursorEvent) == true
               || Cursor.W_RESIZE.equals(cursorEvent) == true
               || Cursor.SW_RESIZE.equals(cursorEvent) == true) {
@@ -104,6 +115,26 @@ public final class ResizeListener implements EventHandler<MouseEvent> {
   }
   
   
+  public void DraggableStage(Node node) {
+	    double[] xOffset = {0}, yOffset = {0};
+	    /*node.setOnMousePressed(event -> {
+	        xOffset[0] = this.stage.getX() - event.getScreenX();
+	        yOffset[0] = this.stage.getY() - event.getScreenY();
+	    });
+
+	    node.setOnMouseDragged(event -> {
+	    	this.stage.setX(event.getScreenX() + xOffset[0]);
+	    	this.stage.setY(event.getScreenY() + yOffset[0]);
+	        
+	    });*/
+	    
+	    node.addEventHandler(MouseEvent.MOUSE_MOVED, this);
+	    node.addEventHandler(MouseEvent.MOUSE_PRESSED, this);
+	    node.addEventHandler(MouseEvent.MOUSE_DRAGGED, this);
+	    node.addEventHandler(MouseEvent.MOUSE_EXITED, this);
+	    node.addEventHandler(MouseEvent.MOUSE_EXITED_TARGET, this);
+	}
+  
   public void aplicarAoStage(Stage stage) {
     this.stage = stage;
     stage.getScene().addEventHandler(MouseEvent.MOUSE_MOVED, this);
@@ -111,7 +142,8 @@ public final class ResizeListener implements EventHandler<MouseEvent> {
     stage.getScene().addEventHandler(MouseEvent.MOUSE_DRAGGED, this);
     stage.getScene().addEventHandler(MouseEvent.MOUSE_EXITED, this);
     stage.getScene().addEventHandler(MouseEvent.MOUSE_EXITED_TARGET, this);
-
+    
+    
     ObservableList<Node> children = stage.getScene().getRoot().getChildrenUnmodifiable();
     for (Node child : children) {
       addListenerDeeply(child, this);

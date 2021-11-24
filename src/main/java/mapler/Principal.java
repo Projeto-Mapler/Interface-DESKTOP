@@ -40,7 +40,7 @@ public class Principal extends Application {
 			}
 		});
 
-		new ResizeListener().aplicarAoStage(stage);// adiciona resize listener ao stage
+		ResizeListener.getInstancia().aplicarAoStage(stage);// adiciona resize listener ao stage
 		stage.show();
 
 		// inicial.maximizar();// iniciar maximizado

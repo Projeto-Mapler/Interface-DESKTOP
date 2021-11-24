@@ -4,8 +4,13 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import mapler.model.ResizeListener;
 import mapler.model.Terminavel;
 import mapler.util.CarregadorRecursos;
 
@@ -19,10 +24,15 @@ public final class BaseService  {
   private AnchorPane janela; // janela principal
   
   private Set<Terminavel> terminaveis;
+  private ResizeListener resize;
+  
+  private static double xOffset = 0;
+  private static double yOffset = 0;
 
   private BaseService(AnchorPane janela) {
     this.janela = janela;
     this.terminaveis = new HashSet<Terminavel>();
+    this.resize = ResizeListener.getInstancia();
   }
 
   /**
@@ -70,6 +80,26 @@ public final class BaseService  {
       janela.setLeftAnchor(ap_codigo, 0.0);
       janela.setTopAnchor(ap_codigo, 0.0);
       janela.setRightAnchor(ap_codigo, 1.0);
+      
+      /*janela.setOnMousePressed(new EventHandler<MouseEvent>() {
+          @Override
+          public void handle(MouseEvent event) {
+              xOffset = resize.getX() - event.getScreenX();
+              yOffset = resize.getY() - event.getScreenY();
+          }
+      });
+      
+      janela.setOnMouseDragged(new EventHandler<MouseEvent>() {
+          @Override
+          public void handle(MouseEvent event) {
+        	  resize.setX(event.getScreenX() + xOffset);
+        	  resize.setY(event.getScreenY() + yOffset);
+          }
+      });*/
+      
+      resize.DraggableStage(janela);
+      resize.DraggableStage(ap_codigo);
+      
       return 1;
 
     } catch (IOException e) {
@@ -82,5 +112,4 @@ public final class BaseService  {
   public void terminarTodosTerminaveis() {
 	  this.terminaveis.forEach(t -> t.terminar());
   }
-
 }
