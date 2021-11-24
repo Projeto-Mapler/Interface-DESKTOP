@@ -42,7 +42,7 @@ REQUERIMENTOS
 >Java 11 ou superior, caso necessite voce pode encontrar o java para download nesse [link](https://www.oracle.com/java/technologies/downloads/).
 
 COMO UTILIZAR
->Um pequeno manual sobre o uso do compilador esta disponivel em [sourceforge](https://portugol.sourceforge.io/download.html).
+>Um pequeno manual sobre o uso do compilador esta disponivel em [sourceforge](https://portugol.sourceforge.io/manuais.html).
 
 BUILD
 >```mvn clean -Dmaven.clean.failOnError=false compile assembly:single -DskipTests=true```
