@@ -39,7 +39,7 @@ public class ConsoleTraducaoService implements AcaoInterpretador, EspectadorInpu
 		this.debugController = debugController;
 		debugController.setConsoleTraducaoService(this);
 		this.interpretador.setEventosLog(Arrays.asList(EventoInterpretador.values()));
-		this.interpretador.setLogAtivo(true);
+		this.interpretador.setLogAtivo(false);
 	}
 
 	private void initDebug(boolean debugOn) {
