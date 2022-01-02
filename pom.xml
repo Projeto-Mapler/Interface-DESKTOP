@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>mapler_interface</groupId>
 	<artifactId>mapler_interface</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>Mapler Interface</name>
 	<url>https://github.com/EliasRLima/Interface-MAPLER</url>
 
@@ -18,26 +18,58 @@
 	</properties>
 
 	<dependencies>
+
+		<!-- JAVAFX - jdk11 -->
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-controls</artifactId>
+			<version>${javafx.version}</version>
+			<classifier>${build.javafx.plataform}</classifier>
+		</dependency>
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-fxml</artifactId>
+			<version>${javafx.version}</version>
+			<classifier>${build.javafx.plataform}</classifier>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.openjfx/javafx-base -->
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-base</artifactId>
+			<version>${javafx.version}</version>
+			<classifier>${build.javafx.plataform}</classifier>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.openjfx/javafx-base -->
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-graphics </artifactId>
+			<version>${javafx.version}</version>
+			<classifier>${build.javafx.plataform}</classifier>
+		</dependency>
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-media</artifactId>
+			<version>${javafx.version}</version>
+			<classifier>${build.javafx.plataform}</classifier>
+		</dependency>
+
 		<dependency>
 			<groupId>interpretadorPtEstruturadoJava</groupId>
 			<artifactId>interpretadorMACP</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-
 		<!-- https://mvnrepository.com/artifact/de.jensd/fontawesomefx -->
 		<dependency>
 			<groupId>de.jensd</groupId>
 			<artifactId>fontawesomefx</artifactId>
 			<version>8.2</version>
 		</dependency>
-
 		<!-- https://mvnrepository.com/artifact/com.jfoenix/jfoenix -->
 		<dependency>
 			<groupId>com.jfoenix</groupId>
 			<artifactId>jfoenix</artifactId>
 			<version>9.0.10</version>
 		</dependency>
-
 		<!-- https://mvnrepository.com/artifact/org.fxmisc.richtext/richtextfx -->
 		<dependency>
 			<groupId>org.fxmisc.richtext</groupId>
@@ -45,119 +77,49 @@
 			<version>0.10.3</version>
 		</dependency>
 
-		<!-- JAVAFX - jdk11 -->
-		<dependency>
-			<groupId>org.openjfx</groupId>
-			<artifactId>javafx-controls</artifactId>
-			<version>${javafx.version}</version>
-			<classifier>win</classifier>
-		</dependency>
-		<dependency>
-			<groupId>org.openjfx</groupId>
-			<artifactId>javafx-controls</artifactId>
-			<version>${javafx.version}</version>
-			<classifier>linux</classifier>
-		</dependency>
-		<dependency>
-			<groupId>org.openjfx</groupId>
-			<artifactId>javafx-controls</artifactId>
-			<version>${javafx.version}</version>
-			<classifier>mac</classifier>
-		</dependency>
 
-		<dependency>
-			<groupId>org.openjfx</groupId>
-			<artifactId>javafx-fxml</artifactId>
-			<version>${javafx.version}</version>
-			<classifier>win</classifier>
-		</dependency>
-		<dependency>
-			<groupId>org.openjfx</groupId>
-			<artifactId>javafx-fxml</artifactId>
-			<version>${javafx.version}</version>
-			<classifier>linux</classifier>
-		</dependency>
-		<dependency>
-			<groupId>org.openjfx</groupId>
-			<artifactId>javafx-fxml</artifactId>
-			<version>${javafx.version}</version>
-			<classifier>mac</classifier>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.openjfx/javafx-base -->
-		<dependency>
-			<groupId>org.openjfx</groupId>
-			<artifactId>javafx-base</artifactId>
-			<version>${javafx.version}</version>
-			<classifier>win</classifier>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.openjfx/javafx-base -->
-		<dependency>
-			<groupId>org.openjfx</groupId>
-			<artifactId>javafx-base</artifactId>
-			<version>${javafx.version}</version>
-			<classifier>linux</classifier>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.openjfx/javafx-base -->
-		<dependency>
-			<groupId>org.openjfx</groupId>
-			<artifactId>javafx-base</artifactId>
-			<version>${javafx.version}</version>
-			<classifier>mac</classifier>
-		</dependency>
-
-
-
-		<dependency>
-			<groupId>org.openjfx</groupId>
-			<artifactId>javafx-graphics </artifactId>
-			<version>${javafx.version}</version>
-			<classifier>win</classifier>
-		</dependency>
-		<dependency>
-			<groupId>org.openjfx</groupId>
-			<artifactId>javafx-graphics </artifactId>
-			<version>${javafx.version}</version>
-			<classifier>linux</classifier>
-		</dependency>
-		<dependency>
-			<groupId>org.openjfx</groupId>
-			<artifactId>javafx-graphics </artifactId>
-			<version>${javafx.version}</version>
-			<classifier>mac</classifier>
-		</dependency>
-
-		<dependency>
-			<groupId>org.openjfx</groupId>
-			<artifactId>javafx-media</artifactId>
-			<version>${javafx.version}</version>
-			<classifier>win</classifier>
-		</dependency>
-<dependency>
-			<groupId>org.openjfx</groupId>
-			<artifactId>javafx-media</artifactId>
-			<version>${javafx.version}</version>
-			<classifier>linux</classifier>
-		</dependency>
-		<dependency>
-			<groupId>org.openjfx</groupId>
-			<artifactId>javafx-media</artifactId>
-			<version>${javafx.version}</version>
-			<classifier>mac</classifier>
-		</dependency>
 	</dependencies>
+
+	<profiles>
+		<profile>
+			<id>windows</id>
+			<properties>
+				<!-- auto | windows | linux | mac -->
+				<build.javapacker.plataform>windows</build.javapacker.plataform>
+				<!-- win | linux | mac -->
+				<build.javafx.plataform>win</build.javafx.plataform>
+
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+
+		<profile>
+			<id>linux</id>
+			<properties>
+				<!-- auto | windows | linux | mac -->
+				<build.javapacker.plataform>linux</build.javapacker.plataform>
+				<!-- win | linux | mac -->
+				<build.javafx.plataform>linux</build.javafx.plataform>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>mac</id>
+			<properties>
+				<!-- auto | windows | linux | mac -->
+				<build.javapacker.plataform>mac</build.javapacker.plataform>
+				<!-- win | linux | mac -->
+				<build.javafx.plataform>mac</build.javafx.plataform>
+			</properties>
+		</profile>
+	</profiles>
 
 
 	<build>
 		<plugins>
-			<plugin>
-				<groupId>org.openjfx</groupId>
-				<artifactId>javafx-maven-plugin</artifactId>
-				<version>${javafx.maven.plugin.version}</version>
-				<configuration>
-					<mainClass>mapler.App</mainClass>
-				</configuration>
-			</plugin>
+
 
 			<!-- Build multi-plataform -->
 			<plugin>
@@ -223,45 +185,28 @@
 				</configuration>
 				<executions>
 					<execution>
-						<id>bundling-for-windows</id>
+						<id>bundling</id>
 						<phase>package</phase>
 						<goals>
 							<goal>package</goal>
 						</goals>
 						<configuration>
-							<platform>windows</platform>
+							<platform>${build.javapacker.plataform}</platform>
 							<createZipball>true</createZipball>
 						</configuration>
 					</execution>
-					<execution>
-						<id>bundling-for-linux</id>
-						<phase>package</phase>
-						<goals>
-							<goal>package</goal>
-						</goals>
-						<configuration>
-							<platform>linux</platform>
-							<createTarball>true</createTarball>
-							<!-- <jdkPath>X:\\path\to\linux\jdk</jdkPath> -->
 
-						</configuration>
-					</execution>
-					<execution>
-						<id>bundling-for-mac</id>
-						<phase>package</phase>
-						<goals>
-							<goal>package</goal>
-						</goals>
-						<configuration>
-							<platform>mac</platform>
-							<createTarball>true</createTarball>
-							<!-- <jdkPath>X:\\path\to\mac\jdk</jdkPath> -->
-						</configuration>
-					</execution>
 				</executions>
 			</plugin>
 
-
+			<plugin>
+				<groupId>org.openjfx</groupId>
+				<artifactId>javafx-maven-plugin</artifactId>
+				<version>${javafx.maven.plugin.version}</version>
+				<configuration>
+					<mainClass>mapler.App</mainClass>
+				</configuration>
+			</plugin>
 
 		</plugins>
 	</build>
