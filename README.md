@@ -45,6 +45,11 @@ COMO UTILIZAR
 >Um pequeno manual sobre o uso do compilador esta disponivel em [sourceforge](https://portugol.sourceforge.io/manuais.html).
 
 BUILD
->```mvn clean -Dmaven.clean.failOnError=false compile assembly:single -DskipTests=true```
+>```mvn clean  package -P<profile> -Djavafx.platform=<plataforma>```
 
+Onde `<profile>` e `<plataforma>` aceitam os valores:
+
+- windows (default)
+- linux
+- mac
 
