@@ -49,7 +49,7 @@ BUILD
 
 Onde `<profile>` e `<plataforma>` aceitam os valores:
 
-- windows (default)
+- win (default)
 - linux
 - mac
 

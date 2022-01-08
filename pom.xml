@@ -82,7 +82,7 @@
 
 	<profiles>
 		<profile>
-			<id>windows</id>
+			<id>win</id>
 			<properties>
 				<!-- auto | windows | linux | mac -->
 				<build.javapacker.plataform>windows</build.javapacker.plataform>
@@ -146,8 +146,8 @@
 						<generateMsi>false</generateMsi>
 						<generateMsm>false</generateMsm>
 						<!-- exe creation properties -->
-						<headerType>console</headerType>
-						<wrapJar>false</wrapJar>
+						<headerType>gui</headerType>
+						<wrapJar>true</wrapJar>
 
 						<companyName>IFMA</companyName>
 						<fileVersion>1.0.0.0</fileVersion>
