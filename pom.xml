@@ -119,8 +119,6 @@
 
 	<build>
 		<plugins>
-
-
 			<!-- Build multi-plataform -->
 			<plugin>
 				<groupId>io.github.fvarrui</groupId>
@@ -134,14 +132,14 @@
 					<copyDependencies>true</copyDependencies>
 					<generateInstaller>true</generateInstaller>
 					<administratorRequired>false</administratorRequired>
-					<outputDirectory>C:\Users\Pichau\Documents\GitHub\Interface-MAPLER\out</outputDirectory>
+					<outputDirectory>build</outputDirectory>
 					<vmArgs>
 						<vmArg>--upgrade-module-path</vmArg>
 						<vmArg>libs</vmArg>
 					</vmArgs>
 
 					<winConfig>
-
+						<icoFile>src\main\resources\images\icon.ico</icoFile>
 						<generateSetup>true</generateSetup>
 						<generateMsi>false</generateMsi>
 						<generateMsm>false</generateMsm>
@@ -155,7 +153,7 @@
 						<copyright>Copyright (c) 2021 </copyright>
 						<productVersion>1.0.0.0</productVersion>
 						<txtProductVersion>${project.version}</txtProductVersion>
-						<productName>Mapler</productName>
+						<productName>Mapler Studio</productName>
 						<internalName>Mapler Studio</internalName>
 						<fileDescription>${description}</fileDescription>
 						<copyright>IFMA</copyright>
@@ -177,6 +175,10 @@
 						<!--wrapJar>true</wrapJar -->
 					</linuxConfig>
 					<macConfig>
+
+						<appId>Mapler</appId>
+						<icnsFile>src\main\resources\images\icon.icns</icnsFile>
+
 						<generateDmg>true</generateDmg>
 						<generatePkg>false</generatePkg>
 						<relocateJar>true</relocateJar>
