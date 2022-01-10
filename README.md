@@ -45,6 +45,8 @@ COMO UTILIZAR
 >Um pequeno manual sobre o uso do compilador esta disponivel em [sourceforge](https://portugol.sourceforge.io/manuais.html).
 
 BUILD
+> Dependencias:```choco install -y innosetup wixtoolset```
+
 >```mvn clean  package -P<profile> -Djavafx.platform=<plataforma>```
 
 Onde `<profile>` e `<plataforma>` aceitam os valores:
