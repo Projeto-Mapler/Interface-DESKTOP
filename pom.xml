@@ -125,7 +125,7 @@
 				<artifactId>javapackager</artifactId>
 				<version>1.6.2</version>
 				<configuration>
-					<bundleJre>true</bundleJre>
+					<bundleJre>false</bundleJre>
 					<name>Mapler</name>
 					<displayName>Mapler Studio</displayName>
 					<mainClass>mapler.App</mainClass>
@@ -145,7 +145,7 @@
 						<generateMsm>false</generateMsm>
 						<!-- exe creation properties -->
 						<headerType>gui</headerType>
-						<wrapJar>true</wrapJar>
+						<wrapJar>false</wrapJar>
 
 						<companyName>IFMA</companyName>
 						<fileVersion>1.0.0.0</fileVersion>
