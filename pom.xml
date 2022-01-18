@@ -139,7 +139,7 @@
 					</vmArgs>
 
 					<winConfig>
-						<icoFile>src\main\resources\images\icon.ico</icoFile>
+						<icoFile>src\main\resources\images\icone-color.ico</icoFile>
 						<generateSetup>true</generateSetup>
 						<generateMsi>false</generateMsi>
 						<generateMsm>false</generateMsm>

@@ -1,12 +1,11 @@
 package mapler;
 
-import java.net.URL;
-
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import mapler.model.ResizeListener;
@@ -22,15 +21,18 @@ public class Principal extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 		InicioService.iniciarClasse(stage);
-		stage.initStyle(StageStyle.UNDECORATED); // removendo botoes padrao
-		URL resources = getClass().getResource("");
-		System.out.println(resources.getPath());
+		stage.initStyle(StageStyle.UNDECORATED); // removendo botoes padrao 
+		
 		Parent root = FXMLLoader.load(CarregadorRecursos.get().getResource(Templates.BASE.getUrl()));
 		Scene scene = new Scene(root, 960, 720); // resolucao inicial
+	 
+		stage.getIcons().add(new Image("/images/icone-color.png"));//icone bandeja
+		
 		stage.setScene(scene);
 		stage.setTitle("MAPLER STUDIO");
 		stage.setMinHeight(500);
 		stage.setMinWidth(600);
+		 
 
 		stage.focusedProperty().addListener(new ChangeListener<Boolean>() {
 			@Override
