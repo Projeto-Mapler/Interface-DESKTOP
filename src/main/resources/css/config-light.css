@@ -1,29 +1,64 @@
 
 
+.area_lateral{
+	-fx-background-color: #bfbfbf;
+}
+
+.btn_lateral{
+	 -fx-text-fill: black;
+}
+
+.area_fundo{
+	-fx-background-color: #fff;
+}
+
+.erro { 
+    -fx-fill: #d54848; 
+}
+
+.normal{
+	-fx-fill: black; 
+}
+
+.bt_exec{
+	-fx-fill: #047b2e;
+}
+
+.bt_code{
+	-fx-fill: #ff6600;
+}
+
+.bt_debug{
+	-fx-fill: #057f94;
+}
+
 /*ESTILO DA AREA DE TEXTO */
 .styled-text-area {
     /* set the entire area's font size to the given size */
     -fx-font-family: Consolas;
    -fx-font-size: 16; 
    -fx-font-weight: bold; 
-   -fx-background-color:  #21222c; 
-   -fx-border-color:  #21222c;
+   -fx-background-color:  #fff; 
+   -fx-border-color:  #fff;
 }
 
 .styled-text-area .line-highlighter { 
-	-fx-fill: #343434;
+	-fx-fill: #d9d9d9;
 }
 
 /*ESTILO DOS NUMEROS DE LINHA */
 .lineno{
    -fx-font-family: Consolas;
-   -fx-background-color:  #21222c;
-   -fx-font-size: 16;
-   -fx-fill: #1F1300; 
+   -fx-background-color:  #fff;
+   -fx-font-size: 8;
+   -fx-fill: #808080;
+   -fx-text-fill: #808080;
+   -fx-alignment: center;
+   
 }
 
-.lineno .text{
-   -fx-fill: white; 
+ .lineno .text{
+   -fx-font-size: 16;
 }
 
 .background {
@@ -33,20 +68,20 @@
 /* ------------ */
 
 .styled-text-area .text{
-    -fx-fill: #d2d2d2; 
+    -fx-fill: black; 
 }
 
 .styled-text-area .caret {
-    -fx-stroke: white;
+    -fx-stroke: black;
 }
 
 .styled-text-area .text.keyword {
-    -fx-fill: #40a8f2;
+    -fx-fill: #0f83d7;
     -fx-font-weight: bold;
 }
 
 .styled-text-area .text.type {
-	-fx-fill: #f4b350;
+	-fx-fill: #f0960f;
 }
 
 .styled-text-area .text.texto { 
@@ -58,17 +93,17 @@
 }
 
 .styled-text-area .text.paren {
-    -fx-fill:  #36D7B7;
+    -fx-fill:  #22aa8f;
     -fx-font-weight: bold;
 }
 
 .styled-text-area .text.bracket {
-    -fx-fill:  #36D7B7;
+    -fx-fill:  #22aa8f;
     -fx-font-weight: bold;
 }
 
 .styled-text-area .text.brace {
-    -fx-fill: #36D7B7;
+    -fx-fill: #22aa8f;
     -fx-font-weight: bold;
 }
 
@@ -87,11 +122,11 @@
 
 
 .styled-text-area .text.type {
-	-fx-fill: #f4b350;
+	-fx-fill: #f0960f;
 }
 
 .styled-text-area .text.atr {
-	  -fx-fill:  #36D7B7;
+	  -fx-fill:  #22aa8f;
     -fx-font-weight: bold;
 }
 
@@ -107,7 +142,7 @@
 /* ------------ */
 .keyword {
     /*-fx-fill: #f4b350;*/
-    -fx-fill: #40a8f2;
+    -fx-fill: #0f83d7;
     -fx-font-weight: bold;
 }
 

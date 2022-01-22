@@ -1,0 +1,199 @@
+
+
+.area_lateral{
+	-fx-background-color: #bfbfbf;
+}
+
+.btn_lateral{
+	 -fx-text-fill: black;
+}
+
+.area_fundo{
+	-fx-background-color: #fff;
+}
+
+.erro { 
+    -fx-fill: black; 
+}
+
+.normal{
+	-fx-fill: black; 
+}
+
+.bt_exec{
+	-fx-fill: black;
+}
+
+.bt_code{
+	-fx-fill: black;
+}
+
+.bt_debug{
+	-fx-fill: black;
+}
+
+/*ESTILO DA AREA DE TEXTO */
+.styled-text-area {
+    /* set the entire area's font size to the given size */
+    -fx-font-family: Consolas;
+   -fx-font-size: 16; 
+   -fx-font-weight: bold; 
+   -fx-background-color:  #fff; 
+   -fx-border-color:  #fff;
+}
+
+.styled-text-area .line-highlighter { 
+	-fx-fill: #d9d9d9;
+}
+
+/*ESTILO DOS NUMEROS DE LINHA */
+.lineno{
+   -fx-font-family: Consolas;
+   -fx-background-color:  #fff;
+   -fx-font-size: 8;
+   -fx-fill: #808080;
+   -fx-text-fill: #808080;
+   -fx-alignment: center;
+   
+}
+
+ .lineno .text{
+   -fx-font-size: 16;
+}
+
+.background {
+    -fx-background-color: #5c6770;
+}
+
+/* ------------ */
+
+.styled-text-area .text{
+    -fx-fill: black; 
+}
+
+.styled-text-area .caret {
+    -fx-stroke: black;
+}
+
+.styled-text-area .text.keyword {
+    -fx-fill: black;
+    -fx-font-weight: bold;
+}
+
+.styled-text-area .text.type {
+	-fx-fill: black;
+}
+
+.styled-text-area .text.texto { 
+    -fx-fill: black; 
+}
+
+.styled-text-area .text.semicolon {
+    -fx-font-weight: bold;
+}
+
+.styled-text-area .text.paren {
+    -fx-fill:  black;
+    -fx-font-weight: bold;
+}
+
+.styled-text-area .text.bracket {
+    -fx-fill:  black;
+    -fx-font-weight: bold;
+}
+
+.styled-text-area .text.brace {
+    -fx-fill: black;
+    -fx-font-weight: bold;
+}
+
+.styled-text-area .text.string {
+    -fx-fill: black;
+}
+
+.styled-text-area .text.comment {
+	-fx-fill: #808080;
+}
+
+/* */
+.styled-text-area .text.paragraph-box:has-caret {
+    -fx-background-color: #f2f9fc;
+}
+
+
+.styled-text-area .text.type {
+	-fx-fill: black;
+}
+
+.styled-text-area .text.atr {
+	  -fx-fill:  black;
+    -fx-font-weight: bold;
+}
+
+.styled-text-area .text.test { /*para testar os matchs do highlighter */
+	 -fx-fill:  black;
+}
+
+.styled-text-area .text.default {
+   -fx-fill: white; 
+}
+
+
+/* ------------ */
+.keyword {
+    /*-fx-fill: #f4b350;*/
+    -fx-fill: black;
+    -fx-font-weight: bold;
+}
+
+.semicolon {
+    -fx-font-weight: bold;
+}
+
+.paren {
+    -fx-fill:  black;
+    -fx-font-weight: bold;
+}
+
+.bracket {
+    -fx-fill:  black;
+    -fx-font-weight: bold;
+}
+
+.brace {
+    -fx-fill: black;
+    -fx-font-weight: bold;
+}
+
+.string {
+    -fx-fill: black;
+}
+
+.comment {
+	-fx-fill: #aeb5b1;
+}
+
+/*
+.paragraph-box:has-caret {
+    -fx-background-color: #f2f9fc;
+}
+*/
+.type {
+	-fx-fill: black;
+}
+
+.atr {
+	  -fx-fill:  black;
+    -fx-font-weight: bold;
+}
+.test { /*para testar os matchs do highlighter */
+	 -fx-fill:  red;
+}
+
+.texto { 
+    -fx-fill: black;
+}
+
+.default {
+   -fx-fill: white; 
+}

@@ -1,0 +1,206 @@
+
+.area_lateral{
+	-fx-background-color: #282a36;
+}
+
+.btn_lateral{
+	 -fx-text-fill: #fff;
+}
+
+.btn_lateral:hover{
+	 -fx-text-fill: #000;
+}
+
+.area_fundo{
+	-fx-background-color: #282a36;
+}
+
+.erro { 
+    -fx-fill: #d54848; 
+}
+
+.normal{
+	-fx-fill: white; 
+}
+
+.bt_exec{
+	-fx-fill: #06a13c;
+}
+
+.bt_code{
+	-fx-fill: #ffba03;
+}
+
+.bt_debug{
+	-fx-fill: #08d4f8;
+}
+
+/*ESTILO DA AREA DE TEXTO */
+.styled-text-area {
+    /* set the entire area's font size to the given size */
+    -fx-font-family: Consolas;
+   -fx-font-size: 16; 
+   -fx-font-weight: bold; 
+   -fx-background-color:  #21222c; 
+   -fx-border-color:  #21222c;
+}
+
+.styled-text-area .line-highlighter { 
+	-fx-fill: #343434;
+}
+
+
+
+.background {
+    -fx-background-color: #5c6770;
+}
+
+/* ------------ */
+
+.styled-text-area .text{
+    -fx-fill: white; 
+}
+
+.styled-text-area .caret {
+    -fx-stroke: white;
+}
+
+/*ESTILO DOS NUMEROS DE LINHA */
+.lineno{
+   -fx-font-family: Consolas;
+   -fx-background-color:  #21222c;
+   -fx-font-size: 8;
+   -fx-fill: #808080; 
+   -fx-text-fill: #808080;
+   -fx-alignment: center;
+   
+}
+
+ .lineno .text{
+   -fx-font-size: 16;
+   -fx-fill: #808080;
+   -fx-text-fill: #808080;
+}
+
+.styled-text-area .text.keyword {
+    -fx-fill: #40a8f2;
+    -fx-font-weight: bold;
+}
+
+.styled-text-area .text.type {
+	-fx-fill: #f4b350;
+}
+
+.styled-text-area .text.texto { 
+    -fx-fill: #ed3232; 
+}
+
+.styled-text-area .text.semicolon {
+    -fx-font-weight: bold;
+}
+
+.styled-text-area .text.paren {
+    -fx-fill:  #36D7B7;
+    -fx-font-weight: bold;
+}
+
+.styled-text-area .text.bracket {
+    -fx-fill:  #36D7B7;
+    -fx-font-weight: bold;
+}
+
+.styled-text-area .text.brace {
+    -fx-fill: #36D7B7;
+    -fx-font-weight: bold;
+}
+
+.styled-text-area .text.string {
+    -fx-fill: #360036;
+}
+
+.styled-text-area .text.comment {
+	-fx-fill: #808080;
+}
+
+/* */
+.styled-text-area .text.paragraph-box:has-caret {
+    -fx-background-color: #f2f9fc;
+}
+
+
+.styled-text-area .text.type {
+	-fx-fill: #f4b350;
+}
+
+.styled-text-area .text.atr {
+	  -fx-fill:  #36D7B7;
+    -fx-font-weight: bold;
+}
+
+.styled-text-area .text.test { /*para testar os matchs do highlighter */
+	 -fx-fill:  red;
+}
+
+.styled-text-area .text.default {
+   -fx-fill: white; 
+}
+
+
+/* ------------ */
+.keyword {
+    /*-fx-fill: #f4b350;*/
+    -fx-fill: #40a8f2;
+    -fx-font-weight: bold;
+}
+
+.semicolon {
+    -fx-font-weight: bold;
+}
+
+.paren {
+    -fx-fill:  #36D7B7;
+    -fx-font-weight: bold;
+}
+
+.bracket {
+    -fx-fill:  #36D7B7;
+    -fx-font-weight: bold;
+}
+
+.brace {
+    -fx-fill: #36D7B7;
+    -fx-font-weight: bold;
+}
+
+.string {
+    -fx-fill: #360036;
+}
+
+.comment {
+	-fx-fill: #aeb5b1;
+}
+
+/*
+.paragraph-box:has-caret {
+    -fx-background-color: #f2f9fc;
+}
+*/
+.type {
+	-fx-fill: #f4b350;
+}
+
+.atr {
+	  -fx-fill:  #36D7B7;
+    -fx-font-weight: bold;
+}
+.test { /*para testar os matchs do highlighter */
+	 -fx-fill:  red;
+}
+
+.texto { 
+    -fx-fill: #ed3232; 
+}
+
+.default {
+   -fx-fill: white; 
+}

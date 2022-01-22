@@ -48,6 +48,7 @@ import mapler.model.resource.Estilos;
 import mapler.model.resource.Templates;
 import mapler.service.ArquivoService;
 import mapler.service.BaseService;
+import mapler.service.ConfigService;
 import mapler.service.ConsoleTraducaoService;
 // import mapler.service.ConsoleTraducaoService;
 import mapler.service.EstiloLinguagensService;
@@ -82,7 +83,7 @@ public class CodigoController implements Initializable, Terminavel {
 
   @FXML
   AnchorPane ap_barraPrimaria, ap_barraSecundaria, ap_centerIncial, ap_cod, ap_trad, ap_console,
-      ap_debug;
+      ap_debug, area_lateral;
 
   @FXML
   MenuBar m_bar;
@@ -96,7 +97,7 @@ public class CodigoController implements Initializable, Terminavel {
   @FXML
   MenuItem mi_ex_estrutura, mi_ex_io, mi_ex_mdl, mi_ex_tp_v, mi_ex_tp_l, mi_ex_tp_b, mi_ex_tp_n,
       mi_ex_tp_g, mi_ex_op_g, mi_ex_op_a, mi_ex_op_s, mi_ex_op_m, mi_ex_op_d, mi_ex_op_p,
-      mi_ex_co_se, mi_ex_co_sn, mi_ex_lc_r, mi_ex_lc_p, mi_ex_lc_e, mi_ex_lc_g;
+      mi_ex_co_se, mi_ex_co_sn, mi_ex_lc_r, mi_ex_lc_p, mi_ex_lc_e, mi_ex_lc_g, mi_cf_dark, mi_cf_light, mi_cf_pb;
 
   @FXML
   JFXButton btn_left_inicio, btn_left_tutoriais, btn_left_sobre, btn_left_news, btn_minus, btn_max,
@@ -106,7 +107,7 @@ public class CodigoController implements Initializable, Terminavel {
   JFXButton btn_executar, btn_debug, btn_traduzir, btn_close_trad;
 
   @FXML
-  FontAwesomeIcon icon_exec;
+  FontAwesomeIcon icon_exec, icon_debug, icon_code;
 
   /*
    * private File arquivo; // referencia do arquivo que esta sendo manipulado private boolean
@@ -240,6 +241,7 @@ public class CodigoController implements Initializable, Terminavel {
   private boolean salvar() {
     return true;
   }
+  
 
   private void setStyle() {
 
@@ -630,6 +632,40 @@ public class CodigoController implements Initializable, Terminavel {
       btn_left_news.setStyle("");
       btn_left_news.setTextFill(Paint.valueOf("white"));
     });
+    
+    mi_cf_dark.setOnAction(e -> {
+    	String backup_cod = area_cod.getText();
+    	ConfigService.get().setCod(backup_cod);
+    	ConfigService.get().setCss("/css/config-dark.css");
+    	 try {
+    	    this.baseService.carregaTela(Templates.CODIGO.getUrl());
+    	 } catch (Exception e1) {
+    	    // TODO Auto-generated catch block
+    	    e1.printStackTrace();
+    	 }
+    });
+    mi_cf_light.setOnAction(e -> {
+    	String backup_cod = area_cod.getText();
+    	ConfigService.get().setCod(backup_cod);
+    	ConfigService.get().setCss("/css/config-light.css");
+    	 try {
+     	    this.baseService.carregaTela(Templates.CODIGO.getUrl());
+     	 } catch (Exception e1) {
+     	    // TODO Auto-generated catch block
+     	    e1.printStackTrace();
+     	 }
+    });
+    mi_cf_pb.setOnAction(e -> {
+    	String backup_cod = area_cod.getText();
+    	ConfigService.get().setCod(backup_cod);
+    	ConfigService.get().setCss("/css/config-daltonismo.css");
+    	 try {
+     	    this.baseService.carregaTela(Templates.CODIGO.getUrl());
+     	 } catch (Exception e1) {
+     	    // TODO Auto-generated catch block
+     	    e1.printStackTrace();
+     	 }
+    });
 
     // css
     split_vertical.getStylesheets()
@@ -639,8 +675,9 @@ public class CodigoController implements Initializable, Terminavel {
     m_bar.getStylesheets()
         .add(CarregadorRecursos.get().getResourceExternalForm(Estilos.MENUBAR.getUrl()));
 
-    area_trad.getStylesheets()
-        .add(CarregadorRecursos.get().getResourceExternalForm("/css/syntax-highlighter.css"));
+    atualizarCss();
+    
+    //area_trad.getStylesheets().add(ConfigService.get().getCss());
     area_trad.setParagraphGraphicFactory(LineNumberFactory.get(area_trad));
     area_trad.setWrapText(true);
     area_trad.setLineHighlighterOn(true);
@@ -648,14 +685,11 @@ public class CodigoController implements Initializable, Terminavel {
     area_trad.clear();
     area_trad.appendText("Selecione a linguagem no menu superior.");
 
-    area_console.getStylesheets()
-        .add(CarregadorRecursos.get().getResourceExternalForm(Estilos.CONSOLE.getUrl()));
     area_console.setWrapText(false);
     area_console.setLineHighlighterOn(false);
     // area_console.appendText("texte");
 
-    area_cod.getStylesheets()
-        .add(CarregadorRecursos.get().getResourceExternalForm("/css/syntax-highlighter.css"));
+    //area_cod.getStylesheets().add(ConfigService.get().getCss());
     area_cod.setParagraphGraphicFactory(LineNumberFactory.get(area_cod));
     area_cod.setWrapText(true);
     area_cod.setLineHighlighterOn(true);
@@ -666,12 +700,32 @@ public class CodigoController implements Initializable, Terminavel {
     this.codAreaHighlighter =
         estiloLinguagensService.setHighlighterLinguagem(area_cod, Linguagem.PORTUGOL);
     area_cod.clear();
-    area_cod.appendText("variaveis\r\n" + "  //declare aqui suas variaveis\r\n" + "inicio\r\n"
-        + "  //auto gerado pelo MAPLER\r\n" + "  escrever \"Ola mundo!\";\r\n" + "fim");
+    area_cod.appendText(ConfigService.get().getCod());
     
     resize.DraggableStage(m_bar);
     
 
+  }
+  
+  private void atualizarCss() {
+	  
+	  area_lateral.getStyleClass().add("area_lateral");
+	  btn_executar.getStyleClass().add("btn_lateral");
+	  btn_debug.getStyleClass().add("btn_lateral");
+	  btn_traduzir.getStyleClass().add("btn_lateral");
+	  btn_left_news.getStyleClass().add("btn_lateral");
+	  btn_left_sobre.getStyleClass().add("btn_lateral");
+	  btn_left_tutoriais.getStyleClass().add("btn_lateral");
+	  ap_centerIncial.getStyleClass().add("area_fundo");
+	  
+	  icon_exec.getStyleClass().add("bt_exec");
+	  icon_debug.getStyleClass().add("bt_debug");
+	  icon_code.getStyleClass().add("bt_code");
+	    
+	  area_cod.getStylesheets().add(ConfigService.get().getCss());
+	  area_trad.getStylesheets().add(ConfigService.get().getCss());
+	  area_console.getStylesheets().add(ConfigService.get().getCss());
+	  bd_inicial.getStylesheets().add(ConfigService.get().getCss());
   }
 
   private void setTraducaoVisible(boolean a) {
