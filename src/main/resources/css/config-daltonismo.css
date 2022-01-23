@@ -1,11 +1,42 @@
 
 
 .area_lateral{
-	-fx-background-color: #bfbfbf;
+	-fx-background-color: #fff;
 }
 
 .btn_lateral{
 	 -fx-text-fill: black;
+}
+
+.btn_lateral:hover{
+	 -fx-background-color: #fff;
+	 -fx-text-fill: #000;
+	 
+}
+
+.area_central{
+	-fx-background-color: #fff;
+	-fx-border-color: black;
+	-fx-border-radius: 10 10 10 10; 
+}
+
+.area_inicio{
+	-fx-background-color: #fff;
+	-fx-text-fill: black;
+}
+
+.btn_lateral_inicio{
+	-fx-border-color: black;
+	-fx-background-color: black;
+	-fx-border-radius: 5 9 5 5; 
+	-fx-background-radius: 5 9 5 5;
+}
+
+.label_logo{
+	-fx-text-fill: black;
+}
+.circulo_logo{
+	-fx-fill: #ccc;
 }
 
 .area_fundo{

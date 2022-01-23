@@ -20,7 +20,7 @@ public enum Exemplos {
 	  VAR_NUMERICO("/exemplos/variaveis_numericos.txt"),
 	  VAR_LITERAL("/exemplos/variaveis_literais.txt"),
 	  VAR_BOOLEANO("/exemplos/variaveis_booleano.txt"),
-	  VAR_VETORES("/exemplos/vetores.txt"),;  
+	  VAR_VETORES("/exemplos/vetores.txt");  
 	  
 	  private String url;
 	  

@@ -28,9 +28,9 @@
 											<children>
       										<HBox alignment="TOP_RIGHT" prefWidth="200.0" HBox.hgrow="ALWAYS">
       											<children>
-      												<JFXButton fx:id="btn_help" text=" " textFill="#343a40">
+      												<JFXButton fx:id="btn_tema" text=" " textFill="#343a40">
       													<graphic>
-      														<FontAwesomeIcon fill="#ccc4c4" glyphName="QUESTION_CIRCLE" />
+      														<FontAwesomeIcon fill="#ccc4c4" glyphName="ADJUST" size="1.3em" />
       													</graphic>
       													<HBox.margin>
       														<Insets top="7.0" />
@@ -73,26 +73,26 @@
 				</AnchorPane>
 			</top>
 			<left>
-				<AnchorPane prefHeight="200.0" prefWidth="140.0" style="-fx-background-color: #282a36;" BorderPane.alignment="CENTER">
+				<AnchorPane fx:id="area_lateral" prefHeight="200.0" prefWidth="140.0" BorderPane.alignment="CENTER">
 					<children>
 						<VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 							<children>
-      												<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="150.0" style="-fx-background-color: #282a36;">
+      												<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="150.0" >
       													<children>
-      														<Circle fill="DODGERBLUE" layoutX="96.0" layoutY="40.0" radius="16.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: #191a21;" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="18.0" />
-      														<Label text="mapler." textFill="WHITE" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="13.0">
+      														<Circle fx:id="cc_logo" fill="DODGERBLUE" layoutX="96.0" layoutY="40.0" radius="16.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="18.0" />
+      														<Label fx:id="lb_pri_logo" text="mapler." AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="13.0">
       															<font>
       																<Font name="System Bold" size="30.0" />
       															</font>
       														</Label>
-      														<Label layoutX="57.0" layoutY="57.0" text="portugol" textFill="WHITE" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="42.0" />
+      														<Label fx:id="lb_sub_logo" layoutX="57.0" layoutY="57.0" text="portugol" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="42.0" />
       													</children>
       												</AnchorPane>
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
 												<VBox alignment="CENTER">
 													<children>
-														<JFXButton fx:id="btn_novo" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="36.0" style="-fx-border-color: white; -fx-border-radius: 5 9 5 5; -fx-background-color: #21222c;" text=" ">
+														<JFXButton fx:id="btn_novo" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="36.0" text=" ">
 															<graphic>
 																<FontAwesomeIcon fill="WHITE" glyphName="PLUS" size="1.9em" />
 															</graphic>
@@ -103,7 +103,7 @@
 																<Insets top="10.0" />
 															</VBox.margin>
 														</JFXButton>
-														<Label text="Novo" textFill="WHITE" />
+														<Label fx:id="lb_novo" text="Novo" />
 													</children>
 													<HBox.margin>
 														<Insets left="30.0" right="15.0" />
@@ -111,7 +111,7 @@
 												</VBox>
 												<VBox alignment="CENTER">
 													<children>
-														<JFXButton fx:id="btn_abrir" contentDisplay="CENTER" maxHeight="35.0" maxWidth="35.0" minHeight="30.0" minWidth="30.0" prefHeight="35.0" prefWidth="35.0" style="-fx-border-color: white; -fx-background-color: #21222c; -fx-border-radius: 5 9 5 5;" text=" " textFill="#343a40">
+														<JFXButton fx:id="btn_abrir" contentDisplay="CENTER" maxHeight="35.0" maxWidth="35.0" minHeight="30.0" minWidth="30.0" prefHeight="35.0" prefWidth="35.0" text=" " textFill="#343a40">
 															<graphic>
 																<FontAwesomeIcon fill="WHITE" glyphName="FOLDER_OPEN" size="1.6em" />
 															</graphic>
@@ -122,7 +122,7 @@
 																<Insets top="10.0" />
 															</VBox.margin>
 														</JFXButton>
-														<Label text="Abrir" textFill="WHITE" />
+														<Label fx:id="lb_abrir" text="Abrir" />
 													</children>
 												</VBox>
                            </children>
@@ -131,7 +131,7 @@
                            <children>
                               <VBox alignment="TOP_CENTER">
                                  <children>
-            								<JFXButton fx:id="btn_left_tutoriais" alignment="TOP_LEFT" contentDisplay="CENTER" maxHeight="35.0" maxWidth="35.0" minHeight="30.0" minWidth="30.0" prefHeight="35.0" prefWidth="35.0" style="-fx-border-color: white; -fx-border-radius: 5 9 5 5; -fx-background-color: #21222c;" text=" " textFill="WHITE">
+            								<JFXButton fx:id="btn_left_tutoriais" alignment="TOP_LEFT" contentDisplay="CENTER" maxHeight="35.0" maxWidth="35.0" minHeight="30.0" minWidth="30.0" prefHeight="35.0" prefWidth="35.0" text=" " textFill="WHITE">
             									<VBox.margin>
             										<Insets />
             									</VBox.margin>
@@ -139,7 +139,7 @@
                                           <FontAwesomeIcon fill="WHITE" glyphName="INFO_CIRCLE" size="1.6em" />
                                        </graphic>
             								</JFXButton>
-                                    <Label text="Tutoriais" textFill="WHITE" />
+                                    <Label fx:id="lb_tutoriais" text="Tutoriais" />
                                  </children>
                                  <HBox.margin>
                                     <Insets right="5.0" />
@@ -147,12 +147,12 @@
                               </VBox>
                               <VBox alignment="TOP_CENTER">
                                  <children>
-            								<JFXButton fx:id="btn_left_exemplos" alignment="TOP_LEFT" maxHeight="35.0" maxWidth="35.0" minHeight="30.0" minWidth="30.0" prefHeight="35.0" prefWidth="35.0" style="-fx-border-color: white; -fx-background-color: #21222c; -fx-border-radius: 5 9 5 5;" text=" " textFill="WHITE">
+            						<JFXButton fx:id="btn_left_exemplos" alignment="TOP_LEFT" maxHeight="35.0" maxWidth="35.0" minHeight="30.0" minWidth="30.0" prefHeight="35.0" prefWidth="35.0" text=" " textFill="WHITE">
                                        <graphic>
                                           <FontAwesomeIcon fill="WHITE" glyphName="DATABASE" size="1.6em" />
                                        </graphic>
                                     </JFXButton>
-                                    <Label text="Exemplos" textFill="WHITE" />
+                                    <Label fx:id="lb_exemplos" text="Exemplos" />
                                  </children>
                                  <HBox.margin>
                                     <Insets right="7.0" />
@@ -164,7 +164,7 @@
                            </VBox.margin>
                         </HBox>
 								<VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS" />
-								<JFXButton fx:id="btn_left_sobre" alignment="TOP_LEFT" prefWidth="100.0" style="-fx-background-color: transparent;" text="Sobre o MAPLER" textFill="WHITE">
+								<JFXButton fx:id="btn_left_sobre" alignment="TOP_LEFT" prefWidth="100.0" text="Sobre o MAPLER">
 									<font>
 										<Font size="11.1" />
 									</font>
@@ -178,13 +178,13 @@
 				</AnchorPane>
 			</left>
 			<center>
-				<AnchorPane fx:id="ap_centerIncial" minHeight="200.0" minWidth="200.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #282a36;" BorderPane.alignment="CENTER">
+				<AnchorPane fx:id="ap_centerIncial" minHeight="200.0" minWidth="200.0" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
 					<children>
 						<VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="0.0">
 							<children>
 								<HBox alignment="CENTER_LEFT" maxHeight="90.0" minHeight="90.0" prefHeight="90.0" style="-fx-border-color: transparent transparent #21222c transparent; -fx-border-width: 5;" VBox.vgrow="ALWAYS">
 									<children>
-										<Label text="Experimente um jeito novo de programar" textFill="WHITE">
+										<Label fx:id="lb_center1" text="Experimente um jeito novo de programar">
 											<font>
 												<Font name="Candy Beans" size="17.0" />
 											</font>
@@ -212,13 +212,13 @@
       											<children>
       												<AnchorPane>
       													<children>
-      														<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #21222c; -fx-background-radius: 10;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+      														<AnchorPane fx:id="ap_area_foto" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-radius: 10;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
       															<children>
       																<HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       																	<children>
       																		<VBox prefHeight="183.0" prefWidth="270.0">
       																			<children>
-      																				<Label text="Vamos codificar juntos?" textFill="WHITE">
+      																				<Label fx:id="lb_center2" text="Vamos codificar juntos?">
       																					<font>
       																						<Font name="System Bold" size="16.0" />
       																					</font>
@@ -226,11 +226,11 @@
       																						<Insets bottom="15.0" left="40.0" />
       																					</VBox.margin>
       																				</Label>
-      																				<Label text="Sabemos que iniciar no mundo da programacao" textFill="WHITE" />
-      																				<Label text="pode ser desafiador. Para te ajudar nessa" textFill="WHITE" />
-      																				<Label text="trajetoria, preparamos um material muito" textFill="WHITE" />
-      																				<Label text="especial para voce." textFill="WHITE" />
-      																				<JFXButton fx:id="btn_saber" style="-fx-background-color: #55ce91; -fx-background-radius: 10; -fx-border-color: white; -fx-border-radius: 14;" text="Saber mais" textFill="WHITE">
+      																				<Label fx:id="lb_center3" text="Sabemos que iniciar no mundo da programacao"  />
+      																				<Label fx:id="lb_center4" text="pode ser desafiador. Para te ajudar nessa"  />
+      																				<Label fx:id="lb_center5" text="trajetoria, preparamos um material muito" />
+      																				<Label fx:id="lb_center6" text="especial para voce." />
+      																				<JFXButton fx:id="btn_saber" style="-fx-background-color: #55ce91; -fx-background-radius: 10; -fx-border-color: white; -fx-border-radius: 14;" text="Saber mais">
       																					<VBox.margin>
       																						<Insets left="157.0" />
       																					</VBox.margin>
@@ -254,7 +254,7 @@
       																		</AnchorPane>
                                                                   <VBox alignment="BOTTOM_LEFT" prefHeight="200.0" prefWidth="100.0">
                                                                      <children>
-                                                                        <Label text="Novidades" textFill="WHITE">
+                                                                        <Label fx:id="lb_center7" text="Novidades">
                                                                            <VBox.margin>
                                                                               <Insets left="30.0" top="10.0" />
                                                                            </VBox.margin>
@@ -264,13 +264,13 @@
                                                                         </Label>
                                                                         <AnchorPane maxWidth="-Infinity">
                                                                            <children>
-                                                                              <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #21222c; -fx-background-radius: 10;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                                                                              <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-radius: 10;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                                                                                  <children>
                                                                                     <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-spacing: 2;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                                                        <children>
                                                                                           <VBox>
                                                                                              <children>
-                                                                                                <Hyperlink fx:id="lk_portugol" text="Ensino em Portugol" textFill="WHITE">
+                                                                                                <Hyperlink fx:id="lk_portugol" text="Ensino em Portugol" >
                                                                                                    <font>
                                                                                                       <Font size="14.0" />
                                                                                                    </font>
@@ -278,7 +278,7 @@
                                                                                                       <FontAwesomeIcon fill="#2c71b2" glyphName="SEARCH" />
                                                                                                    </graphic>
                                                                                                 </Hyperlink>
-                                                                                                <Hyperlink fx:id="lk_macp" text="MACP agora é MAPLER" textFill="WHITE">
+                                                                                                <Hyperlink fx:id="lk_macp" text="MACP agora é MAPLER" >
                                                                                                    <graphic>
                                                                                                       <FontAwesomeIcon fill="#2c71b2" glyphName="SEARCH" />
                                                                                                    </graphic>
@@ -303,7 +303,7 @@
       										</VBox>
                                        </children>
                                     </HBox>
-                                    <Label text="Sobre portugol" textFill="WHITE">
+                                    <Label fx:id="lb_center8" text="Sobre portugol" >
                                        <VBox.margin>
                                           <Insets left="30.0" />
                                        </VBox.margin>
@@ -311,20 +311,20 @@
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
-												<AnchorPane prefHeight="320.0">
+												<AnchorPane prefHeight="320.0" >
 													<children>
-														<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-radius: 10;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+														<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-radius: 10; " AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
 															<children>
-																<HBox alignment="BOTTOM_LEFT" maxHeight="300.0" maxWidth="400.0" prefHeight="100.0" prefWidth="200.0" style="-fx-spacing: 2;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+																<HBox fx:id="hb_exemplos" alignment="BOTTOM_LEFT" maxHeight="300.0" maxWidth="400.0" prefHeight="100.0" prefWidth="200.0" style="-fx-spacing: 2; -fx-background-radius: 10;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                    <children>
-                                                      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #21222c; -fx-background-radius: 10;">
+                                                      <AnchorPane prefHeight="200.0" prefWidth="200.0" style=" -fx-background-radius: 10; ">
                                                          <HBox.margin>
                                                             <Insets bottom="2.0" left="5.0" top="2.0" />
                                                          </HBox.margin>
                                                          <children>
                                                             <AnchorPane maxHeight="200.0" maxWidth="200.0" prefHeight="100.0" prefWidth="100.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                                <children>
-                                                                  <Label text="//estrutura do codigo" textFill="#6b6868" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                  <Label text="Exemplos de codigo" textFill="#6b6868" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                                      <font>
                                                                         <Font name="System Bold" size="14.0" />
                                                                      </font>
@@ -346,21 +346,16 @@
                                                                   </Hyperlink>
                                                                </children>
                                                             </AnchorPane>
-                                                            <JFXButton fx:id="btn_aprender_estrutura" contentDisplay="RIGHT" style="-fx-background-color: #16171d;" text="Ver tudo" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                                                               <graphic>
-                                                                  <FontAwesomeIcon fill="#3ebf6b" glyphName="EXTERNAL_LINK_SQUARE" />
-                                                               </graphic>
-                                                            </JFXButton>
                                                          </children>
                                                       </AnchorPane>
-                                                      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #21222c; -fx-background-radius: 10;">
+                                                      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-radius: 10;">
                                                          <HBox.margin>
                                                             <Insets bottom="2.0" top="2.0" />
                                                          </HBox.margin>
                                                          <children>
                                                             <AnchorPane maxHeight="200.0" maxWidth="200.0" prefHeight="100.0" prefWidth="100.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                                <children>
-                                                                  <Label minWidth="70.0" text="//Condicionais" textFill="#6b6868" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                  <Label minWidth="70.0" text=" " textFill="#6b6868" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                                      <font>
                                                                         <Font size="14.0" />
                                                                      </font></Label>
@@ -381,21 +376,16 @@
                                                                   </Hyperlink>
                                                                </children>
                                                             </AnchorPane>
-                                                            <JFXButton fx:id="btn_aprender_cond" contentDisplay="RIGHT" style="-fx-background-color: #16171d;" text="Ver tudo" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                                                               <graphic>
-                                                                  <FontAwesomeIcon fill="#3ebf6b" glyphName="EXTERNAL_LINK_SQUARE" />
-                                                               </graphic>
-                                                            </JFXButton>
                                                          </children>
                                                       </AnchorPane>
-                                                      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #21222c; -fx-background-radius: 10;">
+                                                      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-radius: 10;">
                                                          <HBox.margin>
                                                             <Insets bottom="2.0" top="2.0" />
                                                          </HBox.margin>
                                                          <children>
                                                             <AnchorPane maxHeight="200.0" maxWidth="200.0" prefHeight="100.0" prefWidth="100.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                                <children>
-                                                                  <Label text="//operacoes" textFill="#6b6868" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                  <Label text=" " textFill="#6b6868" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                                      <font>
                                                                         <Font name="System Bold" size="14.0" />
                                                                      </font></Label>
@@ -416,21 +406,16 @@
                                                                   </Hyperlink>
                                                                </children>
                                                             </AnchorPane>
-                                                            <JFXButton fx:id="btn_aprender_operac" contentDisplay="RIGHT" style="-fx-background-color: #16171d;" text="Ver tudo" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                                                               <graphic>
-                                                                  <FontAwesomeIcon fill="#3ebf6b" glyphName="EXTERNAL_LINK_SQUARE" />
-                                                               </graphic>
-                                                            </JFXButton>
                                                          </children>
                                                       </AnchorPane>
-                                                      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #21222c; -fx-background-radius: 10;">
+                                                      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-radius: 10;">
                                                          <HBox.margin>
                                                             <Insets bottom="2.0" top="2.0" />
                                                          </HBox.margin>
                                                          <children>
                                                             <AnchorPane maxHeight="200.0" maxWidth="200.0" prefHeight="100.0" prefWidth="100.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                                <children>
-                                                                  <Label text="//laços de repeticao" textFill="#6b6868" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                  <Label text=" " textFill="#6b6868" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                                      <font>
                                                                         <Font name="System Bold" size="14.0" />
                                                                      </font>
@@ -451,15 +436,15 @@
                                                                      </font>
                                                                   </Hyperlink>
                                                                </children></AnchorPane>
-                                                            <JFXButton fx:id="btn_aprender_repita" contentDisplay="RIGHT" style="-fx-background-color: #16171d;" text="Ver tudo" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                                                               <graphic>
-                                                                  <FontAwesomeIcon fill="#3ebf6b" glyphName="EXTERNAL_LINK_SQUARE" />
-                                                               </graphic>
-                                                            </JFXButton>
                                                          </children>
                                                       </AnchorPane>
                                                    </children>
 																</HBox>
+															   <JFXButton fx:id="btn_aprender_repita" contentDisplay="RIGHT" text="Ver tudo" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" prefWidth="80" minWidth="80">
+                                                          <graphic>
+                                                             <FontAwesomeIcon fill="#3ebf6b" glyphName="EXTERNAL_LINK_SQUARE" />
+                                                           </graphic>
+                                                       </JFXButton>
 															</children>
 														</AnchorPane>
 													</children>

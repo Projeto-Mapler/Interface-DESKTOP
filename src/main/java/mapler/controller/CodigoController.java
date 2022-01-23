@@ -45,6 +45,7 @@ import mapler.model.ResizeListener;
 import mapler.model.Terminavel;
 import mapler.model.highlight.SyntaxHighlighter;
 import mapler.model.resource.Estilos;
+import mapler.model.resource.Tema;
 import mapler.model.resource.Templates;
 import mapler.service.ArquivoService;
 import mapler.service.BaseService;
@@ -465,8 +466,7 @@ public class CodigoController implements Initializable, Terminavel {
       }
     });
 
-    btn_home.getStylesheets()
-        .add(CarregadorRecursos.get().getResourceExternalForm(Estilos.BOTOES.getUrl()));
+    btn_home.getStylesheets().add(CarregadorRecursos.get().getResourceExternalForm(Estilos.BOTOES.getUrl()));
 
     btn_close.setOnMouseEntered(e -> {
       btn_close.setStyle("-fx-background-color: #1b1b1b;");
@@ -636,7 +636,7 @@ public class CodigoController implements Initializable, Terminavel {
     mi_cf_dark.setOnAction(e -> {
     	String backup_cod = area_cod.getText();
     	ConfigService.get().setCod(backup_cod);
-    	ConfigService.get().setCss("/css/config-dark.css");
+    	ConfigService.get().setCss(Tema.Dark.getUrl());
     	 try {
     	    this.baseService.carregaTela(Templates.CODIGO.getUrl());
     	 } catch (Exception e1) {
@@ -647,7 +647,7 @@ public class CodigoController implements Initializable, Terminavel {
     mi_cf_light.setOnAction(e -> {
     	String backup_cod = area_cod.getText();
     	ConfigService.get().setCod(backup_cod);
-    	ConfigService.get().setCss("/css/config-light.css");
+    	ConfigService.get().setCss(Tema.Light.getUrl());
     	 try {
      	    this.baseService.carregaTela(Templates.CODIGO.getUrl());
      	 } catch (Exception e1) {
@@ -658,7 +658,7 @@ public class CodigoController implements Initializable, Terminavel {
     mi_cf_pb.setOnAction(e -> {
     	String backup_cod = area_cod.getText();
     	ConfigService.get().setCod(backup_cod);
-    	ConfigService.get().setCss("/css/config-daltonismo.css");
+    	ConfigService.get().setCss(Tema.Contraste.getUrl());
     	 try {
      	    this.baseService.carregaTela(Templates.CODIGO.getUrl());
      	 } catch (Exception e1) {

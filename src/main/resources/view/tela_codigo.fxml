@@ -127,17 +127,7 @@
 														<Insets left="5.0" top="5.0" />
 													</padding>
 												</MenuBar>
-												<JFXButton fx:id="btn_help" text=" " textFill="#343a40">
-													<graphic>
-														<FontAwesomeIcon fill="#ccc4c4" glyphName="QUESTION_CIRCLE" />
-													</graphic>
-													<HBox.margin>
-														<Insets top="7.0" />
-													</HBox.margin>
-													<padding>
-														<Insets left="3.0" />
-													</padding>
-												</JFXButton>
+												
 												<HBox alignment="CENTER_RIGHT" maxHeight="5.0" maxWidth="5.0" prefHeight="5.0" prefWidth="5.0" style="-fx-border-color: #22262a; -fx-border-radius: 0  0 7 7;">
 													<children>
 														<JFXButton fx:id="btn_minus" contentDisplay="RIGHT" graphicTextGap="0.0" text=" " textFill="#343a40">

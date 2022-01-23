@@ -1,18 +1,25 @@
 
 .area_lateral{
 	-fx-background-color: #282a36;
+	-fx-text-fill: white;
 }
 
 .btn_lateral{
 	 -fx-text-fill: #fff;
+	 -fx-background-color: transparent;
 }
 
 .btn_lateral:hover{
+	 -fx-background-color: #fff;
 	 -fx-text-fill: #000;
 }
 
 .area_fundo{
 	-fx-background-color: #282a36;
+}
+
+.area_central{
+	-fx-background-color: #151515;
 }
 
 .erro { 
@@ -33,6 +40,28 @@
 
 .bt_debug{
 	-fx-fill: #08d4f8;
+}
+
+.area_inicio{
+	-fx-background-color: #282a36;
+}
+
+.btn_lateral_inicio{
+	-fx-border-color: white;
+	-fx-background-color: #191a21;
+	-fx-border-radius: 5 9 5 5; 
+	-fx-background-radius: 5 9 5 5;
+}
+
+.btn_lateral_inicio:hover{
+	-fx-background-color: #0b0b0f;
+}
+
+.label_logo{
+	-fx-text-fill: white;
+}
+.circulo_logo{
+	-fx-fill: #191a21;
 }
 
 /*ESTILO DA AREA DE TEXTO */

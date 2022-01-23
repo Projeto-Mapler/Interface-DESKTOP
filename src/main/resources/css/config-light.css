@@ -2,10 +2,16 @@
 
 .area_lateral{
 	-fx-background-color: #bfbfbf;
+	-fx-text-fill: black;
 }
 
 .btn_lateral{
 	 -fx-text-fill: black;
+}
+
+.btn_lateral:hover{
+	 -fx-background-color: #fff;
+	 -fx-text-fill: #000;
 }
 
 .area_fundo{
@@ -20,6 +26,10 @@
 	-fx-fill: black; 
 }
 
+.area_central{
+	-fx-background-color: #bfbfbf;
+}
+
 .bt_exec{
 	-fx-fill: #047b2e;
 }
@@ -30,6 +40,29 @@
 
 .bt_debug{
 	-fx-fill: #057f94;
+}
+
+.area_inicio{
+	-fx-background-color: #fff;
+	-fx-text-fill: black;
+}
+
+.btn_lateral_inicio{
+	-fx-border-color: black;
+	-fx-background-color: #404040;
+	-fx-border-radius: 5 9 5 5; 
+	-fx-background-radius: 5 9 5 5;
+}
+
+.btn_lateral_inicio:hover{
+	-fx-background-color: #262626;
+}
+
+.label_logo{
+	-fx-text-fill: black;
+}
+.circulo_logo{
+	-fx-fill: #fff;
 }
 
 /*ESTILO DA AREA DE TEXTO */

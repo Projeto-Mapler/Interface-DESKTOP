@@ -16,13 +16,19 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
+import mapler.model.resource.Tema;
 import mapler.model.resource.Templates;
 import mapler.service.ArquivoService;
 import mapler.service.BaseService;
+import mapler.service.ConfigService;
 import mapler.service.InicioService;
+import mapler.util.CarregadorRecursos;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.shape.Circle;
+import javafx.scene.control.Label;
 
 /**
  * Controller para tela_inicio.fxml
@@ -40,13 +46,13 @@ public class InicioController implements Initializable {
 	AnchorPane ap_barraPrimaria, ap_barraSecundaria;
 
 	@FXML
-	JFXButton btn_minus, btn_max, btn_close;
+	JFXButton btn_minus, btn_max, btn_close, btn_tema;
 
 	@FXML
-	JFXButton btn_novo, btn_abrir;
+	JFXButton btn_novo, btn_abrir, btn_aprender_repita;
 
 	@FXML
-	AnchorPane ap_centerIncial;
+	AnchorPane ap_centerIncial, area_lateral, ap_area_foto;
 
 	@FXML
 	JFXButton btn_left_tutoriais, btn_left_exemplos, btn_left_sobre;
@@ -63,6 +69,18 @@ public class InicioController implements Initializable {
 	@FXML
 	Hyperlink link_cod_fim, link_cod_inicio, link_cod_var;
 	
+	@FXML
+	Hyperlink lk_portugol, lk_macp;
+	
+	@FXML
+	HBox hb_exemplos;
+	
+	@FXML
+	Label lb_pri_logo, lb_sub_logo, lb_novo, lb_abrir, lb_tutoriais, lb_exemplos, lb_center1, lb_center2, lb_center3, lb_center4, lb_center5, lb_center6, lb_center7, lb_center8;
+	
+	@FXML
+	Circle cc_logo;
+	
 	private InicioService inicioService;
 	private BaseService baseService;
 
@@ -74,7 +92,7 @@ public class InicioController implements Initializable {
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		styles();
-
+		atualizarCss();
 	}
 
 	public static boolean openWebpage(URI uri) {
@@ -99,6 +117,35 @@ public class InicioController implements Initializable {
 
 		btn_close.setOnMouseExited(e -> {
 			btn_close.setStyle("");
+		});
+		
+		btn_tema.setOnAction(e -> {
+			String url = ConfigService.get().getCss();
+			if(url.equals(CarregadorRecursos.get().getResourceExternalForm(Tema.Dark.getUrl()))) {
+				ConfigService.get().setCss(Tema.Light.getUrl());
+				try {
+			        this.baseService.carregaTela(Templates.INICIO.getUrl());
+			      } catch (Exception e1) {
+			        // TODO Auto-generated catch block
+			        e1.printStackTrace();
+			      }
+			}else if(url.equals(CarregadorRecursos.get().getResourceExternalForm(Tema.Light.getUrl()))) {
+				ConfigService.get().setCss(Tema.Contraste.getUrl());
+				try {
+			        this.baseService.carregaTela(Templates.INICIO.getUrl());
+			      } catch (Exception e1) {
+			        // TODO Auto-generated catch block
+			        e1.printStackTrace();
+			      }
+			}else {
+				ConfigService.get().setCss(Tema.Dark.getUrl());
+				try {
+			        this.baseService.carregaTela(Templates.INICIO.getUrl());
+			      } catch (Exception e1) {
+			        // TODO Auto-generated catch block
+			        e1.printStackTrace();
+			      }
+			}
 		});
 
 		btn_close.setOnAction(e -> { // fechar aplicacao
@@ -161,16 +208,6 @@ public class InicioController implements Initializable {
 			}
 		});
 
-		btn_novo.setOnMouseEntered(e -> {
-			btn_novo.setStyle("-fx-background-color: #000000;-fx-border-color: white;-fx-border-radius: 5 9 5 5; -fx-background-radius: 5 9 5 5");
-			//btn_left_tutoriais.setTextFill(Paint.valueOf("#272727"));
-		});
-
-		btn_novo.setOnMouseExited(e -> {
-			btn_novo.setStyle("-fx-border-color: white;-fx-border-radius: 5 9 5 5;-fx-background-color: #21222c;");
-			//btn_left_tutoriais.setTextFill(Paint.valueOf("white"));
-		});
-
 		btn_abrir.setOnAction(e -> {
 			boolean abriu = ArquivoService.getInstance().abrir();
 			if (abriu) {
@@ -181,16 +218,6 @@ public class InicioController implements Initializable {
 					e1.printStackTrace();
 				}
 			}
-		});
-		
-		btn_abrir.setOnMouseEntered(e -> {
-			btn_abrir.setStyle("-fx-background-color: #000000;-fx-border-color: white;-fx-border-radius: 5 9 5 5; -fx-background-radius: 5 9 5 5");
-			//btn_left_tutoriais.setTextFill(Paint.valueOf("#272727"));
-		});
-
-		btn_abrir.setOnMouseExited(e -> {
-			btn_abrir.setStyle("-fx-border-color: white;-fx-border-radius: 5 9 5 5;-fx-background-color: #21222c;");
-			//btn_left_tutoriais.setTextFill(Paint.valueOf("white"));
 		});
 
 		btn_left_tutoriais.setOnAction(e -> {
@@ -205,16 +232,6 @@ public class InicioController implements Initializable {
 				e1.printStackTrace();
 			}
 		});
-
-		btn_left_tutoriais.setOnMouseEntered(e -> {
-			btn_left_tutoriais.setStyle("-fx-background-color: #000000;-fx-border-color: white;-fx-border-radius: 5 9 5 5;-fx-background-radius: 5 9 5 5");
-			//btn_left_tutoriais.setTextFill(Paint.valueOf("#272727"));
-		});
-
-		btn_left_tutoriais.setOnMouseExited(e -> {
-			btn_left_tutoriais.setStyle("-fx-border-color: white;-fx-border-radius: 5 9 5 5;-fx-background-color: #21222c;");
-			//btn_left_tutoriais.setTextFill(Paint.valueOf("white"));
-		});
 		
 		btn_left_exemplos.setOnAction(e -> {
 			try {
@@ -227,16 +244,6 @@ public class InicioController implements Initializable {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-		});
-		
-		btn_left_exemplos.setOnMouseEntered(e -> {
-			btn_left_exemplos.setStyle("-fx-background-color: #000000;-fx-border-color: white;-fx-border-radius: 5 9 5 5; -fx-background-radius: 5 9 5 5");
-			//btn_left_tutoriais.setTextFill(Paint.valueOf("#272727"));
-		});
-
-		btn_left_exemplos.setOnMouseExited(e -> {
-			btn_left_exemplos.setStyle("-fx-border-color: white;-fx-border-radius: 5 9 5 5;-fx-background-color: #21222c;");
-			//btn_left_tutoriais.setTextFill(Paint.valueOf("white"));
 		});
 
 
@@ -251,16 +258,6 @@ public class InicioController implements Initializable {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-		});
-
-		btn_left_sobre.setOnMouseEntered(e -> {
-			btn_left_sobre.setStyle("-fx-background-color: white;");
-			btn_left_sobre.setTextFill(Paint.valueOf("#272727"));
-		});
-
-		btn_left_sobre.setOnMouseExited(e -> {
-			btn_left_sobre.setStyle("");
-			btn_left_sobre.setTextFill(Paint.valueOf("white"));
 		});
 		
 		link_cod_enquanto.setOnAction(e -> {
@@ -419,6 +416,61 @@ public class InicioController implements Initializable {
 			}
 		});
 		
+		lk_portugol.setOnAction(e -> {
+		try {
+			URL url = new URL("https://portugol.sourceforge.io/exemplos.html");
+			boolean boo = openWebpage(url.toURI());
+		} catch (URISyntaxException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (MalformedURLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		});
+		
+		lk_macp.setOnAction(e -> {
+		try {
+			URL url = new URL("https://portugol.sourceforge.io/sobre.html");
+			boolean boo = openWebpage(url.toURI());
+		} catch (URISyntaxException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (MalformedURLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	});
+		
+	}
+	
+	private void atualizarCss() {
+		btn_left_sobre.getStyleClass().add("btn_lateral");
+		lb_novo.getStyleClass().add("label_logo"); 
+		lb_abrir.getStyleClass().add("label_logo");
+		lb_tutoriais.getStyleClass().add("label_logo");
+		lb_exemplos.getStyleClass().add("label_logo");
+		lb_center1.getStyleClass().add("label_logo");
+		lb_center2.getStyleClass().add("label_logo");
+		lb_center3.getStyleClass().add("label_logo");
+		lb_center4.getStyleClass().add("label_logo");
+		lb_center5.getStyleClass().add("label_logo");
+		lb_center6.getStyleClass().add("label_logo");
+		lb_center7.getStyleClass().add("label_logo");
+		lb_center8.getStyleClass().add("label_logo");
+		btn_aprender_repita.getStyleClass().add("label_logo");
+		area_lateral.getStyleClass().add("area_lateral");
+		btn_novo.getStyleClass().add("btn_lateral_inicio");
+		btn_abrir.getStyleClass().add("btn_lateral_inicio");
+		btn_left_tutoriais.getStyleClass().add("btn_lateral_inicio");
+		btn_left_exemplos.getStyleClass().add("btn_lateral_inicio");
+		hb_exemplos.getStyleClass().add("area_central");
+		ap_area_foto.getStyleClass().add("area_central");
+		ap_centerIncial.getStyleClass().add("area_inicio");
+		lb_pri_logo.getStyleClass().add("label_logo");
+		lb_sub_logo.getStyleClass().add("label_logo");
+		cc_logo.getStyleClass().add("circulo_logo");
+		bd_inicial.getStylesheets().add(ConfigService.get().getCss());
 	}
 	/*
 	 * 
