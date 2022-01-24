@@ -16,12 +16,20 @@ import java.util.ResourceBundle;
 
 import org.fxmisc.richtext.LineNumberFactory;
 import org.fxmisc.richtext.StyleClassedTextArea;
+import org.fxmisc.wellbehaved.event.InputMap;
+import org.fxmisc.wellbehaved.event.Nodes;
+import static org.fxmisc.wellbehaved.event.EventPattern.keyPressed;
+import static org.fxmisc.wellbehaved.event.InputMap.consume;
+import static org.fxmisc.wellbehaved.event.InputMap.sequence;
+import static javafx.scene.input.KeyCode.*;
+
 
 import com.jfoenix.controls.JFXButton;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -33,11 +41,14 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.Tab;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
+import javafx.scene.control.Slider;
 import mapler.model.ConsoleStyleClassedTextArea;
 import mapler.model.Linguagem;
 import mapler.model.MenuItemTraducao;
@@ -99,6 +110,9 @@ public class CodigoController implements Initializable, Terminavel {
   MenuItem mi_ex_estrutura, mi_ex_io, mi_ex_mdl, mi_ex_tp_v, mi_ex_tp_l, mi_ex_tp_b, mi_ex_tp_n,
       mi_ex_tp_g, mi_ex_op_g, mi_ex_op_a, mi_ex_op_s, mi_ex_op_m, mi_ex_op_d, mi_ex_op_p,
       mi_ex_co_se, mi_ex_co_sn, mi_ex_lc_r, mi_ex_lc_p, mi_ex_lc_e, mi_ex_lc_g, mi_cf_dark, mi_cf_light, mi_cf_pb;
+  
+  @FXML
+  Slider sl_fonte;
 
   @FXML
   JFXButton btn_left_inicio, btn_left_tutoriais, btn_left_sobre, btn_left_news, btn_minus, btn_max,
@@ -146,6 +160,8 @@ public class CodigoController implements Initializable, Terminavel {
      * }
      */
     setStyle();
+    setEventos();
+    setTamanhoFonte(Integer.parseInt(ConfigService.get().getTamanhoFonte()));
     setTraducaoVisible(false);
     setConsoleVisible(false);
     setDebugVisible(false);
@@ -178,6 +194,56 @@ public class CodigoController implements Initializable, Terminavel {
     });
 
 
+  }
+  
+  private void setTamanhoFonte(int tamanho) {
+	  if(tamanho <= 2) {
+		  tamanho = 2;
+	  }
+	  area_cod.setStyle("-fx-font-size: "+tamanho+";");
+	  area_trad.setStyle("-fx-font-size: "+tamanho+";");
+	  area_console.setStyle("-fx-font-size: "+tamanho+";");
+	  ConfigService.get().setTamanhoFonte(tamanho+"");
+	  return;
+	  
+  }
+  
+  private void setEventos() {
+	  
+	 InputMap<Event> salvar = InputMap.consume(
+              keyPressed(S, KeyCodeCombination.CONTROL_DOWN, KeyCodeCombination.SHORTCUT_ANY), e -> {
+            	  this.arquivoService.salvar(area_cod.getText());
+              }
+              
+      );
+	 
+	 InputMap<Event> salvarComo = InputMap.consume(
+             keyPressed(S, KeyCodeCombination.CONTROL_DOWN, KeyCodeCombination.SHIFT_DOWN, KeyCodeCombination.SHORTCUT_ANY), e -> {
+            	 this.arquivoService.salvarComo(area_cod.getText());
+             }
+             
+     );
+	 
+	 InputMap<Event> aumentarFonte = InputMap.consume(
+             keyPressed(KeyCode.EQUALS, KeyCodeCombination.CONTROL_DOWN, KeyCodeCombination.SHIFT_DOWN, KeyCodeCombination.SHORTCUT_ANY), e -> {
+            	 String tamanho = ConfigService.get().getTamanhoFonte();
+            	 setTamanhoFonte(Integer.parseInt(tamanho)+1);
+             }
+             
+     );
+	 InputMap<Event> diminuirFonte = InputMap.consume(
+             keyPressed(KeyCode.MINUS, KeyCodeCombination.CONTROL_DOWN, KeyCodeCombination.SHORTCUT_ANY), e -> {
+            	 String tamanho = ConfigService.get().getTamanhoFonte();
+            	 setTamanhoFonte(Integer.parseInt(tamanho)-1);
+             }
+             
+     );
+	 
+	 Nodes.addInputMap(area_cod, salvar);
+	 Nodes.addInputMap(area_cod, salvarComo);
+	 Nodes.addInputMap(area_cod, aumentarFonte);
+	 Nodes.addInputMap(area_cod, diminuirFonte);
+	  
   }
 
   public static boolean openWebpage(URI uri) {
@@ -477,16 +543,9 @@ public class CodigoController implements Initializable, Terminavel {
     });
 
     btn_close.setOnAction(e -> { // fechar aplicacao
-      /*
-       * if(Arquivo.salvar) { int alerta = Alertas.showConfirm("Deseja salvar o projeto?");
-       * if(alerta == 0) { System.exit(0); }else if(alerta == 1) { if(Arquivo.arquivo == null) {
-       * boolean salvar = Arquivo.SalvarComo(Arquivo.arquivo, ControllerCodigo.getPortugol());
-       * if(salvar) System.exit(0); }else { if(Arquivo.salvarArquivo(Arquivo.arquivo, true,
-       * ControllerCodigo.getPortugol())) System.exit(0); } }
-       * 
-       * }else { System.exit(0); }
-       */
-      System.exit(0);
+    	if(this.arquivoService.checkAlteracoesNaoSalvas()) {
+    		System.exit(0);
+    	}
     });
 
     btn_max.setOnAction(e -> { // maximizar aplicacao
@@ -667,6 +726,11 @@ public class CodigoController implements Initializable, Terminavel {
      	 }
     });
 
+    sl_fonte.setOnMouseClicked(e->{
+    	int tamanho = (int)(sl_fonte.getValue()/2);
+    	setTamanhoFonte(tamanho);
+    });
+    
     // css
     split_vertical.getStylesheets()
         .add(CarregadorRecursos.get().getResourceExternalForm(Estilos.SPLITPANE.getUrl()));

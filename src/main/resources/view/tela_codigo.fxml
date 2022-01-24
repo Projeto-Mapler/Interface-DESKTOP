@@ -15,11 +15,13 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
 <?import org.fxmisc.richtext.StyleClassedTextArea?>
 <?import mapler.model.ConsoleStyleClassedTextArea?>
 <?import mapler.model.MenuItemTraducao?>
 <?import mapler.model.Linguagem?>
-<?import javafx.scene.control.Label?>
+
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mapler.controller.CodigoController" >
 	<children>
@@ -112,7 +114,15 @@
                       									<MenuItem mnemonicParsing="false" text="Modo escuro" fx:id="mi_cf_dark"/>
                     								</items>
                   								</Menu>
-                  								<MenuItem mnemonicParsing="false" text="Fonte" fx:id="mi_cf_font"/>
+                  								<Menu mnemonicParsing="false" text="Fonte">
+                  									<items>
+                  										<MenuItem mnemonicParsing="false" text=" ">
+                  											<graphic>
+                        								   		<Slider fx:id="sl_fonte" />
+                     										</graphic>
+                  										</MenuItem>
+                  									</items>
+                  								</Menu>
                                             </items>
                                           </Menu>
                                           <Menu mnemonicParsing="false" text="Sobre">

@@ -23,6 +23,7 @@ public class ConfigService {
 	
 	private static ConfigService instance;
 	private String css;
+	private String tamanhoFonte;
 	private String cod; //salvar codigo antes de reiniciar a pagina
 	
 	private ConfigService() {}
@@ -31,6 +32,7 @@ public class ConfigService {
 		  if(instance == null) {
 			  instance = new ConfigService();
 			  instance.setCss(null);
+			  instance.setTamanhoFonte(null);
 			  instance.setCod("variaveis\r\n" + "  //declare aqui suas variaveis\r\n" + "inicio\r\n" + "  //auto gerado pelo MAPLER\r\n" + "  escrever \"Ola mundo!\";\r\n" + "fim");
 			  //instance.setCss("/css/config-dark.css");
 		  } 
@@ -39,6 +41,25 @@ public class ConfigService {
 	
 	public String getCss() {
 		return CarregadorRecursos.get().getResourceExternalForm(css);
+	}
+	
+	public void setTamanhoFonte(String tamanho) {
+		try {
+			if(tamanho != null) {
+				setProp("fonte", tamanho);
+				this.tamanhoFonte = tamanho;
+			}else {
+				Properties prop = getProp();
+				this.tamanhoFonte = prop.getProperty("fonte");
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public String getTamanhoFonte() {
+		return this.tamanhoFonte;
 	}
 	
 	public void setCod(String cod) {
