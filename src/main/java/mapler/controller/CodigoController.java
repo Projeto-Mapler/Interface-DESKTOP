@@ -43,9 +43,12 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.control.Tab;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.control.Spinner;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import javafx.scene.control.Slider;
@@ -112,7 +115,7 @@ public class CodigoController implements Initializable, Terminavel {
       mi_ex_co_se, mi_ex_co_sn, mi_ex_lc_r, mi_ex_lc_p, mi_ex_lc_e, mi_ex_lc_g, mi_cf_dark, mi_cf_light, mi_cf_pb;
   
   @FXML
-  Slider sl_fonte;
+  Spinner<Integer> mn_spinner;
 
   @FXML
   JFXButton btn_left_inicio, btn_left_tutoriais, btn_left_sobre, btn_left_news, btn_minus, btn_max,
@@ -725,10 +728,16 @@ public class CodigoController implements Initializable, Terminavel {
      	    e1.printStackTrace();
      	 }
     });
+    
+    mn_spinner.getValueFactory().setValue(Integer.parseInt(ConfigService.get().getTamanhoFonte()));
+    mn_spinner.setOnMouseClicked(e->{
+    	setTamanhoFonte(mn_spinner.getValue());
+    });
 
-    sl_fonte.setOnMouseClicked(e->{
-    	int tamanho = (int)(sl_fonte.getValue()/2);
-    	setTamanhoFonte(tamanho);
+    mn_spinner.focusedProperty().addListener((observable, oldValue, newValue) -> {
+    	  if (!newValue) {
+    		  setTamanhoFonte(mn_spinner.getValue());
+    	  }
     });
     
     // css

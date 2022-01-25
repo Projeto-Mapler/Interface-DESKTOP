@@ -57,3 +57,20 @@
 .context-menu {
     -fx-background-color: -fx-my-menu-color; 
 }
+
+.spinner .increment-arrow-button,
+.spinner .decrement-arrow-button {
+    -fx-body-color: ladder(#AAA, -fx-my-menu-color 0%, -fx-my-menu-font-color-highlighted 100%);
+}
+
+.spinner .increment-arrow-button:hover,
+.spinner .decrement-arrow-button:hover {
+    -fx-body-color: ladder(#444, -fx-my-menu-color 0%, -fx-my-menu-font-color-highlighted 100%);
+}
+
+.spinner .increment-arrow-button:hover:pressed,
+.spinner .decrement-arrow-button:hover:pressed,
+.spinner .increment-arrow-button:pressed,
+.spinner .decrement-arrow-button:pressed {
+    -fx-body-color: -fx-my-menu-color;
+}

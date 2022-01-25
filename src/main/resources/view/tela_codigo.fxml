@@ -17,6 +17,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.SpinnerValueFactory.IntegerSpinnerValueFactory?>
+<?import javafx.scene.control.SpinnerValueFactory?> 
 <?import org.fxmisc.richtext.StyleClassedTextArea?>
 <?import mapler.model.ConsoleStyleClassedTextArea?>
 <?import mapler.model.MenuItemTraducao?>
@@ -118,7 +121,11 @@
                   									<items>
                   										<MenuItem mnemonicParsing="false" text=" ">
                   											<graphic>
-                        								   		<Slider fx:id="sl_fonte" />
+                        								   		<Spinner fx:id="mn_spinner" BorderPane.alignment="CENTER" editable="true" >
+            														<valueFactory>
+                														<SpinnerValueFactory.IntegerSpinnerValueFactory min="2" max="96" initialValue="16" amountToStepBy="1"/>
+            														</valueFactory>
+        														</Spinner>
                      										</graphic>
                   										</MenuItem>
                   									</items>
