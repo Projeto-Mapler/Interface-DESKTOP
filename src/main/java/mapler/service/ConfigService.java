@@ -34,7 +34,6 @@ public class ConfigService {
 			  instance.setCss(null);
 			  instance.setTamanhoFonte(null);
 			  instance.setCod("variaveis\r\n" + "  //declare aqui suas variaveis\r\n" + "inicio\r\n" + "  //auto gerado pelo MAPLER\r\n" + "  escrever \"Ola mundo!\";\r\n" + "fim");
-			  //instance.setCss("/css/config-dark.css");
 		  } 
 		  return instance;
 	  }
@@ -97,24 +96,56 @@ public class ConfigService {
 	
   private Properties getProp() throws IOException {
 		Properties props = new Properties();
-		URL url = CarregadorRecursos.get().getResource("/config/cfg.properties");
-    	FileInputStream file = new FileInputStream(url.getPath().replaceFirst("/C", "C"));
-		props.load(file);
+		
+		String path = System.getProperty("user.home") + File.separator + "Documents";
+		path += File.separator + "mapler";
+		File customDir = new File(path);
+
+		if (customDir.exists()) {
+			FileInputStream file = new FileInputStream(path+"/config.properties");
+			props.load(file);
+		}else if(customDir.mkdirs()) {
+			  try {
+				  FileWriter myWriter = new FileWriter(path+"/config.properties");
+			      myWriter.write("tema=/css/config-dark.css\r\n"
+			      				+ "fonte=16");
+			      myWriter.close();
+			    } catch (IOException e) {
+			      e.printStackTrace();
+			    }
+		} else {
+		      System.out.println(customDir + " was not created");
+		}
+		 
 		return props;
 
 	}
   
-  private Properties setProp(String property, String value) throws IOException {
+  private Properties setProp(String property, String value) {
 		Properties props = new Properties();
-		URL url = CarregadorRecursos.get().getResource("/config/cfg.properties");
-		FileInputStream file = new FileInputStream(url.getPath().replaceFirst("/C", "C"));
-		props.load(file);
-		props.setProperty(property, value);
-		File arq = new File(url.getPath());
-		FileOutputStream fos = new FileOutputStream(arq);
-		props.store(fos,"Arquivo de propriedades.");
-		fos.close();
+		
+		String path = System.getProperty("user.home") + File.separator + "Documents";
+		path += File.separator + "mapler";
+		File customDir = new File(path);
+
+		if (customDir.exists() || customDir.mkdirs()) {
+			  try {
+				  FileInputStream file = new FileInputStream(path+"/config.properties");
+				  props.load(file);
+					props.setProperty(property, value);
+					File arq = new File(path+"/config.properties");
+					FileOutputStream fos = new FileOutputStream(arq);
+					props.store(fos,"Arquivo de propriedades.");
+					fos.close();
+					
+			    } catch (IOException e) {
+			      e.printStackTrace();
+			    }
+		} else {
+		      System.out.println(customDir + " was not created");
+		}
 		return props;
+		
 	}
   
 }
