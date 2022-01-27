@@ -102,8 +102,18 @@ public class ConfigService {
 		File customDir = new File(path);
 
 		if (customDir.exists()) {
-			FileInputStream file = new FileInputStream(path+"/config.properties");
-			props.load(file);
+			try{
+				FileInputStream file = new FileInputStream(path+"/config.properties");
+				props.load(file);
+			}catch(Exception e) {
+				FileWriter myWriter = new FileWriter(path+"/config.properties");
+			      myWriter.write("tema=/css/config-dark.css\r\n"
+			      				+ "fonte=16");
+			      myWriter.close();
+			      FileInputStream file = new FileInputStream(path+"/config.properties");
+				  props.load(file);
+			}
+			
 		}else if(customDir.mkdirs()) {
 			  try {
 				  FileWriter myWriter = new FileWriter(path+"/config.properties");
