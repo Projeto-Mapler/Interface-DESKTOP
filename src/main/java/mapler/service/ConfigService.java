@@ -110,6 +110,8 @@ public class ConfigService {
 			      myWriter.write("tema=/css/config-dark.css\r\n"
 			      				+ "fonte=16");
 			      myWriter.close();
+			      FileInputStream file = new FileInputStream(path+"/config.properties");
+				  props.load(file);
 			    } catch (IOException e) {
 			      e.printStackTrace();
 			    }

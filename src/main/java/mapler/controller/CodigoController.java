@@ -122,7 +122,7 @@ public class CodigoController implements Initializable, Terminavel {
       btn_close, btn_home;
 
   @FXML
-  JFXButton btn_executar, btn_debug, btn_traduzir, btn_close_trad;
+  JFXButton btn_executar, btn_debug, btn_traduzir, btn_close_trad, btn_tema;
 
   @FXML
   FontAwesomeIcon icon_exec, icon_debug, icon_code;
@@ -349,6 +349,35 @@ public class CodigoController implements Initializable, Terminavel {
       }
       setDebugVisible(!visivel);
     });
+    
+    btn_tema.setOnAction(e -> {
+		String url = ConfigService.get().getCss();
+		if(url.equals(CarregadorRecursos.get().getResourceExternalForm(Tema.Dark.getUrl()))) {
+			ConfigService.get().setCss(Tema.Light.getUrl());
+			try {
+		        this.baseService.carregaTela(Templates.INICIO.getUrl());
+		      } catch (Exception e1) {
+		        // TODO Auto-generated catch block
+		        e1.printStackTrace();
+		      }
+		}else if(url.equals(CarregadorRecursos.get().getResourceExternalForm(Tema.Light.getUrl()))) {
+			ConfigService.get().setCss(Tema.Contraste.getUrl());
+			try {
+		        this.baseService.carregaTela(Templates.INICIO.getUrl());
+		      } catch (Exception e1) {
+		        // TODO Auto-generated catch block
+		        e1.printStackTrace();
+		      }
+		}else {
+			ConfigService.get().setCss(Tema.Dark.getUrl());
+			try {
+		        this.baseService.carregaTela(Templates.INICIO.getUrl());
+		      } catch (Exception e1) {
+		        // TODO Auto-generated catch block
+		        e1.printStackTrace();
+		      }
+		}
+	});
 
     mi_novo.setOnAction(e -> {
       if (arquivoService.checkAlteracoesNaoSalvas()) {
