@@ -262,7 +262,7 @@ public class InicioController implements Initializable {
 		
 		link_cod_enquanto.setOnAction(e -> {
 			try {
-				URL url = new URL("https://portugol.sourceforge.io/exemplos.html");
+				URL url = new URL("https://portugol.sourceforge.io/exemplos/lacos.html#Enquanto");
 				boolean boo = openWebpage(url.toURI());
 			} catch (URISyntaxException e1) {
 				// TODO Auto-generated catch block
@@ -275,7 +275,7 @@ public class InicioController implements Initializable {
 		
 		link_cod_repita.setOnAction(e -> {
 			try {
-				URL url = new URL("https://portugol.sourceforge.io/exemplos.html");
+				URL url = new URL("https://portugol.sourceforge.io/exemplos/lacos.html#Repita");
 				boolean boo = openWebpage(url.toURI());
 			} catch (URISyntaxException e1) {
 				// TODO Auto-generated catch block
@@ -288,7 +288,7 @@ public class InicioController implements Initializable {
 		
 		link_cod_para.setOnAction(e -> {
 			try {
-				URL url = new URL("https://portugol.sourceforge.io/exemplos.html");
+				URL url = new URL("https://portugol.sourceforge.io/exemplos/lacos.html#Para");
 				boolean boo = openWebpage(url.toURI());
 			} catch (URISyntaxException e1) {
 				// TODO Auto-generated catch block
@@ -301,7 +301,7 @@ public class InicioController implements Initializable {
 		
 		link_cod_lit.setOnAction(e -> {
 			try {
-				URL url = new URL("https://portugol.sourceforge.io/exemplos.html");
+				URL url = new URL("https://portugol.sourceforge.io/exemplos/tipos.html#Literais");
 				boolean boo = openWebpage(url.toURI());
 			} catch (URISyntaxException e1) {
 				// TODO Auto-generated catch block
@@ -314,7 +314,7 @@ public class InicioController implements Initializable {
 		
 		link_cod_log.setOnAction(e -> {
 			try {
-				URL url = new URL("https://portugol.sourceforge.io/exemplos.html");
+				URL url = new URL("https://portugol.sourceforge.io/exemplos/tipos.html#Booleano");
 				boolean boo = openWebpage(url.toURI());
 			} catch (URISyntaxException e1) {
 				// TODO Auto-generated catch block
@@ -327,7 +327,7 @@ public class InicioController implements Initializable {
 		
 		link_cod_num.setOnAction(e -> {
 			try {
-				URL url = new URL("https://portugol.sourceforge.io/exemplos.html");
+				URL url = new URL("https://portugol.sourceforge.io/exemplos/tipos.html#Numericos");
 				boolean boo = openWebpage(url.toURI());
 			} catch (URISyntaxException e1) {
 				// TODO Auto-generated catch block
@@ -340,7 +340,7 @@ public class InicioController implements Initializable {
 		
 		link_cod_fimse.setOnAction(e -> {
 			try {
-				URL url = new URL("https://portugol.sourceforge.io/exemplos.html");
+				URL url = new URL("https://portugol.sourceforge.io/exemplos/condicionais.html#Senao");
 				boolean boo = openWebpage(url.toURI());
 			} catch (URISyntaxException e1) {
 				// TODO Auto-generated catch block
@@ -353,7 +353,7 @@ public class InicioController implements Initializable {
 		
 		link_cod_senao.setOnAction(e -> {
 			try {
-				URL url = new URL("https://portugol.sourceforge.io/exemplos.html");
+				URL url = new URL("https://portugol.sourceforge.io/exemplos/condicionais.html#Senao");
 				boolean boo = openWebpage(url.toURI());
 			} catch (URISyntaxException e1) {
 				// TODO Auto-generated catch block
@@ -366,7 +366,7 @@ public class InicioController implements Initializable {
 		
 		link_cod_se.setOnAction(e -> {
 			try {
-				URL url = new URL("https://portugol.sourceforge.io/exemplos.html");
+				URL url = new URL("https://portugol.sourceforge.io/exemplos/condicionais.html#Se");
 				boolean boo = openWebpage(url.toURI());
 			} catch (URISyntaxException e1) {
 				// TODO Auto-generated catch block
@@ -379,7 +379,7 @@ public class InicioController implements Initializable {
 		
 		link_cod_fim.setOnAction(e -> {
 			try {
-				URL url = new URL("https://portugol.sourceforge.io/exemplos.html");
+				URL url = new URL("https://portugol.sourceforge.io/exemplos/entrada-saida.html");
 				boolean boo = openWebpage(url.toURI());
 			} catch (URISyntaxException e1) {
 				// TODO Auto-generated catch block
@@ -392,7 +392,7 @@ public class InicioController implements Initializable {
 		
 		link_cod_inicio.setOnAction(e -> {
 			try {
-				URL url = new URL("https://portugol.sourceforge.io/exemplos.html");
+				URL url = new URL("https://portugol.sourceforge.io/exemplos/entrada-saida.html");
 				boolean boo = openWebpage(url.toURI());
 			} catch (URISyntaxException e1) {
 				// TODO Auto-generated catch block
@@ -418,7 +418,7 @@ public class InicioController implements Initializable {
 		
 		lk_portugol.setOnAction(e -> {
 		try {
-			URL url = new URL("https://portugol.sourceforge.io/exemplos.html");
+			URL url = new URL("https://portugol.sourceforge.io/exemplos/estrutura-codigo.html");
 			boolean boo = openWebpage(url.toURI());
 		} catch (URISyntaxException e1) {
 			// TODO Auto-generated catch block
