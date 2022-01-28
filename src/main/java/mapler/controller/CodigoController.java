@@ -355,7 +355,7 @@ public class CodigoController implements Initializable, Terminavel {
 		if(url.equals(CarregadorRecursos.get().getResourceExternalForm(Tema.Dark.getUrl()))) {
 			ConfigService.get().setCss(Tema.Light.getUrl());
 			try {
-		        this.baseService.carregaTela(Templates.INICIO.getUrl());
+		        this.baseService.carregaTela(Templates.CODIGO.getUrl());
 		      } catch (Exception e1) {
 		        // TODO Auto-generated catch block
 		        e1.printStackTrace();
@@ -363,7 +363,7 @@ public class CodigoController implements Initializable, Terminavel {
 		}else if(url.equals(CarregadorRecursos.get().getResourceExternalForm(Tema.Light.getUrl()))) {
 			ConfigService.get().setCss(Tema.Contraste.getUrl());
 			try {
-		        this.baseService.carregaTela(Templates.INICIO.getUrl());
+		        this.baseService.carregaTela(Templates.CODIGO.getUrl());
 		      } catch (Exception e1) {
 		        // TODO Auto-generated catch block
 		        e1.printStackTrace();
@@ -371,7 +371,7 @@ public class CodigoController implements Initializable, Terminavel {
 		}else {
 			ConfigService.get().setCss(Tema.Dark.getUrl());
 			try {
-		        this.baseService.carregaTela(Templates.INICIO.getUrl());
+		        this.baseService.carregaTela(Templates.CODIGO.getUrl());
 		      } catch (Exception e1) {
 		        // TODO Auto-generated catch block
 		        e1.printStackTrace();
