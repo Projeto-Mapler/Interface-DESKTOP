@@ -116,7 +116,7 @@ public class ArquivoService {
 	
 	public boolean checkAlteracoesNaoSalvas() {
 		if(this.isArquivoAlterado) {
-			int resp = AlertaService.showConfirm("Há alterações não salvas no arquivo. Deseja sair sem salvar?");
+			int resp = AlertaService.showConfirm("Deseja realmente sair? Existe alterações não salvas.");
 			if(resp != 1) {
 				return false;
 			}			
