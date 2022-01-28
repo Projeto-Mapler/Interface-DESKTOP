@@ -1,11 +1,15 @@
-//Variaveis literais são usadas para armazenar textos, sendo elas:
-// CADEIA, usadas para textos curtos ou longos
-// CARACTERE, usadas quando se deseja armazenar apenas uma letra. Seu uso pode trazer economia de memoria se comparadas ao uso variaveis de cadeia
+//AVISO
+//ESSE CODIGO É APENAS UM EXEMPLO, PARA EXECUTAR COPIE PARA A AREA DE CODIGO
 
-//EXEMPLO
+
 variaveis
 	
+  //Variaveis literais são usadas para armazenar textos
+  
+  //CADEIA, usadas para textos curtos ou longos
   var_cadeia: cadeia;
+  
+  //CARACTERE, usadas quando se deseja armazenar apenas uma letra. Seu uso pode trazer economia de memoria se comparadas ao uso variaveis de cadeia
   var_caractere: caractere;
 
 inicio

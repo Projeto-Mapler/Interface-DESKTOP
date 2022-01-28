@@ -1,27 +1,17 @@
-//A ESTRUTURA BASE PARA UTILIZAR O PORTUGOL É COM 3 BLOCOS:
+//AVISO
+//ESSE CODIGO É APENAS UM EXEMPLO, PARA EXECUTAR COPIE PARA A AREA DE CODIGO
 
-variaveis 
-	
-	//AQUI SAO DECLARADAS AS VARIAVEIS QUE SERAO USADAS NO ALGORITMO
-	
-inicio 
-	
-	//AQUI FICAM OS COMANDOS USADOS NO ALGORITMO
-	
-fim //FIM INDICA O FIM DA SEQUENCIA DE COMANDOS
+//ALGORITMO
+//Algoritmo para dizer ola ao usuario
 
-
-//EXEMPLO
-//	Algoritmo para dizer ola ao usuario
-
-variaveis
+variaveis //AQUI SAO DECLARADAS AS VARIAVEIS QUE SERAO USADAS NO ALGORITMO
 
   var_nome: cadeia;
 
-inicio
+inicio //AQUI FICAM OS COMANDOS USADOS NO ALGORITMO
 
   escrever "Digite seu nome: ";
   ler var_nome;
   escrever "Olá ", var_nome;
 
-fim
+fim //FIM INDICA O ENCERRAMENTO DA SEQUENCIA DE COMANDOS

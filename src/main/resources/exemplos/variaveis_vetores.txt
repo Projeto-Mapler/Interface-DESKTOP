@@ -1,25 +1,15 @@
-//Vetores sao um conjunto de valores de mesmo tipo
-// Uma variavel do tipo vetor tem tamanho definido e para acessar cada elemento é usado a posição desse elemento no vetor
+//AVISO
+//ESSE CODIGO É APENAS UM EXEMPLO, PARA EXECUTAR COPIE PARA A AREA DE CODIGO
 
-//SINTAXE
-// "nome_vetor: vetor[A..B] de tipo_vetor"
-// A sera a posicao inicial do vetor
-// B a posicao final
-
-//OBS
-// A posicao inicial de um vetor nao pode ser maior que a posicao final
-// para acessar um elemento no vetor usamos nome_vetor[P], sendo P um numero que indica a posicao desse elemento dentro do vetor
-
-
-//EXEMPLO
 
 variaveis
-
+	//Vetores sao um conjunto de valores de mesmo tipo
 	numeros: vetor [1..9] de inteiro;
 	i: inteiro;
 inicio
 	
 	para i de 1 ate 9 passo 1 faca
+		//Para acessar um elemento no vetor usamos nome_vetor[P], sendo P um numero que indica a posicao desse elemento dentro do vetor
 		numeros[i] <- i;
 	fim para;
 	

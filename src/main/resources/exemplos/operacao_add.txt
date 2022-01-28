@@ -1,16 +1,11 @@
-//A Adicao é feita usando o operador "+"
-
-//SINTAXE
-// "X + Y", onde X e Y são valores
-
-//OBS
-//	O compilador realiza jogo de sinais, de forma que verifica se o resultado sera positivo ou negativo
+//AVISO
+//ESSE CODIGO É APENAS UM EXEMPLO, PARA EXECUTAR COPIE PARA A AREA DE CODIGO
 
 variaveis
   
 	v : inteiro;
 inicio
-  
-	v <- 6 + 2;
+    //A Adicao é feita usando o operador "+"
+	v <- 6 + 2; //O compilador realiza jogo de sinais, de forma que verifica se o resultado sera positivo ou negativo
 	escrever v;
 fim

@@ -1,23 +1,22 @@
-//As operacoes em portugol são:
-//	ADICAO, definida como a soma de valores e para isso utiliza o operador "+"
-//	SUBTRACAO, definida como a diferença entre valores e utiliza como operador o "-"
-//	MULTIPLICACAO, é o produto de valores e utiliza o operador "*"
-//	DIVISAO, a divisao utiliza um dividendo e um divisor para seu calculo e usa o operador "/"
-
-//EXEMPLO
+//AVISO
+//ESSE CODIGO É APENAS UM EXEMPLO, PARA EXECUTAR COPIE PARA A AREA DE CODIGO
 
 variaveis
 	resultado: real;
 inicio
+    //ADICAO, definida como a soma de valores e para isso utiliza o operador "+"
 	resultado <- 5.0 + 4.0;
 	escrever "Operação: 5 + 4 = ", resultado;
 	
+	//SUBTRACAO, definida como a diferença entre valores e utiliza como operador o "-"
 	resultado <- 5.0 - 4.0;
 	escrever "Operação: 5 - 4 = ", resultado;	
 		
+	//MULTIPLICACAO, é o produto de valores e utiliza o operador "*"
 	resultado <- 5.0 * 4.0; 
 	escrever "Operação: 5 * 4 = ", resultado;
 		
+	//DIVISAO, a divisao utiliza um dividendo e um divisor para seu calculo e usa o operador "/"
 	resultado <- 5.0 / 4.0;
 	escrever "Operação: 5 / 4 = ",  resultado;	 
 fim

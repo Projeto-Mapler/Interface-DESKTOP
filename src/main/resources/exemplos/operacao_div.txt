@@ -1,17 +1,13 @@
-//A Divisao é feita usando o operador "/"
-
-//SINTAXE
-// "X / Y", onde X é o dividendo e Y o divisor
-
-//OBS
-//	Sempre que o divisor for 0, o compilador retornara um erro
-//	O resto sera perdido quando trabalhar com inteiros, por EXEMPLO "variavel <- 7 / 5", o valor de variavel será 1 e o resto 2 será descartado.
+//AVISO
+//ESSE CODIGO É APENAS UM EXEMPLO, PARA EXECUTAR COPIE PARA A AREA DE CODIGO
 
 variaveis
   
 	v : inteiro;
 inicio
-  
-	v <- 6 / 2;
+    //A Divisao é feita usando o operador "/" 
+	v <- 6 / 2; //Sempre que o divisor for 0, o compilador retornara um erro
+	
+	//O resto sera perdido quando trabalhar com inteiros, por EXEMPLO "variavel <- 7 / 5", o valor de variavel será 1 e o resto 2 será descartado.
 	escrever v;
 fim

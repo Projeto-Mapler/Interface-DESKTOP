@@ -1,21 +1,11 @@
-// O compilador usara tres niveis para organizar a precedencia
-
-//NIVEL 1
-//	+ e -
-
-//NIVEL 2
-//	* e /
-
-//NIVEL 3
-//	( )
-
-// A precedencia é dada sempre ao nivel mais alto, para operadores do mesmo nivel é dado precencia para aquele mais a esquerda
-
-//EXEMPLO
+//AVISO
+//ESSE CODIGO É APENAS UM EXEMPLO, PARA EXECUTAR COPIE PARA A AREA DE CODIGO
 
 variaveis
 	resultado: real;
 inicio
+
+    //A precedencia é dada sempre ao nivel mais alto, para operadores do mesmo nivel é dado precencia para aquele mais a esquerda
 	resultado <- 5.0 + 4.0 * 2.0;
 	escrever "Operação: 5 + 4 * 2 = ", resultado;
 	
@@ -28,3 +18,18 @@ inicio
 	resultado <- (1.0 + 2.0) / (3.0 * 4.0);
 	escrever "Operação: (1 + 2) / (3 * 4) = ",  resultado;	 
 fim
+
+//O compilador usara tres niveis para organizar a precedencia
+
+
+//NIVEL 3 - Preferencia sobre todos
+//	( )
+
+//NIVEL 2 - Preferencia apenas sobre o nivel 1
+//	* e /
+
+//NIVEL 1 - Sem precedencia.
+//	+ e -
+
+
+

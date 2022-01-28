@@ -1,8 +1,10 @@
-//Variaveis do tipo Logico, armazenam resultado de expressoes logicas ( VERDADEIRO OU FALSO)
+//AVISO
+//ESSE CODIGO É APENAS UM EXEMPLO, PARA EXECUTAR COPIE PARA A AREA DE CODIGO
 
-//EXEMPLO
+
 variaveis
 	
+  //Variaveis do tipo Logico, armazenam resultado de expressoes logicas ( VERDADEIRO OU FALSO)
   var_logico: logico;
 
 inicio
@@ -10,9 +12,11 @@ inicio
   var_logico <- verdadeiro;
   escrever var_logico;
   
+  //É possivel atribuir o valor de uma expressao
   var_logico <- 1 >= 2;
   escrever var_logico;
   
+  //O "nao" inverte o valor de uma variavel logica
   var_logico <- nao var_logico;
   escrever var_logico;
   

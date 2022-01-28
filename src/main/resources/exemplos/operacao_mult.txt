@@ -1,16 +1,13 @@
-//A Divisao é feita usando o operador "*"
+//AVISO
+//ESSE CODIGO É APENAS UM EXEMPLO, PARA EXECUTAR COPIE PARA A AREA DE CODIGO
 
-//SINTAXE
-// "X * Y", onde X e Y são valores e sua ordem nao importa
-
-//OBS
-//	O compilador realiza jogo de sinais, de forma que verifica se o resultado sera positivo ou negativo
 
 variaveis
   
 	v : inteiro;
 inicio
   
-	v <- 6 * 2;
+    //A Multiplicaçao é feita usando o operador "*"
+	v <- 6 * 2; //O compilador realiza jogo de sinais, de forma que verifica se o resultado sera positivo ou negativo
 	escrever v;
 fim

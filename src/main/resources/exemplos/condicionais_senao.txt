@@ -1,15 +1,8 @@
-//O COMANDO "SENAO" É UM COMPLEMENTO DO COMANDO "SE"
+//AVISO
+//ESSE CODIGO É APENAS UM EXEMPLO, PARA EXECUTAR COPIE PARA A AREA DE CODIGO
 
-//SUA SINTAXE É: "se X entao <ACAO> senao <ACAO2> fim se;"
-			                        //O senao sera executado sempre que a condicao X for falsa
-			                        	  //A <ACAO2> serao comandos desejados caso X seja falso
-			                        	  	      //O fim se deverá ficar apos os comandos do senao, indicando que o se e o senao estao em um mesmo bloco		             
-
-//OBSERVACOES: O comando "SENAO" aceita outros blocos de "SE" dentro de sua <ACAO2>, mas estes devem ser fechados antes que o "SE" mais externo finalize.
-
-
-//EXEMPLO
-//	verificando a faixa etaria de idades presentes em um vetor
+//ALGORITMO
+//Verificando a faixa etaria de idades presentes em um vetor
 
 
 variaveis
@@ -27,17 +20,19 @@ inicio
   para i de 1 ate 4 passo 1 faca 
     se idades[i] > 11 e idades[i] < 18 entao 
       escrever "adolescente";
-    senao 
+    senao //O bloco senao executa caso a condicao do SE associado seja falso
+      //O comando "SENAO" aceita outros blocos de "SE" dentro de sua <ACAO>, mas estes devem ser fechados antes que o bloco mais externo finalize.
       se idades[i] >= 18  e idades[i] < 60 entao 
         escrever "adulto";
        senao 
-        se idades[i] >= 60 entao
+        se idades[i] >= 60 entao 
           escrever "idoso";
         senao
           escrever "criança";
         fim se;
       fim se;
-    fim se;
-  fim para;
+    //Nao é possivel associar mais de um SENAO a um SE
+    fim se; //o FIM SE fica depois do SE e SENAO associados
+  fim para; 
 
 fim

@@ -1,21 +1,15 @@
-//O COMANDO "SE" É UTILIZADO DENTRO DO BLOCO INICIO
+//AVISO
+//ESSE CODIGO É APENAS UM EXEMPLO, PARA EXECUTAR COPIE PARA A AREA DE CODIGO
 
-//SUA SINTAXE É: "se X entao <ACAO> fim se;"
-                     //Sendo X uma condicao qualquer
-                             //<ACAO> os comandos desejados que execute caso X seja verdadeiro
-                                    //O comando "se" sempre deve ser finalizado com "fim se;"
-                                    
-//OBSERVACOES: O comando "SE" aceita outros blocos de "SE" dentro de sua <ACAO>, mas estes devem ser fechados antes que o "SE" mais externo finalize.
-
-//EXEMPLO
-//	Verificando se idades presentes em um vetor sao de pessoas adolescentes
+//ALGORITMO
+//Verificando se idades presentes em um vetor sao de pessoas adolescentes
 
 variaveis
 	
   idades: vetor[1..4] de inteiro;
   i: inteiro;
 
-inicio
+inicio 
 	
   idades[1] <- 9;
   idades[2] <- 15;
@@ -23,12 +17,14 @@ inicio
   idades[4] <- 60;
 
   para i de 1 ate 4 passo 1 faca 
+    //O COMANDO "SE" É UTILIZADO EM NO ESCOPO DO BLOCO INICIO
     se idades[i] > 11 e idades[i] < 18 entao 
       escrever "adolescente";
+      //O comando "SE" aceita outros blocos de "SE" dentro de sua <ACAO>, mas estes devem ser fechados antes que o "SE" mais externo finalize.
       se idades[i] = 15 entao
           escrever "adolescente com 15 anos!";
-      fim se; //finalizando o "se" inteno que verifica se idades é igual a 15
-    fim se; //finalizando o primeiro "se" que verifica se é adolescente
+      fim se; //Finalizando o "se" inteno que verifica se idades é igual a 15
+    fim se; //Finalizando o primeiro "se" que verifica se é adolescente
   fim para;
 
 fim
