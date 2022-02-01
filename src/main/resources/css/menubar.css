@@ -16,6 +16,7 @@
 
 .menu-bar > .container > .menu-button > .label {
     -fx-text-fill: -fx-my-menu-font-color;
+    -fx-text-alignment:left; 
 }
 
 .menu-bar > .container > .menu-button > .label:disabled {

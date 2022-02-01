@@ -43,6 +43,7 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.control.Tab;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
@@ -112,10 +113,11 @@ public class CodigoController implements Initializable, Terminavel {
   @FXML
   MenuItem mi_ex_estrutura, mi_ex_io, mi_ex_mdl, mi_ex_tp_v, mi_ex_tp_l, mi_ex_tp_b, mi_ex_tp_n,
       mi_ex_tp_g, mi_ex_op_g, mi_ex_op_a, mi_ex_op_s, mi_ex_op_m, mi_ex_op_d, mi_ex_op_p,
-      mi_ex_co_se, mi_ex_co_sn, mi_ex_lc_r, mi_ex_lc_p, mi_ex_lc_e, mi_ex_lc_g, mi_cf_dark, mi_cf_light, mi_cf_pb;
+      mi_ex_co_se, mi_ex_co_sn, mi_ex_lc_r, mi_ex_lc_p, mi_ex_lc_e, mi_ex_lc_g, mi_cf_dark, mi_cf_light, mi_cf_pb,
+      mi_fonte_padrao, mi_fonte_menos, mi_fonte_mais;
   
-  @FXML
-  Spinner<Integer> mn_spinner;
+  //@FXML
+  //Spinner<Integer> mn_spinner;
 
   @FXML
   JFXButton btn_left_inicio, btn_left_tutoriais, btn_left_sobre, btn_left_news, btn_minus, btn_max,
@@ -241,6 +243,7 @@ public class CodigoController implements Initializable, Terminavel {
              }
              
      );
+	 
 	 
 	 Nodes.addInputMap(area_cod, salvar);
 	 Nodes.addInputMap(area_cod, salvarComo);
@@ -747,6 +750,7 @@ public class CodigoController implements Initializable, Terminavel {
      	    e1.printStackTrace();
      	 }
     });
+    
     mi_cf_pb.setOnAction(e -> {
     	String backup_cod = area_cod.getText();
     	ConfigService.get().setCod(backup_cod);
@@ -759,16 +763,38 @@ public class CodigoController implements Initializable, Terminavel {
      	 }
     });
     
-    mn_spinner.getValueFactory().setValue(Integer.parseInt(ConfigService.get().getTamanhoFonte()));
-    mn_spinner.setOnMouseClicked(e->{
-    	setTamanhoFonte(mn_spinner.getValue());
+    mi_fonte_padrao.setOnAction(e->{
+    	setTamanhoFonte(18);
     });
-
-    mn_spinner.focusedProperty().addListener((observable, oldValue, newValue) -> {
-    	  if (!newValue) {
-    		  setTamanhoFonte(mn_spinner.getValue());
-    	  }
+    
+    mi_fonte_padrao.setAccelerator(KeyCombination.keyCombination("Ctrl + 0"));
+    
+    mi_fonte_menos.setOnAction(e -> {
+    	int novo = (Integer.parseInt(ConfigService.get().getTamanhoFonte()) - 4);
+    	if(novo < 2) {
+    		setTamanhoFonte(2);
+    	}else {
+    		setTamanhoFonte(novo);
+    	}
     });
+    mi_fonte_menos.setAccelerator(KeyCombination.keyCombination("Ctrl + -"));
+    
+    mi_fonte_mais.setOnAction(e -> {
+    	int novo = (Integer.parseInt(ConfigService.get().getTamanhoFonte()) + 4);
+    	setTamanhoFonte(novo);
+    });
+    mi_fonte_mais.setAccelerator(KeyCombination.keyCombination("Ctrl + shift + ="));
+    
+//    mn_spinner.getValueFactory().setValue(Integer.parseInt(ConfigService.get().getTamanhoFonte()));
+//    mn_spinner.setOnMouseClicked(e->{
+//    	setTamanhoFonte(mn_spinner.getValue());
+//    });
+//
+//    mn_spinner.focusedProperty().addListener((observable, oldValue, newValue) -> {
+//    	  if (!newValue) {
+//    		  setTamanhoFonte(mn_spinner.getValue());
+//    	  }
+//    });
     
     // css
     split_vertical.getStylesheets()
