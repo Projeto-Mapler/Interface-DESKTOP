@@ -1,7 +1,3 @@
-//AVISO
-//ESSE CODIGO É APENAS UM EXEMPLO, PARA EXECUTAR COPIE PARA A AREA DE CODIGO
-
-
 variaveis
 	//Vetores sao um conjunto de valores de mesmo tipo
 	numeros: vetor [1..9] de inteiro;

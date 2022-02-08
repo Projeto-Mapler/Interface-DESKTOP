@@ -1,6 +1,3 @@
-//AVISO
-//ESSE CODIGO É APENAS UM EXEMPLO, PARA EXECUTAR COPIE PARA A AREA DE CODIGO
-
 variaveis
 	//O modulo precisa ser declarado no bloco principal
 	soma, divisao, subtracao, multiplicacao: modulo;

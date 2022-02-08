@@ -329,7 +329,7 @@
                                                                         <Font name="System Bold" size="14.0" />
                                                                      </font>
                                                                   </Label>
-                                                                  <Hyperlink fx:id="link_cod_var" text="variveis" textFill="#2c71b2" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="20.0">
+                                                                  <Hyperlink fx:id="link_cod_var" text="variaveis" textFill="#2c71b2" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="20.0">
                                                                      <font>
                                                                         <Font name="System Bold" size="14.0" />
                                                                      </font>

@@ -4,6 +4,14 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URL;
+import java.nio.file.FileSystemNotFoundException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.spi.FileSystemProvider;
+import java.util.Collections;
 
 import javafx.stage.FileChooser;
 
@@ -21,6 +29,11 @@ public class ArquivoService {
 	public static ArquivoService getInstance() {
 		if (instance == null)
 			instance = new ArquivoService();
+		return instance;
+	}
+	
+	public static ArquivoService newInstance() {
+		instance = new ArquivoService();
 		return instance;
 	}
 	
@@ -42,6 +55,32 @@ public class ArquivoService {
 			return true;
 		}
 		return false;
+	}
+	
+	public boolean carregarExemplos(URL url) {
+		String content = null;
+	    try {
+	    	URI uri = url.toURI();
+
+	    	if("jar".equals(uri.getScheme())){
+	    	    for (FileSystemProvider provider: FileSystemProvider.installedProviders()) {
+	    	        if (provider.getScheme().equalsIgnoreCase("jar")) {
+	    	            try {
+	    	                provider.getFileSystem(uri);
+	    	            } catch (FileSystemNotFoundException e) {
+	    	                // in this case we need to initialize it first:
+	    	                provider.newFileSystem(uri, Collections.emptyMap());
+	    	            }
+	    	        }
+	    	    }
+	    	}
+	    	Path source = Paths.get(uri);
+	    	this.arquivo = source.toFile();
+	    	isArquivoAlterado = false;
+			return true;
+	    }catch(Exception e) {
+	    	return false;
+	    }
 	}
 
 	public void salvar(String conteudo) {

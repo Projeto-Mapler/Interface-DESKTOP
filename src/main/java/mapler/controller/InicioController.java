@@ -261,158 +261,159 @@ public class InicioController implements Initializable {
 		});
 		
 		link_cod_enquanto.setOnAction(e -> {
-			try {
-				URL url = new URL("https://portugol.sourceforge.io/exemplos/lacos.html#Enquanto");
-				boolean boo = openWebpage(url.toURI());
-			} catch (URISyntaxException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (MalformedURLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+			
+			URL url = CarregadorRecursos.get().getResource("/exemplos/laços_enquanto.txt");
+			boolean abriu = ArquivoService.getInstance().carregarExemplos(url);
+			if (abriu) {
+				try {
+					BaseService.getInstancia().carregaTela(Templates.CODIGO.getUrl());
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		
 		link_cod_repita.setOnAction(e -> {
-			try {
-				URL url = new URL("https://portugol.sourceforge.io/exemplos/lacos.html#Repita");
-				boolean boo = openWebpage(url.toURI());
-			} catch (URISyntaxException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (MalformedURLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+			URL url = CarregadorRecursos.get().getResource("/exemplos/laços_enquanto.txt");
+			boolean abriu = ArquivoService.getInstance().carregarExemplos(url);
+			if (abriu) {
+				try {
+					BaseService.getInstancia().carregaTela(Templates.CODIGO.getUrl());
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		
 		link_cod_para.setOnAction(e -> {
-			try {
-				URL url = new URL("https://portugol.sourceforge.io/exemplos/lacos.html#Para");
-				boolean boo = openWebpage(url.toURI());
-			} catch (URISyntaxException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (MalformedURLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+			URL url = CarregadorRecursos.get().getResource("/exemplos/laços_para.txt");
+			boolean abriu = ArquivoService.getInstance().carregarExemplos(url);
+			if (abriu) {
+				try {
+					BaseService.getInstancia().carregaTela(Templates.CODIGO.getUrl());
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		
 		link_cod_lit.setOnAction(e -> {
-			try {
-				URL url = new URL("https://portugol.sourceforge.io/exemplos/tipos.html#Literais");
-				boolean boo = openWebpage(url.toURI());
-			} catch (URISyntaxException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (MalformedURLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+			URL url = CarregadorRecursos.get().getResource("/exemplos/variaveis_literais.txt");
+			boolean abriu = ArquivoService.getInstance().carregarExemplos(url);
+			if (abriu) {
+				try {
+					BaseService.getInstancia().carregaTela(Templates.CODIGO.getUrl());
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		}); 
 		
 		link_cod_log.setOnAction(e -> {
-			try {
-				URL url = new URL("https://portugol.sourceforge.io/exemplos/tipos.html#Booleano");
-				boolean boo = openWebpage(url.toURI());
-			} catch (URISyntaxException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (MalformedURLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+			URL url = CarregadorRecursos.get().getResource("/exemplos/variaveis_booleano.txt");
+			boolean abriu = ArquivoService.getInstance().carregarExemplos(url);
+			if (abriu) {
+				try {
+					BaseService.getInstancia().carregaTela(Templates.CODIGO.getUrl());
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		}); 
 		
 		link_cod_num.setOnAction(e -> {
-			try {
-				URL url = new URL("https://portugol.sourceforge.io/exemplos/tipos.html#Numericos");
-				boolean boo = openWebpage(url.toURI());
-			} catch (URISyntaxException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (MalformedURLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+			URL url = CarregadorRecursos.get().getResource("/exemplos/variaveis_numericos.txt");
+			boolean abriu = ArquivoService.getInstance().carregarExemplos(url);
+			if (abriu) {
+				try {
+					BaseService.getInstancia().carregaTela(Templates.CODIGO.getUrl());
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		
 		link_cod_fimse.setOnAction(e -> {
-			try {
-				URL url = new URL("https://portugol.sourceforge.io/exemplos/condicionais.html#Senao");
-				boolean boo = openWebpage(url.toURI());
-			} catch (URISyntaxException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (MalformedURLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+			URL url = CarregadorRecursos.get().getResource("/exemplos/condicionais_se.txt");
+			boolean abriu = ArquivoService.getInstance().carregarExemplos(url);
+			if (abriu) {
+				try {
+					BaseService.getInstancia().carregaTela(Templates.CODIGO.getUrl());
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		
 		link_cod_senao.setOnAction(e -> {
-			try {
-				URL url = new URL("https://portugol.sourceforge.io/exemplos/condicionais.html#Senao");
-				boolean boo = openWebpage(url.toURI());
-			} catch (URISyntaxException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (MalformedURLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+			URL url = CarregadorRecursos.get().getResource("/exemplos/condicionais_senao.txt");
+			boolean abriu = ArquivoService.getInstance().carregarExemplos(url);
+			if (abriu) {
+				try {
+					BaseService.getInstancia().carregaTela(Templates.CODIGO.getUrl());
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		
 		link_cod_se.setOnAction(e -> {
-			try {
-				URL url = new URL("https://portugol.sourceforge.io/exemplos/condicionais.html#Se");
-				boolean boo = openWebpage(url.toURI());
-			} catch (URISyntaxException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (MalformedURLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+			URL url = CarregadorRecursos.get().getResource("/exemplos/condicionais_se.txt");
+			boolean abriu = ArquivoService.getInstance().carregarExemplos(url);
+			if (abriu) {
+				try {
+					BaseService.getInstancia().carregaTela(Templates.CODIGO.getUrl());
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		
 		link_cod_fim.setOnAction(e -> {
-			try {
-				URL url = new URL("https://portugol.sourceforge.io/exemplos/entrada-saida.html");
-				boolean boo = openWebpage(url.toURI());
-			} catch (URISyntaxException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (MalformedURLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+			URL url = CarregadorRecursos.get().getResource("/exemplos/estrutura.txt");
+			boolean abriu = ArquivoService.getInstance().carregarExemplos(url);
+			if (abriu) {
+				try {
+					BaseService.getInstancia().carregaTela(Templates.CODIGO.getUrl());
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		
 		link_cod_inicio.setOnAction(e -> {
-			try {
-				URL url = new URL("https://portugol.sourceforge.io/exemplos/entrada-saida.html");
-				boolean boo = openWebpage(url.toURI());
-			} catch (URISyntaxException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (MalformedURLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+			URL url = CarregadorRecursos.get().getResource("/exemplos/estrutura.txt");
+			boolean abriu = ArquivoService.getInstance().carregarExemplos(url);
+			if (abriu) {
+				try {
+					BaseService.getInstancia().carregaTela(Templates.CODIGO.getUrl());
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		
 		link_cod_var.setOnAction(e -> {
-			try {
-				URL url = new URL("https://portugol.sourceforge.io/exemplos.html");
-				boolean boo = openWebpage(url.toURI());
-			} catch (URISyntaxException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (MalformedURLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+			URL url = CarregadorRecursos.get().getResource("/exemplos/variaveis.txt");
+			boolean abriu = ArquivoService.getInstance().carregarExemplos(url);
+			if (abriu) {
+				try {
+					BaseService.getInstancia().carregaTela(Templates.CODIGO.getUrl());
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		

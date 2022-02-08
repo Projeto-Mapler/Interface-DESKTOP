@@ -1,7 +1,3 @@
-//AVISO
-//ESSE CODIGO É APENAS UM EXEMPLO, PARA EXECUTAR COPIE PARA A AREA DE CODIGO
-
-
 variaveis //são espaços da memoria reservados para armazenar valores obtidos pelo algoritmo
 	
   //numericos

@@ -1,9 +1,5 @@
-//AVISO
-//ESSE CODIGO É APENAS UM EXEMPLO, PARA EXECUTAR COPIE PARA A AREA DE CODIGO
-
 //ALGORITMO
 //Verificando a faixa etaria de idades presentes em um vetor
-
 
 variaveis
 	

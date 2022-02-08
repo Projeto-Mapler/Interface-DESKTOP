@@ -1,10 +1,5 @@
-//AVISO
-//ESSE CODIGO É APENAS UM EXEMPLO, PARA EXECUTAR COPIE PARA A AREA DE CODIGO
-
 //ALGORITMO
 //Escrevendo uma sequencia de 1 até 5 com repita
-
-
 
 variaveis
 	

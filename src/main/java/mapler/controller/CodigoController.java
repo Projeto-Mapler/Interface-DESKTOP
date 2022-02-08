@@ -295,10 +295,9 @@ public class CodigoController implements Initializable, Terminavel {
 	      if (tradAreaHighlighter != null)
 	          tradAreaHighlighter.stop();
 
-	        this.tradAreaHighlighter =
-	            estiloLinguagensService.setHighlighterLinguagem(area_trad, Linguagem.PORTUGOL);
+	        this.tradAreaHighlighter = estiloLinguagensService.setHighlighterLinguagem(area_trad, Linguagem.PORTUGOL);
 	      
-		  area_trad.appendText(content);
+		  area_trad.appendText("//AVISO\r\n//esse código é apenas um exemplo, para executar copie o exemplo para a área de código.\r\n" + content);
 		  split_horizontal.getItems().remove(ap_trad);
 		  split_horizontal.getItems().add(ap_trad);
 	    } catch (IOException exc) {
@@ -561,6 +560,7 @@ public class CodigoController implements Initializable, Terminavel {
 
     btn_home.setOnAction(e -> {
       try {
+    	arquivoService.newInstance();
         this.baseService.carregaTela(Templates.INICIO.getUrl());
       } catch (Exception e1) {
         // TODO Auto-generated catch block

@@ -1,7 +1,3 @@
-//AVISO
-//ESSE CODIGO É APENAS UM EXEMPLO, PARA EXECUTAR COPIE PARA A AREA DE CODIGO
-
-
 variaveis
 	
   //Variaveis do tipo Logico, armazenam resultado de expressoes logicas ( VERDADEIRO OU FALSO)
