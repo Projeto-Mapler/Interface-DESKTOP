@@ -5,6 +5,7 @@ public enum Templates {
   BASE("/view/tela_base.fxml"),
   CODIGO("/view/tela_codigo.fxml"),
   INICIO("/view/tela_inicio.fxml"),
+  FLUXOGRAMA("/view/tela_fluxograma.fxml"),
   SOBRE("/view/tela_sobre.fxml"),
   DEBUG("/view/tela_debug.fxml"),;  
   

@@ -21,6 +21,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import mapler.model.resource.Tema;
 import mapler.model.resource.Templates;
+import mapler.service.ArquivoFluxogramaService;
 import mapler.service.ArquivoService;
 import mapler.service.BaseService;
 import mapler.service.ConfigService;
@@ -50,6 +51,9 @@ public class InicioController implements Initializable {
 
 	@FXML
 	JFXButton btn_novo, btn_abrir, btn_aprender_repita;
+	
+	@FXML
+	JFXButton btn_novo_fluxog, btn_abrir_fluxog;
 
 	@FXML
 	AnchorPane ap_centerIncial, area_lateral, ap_area_foto;
@@ -76,7 +80,7 @@ public class InicioController implements Initializable {
 	HBox hb_exemplos;
 	
 	@FXML
-	Label lb_pri_logo, lb_sub_logo, lb_novo, lb_abrir, lb_tutoriais, lb_exemplos, lb_center1, lb_center2, lb_center3, lb_center4, lb_center5, lb_center6, lb_center7, lb_center8;
+	Label lb_pri_logo, lb_sub_logo, lb_novo, lb_novo_fluxog, lb_abrir, lb_abrir_fluxog, lb_tutoriais, lb_exemplos, lb_center1, lb_center2, lb_center3, lb_center4, lb_center5, lb_center6, lb_center7, lb_center8;
 	
 	@FXML
 	Circle cc_logo;
@@ -213,6 +217,28 @@ public class InicioController implements Initializable {
 			if (abriu) {
 				try {
 					BaseService.getInstancia().carregaTela(Templates.CODIGO.getUrl());
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		
+		btn_novo_fluxog.setOnAction(e -> {
+			// iniciarModoCodigo(null);
+			try {
+				BaseService.getInstancia().carregaTela(Templates.FLUXOGRAMA.getUrl());
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		});
+		
+		btn_abrir_fluxog.setOnAction(e -> {
+			boolean abriu = ArquivoFluxogramaService.getInstance().abrir();
+			if (abriu) {
+				try {
+					BaseService.getInstancia().carregaTela(Templates.FLUXOGRAMA.getUrl());
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -448,7 +474,9 @@ public class InicioController implements Initializable {
 	private void atualizarCss() {
 		btn_left_sobre.getStyleClass().add("btn_lateral");
 		lb_novo.getStyleClass().add("label_logo"); 
+		lb_novo_fluxog.getStyleClass().add("label_logo"); 
 		lb_abrir.getStyleClass().add("label_logo");
+		lb_abrir_fluxog.getStyleClass().add("label_logo");
 		lb_tutoriais.getStyleClass().add("label_logo");
 		lb_exemplos.getStyleClass().add("label_logo");
 		lb_center1.getStyleClass().add("label_logo");
@@ -463,6 +491,8 @@ public class InicioController implements Initializable {
 		area_lateral.getStyleClass().add("area_lateral");
 		btn_novo.getStyleClass().add("btn_lateral_inicio");
 		btn_abrir.getStyleClass().add("btn_lateral_inicio");
+		btn_abrir_fluxog.getStyleClass().add("btn_lateral_inicio");
+		btn_novo_fluxog.getStyleClass().add("btn_lateral_inicio");
 		btn_left_tutoriais.getStyleClass().add("btn_lateral_inicio");
 		btn_left_exemplos.getStyleClass().add("btn_lateral_inicio");
 		hb_exemplos.getStyleClass().add("area_central");
