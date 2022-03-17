@@ -22,7 +22,7 @@
                      <children>
                         <HBox prefWidth="200.0">
                            <children>
-                              <JFXButton contentDisplay="GRAPHIC_ONLY" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="26.0" style="-fx-background-color: #151515;">
+                              <JFXButton fx:id="btn_home" contentDisplay="GRAPHIC_ONLY" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="26.0" style="-fx-background-color: #151515;">
                                  <graphic>
                                     <FontAwesomeIcon fill="WHITE" glyphName="HOME" size="1.5em" />
                                  </graphic>

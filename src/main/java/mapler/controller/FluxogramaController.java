@@ -26,9 +26,14 @@ import mapler.fluxograma.figuras.Fim;
 import mapler.fluxograma.figuras.Inicio;
 import mapler.fluxograma.figuras.Processamento;
 import mapler.fluxograma.figuras.Saida;
+import mapler.model.resource.Estilos;
+import mapler.model.resource.Templates;
 import mapler.service.ArquivoFluxogramaService;
+import mapler.service.ArquivoService;
+import mapler.service.BaseService;
 import mapler.service.FigurasService;
 import mapler.service.InicioService;
+import mapler.util.CarregadorRecursos;
 
 /**
  * Controller para fluxograma.fxml
@@ -43,7 +48,7 @@ public class FluxogramaController implements Initializable {
   JFXButton btn_inicio, btn_fim, btn_decisao, btn_processamento, btn_entrada, btn_saida;
   
   @FXML
-  JFXButton btn_move, btn_associate, btn_remove;
+  JFXButton btn_move, btn_associate, btn_remove, btn_home;
   
   @FXML
   MenuItem mn_novo, mn_abrir, mn_salvar, mn_salvarcomo, mn_sair, mn_traduzir_pt, mn_sb_portugol, mn_sb_fluxogramas, mn_sobre;
@@ -59,6 +64,7 @@ public class FluxogramaController implements Initializable {
   private AnchorPane area_console;
   private FigurasService figurasService = new FigurasService();
   private InicioService inicialService;
+  private BaseService baseService;
   
   //estrutura dos dados
   private Fluxograma fluxograma;
@@ -70,6 +76,7 @@ public class FluxogramaController implements Initializable {
 	  this.fluxograma = Fluxograma.getInstancia();
 	  this.fluxograma.iniciaAssociacoes();
 	  this.inicialService = InicioService.getInstancia();
+	  this.baseService = BaseService.getInstancia();
   }
   
   @Override
@@ -128,6 +135,18 @@ public class FluxogramaController implements Initializable {
   }
   
   private void btns () {
+	  
+	  btn_home.setOnAction(e -> {
+	      try {
+	    	ArquivoFluxogramaService.getInstance().newInstance();
+	        this.baseService.carregaTela(Templates.INICIO.getUrl());
+	      } catch (Exception e1) {
+	        // TODO Auto-generated catch block
+	        e1.printStackTrace();
+	      }
+	    });
+
+	    btn_home.getStylesheets().add(CarregadorRecursos.get().getResourceExternalForm(Estilos.BOTOES.getUrl()));
 	  
 	  btn_minus.setOnAction(e -> { // minimizar aplicacao
 	      this.inicialService.minimizar();

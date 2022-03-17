@@ -27,6 +27,11 @@ public class ArquivoFluxogramaService {
 		return instance;
 	}
 	
+	public static ArquivoFluxogramaService newInstance() {
+		instance = new ArquivoFluxogramaService();
+		return instance;
+	}
+	
 	public boolean isArquivoAlterado() {
 		return isArquivoAlterado;
 	}
