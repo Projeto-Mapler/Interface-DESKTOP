@@ -80,7 +80,7 @@ public class InicioController implements Initializable {
 	HBox hb_exemplos;
 	
 	@FXML
-	Label lb_pri_logo, lb_sub_logo, lb_novo, lb_novo_fluxog, lb_abrir, lb_abrir_fluxog, lb_tutoriais, lb_exemplos, lb_center1, lb_center2, lb_center3, lb_center4, lb_center5, lb_center6, lb_center7, lb_center8;
+	Label lb_pri_logo, lb_sub_logo, lb_novo, lb_novo_fluxog, lb_abrir, lb_abrir_fluxog, lb_center1, lb_center2, lb_center3, lb_center4, lb_center5, lb_center6, lb_center7, lb_center8;
 	
 	@FXML
 	Circle cc_logo;
@@ -473,12 +473,12 @@ public class InicioController implements Initializable {
 	
 	private void atualizarCss() {
 		btn_left_sobre.getStyleClass().add("btn_lateral");
+		btn_left_tutoriais.getStyleClass().add("btn_lateral");
+		btn_left_exemplos.getStyleClass().add("btn_lateral");
 		lb_novo.getStyleClass().add("label_logo"); 
 		lb_novo_fluxog.getStyleClass().add("label_logo"); 
 		lb_abrir.getStyleClass().add("label_logo");
 		lb_abrir_fluxog.getStyleClass().add("label_logo");
-		lb_tutoriais.getStyleClass().add("label_logo");
-		lb_exemplos.getStyleClass().add("label_logo");
 		lb_center1.getStyleClass().add("label_logo");
 		lb_center2.getStyleClass().add("label_logo");
 		lb_center3.getStyleClass().add("label_logo");
@@ -493,8 +493,6 @@ public class InicioController implements Initializable {
 		btn_abrir.getStyleClass().add("btn_lateral_inicio");
 		btn_abrir_fluxog.getStyleClass().add("btn_lateral_inicio");
 		btn_novo_fluxog.getStyleClass().add("btn_lateral_inicio");
-		btn_left_tutoriais.getStyleClass().add("btn_lateral_inicio");
-		btn_left_exemplos.getStyleClass().add("btn_lateral_inicio");
 		hb_exemplos.getStyleClass().add("area_central");
 		ap_area_foto.getStyleClass().add("area_central");
 		ap_centerIncial.getStyleClass().add("area_inicio");
