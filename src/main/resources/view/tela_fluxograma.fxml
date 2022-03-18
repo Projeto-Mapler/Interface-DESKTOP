@@ -27,7 +27,7 @@
                                     <FontAwesomeIcon fill="WHITE" glyphName="HOME" size="1.5em" />
                                  </graphic>
                               </JFXButton>
-                              <MenuBar style="-fx-background-color: #151515;" HBox.hgrow="ALWAYS">
+                              <MenuBar fx:id="m_bar" style="-fx-background-color: #151515;" HBox.hgrow="ALWAYS">
                                 <menus>
                                   <Menu mnemonicParsing="false" text="Arquivo">
                                     <items>
