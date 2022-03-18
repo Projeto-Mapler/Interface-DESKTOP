@@ -10,6 +10,7 @@ public class Tradutor {
 		
 		String blocoVariaveis = "variaveis\n  variavel: cadeia;\n";
 		String blocoInicio = "\ninicio\n";
+		String traducao;
 		
 		AnchorPane inicio = fluxograma.getInicio();
 		AnchorPane fim = fluxograma.getFim();
@@ -18,7 +19,9 @@ public class Tradutor {
 			return null;
 		}
 		
-		return blocoVariaveis + blocoInicio + Tradutor.getTrechoCodigo(fluxograma, inicio) + "\nfim";
+		traducao = blocoVariaveis + blocoInicio + Tradutor.getTrechoCodigo(fluxograma, inicio) + "\nfim";
+		traducao = traducao.replace("enquanto varivavel nao \"valor\" faca\r\nfim enquanto;\n", "");
+		return traducao;
 	}
 	
 	private static String getCodigoLoop(Fluxograma fluxo, AnchorPane inicial, AnchorPane atual) {
@@ -88,7 +91,7 @@ public class Tradutor {
 		
 		//buscar possivel loop 
 		ArrayList<Associacao> two = fluxo.getAssociacoesByPane2(ap);
-		if(two.size()>=2) {
+		if(two.size()>=2 && !ap.getId().contains("fim")) {
 			String isLoop = "";
 			
 			//partindo de ap, chega até ap?
@@ -103,9 +106,9 @@ public class Tradutor {
 			}
 			
 			
-			if(!isLoop.equals("false") || isLoop.equals("")) {
+			if(!isLoop.equals("false") || !isLoop.equals("")) {
 				loop = 1;
-				trecho = "enquanto varivavel nao \"valor\" faca\n" + isLoop + "fim enquanto;";
+				trecho = "enquanto varivavel nao \"valor\" faca\n" + isLoop + "fim enquanto;\n";
 			}
 		}
 		
