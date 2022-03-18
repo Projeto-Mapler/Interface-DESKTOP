@@ -80,7 +80,7 @@ public class FluxogramaController implements Initializable {
 
 	public FluxogramaController() throws Exception {
 		this.fluxograma = Fluxograma.getInstancia();
-		this.fluxograma.iniciaAssociacoes();
+		this.fluxograma.reiniciar();
 		this.inicialService = InicioService.getInstancia();
 		this.baseService = BaseService.getInstancia();
 		this.resize = ResizeListener.getInstancia();
@@ -96,6 +96,11 @@ public class FluxogramaController implements Initializable {
 		btn_move.setStyle("-fx-border-color: #fff;");
 		btn_associate.setStyle("");
 		btn_remove.setStyle("");
+		
+		String conteudo = ArquivoFluxogramaService.getInstance().getConteudo();
+		if (conteudo != null) {
+			carregarFluxogramaDeArquivo();
+		}
 
 	}
 
@@ -222,18 +227,7 @@ public class FluxogramaController implements Initializable {
 		mn_abrir.setOnAction(e -> {
 			boolean boo = ArquivoFluxogramaService.getInstance().abrir();
 			if (boo) {
-				String aberto = ArquivoFluxogramaService.getInstance().getConteudo();
-				root.getChildren().clear();
-				fluxograma.iniciaAssociacoes();
-				fluxograma.setFim(null);
-				fluxograma.setInicio(null);
-				root.getChildren().setAll(new FMX().string2Pane(aberto, fluxograma, figurasService).getChildren());
-				for (Associacao a : fluxograma.getAssociacoes()) {
-					figurasService.arrastaItens(root, a.getPane1(), a.getTipo_pane1(), fluxograma);
-					figurasService.arrastaItens(root, a.getPane2(), a.getTipo_pane2(), fluxograma);
-					figurasService.criar_linha(root, fluxograma, a);
-				}
-				addConsole();
+				carregarFluxogramaDeArquivo();
 			}
 		});
 
@@ -249,7 +243,17 @@ public class FluxogramaController implements Initializable {
 
 		mn_traduzir_pt.setOnAction(e -> {
 			String portugol = Tradutor.getTraducao2Portugol(fluxograma);
-			System.out.println("Traducao:\n" + portugol);
+			ArquivoFluxogramaService.getInstance().setTraducao(portugol);
+			
+			if (portugol != null) {
+				try {
+					BaseService.getInstancia().carregaTela(Templates.CODIGO.getUrl());
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+			// System.out.println("Traducao:\n" + portugol);
 		});
 
 		btn_processamento.setOnAction(e -> {
@@ -330,6 +334,22 @@ public class FluxogramaController implements Initializable {
 		});
 
 	};
+
+	private void carregarFluxogramaDeArquivo() {
+		// TODO Auto-generated method stub
+		String aberto = ArquivoFluxogramaService.getInstance().getConteudo();
+		root.getChildren().clear();
+		fluxograma.iniciaAssociacoes();
+		fluxograma.setFim(null);
+		fluxograma.setInicio(null);
+		root.getChildren().setAll(new FMX().string2Pane(aberto, fluxograma, figurasService).getChildren());
+		for (Associacao a : fluxograma.getAssociacoes()) {
+			figurasService.arrastaItens(root, a.getPane1(), a.getTipo_pane1(), fluxograma);
+			figurasService.arrastaItens(root, a.getPane2(), a.getTipo_pane2(), fluxograma);
+			figurasService.criar_linha(root, fluxograma, a);
+		}
+		addConsole();
+	}
 
 	private void cria_figura(AnchorPane ap, int tipo) {
 		ap.setLayoutX(0);

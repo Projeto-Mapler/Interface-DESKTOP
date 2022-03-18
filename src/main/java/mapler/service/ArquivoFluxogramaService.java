@@ -14,6 +14,7 @@ public class ArquivoFluxogramaService {
 	private final FileChooser fileChooser;
 	private boolean isArquivoAlterado = false;
 	private static ArquivoFluxogramaService instance;
+	private String traducao;
 
 	private ArquivoFluxogramaService() {
 		this.fileChooser = new FileChooser();
@@ -32,6 +33,14 @@ public class ArquivoFluxogramaService {
 		return instance;
 	}
 	
+	public String getTraducao() {
+		return traducao;
+	}
+
+	public void setTraducao(String traducao) {
+		this.traducao = traducao;
+	}
+
 	public boolean isArquivoAlterado() {
 		return isArquivoAlterado;
 	}

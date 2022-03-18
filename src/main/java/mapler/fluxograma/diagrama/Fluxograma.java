@@ -65,7 +65,6 @@ public class Fluxograma {
 	}
 	
 	public void reiniciar() {
-		instancia = new Fluxograma();
 		instancia.iniciaAssociacoes();
 		instancia.setFim(null);
 		instancia.setInicio(null);

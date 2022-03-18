@@ -62,6 +62,7 @@ import mapler.model.highlight.SyntaxHighlighter;
 import mapler.model.resource.Estilos;
 import mapler.model.resource.Tema;
 import mapler.model.resource.Templates;
+import mapler.service.ArquivoFluxogramaService;
 import mapler.service.ArquivoService;
 import mapler.service.BaseService;
 import mapler.service.ConfigService;
@@ -185,6 +186,12 @@ public class CodigoController implements Initializable, Terminavel {
     if (conteudo != null) {
       area_cod.clear();
       area_cod.appendText(conteudo);
+    }else {
+    	conteudo = ArquivoFluxogramaService.getInstance().getTraducao();
+    	if (conteudo != null) {
+    	      area_cod.clear();
+    	      area_cod.appendText(conteudo);
+    	}
     }
 
     area_cod.textProperty().addListener(new ChangeListener<String>() {
