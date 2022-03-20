@@ -1,12 +1,19 @@
 package mapler.controller;
 
+import static javafx.scene.input.KeyCode.S;
+import static org.fxmisc.wellbehaved.event.EventPattern.keyPressed;
+
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import org.fxmisc.wellbehaved.event.InputMap;
+import org.fxmisc.wellbehaved.event.Nodes;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
@@ -15,6 +22,8 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
 import mapler.fluxograma.diagrama.Associacao;
@@ -33,6 +42,7 @@ import mapler.model.resource.Templates;
 import mapler.service.ArquivoFluxogramaService;
 import mapler.service.ArquivoService;
 import mapler.service.BaseService;
+import mapler.service.ConfigService;
 import mapler.service.FigurasService;
 import mapler.service.InicioService;
 import mapler.util.CarregadorRecursos;
@@ -90,13 +100,14 @@ public class FluxogramaController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
 		btns();
+		setEventos();
 		root.getChildren().add(canvas);
 		root.setCursor(Cursor.CLOSED_HAND);
 		addConsole();
 		btn_move.setStyle("-fx-border-color: #fff;");
 		btn_associate.setStyle("");
 		btn_remove.setStyle("");
-		
+
 		String conteudo = ArquivoFluxogramaService.getInstance().getConteudo();
 		if (conteudo != null) {
 			carregarFluxogramaDeArquivo();
@@ -144,6 +155,29 @@ public class FluxogramaController implements Initializable {
 			texto.clear();
 			texto.setText("<< Console >>");
 		});
+	}
+
+	private void setEventos() {
+
+		InputMap<Event> salvar = InputMap
+				.consume(keyPressed(S, KeyCodeCombination.CONTROL_DOWN, KeyCodeCombination.SHORTCUT_ANY), e -> {
+					ArquivoFluxogramaService.getInstance().salvar(carregarFluxograma());
+				}
+
+				);
+
+		InputMap<Event> salvarComo = InputMap.consume(keyPressed(S, KeyCodeCombination.CONTROL_DOWN,
+				KeyCodeCombination.SHIFT_DOWN, KeyCodeCombination.SHORTCUT_ANY), e -> {
+					FMX aux = new FMX();
+					aux.fluxograma2String(root, fluxograma);
+					ArquivoFluxogramaService.getInstance().salvarComo(aux.getString());
+				}
+
+		);
+
+		Nodes.addInputMap(baseService.getJanela(), salvar);
+		Nodes.addInputMap(baseService.getJanela(), salvarComo);
+
 	}
 
 	private void btns() {
@@ -244,7 +278,7 @@ public class FluxogramaController implements Initializable {
 		mn_traduzir_pt.setOnAction(e -> {
 			String portugol = Tradutor.getTraducao2Portugol(fluxograma);
 			ArquivoFluxogramaService.getInstance().setTraducao(portugol);
-			
+
 			if (portugol != null) {
 				try {
 					BaseService.getInstancia().carregaTela(Templates.CODIGO.getUrl());
