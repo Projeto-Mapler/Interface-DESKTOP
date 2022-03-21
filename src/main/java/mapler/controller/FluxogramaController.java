@@ -39,6 +39,7 @@ import mapler.fluxograma.figuras.Saida;
 import mapler.model.ResizeListener;
 import mapler.model.resource.Estilos;
 import mapler.model.resource.Templates;
+import mapler.service.AlertaService;
 import mapler.service.ArquivoFluxogramaService;
 import mapler.service.ArquivoService;
 import mapler.service.BaseService;
@@ -276,18 +277,23 @@ public class FluxogramaController implements Initializable {
 		});
 
 		mn_traduzir_pt.setOnAction(e -> {
-			String portugol = Tradutor.getTraducao2Portugol(fluxograma);
-			ArquivoFluxogramaService.getInstance().setTraducao(portugol);
+			int resp = AlertaService
+					.showConfirm("O fluxograma será transformado em portugol. Deseja salvar o esquema do fluxograma?");
+			if (resp == 1) {
+				ArquivoFluxogramaService.getInstance().salvar(carregarFluxograma());
+			} else if (resp != -1) {
+				String portugol = Tradutor.getTraducao2Portugol(fluxograma);
+				ArquivoFluxogramaService.getInstance().setTraducao(portugol);
 
-			if (portugol != null) {
-				try {
-					BaseService.getInstancia().carregaTela(Templates.CODIGO.getUrl());
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+				if (portugol != null) {
+					try {
+						BaseService.getInstancia().carregaTela(Templates.CODIGO.getUrl());
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
 				}
 			}
-			// System.out.println("Traducao:\n" + portugol);
+
 		});
 
 		btn_processamento.setOnAction(e -> {
