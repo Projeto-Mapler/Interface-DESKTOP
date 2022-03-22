@@ -112,7 +112,7 @@ public class FluxogramaController implements Initializable {
 
 		String conteudo = ArquivoFluxogramaService.getInstance().getConteudo();
 		if (conteudo != null) {
-			carregarFluxogramaDeArquivo();
+			carregarFluxogramaDeArquivo(this.textoConsole);
 		}
 
 	}
@@ -264,7 +264,7 @@ public class FluxogramaController implements Initializable {
 		mn_abrir.setOnAction(e -> {
 			boolean boo = ArquivoFluxogramaService.getInstance().abrir();
 			if (boo) {
-				carregarFluxogramaDeArquivo();
+				carregarFluxogramaDeArquivo(this.textoConsole);
 			}
 		});
 
@@ -380,14 +380,14 @@ public class FluxogramaController implements Initializable {
 
 	};
 
-	private void carregarFluxogramaDeArquivo() {
+	private void carregarFluxogramaDeArquivo(JFXTextArea console) {
 		// TODO Auto-generated method stub
 		String aberto = ArquivoFluxogramaService.getInstance().getConteudo();
 		root.getChildren().clear();
 		fluxograma.iniciaAssociacoes();
 		fluxograma.setFim(null);
 		fluxograma.setInicio(null);
-		root.getChildren().setAll(new FMX().string2Pane(aberto, fluxograma, figurasService).getChildren());
+		root.getChildren().setAll(new FMX().string2Pane(aberto, fluxograma, figurasService,  console).getChildren());
 		for (Associacao a : fluxograma.getAssociacoes()) {
 			figurasService.arrastaItens(root, a.getPane1(), a.getTipo_pane1(), fluxograma, this.textoConsole);
 			figurasService.arrastaItens(root, a.getPane2(), a.getTipo_pane2(), fluxograma, this.textoConsole);
