@@ -2,6 +2,8 @@ package mapler.service;
 
 import java.util.ArrayList;
 
+import com.jfoenix.controls.JFXTextArea;
+
 import javafx.event.EventHandler;
 import javafx.scene.Cursor;
 import javafx.scene.control.Label;
@@ -54,7 +56,7 @@ public class FigurasService {
 		this.mouse_status = mouse_status;
 	}
 
-	public void arrastaItens (AnchorPane root, final AnchorPane figuras, int tipo, Fluxograma fluxograma) {
+	public void arrastaItens (AnchorPane root, final AnchorPane figuras, int tipo, Fluxograma fluxograma, JFXTextArea console) {
 		
 	      figuras.setOnMousePressed ( new EventHandler < MouseEvent > ( ) {
 	           @Override
@@ -135,6 +137,7 @@ public class FigurasService {
 	         			  boolean bloquear = fluxograma.bloquearAssociacao(as);
 	         			  if(bloquear) {
 	         				  //sendMsgConsole("associacao bloqueada.");
+	         				  console.appendText("\nassociacao bloqueada.");
 	         				  associarPane = null;
 	         				  associarTipo = 0;
 	         			  }else {

@@ -85,6 +85,7 @@ public class FluxogramaController implements Initializable {
 
 	// estrutura dos dados
 	private Fluxograma fluxograma;
+	private JFXTextArea textoConsole;
 
 	// console
 	private JFXTextArea texto;
@@ -104,7 +105,7 @@ public class FluxogramaController implements Initializable {
 		setEventos();
 		root.getChildren().add(canvas);
 		root.setCursor(Cursor.CLOSED_HAND);
-		addConsole();
+		this.textoConsole = addConsole();
 		btn_move.setStyle("-fx-border-color: #fff;");
 		btn_associate.setStyle("");
 		btn_remove.setStyle("");
@@ -122,7 +123,7 @@ public class FluxogramaController implements Initializable {
 		return processador_fluxograma;
 	}
 
-	private void addConsole() {
+	private JFXTextArea addConsole() {
 		area_console = new AnchorPane();
 		area_console.setPrefSize(200, 100);
 
@@ -156,6 +157,7 @@ public class FluxogramaController implements Initializable {
 			texto.clear();
 			texto.setText("<< Console >>");
 		});
+		return texto;
 	}
 
 	private void setEventos() {
@@ -253,7 +255,7 @@ public class FluxogramaController implements Initializable {
 			if (ArquivoFluxogramaService.getInstance().checkAlteracoesNaoSalvas()) {
 				ArquivoFluxogramaService.getInstance().fechar();
 				root.getChildren().clear();
-				addConsole();
+				this.textoConsole = addConsole();
 				fluxograma.reiniciar();
 				fluxograma = Fluxograma.getInstancia();
 			}
@@ -277,21 +279,24 @@ public class FluxogramaController implements Initializable {
 		});
 
 		mn_traduzir_pt.setOnAction(e -> {
-			int resp = AlertaService
-					.showConfirm("O fluxograma será transformado em portugol. Deseja salvar o esquema do fluxograma?");
+			int resp = AlertaService.showConfirm("O fluxograma será transformado em portugol. Deseja salvar o esquema do fluxograma?");
 			if (resp == 1) {
 				ArquivoFluxogramaService.getInstance().salvar(carregarFluxograma());
-			} else if (resp != -1) {
-				String portugol = Tradutor.getTraducao2Portugol(fluxograma);
-				ArquivoFluxogramaService.getInstance().setTraducao(portugol);
-
-				if (portugol != null) {
-					try {
-						BaseService.getInstancia().carregaTela(Templates.CODIGO.getUrl());
-					} catch (Exception e1) {
-						e1.printStackTrace();
-					}
+				
+			} else if (resp == -1) {
+				return;
+			}
+			
+			String portugol = Tradutor.getTraducao2Portugol(fluxograma);
+			ArquivoFluxogramaService.getInstance().setTraducao(portugol);
+			if (portugol != null) {
+				try {
+					BaseService.getInstancia().carregaTela(Templates.CODIGO.getUrl());
+				} catch (Exception e1) {
+					e1.printStackTrace();
 				}
+			}else {
+				AlertaService.showAviso("Fluxograma invalido para traducao.");
 			}
 
 		});
@@ -384,18 +389,18 @@ public class FluxogramaController implements Initializable {
 		fluxograma.setInicio(null);
 		root.getChildren().setAll(new FMX().string2Pane(aberto, fluxograma, figurasService).getChildren());
 		for (Associacao a : fluxograma.getAssociacoes()) {
-			figurasService.arrastaItens(root, a.getPane1(), a.getTipo_pane1(), fluxograma);
-			figurasService.arrastaItens(root, a.getPane2(), a.getTipo_pane2(), fluxograma);
+			figurasService.arrastaItens(root, a.getPane1(), a.getTipo_pane1(), fluxograma, this.textoConsole);
+			figurasService.arrastaItens(root, a.getPane2(), a.getTipo_pane2(), fluxograma, this.textoConsole);
 			figurasService.criar_linha(root, fluxograma, a);
 		}
-		addConsole();
+		this.textoConsole = addConsole();
 	}
 
 	private void cria_figura(AnchorPane ap, int tipo) {
 		ap.setLayoutX(0);
 		ap.setLayoutY(0);
 		// arrastaItens ( ap , tipo );
-		figurasService.arrastaItens(root, ap, tipo, fluxograma);
+		figurasService.arrastaItens(root, ap, tipo, fluxograma, this.textoConsole);
 		root.getChildren().add(ap);
 	}
 
