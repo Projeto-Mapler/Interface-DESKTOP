@@ -134,10 +134,8 @@ public class FigurasService {
 	         				 as = new Associacao(associarPane, associarTipo, figuras, tipo);
 	         			  }
 	         			  
-	         			  boolean bloquear = fluxograma.bloquearAssociacao(as);
+	         			  boolean bloquear = fluxograma.bloquearAssociacao(as, console);
 	         			  if(bloquear) {
-	         				  //sendMsgConsole("associacao bloqueada.");
-	         				  console.appendText("\nassociacao bloqueada.");
 	         				  associarPane = null;
 	         				  associarTipo = 0;
 	         			  }else {

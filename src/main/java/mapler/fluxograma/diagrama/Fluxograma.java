@@ -2,6 +2,8 @@ package mapler.fluxograma.diagrama;
 
 import java.util.ArrayList;
 
+import com.jfoenix.controls.JFXTextArea;
+
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import mapler.model.resource.Tipos;
@@ -125,7 +127,7 @@ public class Fluxograma {
 		this.fluxo.remove(as);
 	}
 	
-	public boolean bloquearAssociacao(Associacao as) {
+	public boolean bloquearAssociacao(Associacao as, JFXTextArea console) {
 		
 		//serie de verificacoes com os 2 panes, caso passe em todas é liberado adicionar a associacao
 		
@@ -136,6 +138,7 @@ public class Fluxograma {
 				if(a.getPane1().equals(as.getPane1())) {
 					cont++;
 					if(cont >= 2) {
+						console.appendText("\nAssociacao bloqueada.\nMOTIVO -> Decisao tem somente dois caminhos.");
 						return true;
 					}
 				}
@@ -143,6 +146,11 @@ public class Fluxograma {
 		}else {
 			for(Associacao a : fluxo) {
 				if(a.getPane1().equals(as.getPane1())) {
+					if(a.getTipo_pane1() == Tipos.INICIO.getValue()) {
+						console.appendText("\nAssociacao bloqueada.\nMOTIVO -> O fluxo não pode retornar para antes do inicio.");
+					}else {
+						console.appendText("\nAssociacao bloqueada.\nMOTIVO -> O fluxo não pode seguir mais de um caminho.");
+					}
 					return true;
 				}
 			}
