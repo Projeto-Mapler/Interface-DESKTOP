@@ -128,11 +128,7 @@ public class FigurasService {
 	         	  }else if(mouse_status == 3) {
 	         		  if(associarPane != null) {
 	         			 Associacao as;
-	         			  if(associarTipo == 4 || tipo == 5) {
-	         				 as = new Associacao(figuras, tipo, associarPane, associarTipo);
-	         			  }else {
-	         				 as = new Associacao(associarPane, associarTipo, figuras, tipo);
-	         			  }
+	         			  as = new Associacao(associarPane, associarTipo, figuras, tipo);
 	         			  
 	         			  boolean bloquear = fluxograma.bloquearAssociacao(as, console);
 	         			  if(bloquear) {
