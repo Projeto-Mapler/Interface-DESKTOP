@@ -2,11 +2,10 @@ package mapler.fluxograma.diagrama;
 
 import java.util.ArrayList;
 
-import com.jfoenix.controls.JFXTextArea;
-
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import mapler.model.resource.Tipos;
+import mapler.service.ConsoleService;
 
 public class Fluxograma {
 
@@ -15,9 +14,12 @@ public class Fluxograma {
 	private AnchorPane inicio;
 	private AnchorPane fim;
 	private ArrayList<Associacao> fluxo;
+	
+	private ConsoleService consoleService;
 
 	public Fluxograma() {
 		// TODO Auto-generated constructor stub
+		this.consoleService = ConsoleService.getInstancia();
 	}
 
 	public static Fluxograma getInstancia() {
@@ -128,19 +130,15 @@ public class Fluxograma {
 		this.fluxo.remove(as);
 	}
 
-	public boolean bloquearAssociacao(Associacao as, JFXTextArea console) {
+	public boolean bloquearAssociacao(Associacao as) {
 
 		// serie de verificacoes com os 2 panes, caso passe em todas é liberado
 		// adicionar a associacao
 		if (as.getTipo_pane2() == Tipos.INICIO.getValue()) {
-			console.clear();
-			console.setText("<< Console >>");
-			console.appendText("\nAssociacao bloqueada.\nMOTIVO -> O fluxo não pode retornar para o ponto de inicio.");
+			this.consoleService.sendMensagem("\nAssociacao bloqueada.\nMOTIVO -> O fluxo não pode retornar para o ponto de inicio.");
 			return true;
 		} else if (as.getTipo_pane1() == Tipos.FIM.getValue()) {
-			console.clear();
-			console.setText("<< Console >>");
-			console.appendText("\nAssociacao bloqueada.\nMOTIVO -> O fluxo não pode partir de fim.");
+			this.consoleService.sendMensagem("\nAssociacao bloqueada.\nMOTIVO -> O fluxo não pode partir de fim.");
 			return true;
 		}
 
@@ -152,9 +150,7 @@ public class Fluxograma {
 				if (a.getPane1().equals(as.getPane1())) {
 					cont++;
 					if (cont >= 2) {
-						console.clear();
-						console.setText("<< Console >>");
-						console.appendText("\nAssociacao bloqueada.\nMOTIVO -> Decisao tem somente dois caminhos.");
+						this.consoleService.sendMensagem("\nAssociacao bloqueada.\nMOTIVO -> Decisao tem somente dois caminhos.");
 						return true;
 					}
 				}
@@ -162,10 +158,7 @@ public class Fluxograma {
 		} else {
 			for (Associacao a : fluxo) {
 				if (a.getPane1().equals(as.getPane1())) {
-					console.clear();
-					console.setText("<< Console >>");
-					console.appendText(
-							"\nAssociacao bloqueada.\nMOTIVO -> O fluxo não pode seguir mais de um caminho.");
+					this.consoleService.sendMensagem("\nAssociacao bloqueada.\nMOTIVO -> O fluxo não pode seguir mais de um caminho.");
 
 					return true;
 				}

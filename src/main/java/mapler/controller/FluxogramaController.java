@@ -44,6 +44,7 @@ import mapler.service.ArquivoFluxogramaService;
 import mapler.service.ArquivoService;
 import mapler.service.BaseService;
 import mapler.service.ConfigService;
+import mapler.service.ConsoleService;
 import mapler.service.FigurasService;
 import mapler.service.InicioService;
 import mapler.util.CarregadorRecursos;
@@ -77,7 +78,7 @@ public class FluxogramaController implements Initializable {
 	GraphicsContext ctx = canvas.getGraphicsContext2D();
 	double x = 0, y = 0;
 
-	private AnchorPane area_console;
+	
 	private FigurasService figurasService = new FigurasService();
 	private InicioService inicialService;
 	private BaseService baseService;
@@ -85,10 +86,10 @@ public class FluxogramaController implements Initializable {
 
 	// estrutura dos dados
 	private Fluxograma fluxograma;
-	private JFXTextArea textoConsole;
-
-	// console
-	private JFXTextArea texto;
+	
+	//console
+	private ConsoleService consoleService;
+	
 
 	public FluxogramaController() throws Exception {
 		this.fluxograma = Fluxograma.getInstancia();
@@ -96,6 +97,7 @@ public class FluxogramaController implements Initializable {
 		this.inicialService = InicioService.getInstancia();
 		this.baseService = BaseService.getInstancia();
 		this.resize = ResizeListener.getInstancia();
+		this.consoleService.getInstancia();
 	}
 
 	@Override
@@ -105,14 +107,14 @@ public class FluxogramaController implements Initializable {
 		setEventos();
 		root.getChildren().add(canvas);
 		root.setCursor(Cursor.CLOSED_HAND);
-		this.textoConsole = addConsole();
+		this.consoleService.getInstancia().startConsole(root);
 		btn_move.setStyle("-fx-border-color: #fff;");
 		btn_associate.setStyle("");
 		btn_remove.setStyle("");
 
 		String conteudo = ArquivoFluxogramaService.getInstance().getConteudo();
 		if (conteudo != null) {
-			carregarFluxogramaDeArquivo(this.textoConsole);
+			carregarFluxogramaDeArquivo(this.consoleService.getInstancia().getTextoConsole());
 		}
 
 	}
@@ -121,43 +123,6 @@ public class FluxogramaController implements Initializable {
 		FMX processador_fluxograma = new FMX();
 		processador_fluxograma.fluxograma2String(root, fluxograma);
 		return processador_fluxograma;
-	}
-
-	private JFXTextArea addConsole() {
-		area_console = new AnchorPane();
-		area_console.setPrefSize(200, 100);
-
-		root.getChildren().add(area_console);
-		root.setBottomAnchor(area_console, 0.0);
-		root.setRightAnchor(area_console, 0.0);
-
-		texto = new JFXTextArea();
-		texto.setEditable(false);
-		texto.setText("<< Console >>");
-		texto.setStyle("-fx-background-color: #a7aabe;");
-
-		JFXButton btn_clear_console = new JFXButton(" ");
-		btn_clear_console.setStyle("-fx-background-color: #AAA;");
-		FontAwesomeIcon icon = new FontAwesomeIcon();
-		icon.setGlyphName("FILE_EXCEL_ALT");
-		btn_clear_console.setGraphic(icon);
-		btn_clear_console.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
-
-		area_console.getChildren().add(texto);
-		area_console.setBottomAnchor(texto, 2.0);
-		area_console.setLeftAnchor(texto, 10.0);
-		area_console.setRightAnchor(texto, 10.0);
-		area_console.setTopAnchor(texto, 2.0);
-
-		area_console.getChildren().add(btn_clear_console);
-		area_console.setRightAnchor(btn_clear_console, 11.0);
-		area_console.setTopAnchor(btn_clear_console, 3.0);
-
-		btn_clear_console.setOnAction(e -> {
-			texto.clear();
-			texto.setText("<< Console >>");
-		});
-		return texto;
 	}
 
 	private void setEventos() {
@@ -255,7 +220,7 @@ public class FluxogramaController implements Initializable {
 			if (ArquivoFluxogramaService.getInstance().checkAlteracoesNaoSalvas()) {
 				ArquivoFluxogramaService.getInstance().fechar();
 				root.getChildren().clear();
-				this.textoConsole = addConsole();
+				this.consoleService.getInstancia().startConsole(root);
 				fluxograma.reiniciar();
 				fluxograma = Fluxograma.getInstancia();
 			}
@@ -264,7 +229,7 @@ public class FluxogramaController implements Initializable {
 		mn_abrir.setOnAction(e -> {
 			boolean boo = ArquivoFluxogramaService.getInstance().abrir();
 			if (boo) {
-				carregarFluxogramaDeArquivo(this.textoConsole);
+				carregarFluxogramaDeArquivo(this.consoleService.getInstancia().getTextoConsole());
 			}
 		});
 
@@ -389,23 +354,19 @@ public class FluxogramaController implements Initializable {
 		fluxograma.setInicio(null);
 		root.getChildren().setAll(new FMX().string2Pane(aberto, fluxograma, figurasService,  console).getChildren());
 		for (Associacao a : fluxograma.getAssociacoes()) {
-			figurasService.arrastaItens(root, a.getPane1(), a.getTipo_pane1(), fluxograma, this.textoConsole);
-			figurasService.arrastaItens(root, a.getPane2(), a.getTipo_pane2(), fluxograma, this.textoConsole);
+			figurasService.arrastaItens(root, a.getPane1(), a.getTipo_pane1(), fluxograma);
+			figurasService.arrastaItens(root, a.getPane2(), a.getTipo_pane2(), fluxograma);
 			figurasService.criar_linha(root, fluxograma, a);
 		}
-		this.textoConsole = addConsole();
+		this.consoleService.getInstancia().startConsole(root);
 	}
 
 	private void cria_figura(AnchorPane ap, int tipo) {
 		ap.setLayoutX(0);
 		ap.setLayoutY(0);
 		// arrastaItens ( ap , tipo );
-		figurasService.arrastaItens(root, ap, tipo, fluxograma, this.textoConsole);
+		figurasService.arrastaItens(root, ap, tipo, fluxograma);
 		root.getChildren().add(ap);
-	}
-
-	private void sendMsgConsole(String msg) {
-		texto.appendText("\n" + msg);
 	}
 
 }

@@ -56,7 +56,7 @@ public class FigurasService {
 		this.mouse_status = mouse_status;
 	}
 
-	public void arrastaItens (AnchorPane root, final AnchorPane figuras, int tipo, Fluxograma fluxograma, JFXTextArea console) {
+	public void arrastaItens (AnchorPane root, final AnchorPane figuras, int tipo, Fluxograma fluxograma) {
 		
 	      figuras.setOnMousePressed ( new EventHandler < MouseEvent > ( ) {
 	           @Override
@@ -130,7 +130,7 @@ public class FigurasService {
 	         			 Associacao as;
 	         			  as = new Associacao(associarPane, associarTipo, figuras, tipo);
 	         			  
-	         			  boolean bloquear = fluxograma.bloquearAssociacao(as, console);
+	         			  boolean bloquear = fluxograma.bloquearAssociacao(as);
 	         			  if(bloquear) {
 	         				  associarPane = null;
 	         				  associarTipo = 0;
