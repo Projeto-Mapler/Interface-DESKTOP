@@ -11,7 +11,7 @@
          <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label text="----Saida----" />
+                  <Label text="Saida" />
                </children>
             </HBox>
          </children>

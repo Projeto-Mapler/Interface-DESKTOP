@@ -11,7 +11,7 @@
          <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label rotate="-45.0" text="---Decisao---" />
+                  <Label rotate="-45.0" text="Decisao" />
                </children>
             </HBox>
          </children>
