@@ -20,11 +20,14 @@ import javafx.scene.Cursor;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.ContentDisplay;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Paint;
 import mapler.fluxograma.diagrama.Associacao;
 import mapler.fluxograma.diagrama.FMX;
@@ -38,6 +41,7 @@ import mapler.fluxograma.figuras.Processamento;
 import mapler.fluxograma.figuras.Saida;
 import mapler.model.ResizeListener;
 import mapler.model.resource.Estilos;
+import mapler.model.resource.Tema;
 import mapler.model.resource.Templates;
 import mapler.service.AlertaService;
 import mapler.service.ArquivoFluxogramaService;
@@ -69,16 +73,27 @@ public class FluxogramaController implements Initializable {
 
 	@FXML
 	MenuItem mn_novo, mn_abrir, mn_salvar, mn_salvarcomo, mn_sair, mn_traduzir_pt, mn_sb_portugol, mn_sb_fluxogramas,
-			mn_sobre;
+			mn_sobre, mi_cf_dark, mi_cf_light, mi_cf_pb;
+	
+	@FXML
+    FontAwesomeIcon icon_move, icon_associate, icon_remove, icon_inicio, icon_entrada, icon_saida, icon_decisao, icon_processamento, icon_fim;
 
 	@FXML
+	Label lb_figuras;
+	
+	@FXML
+	HBox hb_figuras;
+	
+	@FXML
 	AnchorPane root;
+
+	@FXML
+	BorderPane bd_base;
 
 	Canvas canvas = new Canvas(600, 300);
 	GraphicsContext ctx = canvas.getGraphicsContext2D();
 	double x = 0, y = 0;
 
-	
 	private FigurasService figurasService = new FigurasService();
 	private InicioService inicialService;
 	private BaseService baseService;
@@ -86,10 +101,9 @@ public class FluxogramaController implements Initializable {
 
 	// estrutura dos dados
 	private Fluxograma fluxograma;
-	
-	//console
+
+	// console
 	private ConsoleService consoleService;
-	
 
 	public FluxogramaController() throws Exception {
 		this.fluxograma = Fluxograma.getInstancia();
@@ -108,9 +122,7 @@ public class FluxogramaController implements Initializable {
 		root.getChildren().add(canvas);
 		root.setCursor(Cursor.CLOSED_HAND);
 		this.consoleService.getInstancia().startConsole(root);
-		btn_move.setStyle("-fx-border-color: #fff;");
-		btn_associate.setStyle("");
-		btn_remove.setStyle("");
+		atualizarCss();
 
 		String conteudo = ArquivoFluxogramaService.getInstance().getConteudo();
 		if (conteudo != null) {
@@ -244,14 +256,15 @@ public class FluxogramaController implements Initializable {
 		});
 
 		mn_traduzir_pt.setOnAction(e -> {
-			int resp = AlertaService.showConfirm("O fluxograma será transformado em portugol. Deseja salvar o esquema do fluxograma?");
+			int resp = AlertaService
+					.showConfirm("O fluxograma será transformado em portugol. Deseja salvar o esquema do fluxograma?");
 			if (resp == 1) {
 				ArquivoFluxogramaService.getInstance().salvar(carregarFluxograma());
-				
+
 			} else if (resp == -1) {
 				return;
 			}
-			
+
 			String portugol = Tradutor.getTraducao2Portugol(fluxograma);
 			ArquivoFluxogramaService.getInstance().setTraducao(portugol);
 			if (portugol != null) {
@@ -260,11 +273,26 @@ public class FluxogramaController implements Initializable {
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
-			}else {
+			} else {
 				AlertaService.showAviso("Fluxograma invalido para traducao.");
 			}
 
 		});
+		
+		mi_cf_pb.setOnAction(e -> {
+	    	ConfigService.get().setCss(Tema.Contraste.getUrl());
+	    	AlertaService.showAviso("Reinicie a aplicação para aplicar as mudanças.");
+	    });
+		
+		mi_cf_dark.setOnAction(e -> {
+	    	ConfigService.get().setCss(Tema.Dark.getUrl());
+	    	AlertaService.showAviso("Reinicie a aplicação para aplicar as mudanças.");
+	    });
+		
+		mi_cf_light.setOnAction(e -> {
+	    	ConfigService.get().setCss(Tema.Light.getUrl());
+	    	AlertaService.showAviso("Reinicie a aplicação para aplicar as mudanças.");
+	    });
 
 		btn_processamento.setOnAction(e -> {
 			Processamento pt = new Processamento();
@@ -309,9 +337,9 @@ public class FluxogramaController implements Initializable {
 
 		// style="-fx-border-color: #790b77;"
 		btn_move.setOnAction(e -> {
-			btn_move.setStyle("-fx-border-color: #fff;");
-			btn_associate.setStyle("");
-			btn_remove.setStyle("");
+			btn_move.getStyleClass().add("border_total");
+			btn_associate.getStyleClass().remove("border_total");
+			btn_remove.getStyleClass().remove("border_total");
 
 			// mouse_status = 1;//mover
 			figurasService.setMouse_status(1);
@@ -321,9 +349,9 @@ public class FluxogramaController implements Initializable {
 		});
 
 		btn_remove.setOnAction(e -> {
-			btn_remove.setStyle("-fx-border-color: #fff;");
-			btn_associate.setStyle("");
-			btn_move.setStyle("");
+			btn_remove.getStyleClass().add("border_total");
+			btn_associate.getStyleClass().remove("border_total");
+			btn_move.getStyleClass().remove("border_total");
 
 			// mouse_status = 2;//remover
 			figurasService.setMouse_status(2);
@@ -334,9 +362,9 @@ public class FluxogramaController implements Initializable {
 		});
 
 		btn_associate.setOnAction(e -> {
-			btn_associate.setStyle("-fx-border-color: #fff;");
-			btn_move.setStyle("");
-			btn_remove.setStyle("");
+			btn_associate.getStyleClass().add("border_total");
+			btn_move.getStyleClass().remove("border_total");
+			btn_remove.getStyleClass().remove("border_total");
 
 			// mouse_status = 3;//ligacoes
 			figurasService.setMouse_status(3);
@@ -352,13 +380,42 @@ public class FluxogramaController implements Initializable {
 		fluxograma.iniciaAssociacoes();
 		fluxograma.setFim(null);
 		fluxograma.setInicio(null);
-		root.getChildren().setAll(new FMX().string2Pane(aberto, fluxograma, figurasService,  console).getChildren());
+		root.getChildren().setAll(new FMX().string2Pane(aberto, fluxograma, figurasService, console).getChildren());
 		for (Associacao a : fluxograma.getAssociacoes()) {
 			figurasService.arrastaItens(root, a.getPane1(), a.getTipo_pane1(), fluxograma);
 			figurasService.arrastaItens(root, a.getPane2(), a.getTipo_pane2(), fluxograma);
 			figurasService.criar_linha(root, fluxograma, a);
 		}
 		this.consoleService.getInstancia().startConsole(root);
+	}
+
+	private void atualizarCss() {
+		bd_base.getStyleClass().add("area_total");
+		btn_inicio.getStyleClass().add("btn_total");
+		btn_fim.getStyleClass().add("btn_total");
+		btn_decisao.getStyleClass().add("btn_total");
+		btn_processamento.getStyleClass().add("btn_total");
+		btn_entrada.getStyleClass().add("btn_total");
+		btn_saida.getStyleClass().add("btn_total");
+		btn_move.getStyleClass().add("btn_total");
+		btn_move.getStyleClass().add("border_total");
+		btn_associate.getStyleClass().add("btn_total");
+		btn_remove.getStyleClass().add("btn_total");
+		lb_figuras.getStyleClass().add("btn_total");
+		hb_figuras.getStyleClass().add("border_total");
+		
+		icon_move.getStyleClass().add("bt_exec");
+		icon_associate.getStyleClass().add("bt_code");
+		icon_remove.getStyleClass().add("erro");
+		
+		icon_inicio.getStyleClass().add("bt_debug");
+		icon_entrada.getStyleClass().add("bt_debug");
+		icon_saida.getStyleClass().add("bt_debug");
+		icon_decisao.getStyleClass().add("bt_debug");
+		icon_processamento.getStyleClass().add("bt_debug");
+		icon_fim.getStyleClass().add("bt_debug");
+		
+		bd_base.getStylesheets().add(ConfigService.get().getCss());
 	}
 
 	private void cria_figura(AnchorPane ap, int tipo) {

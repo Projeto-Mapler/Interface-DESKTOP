@@ -1,4 +1,17 @@
 
+.area_total{
+	-fx-background-color: white;
+}
+
+.btn_total{
+	 -fx-text-fill: black;
+	 -fx-background-color: transparent;
+}
+
+.border_total{
+	-fx-border-color: black;
+}
+
 
 .area_lateral{
 	-fx-background-color: #fff;
