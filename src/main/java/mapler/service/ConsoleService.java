@@ -6,6 +6,7 @@ import com.jfoenix.controls.JFXTextArea;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 
 public class ConsoleService {
 
@@ -27,21 +28,20 @@ public class ConsoleService {
 	
 	public void sendMensagem(String msg) {
 		this.textoConsole.clear();
-		this.textoConsole.setText("<< Console >>");
+		this.textoConsole.setText("\n<<Console>>");
 		this.textoConsole.appendText("\n"+msg);
 	}
 	
-	public void startConsole(AnchorPane root) {
+	public void startConsole(HBox console) {
 		AnchorPane area_console = new AnchorPane();
-		area_console.setPrefSize(200, 100);
+		area_console.setPrefSize(100, 200);
 
-		root.getChildren().add(area_console);
-		root.setBottomAnchor(area_console, 0.0);
-		root.setRightAnchor(area_console, 0.0);
+		console.getChildren().clear();
+		console.getChildren().add(area_console);
 
 		JFXTextArea texto = new JFXTextArea();
 		texto.setEditable(false);
-		texto.setText("<< Console >>");
+		texto.setText("\n<<Console>>");
 		texto.setStyle("-fx-background-color: #a7aabe;");
 
 		JFXButton btn_clear_console = new JFXButton(" ");
@@ -63,7 +63,7 @@ public class ConsoleService {
 
 		btn_clear_console.setOnAction(e -> {
 			texto.clear();
-			texto.setText("<< Console >>");
+			texto.setText("\n<<Console>>");
 		});
 		
 		this.textoConsole = texto;

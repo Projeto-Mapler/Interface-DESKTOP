@@ -19,11 +19,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
-import javafx.scene.input.KeyCode;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -45,7 +44,6 @@ import mapler.model.resource.Tema;
 import mapler.model.resource.Templates;
 import mapler.service.AlertaService;
 import mapler.service.ArquivoFluxogramaService;
-import mapler.service.ArquivoService;
 import mapler.service.BaseService;
 import mapler.service.ConfigService;
 import mapler.service.ConsoleService;
@@ -82,13 +80,16 @@ public class FluxogramaController implements Initializable {
 	Label lb_figuras;
 	
 	@FXML
-	HBox hb_figuras;
+	HBox hb_figuras, hb_console;
 	
 	@FXML
 	AnchorPane root;
 
 	@FXML
 	BorderPane bd_base;
+	
+	@FXML
+	ScrollPane scroll_root;
 
 	Canvas canvas = new Canvas(600, 300);
 	GraphicsContext ctx = canvas.getGraphicsContext2D();
@@ -121,7 +122,7 @@ public class FluxogramaController implements Initializable {
 		setEventos();
 		root.getChildren().add(canvas);
 		root.setCursor(Cursor.CLOSED_HAND);
-		this.consoleService.getInstancia().startConsole(root);
+		this.consoleService.getInstancia().startConsole(hb_console);
 		atualizarCss();
 
 		String conteudo = ArquivoFluxogramaService.getInstance().getConteudo();
@@ -232,7 +233,7 @@ public class FluxogramaController implements Initializable {
 			if (ArquivoFluxogramaService.getInstance().checkAlteracoesNaoSalvas()) {
 				ArquivoFluxogramaService.getInstance().fechar();
 				root.getChildren().clear();
-				this.consoleService.getInstancia().startConsole(root);
+				this.consoleService.getInstancia().startConsole(hb_console);
 				fluxograma.reiniciar();
 				fluxograma = Fluxograma.getInstancia();
 			}
@@ -386,7 +387,7 @@ public class FluxogramaController implements Initializable {
 			figurasService.arrastaItens(root, a.getPane2(), a.getTipo_pane2(), fluxograma);
 			figurasService.criar_linha(root, fluxograma, a);
 		}
-		this.consoleService.getInstancia().startConsole(root);
+		this.consoleService.getInstancia().startConsole(hb_console);
 	}
 
 	private void atualizarCss() {
@@ -415,6 +416,8 @@ public class FluxogramaController implements Initializable {
 		icon_processamento.getStyleClass().add("bt_debug");
 		icon_fim.getStyleClass().add("bt_debug");
 		
+		scroll_root.getStylesheets()
+        .add(CarregadorRecursos.get().getResourceExternalForm(Estilos.SCROLL.getUrl()));
 		bd_base.getStylesheets().add(ConfigService.get().getCss());
 	}
 

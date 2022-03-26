@@ -9,6 +9,7 @@ public enum Estilos {
   TEXTO("/css/texto.css"),
   BOTOES("/css/botoes.css"),
   TABAREACOD("/css/tabAreacod.css"),
+  SCROLL("/css/scroll.css"),
   CONSOLE("/css/console.css");
   
   
