@@ -154,8 +154,12 @@ public class FigurasService {
 	           @Override
 	           public void handle ( MouseEvent mouseEvent ) {
 	        	   if(mouse_status == 1) {
-	        		   figuras.setLayoutX ( mouseEvent.getSceneX ( ) + x );
-	                   figuras.setLayoutY ( mouseEvent.getSceneY ( ) + y );
+	        		   
+	        		   double posX = mouseEvent.getSceneX ( ) + x;
+	        		   double posY = mouseEvent.getSceneY ( ) + y;
+	        		   
+	        		   figuras.setLayoutX ( posX < 0 ? 0 : posX );
+	                   figuras.setLayoutY ( posY < 0 ? 0 : posY );
 	                   
 	                 //verificar se nao esta em associacao para refazer a linha
 	                   ArrayList<Associacao> ascc = fluxograma.getAssociacoesByPane(figuras);
