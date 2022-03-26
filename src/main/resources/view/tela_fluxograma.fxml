@@ -134,7 +134,7 @@
 			<left>
 				<AnchorPane prefHeight="200.0" BorderPane.alignment="CENTER">
 					<children>
-						<VBox prefHeight="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+						<VBox prefHeight="200.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
 							<children>
 								<HBox fx:id="hb_figuras" alignment="TOP_CENTER">
 									<children>
@@ -186,6 +186,7 @@
 										</VBox>
 									</children>
 								</HBox>
+                        <HBox VBox.vgrow="ALWAYS" />
                         <HBox fx:id="hb_console" alignment="TOP_CENTER" />
 							</children>
 						</VBox>
