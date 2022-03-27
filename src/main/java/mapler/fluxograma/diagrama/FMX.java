@@ -92,12 +92,14 @@ public class FMX {
 					ini.setLayoutX(Double.parseDouble(x));
 					ini.setLayoutY(Double.parseDouble(y));
 					fs.arrastaItens(root, ini, Tipos.INICIO.getValue(), fluxograma);
+					fluxograma.setInicio(ini);
 					root.getChildren().add(ini);
 				}else if(id.contains("fim")) {
 					AnchorPane fim = new Fim().criar_fim(id);
 					fim.setLayoutX(Double.parseDouble(x));
 					fim.setLayoutY(Double.parseDouble(y));
 					fs.arrastaItens(root, fim, Tipos.FIM.getValue(), fluxograma);
+					fluxograma.setFim(fim);
 					root.getChildren().add(fim);
 				}else if(id.contains("entrada")) {
 					AnchorPane entrada = new Entrada().criar_entrada(id);
