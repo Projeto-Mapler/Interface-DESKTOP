@@ -183,7 +183,7 @@ public class TradutorFluxogramaService {
 		} else if (ap.getId().contains("fim")) {
 			return "";
 		} else if (ap.getId().contains("entrada")) {
-			return "leia variavel;\n";
+			return "ler variavel;\n";
 		} else if (ap.getId().contains("saida")) {
 			return "escrever variavel;\n";
 		} else if (ap.getId().contains("decisao")) {
