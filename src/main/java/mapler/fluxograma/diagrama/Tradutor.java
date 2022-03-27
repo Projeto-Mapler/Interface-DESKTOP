@@ -6,12 +6,14 @@ import javafx.scene.layout.AnchorPane;
 
 public class Tradutor {
 
+	private static String continuacao;
+	
 	public static String getTraducao2Portugol(Fluxograma fluxograma) {
 
 		String blocoVariaveis = "variaveis\n  variavel: cadeia;\n";
 		String blocoInicio = "\ninicio\n";
 		String traducao;
-
+		continuacao = "";
 		AnchorPane inicio = fluxograma.getInicio();
 		AnchorPane fim = fluxograma.getFim();
 
@@ -24,63 +26,29 @@ public class Tradutor {
 		return traducao;
 	}
 
-	private static String getCodigoLoop(Fluxograma fluxo, AnchorPane inicial, AnchorPane atual) {
-		String bool = "false";
-		String aux = null;
-
-		if (inicial.equals(atual)) {
-			return "";
-		} else if (atual.getId().contains("fim")) {
-			return "false";
-		} else if (atual.getId().contains("decisao")) {
-			ArrayList<Associacao> lista = fluxo.getAssociacoesByPane1(atual);
-			for (Associacao a : lista) {
-				bool = getCodigoLoop(fluxo, inicial, a.getPane2());
-				if (bool.equals("false"))
-					continue;
-
-				if (aux == null) {
-					aux = bool;
-					if (a.getLabel().getText().toLowerCase().equals("sim")) {
-						aux = "se variavel = \"valor\" entao\n" + aux;
-					} else {
-						aux = "senao\n" + aux;
-					}
-					bool = "";
-				} else {
-					if (a.getLabel().getText().toLowerCase().equals("sim")) {
-						bool = "se variavel = \"valor\"  entao\n" + bool;
-					} else {
-						bool = "senao\n" + bool;
-					}
-				}
-
-			}
-			if (aux != null) {
-				if (bool.contains("senao")) {
-					return aux + bool + "fim se;\n";
-				} else {
-					if (bool.contains("se variavel == \"valor\"  entao")) {
-						return bool + aux + "fim se;\n";
-					} else if (bool.equals("") && aux.contains("senao")) { // caso so tenha o caminho "nao" no se
-						return aux.replace("= \"valor\" ", "nao \"valor\" ") + "fim se;\n";
-					} else {
-						return aux + "fim se;\n"; // caso so tenha o caminho "sim" no se
-					}
-				}
-			} else {
-				if (bool.contains("senao")) {
-					return aux + bool + "fim se;\n";
-				} else {
-					return bool + "fim se;\n";
-				}
-			}
-		} else {
-			ArrayList<Associacao> lista = fluxo.getAssociacoesByPane1(atual);
-			bool = getCodigoByPane(fluxo, atual) + getCodigoLoop(fluxo, inicial, lista.get(0).getPane2());
+	
+	//busca fim
+	private static boolean caminhoFim(Fluxograma fluxograma, AnchorPane paneProibido, AnchorPane paneAtual) {
+		if(paneAtual.equals(paneProibido)) {
+			return false;
 		}
-
-		return bool;
+		if(paneAtual.getId().contains("fim")) {
+			return true;
+		}
+		
+		ArrayList<Associacao> lista = fluxograma.getAssociacoesByPane1(paneAtual);
+		if(lista.size() > 1) {
+			boolean boo;
+			for(Associacao associacao : lista) {
+				boo = caminhoFim(fluxograma, paneProibido, associacao.getPane2());
+				if(boo)
+					return true;
+			}
+			return false;
+		}else {
+			return caminhoFim(fluxograma, paneProibido, lista.get(0).getPane2());
+		}
+		 
 	}
 
 	// percorre o caminho inverso //usado para buscar se chega até o inicial
@@ -100,10 +68,21 @@ public class Tradutor {
 			
 			if(a.getPane1().getId().contains("decisao")) {
 				if (a.getLabel().getText().equals("Sim")) {
-					return getCaminhoReverso(fluxo, inicial, a.getPane1()) + "se variavel = \"valor\" entao\n" + getCodigoByPane(fluxo, atual) + "fim se;\n";
+					retorno = getCaminhoReverso(fluxo, inicial, a.getPane1()) + "se variavel = \"valor\" entao\n" + getCodigoByPane(fluxo, atual) + "fim se;\n";
 				}else {
-					return getCaminhoReverso(fluxo, inicial, a.getPane1()) + "senao\n" + getCodigoByPane(fluxo, atual) + "fim se;\n";
+					retorno = getCaminhoReverso(fluxo, inicial, a.getPane1()) + "se variavel nao \"valor\" entao\n" + getCodigoByPane(fluxo, atual) + "fim se;\n";
 				}
+				
+				ArrayList<Associacao> listaInterna = fluxo.getAssociacoesByPane1(a.getPane1());
+				for(Associacao as : listaInterna) {
+					if(as.getPane2().equals(a.getPane2()))
+						continue;
+					Boolean bool = caminhoFim(fluxo, a.getPane1(), as.getPane2());
+					if(bool)
+					   continuacao = getTrechoCodigo(fluxo, as.getPane2());
+				}
+				
+				return retorno;
 				
 			}else {
 				retornado =  getCaminhoReverso(fluxo, inicial, a.getPane1()) + getCodigoByPane(fluxo, atual);
@@ -123,9 +102,12 @@ public class Tradutor {
 		return retorno;
 	}
 
-	private static String getCodigoLoop2(Fluxograma fluxo, Associacao associacao) {
+	private static String getCodigoLoop(Fluxograma fluxo, Associacao associacao) {
 		String bool;
-		bool = getCaminhoReverso(fluxo, associacao.getPane2(), associacao.getPane1());
+		bool = "enquanto variavel = \"valor\" faca\n" + getCaminhoReverso(fluxo, associacao.getPane2(), associacao.getPane1()) + "fim enquanto;\n";
+		if( !continuacao.equals(""))
+			bool += continuacao;
+	    System.out.println(bool + "\ncontinuacao: " + continuacao);
 		return bool;
 	}
 
@@ -141,30 +123,11 @@ public class Tradutor {
 			String isLoop = "";
 			
 			for(Associacao p : fluxo.getAssociacoesByPane2(ap)) {
-				String nomometodo = getCodigoLoop2(fluxo, p);
-				if(nomometodo.equals("")) {
+				String nomometodo = getCodigoLoop(fluxo, p);
+				if(nomometodo.equals("enquanto variavel = \"valor\" faca\nfim enquanto;\n")) {
 					continue;
 				}
-				System.out.println("enquanto variavel = \"valor\" faca\n" + nomometodo + "fim enquanto;\n");
-			}
-			
-
-			// partindo de ap, chega até ap? //OLD
-			if (ap.getId().contains("decisao")) {
-				for (Associacao prox : fluxo.getAssociacoesByPane1(ap)) {
-					isLoop += getCodigoByPane(fluxo, ap) + getCodigoLoop(fluxo, ap, prox.getPane2()); // tratar quando
-																										// iniciar com
-																										// decisao
-				}
-			} else {
-				for (Associacao prox : fluxo.getAssociacoesByPane1(ap)) {
-					isLoop += getCodigoByPane(fluxo, ap) + getCodigoLoop(fluxo, ap, prox.getPane2());
-				}
-			}
-
-			if (!isLoop.equals("false") || !isLoop.equals("")) {
-				loop = 1;
-				trecho = "enquanto variavel nao \"valor\" faca\n" + isLoop + "fim enquanto;\n";
+				return  nomometodo;
 			}
 		}
 
