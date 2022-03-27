@@ -1,14 +1,28 @@
-package mapler.fluxograma.diagrama;
+package mapler.service;
 
 import java.util.ArrayList;
 
 import javafx.scene.layout.AnchorPane;
+import mapler.fluxograma.diagrama.Associacao;
+import mapler.fluxograma.diagrama.Fluxograma;
 
-public class Tradutor {
+public class TradutorFluxogramaService {
 
-	private static String continuacao;
+	private String continuacao;
+	private static TradutorFluxogramaService instancia;
 	
-	public static String getTraducao2Portugol(Fluxograma fluxograma) {
+	private TradutorFluxogramaService() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public static TradutorFluxogramaService get() {
+		if(instancia == null) {
+			instancia = new TradutorFluxogramaService();
+		}
+		return instancia;
+	}
+	
+	public String getTraducao2Portugol(Fluxograma fluxograma) {
 
 		String blocoVariaveis = "variaveis\n  variavel: cadeia;\n";
 		String blocoInicio = "\ninicio\n";
@@ -21,14 +35,14 @@ public class Tradutor {
 			return null;
 		}
 
-		traducao = blocoVariaveis + blocoInicio + Tradutor.getTrechoCodigo(fluxograma, inicio) + "\nfim";
+		traducao = blocoVariaveis + blocoInicio + getTrechoCodigo(fluxograma, inicio) + "\nfim";
 		traducao = traducao.replace("enquanto varivavel nao \"valor\" faca\r\nfim enquanto;\n", "");
 		return traducao;
 	}
 
 	
 	//busca fim
-	private static boolean caminhoFim(Fluxograma fluxograma, AnchorPane paneProibido, AnchorPane paneAtual) {
+	private boolean caminhoFim(Fluxograma fluxograma, AnchorPane paneProibido, AnchorPane paneAtual) {
 		if(paneAtual.equals(paneProibido)) {
 			return false;
 		}
@@ -53,7 +67,7 @@ public class Tradutor {
 
 	// percorre o caminho inverso //usado para buscar se chega até o inicial
 	// novamente
-	private static String getCaminhoReverso(Fluxograma fluxo, AnchorPane inicial, AnchorPane atual) {
+	private String getCaminhoReverso(Fluxograma fluxo, AnchorPane inicial, AnchorPane atual) {
 		String retorno = "";
 		if (atual.equals(inicial)) {
 			return getCodigoByPane(fluxo, atual);
@@ -102,16 +116,15 @@ public class Tradutor {
 		return retorno;
 	}
 
-	private static String getCodigoLoop(Fluxograma fluxo, Associacao associacao) {
+	private String getCodigoLoop(Fluxograma fluxo, Associacao associacao) {
 		String bool;
 		bool = "enquanto variavel = \"valor\" faca\n" + getCaminhoReverso(fluxo, associacao.getPane2(), associacao.getPane1()) + "fim enquanto;\n";
 		if( !continuacao.equals(""))
 			bool += continuacao;
-	    System.out.println(bool + "\ncontinuacao: " + continuacao);
 		return bool;
 	}
 
-	private static String getTrechoCodigo(Fluxograma fluxo, AnchorPane ap) {
+	private String getTrechoCodigo(Fluxograma fluxo, AnchorPane ap) {
 
 		String trecho = "";
 		ArrayList<Associacao> lista = fluxo.getAssociacoesByPane(ap);
@@ -163,7 +176,7 @@ public class Tradutor {
 		return trecho;
 	}
 
-	private static String getCodigoByPane(Fluxograma flx, AnchorPane ap) {
+	private String getCodigoByPane(Fluxograma flx, AnchorPane ap) {
 
 		if (ap.getId().contains("inicio")) {
 			return "";

@@ -31,7 +31,6 @@ import javafx.scene.paint.Paint;
 import mapler.fluxograma.diagrama.Associacao;
 import mapler.fluxograma.diagrama.FMX;
 import mapler.fluxograma.diagrama.Fluxograma;
-import mapler.fluxograma.diagrama.Tradutor;
 import mapler.fluxograma.figuras.Decisao;
 import mapler.fluxograma.figuras.Entrada;
 import mapler.fluxograma.figuras.Fim;
@@ -49,6 +48,7 @@ import mapler.service.ConfigService;
 import mapler.service.ConsoleService;
 import mapler.service.FigurasService;
 import mapler.service.InicioService;
+import mapler.service.TradutorFluxogramaService;
 import mapler.util.CarregadorRecursos;
 
 /**
@@ -266,7 +266,7 @@ public class FluxogramaController implements Initializable {
 				return;
 			}
 
-			String portugol = Tradutor.getTraducao2Portugol(fluxograma);
+			String portugol = TradutorFluxogramaService.get().getTraducao2Portugol(fluxograma);
 			ArquivoFluxogramaService.getInstance().setTraducao(portugol);
 			if (portugol != null) {
 				try {
