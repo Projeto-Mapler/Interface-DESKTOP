@@ -228,6 +228,12 @@ public class FluxogramaController implements Initializable {
 				System.exit(0);
 			}
 		});
+		
+		mn_sair.setOnAction(e -> { // fechar aplicacao
+			if (ArquivoFluxogramaService.getInstance().checkAlteracoesNaoSalvas()) {
+				System.exit(0);
+			}
+		});
 
 		mn_novo.setOnAction(e -> {
 			if (ArquivoFluxogramaService.getInstance().checkAlteracoesNaoSalvas()) {
