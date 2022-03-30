@@ -3,6 +3,8 @@ package mapler.controller;
 import static javafx.scene.input.KeyCode.S;
 import static org.fxmisc.wellbehaved.event.EventPattern.keyPressed;
 
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -48,6 +50,7 @@ import mapler.service.ConfigService;
 import mapler.service.ConsoleService;
 import mapler.service.FigurasService;
 import mapler.service.InicioService;
+import mapler.service.LinksService;
 import mapler.service.TradutorFluxogramaService;
 import mapler.util.CarregadorRecursos;
 
@@ -299,6 +302,17 @@ public class FluxogramaController implements Initializable {
 		mi_cf_light.setOnAction(e -> {
 	    	ConfigService.get().setCss(Tema.Light.getUrl());
 	    	AlertaService.showAviso("Reinicie a aplicação para aplicar as mudanças.");
+	    });
+		
+		mn_sb_fluxogramas.setOnAction(e -> {
+			try {
+				URL url = new URL("https://portugol.sourceforge.io/fluxograma.html");
+				boolean boo = LinksService.get().openWebpage(url.toURI());
+			} catch (URISyntaxException e1) {
+				e1.printStackTrace();
+			} catch (MalformedURLException e1) {
+				e1.printStackTrace();
+			}
 	    });
 
 		btn_processamento.setOnAction(e -> {

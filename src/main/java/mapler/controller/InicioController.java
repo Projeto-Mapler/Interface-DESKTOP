@@ -1,24 +1,23 @@
 package mapler.controller;
 
-import java.awt.Desktop;
 import java.net.MalformedURLException;
-import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import javax.swing.event.HyperlinkEvent;
 
 import com.jfoenix.controls.JFXButton;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Hyperlink;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
+import javafx.scene.shape.Circle;
 import mapler.model.resource.Tema;
 import mapler.model.resource.Templates;
 import mapler.service.ArquivoFluxogramaService;
@@ -26,10 +25,8 @@ import mapler.service.ArquivoService;
 import mapler.service.BaseService;
 import mapler.service.ConfigService;
 import mapler.service.InicioService;
+import mapler.service.LinksService;
 import mapler.util.CarregadorRecursos;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.shape.Circle;
-import javafx.scene.control.Label;
 
 /**
  * Controller para tela_inicio.fxml
@@ -97,19 +94,6 @@ public class InicioController implements Initializable {
 	public void initialize(URL url, ResourceBundle rb) {
 		styles();
 		atualizarCss();
-	}
-
-	public static boolean openWebpage(URI uri) {
-		Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
-		if (desktop != null && desktop.isSupported(Desktop.Action.BROWSE)) {
-			try {
-				desktop.browse(uri);
-				return true;
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		return false;
 	}
 
 	public void styles() {
@@ -249,7 +233,7 @@ public class InicioController implements Initializable {
 		btn_left_tutoriais.setOnAction(e -> {
 			try {
 				URL url = new URL("https://portugol.sourceforge.io/");
-				boolean boo = openWebpage(url.toURI());
+				boolean boo = LinksService.get().openWebpage(url.toURI());
 			} catch (URISyntaxException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -262,7 +246,7 @@ public class InicioController implements Initializable {
 		btn_left_exemplos.setOnAction(e -> {
 			try {
 				URL url = new URL("https://portugol.sourceforge.io/");
-				boolean boo = openWebpage(url.toURI());
+				boolean boo = LinksService.get().openWebpage(url.toURI());
 			} catch (URISyntaxException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -276,7 +260,7 @@ public class InicioController implements Initializable {
 		btn_left_sobre.setOnAction(e -> {
 			try {
 				URL url = new URL("https://portugol.sourceforge.io/sobre.html");
-				boolean boo = openWebpage(url.toURI());
+				boolean boo = LinksService.get().openWebpage(url.toURI());
 			} catch (URISyntaxException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -446,7 +430,7 @@ public class InicioController implements Initializable {
 		lk_portugol.setOnAction(e -> {
 		try {
 			URL url = new URL("https://portugol.sourceforge.io/exemplos/estrutura-codigo.html");
-			boolean boo = openWebpage(url.toURI());
+			boolean boo = LinksService.get().openWebpage(url.toURI());
 		} catch (URISyntaxException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -459,7 +443,7 @@ public class InicioController implements Initializable {
 		lk_macp.setOnAction(e -> {
 		try {
 			URL url = new URL("https://portugol.sourceforge.io/sobre.html");
-			boolean boo = openWebpage(url.toURI());
+			boolean boo = LinksService.get().openWebpage(url.toURI());
 		} catch (URISyntaxException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
