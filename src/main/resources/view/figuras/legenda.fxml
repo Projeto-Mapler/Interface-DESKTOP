@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" style="-fx-border-color: #FF5722; -fx-border-width: 3;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox alignment="TOP_CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label alignment="CENTER" prefWidth="300.0" style="-fx-background-color: #fff;" text="LEGENDA" textFill="#ff5722" />
+            <JFXTextArea prefColumnCount="25" prefRowCount="5" text="&#10;&#10;" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
