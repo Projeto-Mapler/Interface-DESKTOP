@@ -232,7 +232,7 @@ public class InicioController implements Initializable {
 
 		btn_left_tutoriais.setOnAction(e -> {
 			try {
-				URL url = new URL("https://portugol.sourceforge.io/");
+				URL url = new URL("https://portugol.sourceforge.io/manuais.html");
 				boolean boo = LinksService.get().openWebpage(url.toURI());
 			} catch (URISyntaxException e1) {
 				// TODO Auto-generated catch block
@@ -245,7 +245,7 @@ public class InicioController implements Initializable {
 		
 		btn_left_exemplos.setOnAction(e -> {
 			try {
-				URL url = new URL("https://portugol.sourceforge.io/");
+				URL url = new URL("https://portugol.sourceforge.io/exemplos/estrutura-codigo.html");
 				boolean boo = LinksService.get().openWebpage(url.toURI());
 			} catch (URISyntaxException e1) {
 				// TODO Auto-generated catch block
