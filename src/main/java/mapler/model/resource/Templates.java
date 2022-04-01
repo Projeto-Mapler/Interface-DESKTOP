@@ -11,6 +11,7 @@ public enum Templates {
   FIG_INICIO("/view/figuras/inicio.fxml"),
   FIG_FIM("/view/figuras/fim.fxml"),
   FIG_DECISAO("/view/figuras/decisao.fxml"),
+  FIG_LEGENDA("/view/figuras/legenda.fxml"),
   FIG_PROCESSAMENTO("/view/figuras/processamento.fxml"),
   FIG_ENTRADA("/view/figuras/entrada.fxml"),
   FIG_SAIDA("/view/figuras/saida.fxml");  

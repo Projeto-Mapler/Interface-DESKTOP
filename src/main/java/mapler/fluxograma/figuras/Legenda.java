@@ -9,7 +9,7 @@ public class Legenda extends Figura{
 	public AnchorPane criar_legenda() {
 		  AnchorPane legenda;
 		  try {
-			  legenda = FXMLLoader.load(getClass().getResource(Templates.FIG_FIM.getUrl()));
+			  legenda = FXMLLoader.load(getClass().getResource(Templates.FIG_LEGENDA.getUrl()));
 		  }catch(Exception e) {
 			  legenda = new AnchorPane();
 			  System.out.println(e.getMessage());
@@ -21,7 +21,7 @@ public class Legenda extends Figura{
 	public AnchorPane criar_legenda(String id) {
 		  AnchorPane legenda;
 		  try {
-			  legenda = FXMLLoader.load(getClass().getResource(Templates.FIG_FIM.getUrl()));
+			  legenda = FXMLLoader.load(getClass().getResource(Templates.FIG_LEGENDA.getUrl()));
 		  }catch(Exception e) {
 			  legenda = new AnchorPane();
 			  System.out.println(e.getMessage());
