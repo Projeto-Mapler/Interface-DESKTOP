@@ -73,11 +73,45 @@ public class Fluxograma {
 		instancia.setFim(null);
 		instancia.setInicio(null);
 	}
+	
+	private boolean chegaAoFim(AnchorPane apInicial, int tipoPaneInicial) {
+		
+		Associacao aux;
+		
+		if(tipoPaneInicial == Tipos.FIM.getValue()){
+			return true;
+		}else if(tipoPaneInicial == Tipos.DECISAO.getValue()) {
+			ArrayList<Associacao> lista = getAssociacoesByPane1(apInicial);
+			if(lista.size() == 0) {
+				return false;
+			}
+			for(Associacao a : lista) {
+				boolean b = chegaAoFim(a.getPane2(), a.getTipo_pane2());
+				if(!b) {
+					return false;
+				}
+			}
+			return true;
+		}else {
+			try{
+				ArrayList<Associacao> lista = getAssociacoesByPane1(apInicial);
+				if(lista.size() == 0) {
+					return false;
+				}
+				Associacao a = lista.get(0);
+				return chegaAoFim(a.getPane2(), a.getTipo_pane2());
+			}catch(Exception e) {
+				return false;
+			}
+			
+		}
+	}
 
-	public boolean ligacaoCompleta() { // errado, tem de verificar se partindo de inicio chega em fim. //se tiver
-										// decisao tem de chegar em fim por ambos os fluxos
+	public boolean ligacaoCompleta() {
+										
 		int inicio = 0;
 		int fim = 0;
+		
 
 		for (Associacao a : fluxo) {
 			if (a.getTipo_pane1() == Tipos.INICIO.getValue()) {
@@ -88,7 +122,7 @@ public class Fluxograma {
 			}
 
 			if (inicio == 1 && fim == 1) {
-				return true;
+				return chegaAoFim(getInicio(), Tipos.INICIO.getValue());
 			}
 		}
 

@@ -274,6 +274,12 @@ public class FluxogramaController implements Initializable {
 			} else if (resp == -1) {
 				return;
 			}
+			
+			boolean aux = fluxograma.ligacaoCompleta();
+			if(!aux) {
+				AlertaService.showAviso("Fluxograma invalido para traducao.");
+				return;
+			}
 
 			String portugol = TradutorFluxogramaService.get().getTraducao2Portugol(fluxograma);
 			ArquivoFluxogramaService.getInstance().setTraducao(portugol);
