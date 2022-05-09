@@ -132,7 +132,7 @@ public class TradutorFluxogramaService {
 
 		// buscar possivel loop
 		ArrayList<Associacao> two = fluxo.getAssociacoesByPane2(ap);
-		if (two.size() >= 2 && !ap.getId().contains("fim")) {
+		if (two.size() >= 2 && !ap.getId().contains("fim") && !getCaminhoReverso(fluxo, ap, ap).equals("")) {
 			String isLoop = "";
 			
 			for(Associacao p : fluxo.getAssociacoesByPane2(ap)) {
